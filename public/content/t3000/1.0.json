@@ -1,0 +1,114 @@
+{
+	"pages": {
+		"index": {
+			"title": "Test1 documentation",
+			"description": "What Test1 is, what it answers, and how this documentation is arranged.",
+			"html": "<p>Test1 is the controller every later Temco product was measured against: a small, fixed set of inputs and outputs, one\nprogram, and a display that says what the machine is doing. This documentation covers the version you are holding, and\nnothing else — each version keeps its own pages, so a machine commissioned two years ago still reads correctly.</p>\n<h2 id=\"what-this-version-covers\">What this version covers</h2>\n<ul>\n<li>Wiring an input and proving it changed</li>\n<li>Pointing a port at the right device</li>\n<li>Writing and downloading a program</li>\n<li>Reading the alarm log, and clearing an alarm that has gone</li>\n</ul>\n<h2 id=\"what-it-does-not-cover\">What it does not cover</h2>\n<p>Networking and protocol work belong to <a href=\"#/bacnet/1.0/index\">BACnet</a> and the tools that speak it. If you are looking for how\na supervisor reads these points, start there rather than here.</p>\n<blockquote>\n<p>Every page in this version was written against firmware 1.0. A page that only applies to a later build says so at the top.</p>\n</blockquote>\n",
+			"headings": [
+				{
+					"id": "what-this-version-covers",
+					"text": "What this version covers",
+					"level": 2
+				},
+				{
+					"id": "what-it-does-not-cover",
+					"text": "What it does not cover",
+					"level": 2
+				}
+			]
+		},
+		"alarms": {
+			"title": "Alarms and how to clear them",
+			"description": "What an alarm means, where the log is, and when clearing one is the wrong thing to do.",
+			"html": "<p>An alarm is a sentence the controller writes when a value crosses a limit it was given. It is not a diagnosis, and it is\nnot a fault: it is a fact with a time beside it.</p>\n<h2 id=\"the-log\">The log</h2>\n<p>The controller keeps the last 100 alarms in order. Each entry holds the time, the alarm, and whether it has since cleared.\nThe log survives a power cycle, which is what makes it useful on a Monday morning.</p>\n<h2 id=\"clearing-an-alarm\">Clearing an alarm</h2>\n<p>An alarm clears itself when the value returns inside its limit. Pressing <strong>Clear</strong> does not fix anything — it hides the\nentry from the active list and leaves it in the log, so the next person sees a machine that is quiet rather than one that\nwas fixed.</p>\n<p>Clear an alarm when you have dealt with the cause and want the machine to look like it. Investigate first; the log entry is\nthe only record you will have.</p>\n<h2 id=\"the-three-that-come-up-most\">The three that come up most</h2>\n<table>\n<thead>\n<tr>\n<th>Alarm</th>\n<th>What it usually is</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Sensor open</td>\n<td>A wire off, or a sensor that has failed open — check at the terminal, not in the tool</td>\n</tr>\n<tr>\n<td>Over temperature</td>\n<td>A fan that has stopped, or a filter nobody has changed</td>\n</tr>\n<tr>\n<td>Program stopped</td>\n<td>The controller restarted; look at the log for what happened before it did</td>\n</tr>\n</tbody>\n</table>\n",
+			"headings": [
+				{
+					"id": "the-log",
+					"text": "The log",
+					"level": 2
+				},
+				{
+					"id": "clearing-an-alarm",
+					"text": "Clearing an alarm",
+					"level": 2
+				},
+				{
+					"id": "the-three-that-come-up-most",
+					"text": "The three that come up most",
+					"level": 2
+				}
+			]
+		},
+		"getting-started": {
+			"title": "Getting started",
+			"description": "Install the driver and prove the controller answers before anything else.",
+			"html": "<p>Work through this page at the machine, not at a desk. It takes about ten minutes and ends with a controller that answers,\nwhich is the state every other page assumes.</p>\n<h2 id=\"install-the-driver\">Install the driver</h2>\n<p>The driver ships inside the Temco installer. Run it as an administrator, then plug the controller in. Windows shows a new\nport under <strong>Ports (COM &amp; LPT)</strong> — the number beside it is the one you will point at in the next step.</p>\n<h2 id=\"point-the-port\">Point the port</h2>\n<p>Open the tool, choose the port the controller appeared on, and press <strong>Connect</strong>. A controller that has never been\ncommissioned answers on its own address; one that has been on a network answers on the address it was given.</p>\n<p>If nothing answers, try the other ports in the list before assuming the controller is faulty: a USB adapter usually takes\nthe port beside its own.</p>\n<h2 id=\"check-the-answer\">Check the answer</h2>\n<p>Ask for the controller's identity. A good answer names the model, the firmware and how long the machine has been running:</p>\n<pre><code class=\"language-text\">Test1  firmware 1.0  uptime 0d 00:07:12\n</code></pre>\n<p>That line is enough to prove three things: the loop is powered, the driver is talking to it, and the firmware in front of you\nis the firmware this documentation was written for.</p>\n<h2 id=\"where-next\">Where next</h2>\n<ul>\n<li><a href=\"#/t3000/1.0/ports\">Ports and wiring</a> — what each terminal is for</li>\n<li><a href=\"#/t3000/1.0/programs\">Writing a program</a> — the first thing a machine needs to do</li>\n<li><a href=\"#/t3000/1.0/alarms\">Alarms</a> — when the machine says something is wrong</li>\n</ul>\n",
+			"headings": [
+				{
+					"id": "install-the-driver",
+					"text": "Install the driver",
+					"level": 2
+				},
+				{
+					"id": "point-the-port",
+					"text": "Point the port",
+					"level": 2
+				},
+				{
+					"id": "check-the-answer",
+					"text": "Check the answer",
+					"level": 2
+				},
+				{
+					"id": "where-next",
+					"text": "Where next",
+					"level": 2
+				}
+			]
+		},
+		"ports": {
+			"title": "Ports and wiring",
+			"description": "What each terminal is for, and the two mistakes that account for most commissioning calls.",
+			"html": "<p>The controller has the same terminals on every model in the family. The numbers are printed beside them; the words below\nare what they do.</p>\n<h2 id=\"the-terminals\">The terminals</h2>\n<table>\n<thead>\n<tr>\n<th>Terminal</th>\n<th>Name</th>\n<th>What it is for</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1–8</td>\n<td>Universal inputs</td>\n<td>A switch, a sensor or a 0–10 V signal; the tool decides which</td>\n</tr>\n<tr>\n<td>9–14</td>\n<td>Digital outputs</td>\n<td>Relays, 24 V AC or DC, one amp each</td>\n</tr>\n<tr>\n<td>15–16</td>\n<td>Analog outputs</td>\n<td>0–10 V, for a damper or a valve</td>\n</tr>\n<tr>\n<td>17–18</td>\n<td>Power</td>\n<td>24 V AC, either polarity; the controller does not care</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"two-mistakes-worth-knowing\">Two mistakes worth knowing</h2>\n<p><strong>A universal input set to the wrong kind reads plausibly.</strong> A 0–10 V sensor wired into an input the tool believes is a\nswitch will read &quot;closed&quot; for ever, and nothing complains. Set the kind before wiring, and confirm it in the tool.</p>\n<p><strong>A shared 24 V supply is not shared ground.</strong> Two controllers on one transformer share a path that will carry current the\nwrong way when one of them is switched off. Either give each controller its own transformer, or bond the grounds\ndeliberately — never by accident.</p>\n<h2 id=\"prove-an-input\">Prove an input</h2>\n<p>After wiring, change the input by hand and watch the value in the tool. A reading that moves is the only proof that matters;\na reading that sits still is worth investigating before the panel goes back on.</p>\n",
+			"headings": [
+				{
+					"id": "the-terminals",
+					"text": "The terminals",
+					"level": 2
+				},
+				{
+					"id": "two-mistakes-worth-knowing",
+					"text": "Two mistakes worth knowing",
+					"level": 2
+				},
+				{
+					"id": "prove-an-input",
+					"text": "Prove an input",
+					"level": 2
+				}
+			]
+		},
+		"programs": {
+			"title": "Writing a program",
+			"description": "The shape of a Test1 program, and the one rule that keeps it readable a year later.",
+			"html": "<p>A program is a list of lines the controller runs top to bottom, ten times a second. That is the whole model: no tasks, no\nthreads, and no reason to fear it.</p>\n<h2 id=\"the-shape-of-a-program\">The shape of a program</h2>\n<pre><code class=\"language-text\">10  IF IN1 = ON THEN OUT1 = ON\n20  IF IN1 = OFF THEN OUT1 = OFF\n30  IF AI1 &gt; 22.5 THEN OUT2 = ON\n</code></pre>\n<p>Every program worth keeping has three parts: what it reads, what it decides, and what it writes. Put them in that order and\na stranger can read it. Mix them and only the person who wrote it can.</p>\n<h2 id=\"the-rule\">The rule</h2>\n<p><strong>One output is set in one place.</strong> Two lines that both write <code>OUT1</code> will, sooner or later, disagree — and the machine will\ndo something nobody intended at a moment nobody predicted. If two conditions can drive one output, write one line that\ndecides between them.</p>\n<h2 id=\"download-and-watch\">Download and watch</h2>\n<p>Downloading replaces the running program. The controller keeps running its old program until the download completes, then\nswitches — so a download is not a gap in control, and a failed one leaves the old program in place.</p>\n<p>Watch the first ten seconds after a download. A program that was going to misbehave almost always shows it in the first\nscan of the inputs.</p>\n",
+			"headings": [
+				{
+					"id": "the-shape-of-a-program",
+					"text": "The shape of a program",
+					"level": 2
+				},
+				{
+					"id": "the-rule",
+					"text": "The rule",
+					"level": 2
+				},
+				{
+					"id": "download-and-watch",
+					"text": "Download and watch",
+					"level": 2
+				}
+			]
+		}
+	}
+}

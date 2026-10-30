@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Temco Learn</title>
+<meta name="description" content="Documentation, training, tests, products, Q&amp;A and topics for Temco Controls.">
+<script>
+	// The reader's own colour scheme wins until they choose: applying it before the bundle avoids a white flash.
+	try {
+		var chosen = localStorage.getItem('temco-learn-theme');
+		var dark = chosen === 'dark' || (chosen === null && window.matchMedia('(prefers-color-scheme: dark)').matches);
+		document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+	} catch (error) {
+		document.documentElement.dataset.theme = 'light';
+	}
+</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

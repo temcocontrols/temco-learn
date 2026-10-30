@@ -1,0 +1,121 @@
+{
+	"generated": "2026-10-30T08:57:44.217Z",
+	"sections": [
+		{
+			"id": "documentation",
+			"title": "Documentation",
+			"description": "Guides, references and release notes for every Temco product, one folder per version."
+		},
+		{
+			"id": "training",
+			"title": "Training & Labs",
+			"description": "Ordered reading for a job, and labs you can work through on a real controller."
+		},
+		{
+			"id": "tests",
+			"title": "Tests",
+			"description": "Commissioning checks, what each one proves, and how to run it."
+		},
+		{
+			"id": "products",
+			"title": "Products",
+			"description": "What each Temco Controls product is, what it answers, and which documentation belongs to it."
+		},
+		{
+			"id": "qa",
+			"title": "Q&A",
+			"description": "Questions from installers and engineers, answered by the people who build the products."
+		},
+		{
+			"id": "topics",
+			"title": "Topics",
+			"description": "Subjects that cross products: networking, protocols, security, alarms."
+		}
+	],
+	"projects": [
+		{
+			"id": "bacnet",
+			"title": "BACnet",
+			"section": "documentation",
+			"summary": "Object model, services and the points a controller exposes to a supervisor, with the addressing that makes them reachable.",
+			"latest": "1.0",
+			"versions": [
+				{
+					"version": "1.0",
+					"builtAt": "2026-10-30T08:34:32.927Z",
+					"pages": [
+						{
+							"href": "index",
+							"title": "BACnet at a glance",
+							"kind": "md",
+							"description": "What a BACnet controller exposes, and how a supervisor finds it."
+						},
+						{
+							"href": "points",
+							"title": "Points",
+							"kind": "md",
+							"description": "The object types this version exposes, and the properties a supervisor reads from each."
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "t3000",
+			"title": "Test1",
+			"section": "documentation",
+			"summary": "The controller family that began the platform: wiring, ports, programs and the commissioning checks that go with them.",
+			"latest": "1.0",
+			"versions": [
+				{
+					"version": "1.0",
+					"builtAt": "2026-10-30T08:33:12.159Z",
+					"pages": [
+						{
+							"href": "index",
+							"title": "Test1 documentation",
+							"kind": "md",
+							"description": "What Test1 is, what it answers, and how this documentation is arranged."
+						},
+						{
+							"href": "getting-started",
+							"title": "Getting started",
+							"kind": "md",
+							"description": "Install the driver and prove the controller answers before anything else."
+						},
+						{
+							"href": "ports",
+							"title": "Ports and wiring",
+							"kind": "md",
+							"description": "What each terminal is for, and the two mistakes that account for most commissioning calls."
+						},
+						{
+							"href": "programs",
+							"title": "Writing a program",
+							"kind": "md",
+							"description": "The shape of a Test1 program, and the one rule that keeps it readable a year later."
+						},
+						{
+							"href": "alarms",
+							"title": "Alarms and how to clear them",
+							"kind": "md",
+							"description": "What an alarm means, where the log is, and when clearing one is the wrong thing to do."
+						}
+					]
+				},
+				{
+					"version": "0.9",
+					"builtAt": "2026-10-30T08:34:09.508Z",
+					"pages": [
+						{
+							"href": "index",
+							"title": "Test1 documentation 0.9",
+							"kind": "md",
+							"description": "The pages as they stood before the 1.0 program model."
+						}
+					]
+				}
+			]
+		}
+	]
+}

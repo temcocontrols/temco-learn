@@ -1,0 +1,48 @@
+{
+	"pages": {
+		"index": {
+			"title": "BACnet at a glance",
+			"description": "What a BACnet controller exposes, and how a supervisor finds it.",
+			"html": "<p>A Temco controller speaks BACnet so that a building supervisor can read it without knowing anything about Temco tools. This\nversion documents the object model and the addresses; the wiring is <a href=\"#/t3000/1.0/index\">Test1's</a> business.</p>\n<h2 id=\"what-a-supervisor-sees\">What a supervisor sees</h2>\n<p>Every point the controller holds is an object with an instance number. A supervisor reads a point by asking for its object\nidentifier, which is the type and the number together — one 16-bit word, and the only addressing a BACnet device needs.</p>\n<h2 id=\"finding-it\">Finding it</h2>\n<p>A controller answers a <strong>Who-Is</strong> with an <strong>I-Am</strong>, which carries its device instance and its address. That is the whole\ndiscovery mechanism: no scan, no port number, no host name.</p>\n<h2 id=\"where-to-go-next\">Where to go next</h2>\n<ul>\n<li><a href=\"#/bacnet/1.0/points\">Points</a> — the object types this version exposes, and what each one is for</li>\n</ul>\n",
+			"headings": [
+				{
+					"id": "what-a-supervisor-sees",
+					"text": "What a supervisor sees",
+					"level": 2
+				},
+				{
+					"id": "finding-it",
+					"text": "Finding it",
+					"level": 2
+				},
+				{
+					"id": "where-to-go-next",
+					"text": "Where to go next",
+					"level": 2
+				}
+			]
+		},
+		"points": {
+			"title": "Points",
+			"description": "The object types this version exposes, and the properties a supervisor reads from each.",
+			"html": "<p>A point is an object with a type and an instance. This version exposes the types below; anything not listed is not\nreachable over BACnet, however visible it is in the tool.</p>\n<h2 id=\"the-types\">The types</h2>\n<table>\n<thead>\n<tr>\n<th>Type</th>\n<th>Name</th>\n<th>What it holds</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>0</td>\n<td>Analog input</td>\n<td>A measured value: a temperature, a pressure, a 0–10 V signal</td>\n</tr>\n<tr>\n<td>1</td>\n<td>Analog output</td>\n<td>A value the supervisor may write, such as a setpoint</td>\n</tr>\n<tr>\n<td>3</td>\n<td>Binary input</td>\n<td>A switch or a proven state</td>\n</tr>\n<tr>\n<td>4</td>\n<td>Binary output</td>\n<td>A relay the supervisor may command</td>\n</tr>\n<tr>\n<td>19</td>\n<td>Multi-state value</td>\n<td>A mode: heating, cooling, off</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"the-properties-worth-reading\">The properties worth reading</h2>\n<ul>\n<li><strong>Present value</strong> — the point itself</li>\n<li><strong>Status flags</strong> — whether the value is in alarm, overridden, or out of service</li>\n<li><strong>Reliability</strong> — why a value might be wrong; read it before believing the value</li>\n</ul>\n<p>A supervisor that reads present values and ignores status flags will report a fan as running while it is overridden off.\nRead the flags first.</p>\n<h2 id=\"addressing\">Addressing</h2>\n<p>The instance number is printed beside the point in the tool and is what the supervisor asks for. Writing a point means\nasking for its object identifier and its priority array — and the lowest unused priority wins, which is how a supervisor\noverrides a program without deleting it.</p>\n",
+			"headings": [
+				{
+					"id": "the-types",
+					"text": "The types",
+					"level": 2
+				},
+				{
+					"id": "the-properties-worth-reading",
+					"text": "The properties worth reading",
+					"level": 2
+				},
+				{
+					"id": "addressing",
+					"text": "Addressing",
+					"level": 2
+				}
+			]
+		}
+	}
+}

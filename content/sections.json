@@ -1,0 +1,32 @@
+[
+	{
+		"id": "documentation",
+		"title": "Documentation",
+		"description": "Guides, references and release notes for every Temco product, one folder per version."
+	},
+	{
+		"id": "training",
+		"title": "Training & Labs",
+		"description": "Ordered reading for a job, and labs you can work through on a real controller."
+	},
+	{
+		"id": "tests",
+		"title": "Tests",
+		"description": "Commissioning checks, what each one proves, and how to run it."
+	},
+	{
+		"id": "products",
+		"title": "Products",
+		"description": "What each Temco Controls product is, what it answers, and which documentation belongs to it."
+	},
+	{
+		"id": "qa",
+		"title": "Q&A",
+		"description": "Questions from installers and engineers, answered by the people who build the products."
+	},
+	{
+		"id": "topics",
+		"title": "Topics",
+		"description": "Subjects that cross products: networking, protocols, security, alarms."
+	}
+]
