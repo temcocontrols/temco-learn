@@ -2,6 +2,11 @@
 #
 # `base: './'` in vite.config.ts is what makes the same build work at the project path this deploys to; nothing here needs
 # to know the repository's name.
+#
+# The PDFs and the Windows Help files are deliberately NOT rebuilt here. They need Segoe UI (absent on a Linux runner) and
+# `hhc.exe` (Windows only), so they are built on a developer's machine and committed — this deploy ships exactly the files
+# that were reviewed. `npm run guard` fails the run when a version in the catalog has no committed PDF or help file, so the
+# one risk of that approach (a stale artefact) is caught rather than shipped.
 name: Deploy the site
 
 on:
@@ -29,7 +34,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
-      - run: npm run build
+      - run: npm run guard
+      - run: npm run build:fast
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
