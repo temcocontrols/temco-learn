@@ -284,6 +284,9 @@ ${pages.map((page) => `${page.href}.html`).join('\n')}
 	}
 
 	const manifest = { generated: new Date().toISOString(), projects: await availableOnDisk() };
+	// The folder normally exists because `scripts/catalog.mts` wrote the offline bundles into it; an empty site has no
+	// bundles, so the manifest is the first thing to land there.
+	await mkdir(join(publicDir, 'download'), { recursive: true });
 	await writeFile(join(publicDir, 'download', 'manifest.json'), `${JSON.stringify(manifest, null, '\t')}\n`, 'utf8');
 	console.log(`chm: ${built} compiled, ${skipped} skipped, ${Object.keys(manifest.projects).length} project(s) in the manifest`);
 }

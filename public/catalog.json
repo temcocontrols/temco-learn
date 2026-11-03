@@ -1,5 +1,5 @@
 {
-	"generated": "2026-11-03T05:16:45.772Z",
+	"generated": "2026-11-03T05:52:21.474Z",
 	"sections": [
 		{
 			"id": "documentation",
@@ -32,120 +32,7 @@
 			"description": "Subjects that cross products: networking, protocols, security, alarms."
 		}
 	],
-	"projects": [
-		{
-			"id": "bacnet",
-			"title": "BACnet",
-			"section": "documentation",
-			"summary": "Object model, services and the points a controller exposes to a supervisor, with the addressing that makes them reachable.",
-			"latest": "1.0",
-			"versions": [
-				{
-					"version": "1.0",
-					"builtAt": "2026-10-30T08:34:32.927Z",
-					"pages": [
-						{
-							"href": "index",
-							"title": "BACnet at a glance",
-							"kind": "md",
-							"description": "What a BACnet controller exposes, and how a supervisor finds it.",
-							"source": "content/bacnet/1.0/00-index.md",
-							"updated": "2026-10-30T08:34:32.279Z",
-							"minutes": 1
-						},
-						{
-							"href": "points",
-							"title": "Points",
-							"kind": "md",
-							"description": "The object types this version exposes, and the properties a supervisor reads from each.",
-							"source": "content/bacnet/1.0/points.md",
-							"updated": "2026-10-30T08:34:32.927Z",
-							"minutes": 1
-						}
-					]
-				}
-			],
-			"repository": "https://github.com/temcocontrols/temco-learn",
-			"editBranch": "main"
-		},
-		{
-			"id": "t3000",
-			"title": "Test1",
-			"section": "documentation",
-			"summary": "The controller family that began the platform: wiring, ports, programs and the commissioning checks that go with them.",
-			"latest": "1.0",
-			"versions": [
-				{
-					"version": "1.0",
-					"builtAt": "2026-11-02T08:12:50.826Z",
-					"pages": [
-						{
-							"href": "index",
-							"title": "Test1 documentation",
-							"kind": "md",
-							"description": "What Test1 is, what it answers, and how this documentation is arranged.",
-							"source": "content/t3000/1.0/00-index.md",
-							"updated": "2026-10-30T08:21:49.431Z",
-							"minutes": 1
-						},
-						{
-							"href": "getting-started",
-							"title": "Getting started",
-							"kind": "md",
-							"description": "Install the driver and prove the controller answers before anything else.",
-							"source": "content/t3000/1.0/getting-started.md",
-							"updated": "2026-11-02T08:12:50.826Z",
-							"minutes": 1
-						},
-						{
-							"href": "ports",
-							"title": "Ports and wiring",
-							"kind": "md",
-							"description": "What each terminal is for, and the two mistakes that account for most commissioning calls.",
-							"source": "content/t3000/1.0/ports.md",
-							"updated": "2026-10-30T08:32:28.290Z",
-							"minutes": 1
-						},
-						{
-							"href": "programs",
-							"title": "Writing a program",
-							"kind": "md",
-							"description": "The shape of a Test1 program, and the one rule that keeps it readable a year later.",
-							"source": "content/t3000/1.0/programs.md",
-							"updated": "2026-10-30T08:33:10.805Z",
-							"minutes": 1
-						},
-						{
-							"href": "alarms",
-							"title": "Alarms and how to clear them",
-							"kind": "md",
-							"description": "What an alarm means, where the log is, and when clearing one is the wrong thing to do.",
-							"source": "content/t3000/1.0/alarms.md",
-							"updated": "2026-10-30T08:33:12.160Z",
-							"minutes": 1
-						}
-					]
-				},
-				{
-					"version": "0.9",
-					"builtAt": "2026-10-30T08:34:09.508Z",
-					"pages": [
-						{
-							"href": "index",
-							"title": "Test1 documentation 0.9",
-							"kind": "md",
-							"description": "The pages as they stood before the 1.0 program model.",
-							"source": "content/t3000/0.9/00-index.md",
-							"updated": "2026-10-30T08:34:09.508Z",
-							"minutes": 1
-						}
-					]
-				}
-			],
-			"repository": "https://github.com/temcocontrols/temco-learn",
-			"editBranch": "main"
-		}
-	],
+	"projects": [],
 	"repository": "https://github.com/temcocontrols/temco-learn",
 	"editBranch": "main",
 	"siteUrl": "https://temcocontrols.github.io/temco-learn/"

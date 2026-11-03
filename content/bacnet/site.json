@@ -1,5 +1,0 @@
-{
-	"title": "BACnet",
-	"section": "documentation",
-	"summary": "Object model, services and the points a controller exposes to a supervisor, with the addressing that makes them reachable."
-}

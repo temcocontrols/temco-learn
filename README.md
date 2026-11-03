@@ -17,7 +17,7 @@ opens the page in GitHub.
 
 ```bash
 npm install
-npm run client-dev -- --port 1025   # http://localhost:1025/t3000/    (hot reload)
+npm run client-dev -- --port 1025   # http://localhost:1025/           (hot reload)
 npm run build                       # catalog + index + type-check + bundle + PDFs → dist/
 npm run build:fast                  # the same without the PDFs (local iteration)
 npm run serve -- --port 1025        # http://localhost:1025/           (what the built site looks like)
@@ -39,12 +39,12 @@ guides through a headless browser.
 ```
 /                                    Home — the six sections, and what changed lately
 /documentation                       a section
-/t3000/                              a project
-/t3000/1.0/                          one version, its pages in reading order
-/t3000/1.0/ports                     one page
+/<project>/                          a project
+/<project>/<version>/                one version, its pages in reading order
+/<project>/<version>/ports           one page
 /search?q=alarm                      search
-/print/t3000/1.0                     the guide as a document, for the PDF and for Ctrl P
-/print/t3000/1.0/ports               one page as a document
+/print/<project>/<version>           the guide as a document, for the PDF and for Ctrl P
+/print/<project>/<version>/ports     one page as a document
 ```
 
 Clean paths, no `#/`. GitHub Pages has no rewrites, so a direct hit on a deep address finds no file and Pages answers with
@@ -90,6 +90,10 @@ For the help files, set `HTMLHELP_HHC` to `hhc.exe` if the workshop lives somewh
 
 ## Content
 
+`content/` holds only `config.json` and `sections.json` today: the sample projects that came with the build have been
+removed, so the site is an empty shell waiting for real documentation. Nothing else has to change to add it — drop in a
+folder and run `npm run build`.
+
 Two kinds of page, one catalog:
 
 | kind | where it comes from | who writes it |
@@ -115,16 +119,18 @@ Callouts are `::: note`, `::: tip`, `::: important` and `::: warning`, with an o
 `content/<project>/site.json` names the product and the section it is listed under:
 
 ```json
-{ "title": "Test1", "section": "documentation", "summary": "What the product is, in one sentence." }
+{ "title": "Your product", "section": "documentation", "summary": "What the product is, in one sentence." }
 ```
 
-`content/config.json` answers the site-wide questions — where the pencil points, and where the site is published:
+`content/config.json` answers the site-wide questions — where the pencil points, where the site is published, and what the
+home page suggests under the search field (`hints` is optional; leave it out and the row disappears):
 
 ```json
 {
 	"repository": "https://github.com/temcocontrols/temco-learn",
 	"editBranch": "main",
-	"siteUrl": "https://temcocontrols.github.io/temco-learn/"
+	"siteUrl": "https://temcocontrols.github.io/temco-learn/",
+	"hints": ["alarms", "ports", "programming"]
 }
 ```
 
@@ -177,14 +183,14 @@ The `Release` workflow then attaches `temco-learn-v0.1.0.zip` — the whole buil
 GitHub release. Bump `patch` for content fixes, `minor` for a new section, project or version, `major` for a redesign or
 a URL change.
 
-Content versions (`t3000/1.0`) are **not** tags: they already live in the URL and in `content/t3000/1.0/`, and the site
+Content versions (`<project>/<version>`) are **not** tags: they already live in the URL and in `content/<project>/<version>/`, and the site
 offers each one as a download.
 
 ## Layout
 
 ```
-content/        the docs: config.json, site.json per project, a folder per version of Markdown
-public/         catalog.json, search.json, content/*.json, download/, pdf/ (generated) and imported/ (build output)
+content/        config.json and sections.json; add <project>/site.json and <project>/<version>/*.md for documentation
+public/         catalog.json, search.json, content/*.json, download/, pdf/, chm/ (generated) and imported/ (build output)
 scripts/        catalog.mts, search.mts, check-content.mts, check-artifacts.mts, pdf.mts, chm.mts, zip.mts
 src/            the app: routes, theme, chrome (breadcrumb and page actions), catalog reader, styles
 docs/design/    the redesign this site was built from

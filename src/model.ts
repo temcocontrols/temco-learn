@@ -55,6 +55,8 @@ export interface Catalog {
 	editBranch?: string;
 	/** The published site, used to build permalinks that survive being pasted into an issue. */
 	siteUrl?: string;
+	/** The suggestions shown under the home page's search field, from `content/config.json`. */
+	hints?: string[];
 }
 
 export interface Heading {

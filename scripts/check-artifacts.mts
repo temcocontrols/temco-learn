@@ -62,10 +62,11 @@ const helpFiles = async (): Promise<Set<string>> => {
 const onDisk = await helpFiles();
 
 const manifestPath = join(publicDir, 'download', 'manifest.json');
-if (!existsSync(manifestPath)) {
+const manifest = (existsSync(manifestPath) ? ((await read('download/manifest.json')) as Artifacts) : { projects: {} }) satisfies Artifacts;
+// A site with nothing published yet has nothing to list, so a missing manifest is not a fault there.
+if (!existsSync(manifestPath) && catalog.projects.length > 0) {
 	problems.push('public/download/manifest.json is missing — run `npm run chm` to write it');
 }
-const manifest = (existsSync(manifestPath) ? ((await read('download/manifest.json')) as Artifacts) : { projects: {} }) satisfies Artifacts;
 
 const missingPdfs: string[] = [];
 let versions = 0;

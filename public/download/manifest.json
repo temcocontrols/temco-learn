@@ -1,18 +1,4 @@
 {
-	"generated": "2026-11-03T05:14:17.493Z",
-	"projects": {
-		"bacnet": {
-			"1.0": {
-				"chm": true
-			}
-		},
-		"t3000": {
-			"0.9": {
-				"chm": true
-			},
-			"1.0": {
-				"chm": true
-			}
-		}
-	}
+	"generated": "2026-11-03T05:47:11.144Z",
+	"projects": {}
 }

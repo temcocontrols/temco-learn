@@ -9,8 +9,8 @@ import { SearchRegular } from '@fluentui/react-icons';
 import { useCatalog } from '../catalog';
 import { plural, since, siteBase } from '../data';
 
-/** The three searches this site actually gets, offered instead of an empty field. */
-const POPULAR = ['alarms', 'ports', 'BACnet points'];
+/** The searches this site actually gets, from `content/config.json` — an empty list hides the row. */
+const hintsOf = (catalog: { hints?: string[] }): string[] => catalog.hints ?? [];
 
 /** The letter a tile wears: the first letter of the name, which is all an avatar needs to be recognisable in a grid. */
 const chip = (title: string): string => title.trim().slice(0, 1).toUpperCase();
@@ -19,6 +19,7 @@ export function Home() {
 	const catalog = useCatalog();
 	const navigate = useNavigate();
 	const [query, setQuery] = React.useState('');
+	const hints = hintsOf(catalog);
 	const bySection = (id: string) => catalog.projects.filter((project) => project.section === id);
 	const updated = [...catalog.projects]
 		.map((project) => ({ project, at: project.versions[0]?.builtAt ?? '' }))
@@ -61,34 +62,35 @@ export function Home() {
 						</a>
 					</form>
 
-					<div className="finder__row">
-						<div className="hints">
-							{POPULAR.map((hint) => (
-								<button key={hint} type="button" onClick={() => setQuery(hint)}>
-									{hint}
-								</button>
-							))}
-						</div>
-
-						{updated.length === 0 ? undefined : (
-							<p className="finder__recent">
-								<span className="finder__label">Recently updated</span>
-								{updated.map(({ project, at }) => (
-									<Link key={project.id} className="finder__link" to={`/${project.id}/${project.latest}/`}>
-										<span className="finder__name">{project.title}</span>
-										<span className="mono">{project.latest}</span>
-										<span className="finder__when">{at === '' ? '' : since(at)}</span>
-									</Link>
+					{hints.length === 0 ? undefined : (
+						<div className="finder__row">
+							<div className="hints">
+								{hints.map((hint) => (
+									<button key={hint} type="button" onClick={() => setQuery(hint)}>
+										{hint}
+									</button>
 								))}
+							</div>
+
+							{updated.length === 0 ? undefined : (
+								<p className="finder__recent">
+									<span className="finder__label">Recently updated</span>
+									{updated.map(({ project, at }) => (
+										<Link key={project.id} className="finder__link" to={`/${project.id}/${project.latest}/`}>
+											<span className="finder__name">{project.title}</span>
+											<span className="mono">{project.latest}</span>
+											<span className="finder__when">{at === '' ? '' : since(at)}</span>
+										</Link>
+									))}
 								<Link className="finder__all" to="/documentation">
 									All documentation →
 								</Link>
 							</p>
 						)}
 					</div>
+					)}
 				</div>
 			</div>
-
 			<div className="page">
 				<p className="label__row">
 					<span className="label">Sections</span>

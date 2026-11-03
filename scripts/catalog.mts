@@ -47,6 +47,8 @@ interface SiteConfig {
 	repository?: string;
 	editBranch?: string;
 	siteUrl?: string;
+	/** The suggestions shown under the home page's search field. Yours to choose, since only you know what readers look for. */
+	hints?: string[];
 }
 
 interface PageEntry {
@@ -84,6 +86,7 @@ interface Catalog {
 	repository?: string;
 	editBranch?: string;
 	siteUrl?: string;
+	hints?: string[];
 }
 
 interface CompiledPage {
@@ -495,7 +498,8 @@ const catalog: Catalog = {
 	projects,
 	...(config.repository === undefined ? {} : { repository: config.repository }),
 	...(config.editBranch === undefined ? {} : { editBranch: config.editBranch }),
-	...(config.siteUrl === undefined ? {} : { siteUrl: config.siteUrl })
+	...(config.siteUrl === undefined ? {} : { siteUrl: config.siteUrl }),
+	...(config.hints === undefined || config.hints.length === 0 ? {} : { hints: config.hints })
 };
 await writeFile(join(publicDir, 'catalog.json'), `${JSON.stringify(catalog, null, '\t')}\n`, 'utf8');
 
