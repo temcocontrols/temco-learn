@@ -10,6 +10,7 @@ import { Article } from './routes/Article';
 import { Browse } from './routes/Browse';
 import { Home } from './routes/Home';
 import { NotFound } from './routes/NotFound';
+import { Print } from './routes/Print';
 import { SearchPage } from './routes/SearchPage';
 import { VersionPage } from './routes/VersionPage';
 import { currentScheme, themeFor, type Scheme } from './theme';
@@ -23,6 +24,9 @@ function App() {
 			<CatalogProvider>
 				<HashRouter>
 					<Routes>
+						{/* The print route stands outside the shell: a PDF has no masthead and no rails. */}
+						<Route path="print/:key/:version" element={<Print />} />
+						<Route path="print/:key/:version/:slug" element={<Print />} />
 						<Route element={<Shell scheme={scheme} onScheme={setScheme} />}>
 							<Route index element={<Home />} />
 							<Route path="search" element={<SearchPage />} />

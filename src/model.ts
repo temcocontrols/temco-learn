@@ -16,6 +16,14 @@ export interface PageEntry {
 	/** Authored here as Markdown, or written by a project's own build. */
 	kind: 'md' | 'build';
 	description?: string;
+	/** Repo-relative path of what a pencil should open, when the page has one. */
+	source?: string;
+	/** An explicit edit address from front matter, for a page that lives outside this repository. */
+	edit?: string;
+	/** When the page last changed, ISO. */
+	updated?: string;
+	/** Reading time, in whole minutes, counted at 200 words a minute. */
+	minutes?: number;
 }
 
 export interface Version {
@@ -33,12 +41,20 @@ export interface Project {
 	/** The newest version, by number. */
 	latest: string;
 	versions: Version[];
+	/** A project that lives in its own repository overrides where the pencil points. */
+	repository?: string;
+	editBranch?: string;
 }
 
 export interface Catalog {
 	generated: string;
 	sections: Section[];
 	projects: Project[];
+	/** Where "Edit this page" points unless a project says otherwise. */
+	repository?: string;
+	editBranch?: string;
+	/** The published site, used to build permalinks that survive being pasted into an issue. */
+	siteUrl?: string;
 }
 
 export interface Heading {
@@ -65,7 +81,10 @@ export interface SearchRecord {
 	v: string;
 	s: string;
 	u: string;
+	/** Heading text, for matching and for "In this article" hints. */
 	h: string[];
+	/** Heading ids, parallel to `h`, so a result can land on a section rather than a page. */
+	ha: string[];
 	x: string;
 }
 

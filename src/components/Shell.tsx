@@ -1,46 +1,72 @@
-// The frame every screen sits in: one bar, one footer, and a search field that goes to a page of results.
+// The frame every screen sits in: one sticky masthead, the page's own content, the foot, and the command palette.
+//
+// There used to be a second sticky row under this one — breadcrumbs and page actions. It is gone: the trail now lives at the
+// top of the content it describes (`PageHeader`), and search lives only here. One bar that follows the reader is enough.
+//
+// Embedded, the masthead stands down: the platform already shows a header, and two headers stacked is how a documentation
+// site starts to feel like a page inside a page.
 
 import * as React from 'react';
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { Button } from '@fluentui/react-components';
-import { DismissRegular, SearchRegular, WeatherMoonRegular, WeatherSunnyRegular } from '@fluentui/react-icons';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import { SearchRegular, WeatherMoonRegular, WeatherSunnyRegular } from '@fluentui/react-icons';
 import { useCatalog } from '../catalog';
 import { applyScheme, type Scheme } from '../theme';
+import { SearchOverlay } from './SearchOverlay';
+import { SiteFooter } from './SiteFooter';
 
-function SearchBox() {
-	const navigate = useNavigate();
-	const [query, setQuery] = React.useState('');
-
-	return (
-		<form
-			className="bar__search"
-			role="search"
-			onSubmit={(event) => {
-				event.preventDefault();
-				const trimmed = query.trim();
-				if (trimmed !== '') {
-					navigate(`/search?q=${encodeURIComponent(trimmed)}`);
-				}
-			}}
-		>
-			<SearchRegular aria-hidden="true" />
-			<input
-				type="search"
-				value={query}
-				onChange={(event) => setQuery(event.target.value)}
-				placeholder="Search everything…"
-				aria-label="Search everything"
-			/>
-			{query === '' ? undefined : (
-				<Button appearance="transparent" size="small" icon={<DismissRegular />} aria-label="Clear the search" onClick={() => setQuery('')} />
-			)}
-		</form>
-	);
-}
+const isEmbedded = (): boolean => {
+	try {
+		return new URLSearchParams(window.location.search).get('embed') === '1' || window.self !== window.top;
+	} catch {
+		return false;
+	}
+};
 
 export function Shell({ scheme, onScheme }: { scheme: Scheme; onScheme: (scheme: Scheme) => void }) {
 	const catalog = useCatalog();
 	const location = useLocation();
+	const [scrolled, setScrolled] = React.useState(false);
+	const [searching, setSearching] = React.useState(false);
+
+	React.useEffect(() => {
+		document.documentElement.dataset.embed = isEmbedded() ? 'true' : 'false';
+	}, []);
+
+	// A host that frames the site needs to know how tall it became, or it shows a scrollbar inside a scrollbar.
+	React.useEffect(() => {
+		if (document.documentElement.dataset.embed !== 'true') {
+			return;
+		}
+		const post = (): void => {
+			window.parent.postMessage({ type: 'temco-learn:height', height: document.documentElement.scrollHeight }, '*');
+		};
+		post();
+		const observer = new ResizeObserver(post);
+		observer.observe(document.body);
+		window.addEventListener('resize', post);
+		return () => {
+			observer.disconnect();
+			window.removeEventListener('resize', post);
+		};
+	}, []);
+
+	React.useEffect(() => {
+		const onScroll = (): void => setScrolled(window.scrollY > 4);
+		onScroll();
+		window.addEventListener('scroll', onScroll, { passive: true });
+		return () => window.removeEventListener('scroll', onScroll);
+	}, []);
+
+	React.useEffect(() => {
+		const onKey = (event: KeyboardEvent): void => {
+			if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+				event.preventDefault();
+				setSearching(true);
+			}
+		};
+		window.addEventListener('keydown', onKey);
+		return () => window.removeEventListener('keydown', onKey);
+	}, []);
 
 	// A project belongs to a section even though its address does not say so, so the tab is lit from the catalog rather than
 	// from the path: `/#/t3000/` lights Documentation because that is where Test1 is listed.
@@ -48,14 +74,26 @@ export function Shell({ scheme, onScheme }: { scheme: Scheme; onScheme: (scheme:
 	const activeSection = first === undefined ? undefined : catalog.projects.find((project) => project.id === first)?.section ?? first;
 
 	return (
-		<div className="shell">
-			<header className="bar">
-				<div className="bar__inner">
+		<div className="shell" data-scrolled={scrolled ? 'true' : 'false'}>
+			<button
+				type="button"
+				className="skip"
+				onClick={() => {
+					const main = document.getElementById('main');
+					main?.focus();
+					main?.scrollIntoView();
+				}}
+			>
+				Skip to content
+			</button>
+
+			<header className="mast">
+				<div className="mast__inner">
 					<Link className="brand" to="/">
 						<span className="brand__mark" aria-hidden="true">
 							T
 						</span>
-						<span>Temco Learn</span>
+						<span className="brand__name">Temco Learn</span>
 					</Link>
 					<nav className="tabs" aria-label="Sections">
 						{catalog.sections.map((section) => (
@@ -64,33 +102,35 @@ export function Shell({ scheme, onScheme }: { scheme: Scheme; onScheme: (scheme:
 							</Link>
 						))}
 					</nav>
-					<SearchBox />
-					<Button
-						appearance="transparent"
-						size="small"
-						icon={scheme === 'dark' ? <WeatherSunnyRegular /> : <WeatherMoonRegular />}
-						aria-label={scheme === 'dark' ? 'Switch to the light theme' : 'Switch to the dark theme'}
-						onClick={() => {
-							const next: Scheme = scheme === 'dark' ? 'light' : 'dark';
-							applyScheme(next);
-							onScheme(next);
-						}}
-					/>
+					<div className="mast__tools">
+						<button type="button" className="searchbtn" onClick={() => setSearching(true)} aria-keyshortcuts="Control+K">
+							<SearchRegular aria-hidden="true" />
+							<span className="searchbtn__label">Search everything…</span>
+							<span className="kbd">Ctrl K</span>
+						</button>
+						<button
+							type="button"
+							className="iconbtn"
+							aria-label={scheme === 'dark' ? 'Switch to the light theme' : 'Switch to the dark theme'}
+							onClick={() => {
+								const next: Scheme = scheme === 'dark' ? 'light' : 'dark';
+								applyScheme(next);
+								onScheme(next);
+							}}
+						>
+							{scheme === 'dark' ? <WeatherSunnyRegular /> : <WeatherMoonRegular />}
+						</button>
+					</div>
 				</div>
 			</header>
-			<main className="main">
+
+			<main className="main" id="main" tabIndex={-1}>
 				<Outlet />
 			</main>
-			<footer className="foot">
-				<span>Temco Learn · Temco Controls</span>
-				<span className="foot__spacer" />
-				<a href="https://forums.temcocontrols.com/" rel="noopener noreferrer">
-					Forum
-				</a>
-				<a href="https://github.com/temcocontrols" rel="noopener noreferrer">
-					GitHub
-				</a>
-			</footer>
+
+			<SiteFooter />
+
+			<SearchOverlay open={searching} onClose={() => setSearching(false)} />
 		</div>
 	);
 }
