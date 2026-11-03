@@ -235,7 +235,7 @@ function compile(source: string, slug: string): CompiledPage {
 	const headings: CompiledPage['headings'] = [];
 	const taken = new Set<string>();
 
-	// The heading ids are written into the HTML here rather than in the browser, so a link to `#/…/#install` is the same
+	// The heading ids are written into the HTML here rather than in the browser, so a link to `/…/#install` is the same
 	// string the reader copies.
 	const rendered = md.render(parsed.content, {
 		slugger: {

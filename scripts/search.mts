@@ -80,7 +80,7 @@ for (const project of catalog.projects) {
 
 		for (const page of version.pages) {
 			const body = bodies[page.href];
-			const url = `#/${project.id}/${encodeURIComponent(version.version)}/${page.href}`;
+			const url = `/${project.id}/${encodeURIComponent(version.version)}/${page.href}`;
 			records.push({
 				t: page.title,
 				p: project.id,

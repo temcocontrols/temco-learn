@@ -7,7 +7,7 @@ import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SearchRegular } from '@fluentui/react-icons';
 import { useCatalog } from '../catalog';
-import { plural, since } from '../data';
+import { plural, since, siteBase } from '../data';
 
 /** The three searches this site actually gets, offered instead of an empty field. */
 const POPULAR = ['alarms', 'ports', 'BACnet points'];
@@ -55,7 +55,7 @@ export function Home() {
 							aria-label="Search every page"
 						/>
 						{/* A link first: it carries the query in its address, so the action works before any JavaScript does. */}
-						<a className="bigsearch__go" href={`#/search?q=${encodeURIComponent(query.trim())}`}>
+						<a className="bigsearch__go" href={`${siteBase}search?q=${encodeURIComponent(query.trim())}`}>
 							<SearchRegular aria-hidden="true" />
 							Search
 						</a>

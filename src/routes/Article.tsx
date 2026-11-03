@@ -300,7 +300,7 @@ export function Article() {
 									href={`#${heading.id}`}
 									aria-current={heading.id === current ? 'true' : undefined}
 									onClick={(event) => {
-										// The hash is the route: scrolling is done by hand so the address does not change.
+										// Scrolling is done by hand so the address keeps naming the page rather than a position on it.
 										event.preventDefault();
 										document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 									}}

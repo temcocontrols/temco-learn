@@ -35,7 +35,10 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run guard
+      # Clean addresses need the mount point baked in; this is the project site's.
       - run: npm run build:fast
+        env:
+          VITE_BASE: /temco-learn/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

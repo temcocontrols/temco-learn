@@ -17,7 +17,7 @@ opens the page in GitHub.
 
 ```bash
 npm install
-npm run client-dev -- --port 1025   # http://localhost:1025/#/t3000/   (hot reload)
+npm run client-dev -- --port 1025   # http://localhost:1025/t3000/    (hot reload)
 npm run build                       # catalog + index + type-check + bundle + PDFs → dist/
 npm run build:fast                  # the same without the PDFs (local iteration)
 npm run serve -- --port 1025        # http://localhost:1025/           (what the built site looks like)
@@ -37,18 +37,31 @@ guides through a headless browser.
 ## Addresses
 
 ```
-/#/                         Home — the six sections, and what changed lately
-/#/documentation            a section
-/#/t3000/                   a project
-/#/t3000/1.0/               one version, its pages in reading order
-/#/t3000/1.0/ports          one page
-/#/search?q=alarm           search
-/#/print/t3000/1.0          the guide as a document, for the PDF and for Ctrl P
-/#/print/t3000/1.0/ports    one page as a document
+/                                    Home — the six sections, and what changed lately
+/documentation                       a section
+/t3000/                              a project
+/t3000/1.0/                          one version, its pages in reading order
+/t3000/1.0/ports                     one page
+/search?q=alarm                      search
+/print/t3000/1.0                     the guide as a document, for the PDF and for Ctrl P
+/print/t3000/1.0/ports               one page as a document
 ```
 
-Hash routing on purpose: GitHub Pages serves static files with no rewrites, so the same build works at `/`, under
-`/temco-learn/`, and from `localhost:1025`.
+Clean paths, no `#/`. GitHub Pages has no rewrites, so a direct hit on a deep address finds no file and Pages answers with
+`404.html` — the build writes one as a copy of the app shell, and the router reads the path from there. The address stays
+clean; the only consequence is that such a response carries an HTTP 404 status, which readers never see.
+
+Clean paths also mean the browser resolves assets against the mount point, so the prefix is baked in at build time:
+
+| Target | `VITE_BASE` |
+|---|---|
+| `npm run client-dev`, `npm run serve` | unset → `/` |
+| GitHub Pages (`…github.io/temco-learn/`) | `/temco-learn/` — set in `pages.yml` |
+| Platform mount, e.g. `https://platform/learn/` | `/learn/` |
+
+A server with an SPA rewrite (Express, IIS, nginx `try_files`) needs no `404.html`; it can serve `index.html` for any path.
+An address from the hash-routing days (`#/t3000/1.0/ports`) is rewritten to its clean equivalent before the router starts,
+so links already shared keep working.
 
 Two query flags exist for the host: `?embed=1` (or being inside an iframe) stands the masthead down, because the Temco
 platform shows its own header, and posts the page height to the parent so the frame needs no scrollbar of its own.
@@ -60,7 +73,7 @@ Download menu lists them in two groups — printed artefacts, then the sources t
 
 | What | Where it comes from | How big |
 |---|---|---|
-| PDF of the version | `scripts/pdf.mts`, printing `#/print/<project>/<version>` | one file per version |
+| PDF of the version | `scripts/pdf.mts`, printing `/print/<project>/<version>` | one file per version |
 | PDF of the page | the same script, printing the single-page route | one file per page |
 | Windows Help (.chm) | `scripts/chm.mts`, assembling a help project and running `hhc.exe` | one file per version |
 | Markdown | the source `.md`, plus one concatenated file per version | `public/download/` |

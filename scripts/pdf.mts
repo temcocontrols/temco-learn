@@ -94,7 +94,9 @@ async function main(): Promise<void> {
 		await view.setViewportSize({ width: 1280, height: 1600 });
 
 		const print = async (route: string, target: string, footer: string): Promise<void> => {
-			await view.goto(`${base}#${route}`, { waitUntil: 'networkidle' });
+			// `resolvedUrls` already carries the build's base (`/` here, `/temco-learn/` if VITE_BASE said so), and `route`
+			// starts with a slash, so they are joined rather than concatenated.
+			await view.goto(new URL(route.replace(/^\//u, ''), base).toString(), { waitUntil: 'networkidle' });
 			await view.waitForSelector('body[data-print-ready="true"]', { timeout: 20000 });
 			await mkdir(join(target, '..'), { recursive: true });
 			await view.pdf({

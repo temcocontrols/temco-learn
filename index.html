@@ -15,6 +15,15 @@
 	} catch (error) {
 		document.documentElement.dataset.theme = 'light';
 	}
+	// Addresses used to carry the route in the hash (`#/t3000/1.0/ports`). No link that was already shared should land
+	// on the wrong page, so rewrite the old shape into a clean path before the router reads the address.
+	try {
+		if (location.hash.indexOf('#/') === 0) {
+			history.replaceState(null, '', location.pathname.replace(/\/+$/, '') + location.hash.slice(1));
+		}
+	} catch (error) {
+		// A browser that refuses to rewrite the address still renders the page the old link named.
+	}
 </script>
 </head>
 <body>

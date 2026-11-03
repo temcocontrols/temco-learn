@@ -59,10 +59,9 @@ export function switchVersion(project: Project, from: PageEntry | undefined, to:
 	return versionHome(project, to);
 }
 
-/** The hash address the page is being read at, which is what a permalink and an issue both need. */
+/** The route the page is being read at, which is what a permalink and an issue both need. */
 export function addressOf(project: string, version: string, page?: PageEntry): string {
-	const base = `#/${project}/${encodeURIComponent(version)}${page === undefined ? '/' : `/${page.href}`}`;
-	return base;
+	return `/${project}/${encodeURIComponent(version)}${page === undefined ? '/' : `/${page.href}`}`;
 }
 
 export function describePage(pathname: string, catalog: Catalog): PageInfo {

@@ -75,7 +75,8 @@ export function PageHeader() {
 	}, []);
 
 	const copyLink = (): void => {
-		const address = permalink(catalog, location.hash === '' ? '#/' : location.hash);
+		// `pathname` from the router is already inside the base, so the permalink adds only the published origin.
+		const address = permalink(catalog, `${location.pathname}${location.hash}`);
 		void navigator.clipboard
 			?.writeText(address)
 			.then(() => {

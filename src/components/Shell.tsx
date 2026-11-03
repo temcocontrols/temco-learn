@@ -69,7 +69,7 @@ export function Shell({ scheme, onScheme }: { scheme: Scheme; onScheme: (scheme:
 	}, []);
 
 	// A project belongs to a section even though its address does not say so, so the tab is lit from the catalog rather than
-	// from the path: `/#/t3000/` lights Documentation because that is where Test1 is listed.
+	// from the path: `/t3000/` lights Documentation because that is where Test1 is listed.
 	const first = location.pathname.split('/').filter((part) => part !== '')[0];
 	const activeSection = first === undefined ? undefined : catalog.projects.find((project) => project.id === first)?.section ?? first;
 

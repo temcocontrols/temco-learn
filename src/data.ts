@@ -1,14 +1,18 @@
 // Reading the three generated files, and the small formatting the screens share.
 //
-// Every fetch is relative (`./…`), which is what lets one build run at `/`, at `/temco-learn/` and at `localhost:1011`
-// without asking the server for a hint. A missing file is an empty site rather than a broken one: a clone that has not run
+// Addresses are clean (`/t3000/1.0/ports`), so the document URL changes as the reader moves — which means a bare
+// `./catalog.json` would resolve against the page, not the app. Every asset is therefore asked for from `BASE_URL`, the
+// prefix the build was made for. A missing file is an empty site rather than a broken one: a clone that has not run
 // `npm run catalog` yet opens on an honest "nothing here" instead of an exception.
 
 import type { BodyFile, Catalog, SearchIndex, SearchRecord, Project, Version, PageEntry } from './model';
 
+/** `/`, `/temco-learn/`, `/learn/` — the prefix this build was compiled for, always with a trailing slash. */
+export const siteBase = import.meta.env.BASE_URL;
+
 export async function loadCatalog(): Promise<Catalog> {
 	try {
-		const response = await fetch('./catalog.json', { cache: 'no-store' });
+		const response = await fetch(`${siteBase}catalog.json`, { cache: 'no-store' });
 		if (!response.ok) {
 			return { generated: '', sections: [], projects: [] };
 		}
@@ -20,7 +24,7 @@ export async function loadCatalog(): Promise<Catalog> {
 
 export async function loadBodies(project: string, version: string): Promise<BodyFile> {
 	try {
-		const response = await fetch(`./content/${encodeURIComponent(project)}/${encodeURIComponent(version)}.json`, {
+		const response = await fetch(`${siteBase}content/${encodeURIComponent(project)}/${encodeURIComponent(version)}.json`, {
 			cache: 'no-store'
 		});
 		if (!response.ok) {
@@ -36,7 +40,7 @@ let searched: Promise<SearchIndex> | undefined;
 
 /** The index is fetched once per session: it is small, and it does not change while a page is open. */
 export function loadSearch(): Promise<SearchIndex> {
-	searched ??= fetch('./search.json', { cache: 'no-store' })
+	searched ??= fetch(`${siteBase}search.json`, { cache: 'no-store' })
 		.then((response) => (response.ok ? (response.json() as Promise<SearchIndex>) : { generated: '', pages: [] }))
 		.catch(() => ({ generated: '', pages: [] }));
 	return searched;
@@ -99,7 +103,7 @@ export function search(index: SearchIndex, query: string): Result[] {
 		.map((entry) => entry.result);
 }
 
-/** `#/t3000/1.0/ports` — the address a page lives at. */
+/** `t3000/1.0/ports` — the route a page lives at. The router adds the base; a copied link adds the site. */
 export function pageUrl(project: string, version: string, page: PageEntry): string {
 	return `/${project}/${encodeURIComponent(version)}/${page.href}`;
 }
@@ -191,16 +195,16 @@ export function issueUrl(catalog: Catalog, project: Project, version: string, pa
 	return `${repo.repository}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
 }
 
-/** A hash address as a full URL, against the published site rather than whatever origin is open. */
-export function permalink(catalog: Catalog, hash: string): string {
-	const base = (catalog.siteUrl ?? `${location.origin}${location.pathname}`).replace(/#.*$/u, '');
-	const rooted = base.endsWith('/') ? base : `${base}/`;
-	return `${rooted}${hash.startsWith('#') ? hash : `#${hash}`}`;
+/** A route as a full URL, against the published site rather than whatever origin is open. */
+export function permalink(catalog: Catalog, route: string): string {
+	const site = (catalog.siteUrl ?? `${location.origin}${siteBase}`).replace(/\/+$/u, '');
+	const path = route.replace(/^\/+/u, '');
+	return path === '' ? `${site}/` : `${site}/${path}`;
 }
 
-/** `./download/t3000/1.0/ports.md` and friends: the files `scripts/catalog.mts` writes beside the catalog. */
+/** `download/t3000/1.0/ports.md` and friends: the files `scripts/catalog.mts` writes beside the catalog. */
 export function downloadUrl(project: string, version: string, kind: 'md' | 'html' | 'zip', page?: PageEntry): string {
-	const base = `./download/${encodeURIComponent(project)}`;
+	const base = `${siteBase}download/${encodeURIComponent(project)}`;
 	const folder = `${base}/${encodeURIComponent(version)}`;
 	if (kind === 'md' && page !== undefined) {
 		return `${folder}/${encodeURIComponent(page.href)}.md`;
@@ -208,15 +212,15 @@ export function downloadUrl(project: string, version: string, kind: 'md' | 'html
 	return `${base}/${encodeURIComponent(version)}.${kind}`;
 }
 
-/** `./pdf/t3000/1.0.pdf` for a guide, `./pdf/t3000/1.0/ports.pdf` for one page. Written by `scripts/pdf.mts`. */
+/** `pdf/t3000/1.0.pdf` for a guide, `pdf/t3000/1.0/ports.pdf` for one page. Written by `scripts/pdf.mts`. */
 export function pdfUrl(project: string, version: string, page?: PageEntry): string {
-	const base = `./pdf/${encodeURIComponent(project)}/${encodeURIComponent(version)}`;
+	const base = `${siteBase}pdf/${encodeURIComponent(project)}/${encodeURIComponent(version)}`;
 	return page === undefined ? `${base}.pdf` : `${base}/${encodeURIComponent(page.href)}.pdf`;
 }
 
-/** `./chm/t3000/1.0.chm` — compiled HTML Help, written by `scripts/chm.mts` on a machine with the workshop. */
+/** `chm/t3000/1.0.chm` — compiled HTML Help, written by `scripts/chm.mts` on a machine with the workshop. */
 export function chmUrl(project: string, version: string): string {
-	return `./chm/${encodeURIComponent(project)}/${encodeURIComponent(version)}.chm`;
+	return `${siteBase}chm/${encodeURIComponent(project)}/${encodeURIComponent(version)}.chm`;
 }
 
 /** What the build actually produced, per project and version. Written by `scripts/chm.mts`. */
@@ -229,7 +233,7 @@ let artifactIndex: Promise<Artifacts> | undefined;
 
 /** Fetched once per session, like the search index: it is a few hundred bytes and never changes mid-visit. */
 export function loadArtifacts(): Promise<Artifacts> {
-	artifactIndex ??= fetch('./download/manifest.json', { cache: 'no-store' })
+	artifactIndex ??= fetch(`${siteBase}download/manifest.json`, { cache: 'no-store' })
 		.then((response) => (response.ok ? (response.json() as Promise<Artifacts>) : { generated: '', projects: {} }))
 		.catch(() => ({ generated: '', projects: {} }));
 	return artifactIndex;

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { FluentProvider } from '@fluentui/react-components';
 import { CatalogProvider } from './catalog';
 import { Shell } from './components/Shell';
@@ -18,11 +18,13 @@ import './styles.css';
 
 function App() {
 	const [scheme, setScheme] = React.useState<Scheme>(() => currentScheme());
+	// React Router wants the base without its trailing slash; the root is the one case where `/` is correct.
+	const basename = import.meta.env.BASE_URL.replace(/\/$/u, '') || '/';
 
 	return (
 		<FluentProvider theme={themeFor(scheme)}>
 			<CatalogProvider>
-				<HashRouter>
+				<BrowserRouter basename={basename}>
 					<Routes>
 						{/* The print route stands outside the shell: a PDF has no masthead and no rails. */}
 						<Route path="print/:key/:version" element={<Print />} />
@@ -36,7 +38,7 @@ function App() {
 							<Route path="*" element={<NotFound />} />
 						</Route>
 					</Routes>
-				</HashRouter>
+				</BrowserRouter>
 			</CatalogProvider>
 		</FluentProvider>
 	);

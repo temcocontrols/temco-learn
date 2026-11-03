@@ -39,7 +39,8 @@ Conventions kept from the existing code:
 
 - Fluent UI owns every control and every colour token; `styles.css` owns the page.
 - The accent is Azure `#0078d4` and nothing else is coloured.
-- Hash routing, relative fetches, no server, no API. The build is the only pipeline.
+- Clean paths and no server, no API. The build is the only pipeline. (Written as hash routing at first; see §10.1 item 20
+  for why that changed.)
 - Generated files (`catalog.json`, `content/*.json`, `search.json`) are committed, so a fresh clone opens
   without building. Any new generated artefact (PDFs) follows the same rule.
 
@@ -199,14 +200,14 @@ Becomes a documentation home, not a marketing page.
   (`alarms`, `ports`, `BACnet points`) on the left and "Recently updated" on the right as inline links
   (`Test1 1.0 · 8 hours ago`) ending in "All documentation →". No cards and nothing boxed.
 - The search is a **split field**: the input, then a plain bordered action beside it with a magnifier icon and the word
-  "Search" in normal text — no fill, no caps, weight 400. On the home page the action is a link (`href="#/search?q=…"`), so
+  "Search" in normal text — no fill, no caps, weight 400. On the home page the action is a link (`href="search?q=…"`), so
   it works before any JavaScript runs. Focus is shown by the field's own hairline turning brand, not by a ring.
 - Six sections as a **plain grid of links** — three across, hairline above each row, no fills and no shadow. Each item is a
   small brand-tinted letter, the title (which turns brand and underlines on hover), a two-line description and its project
   count.
 
 
-### 4.2 Section (`/#/documentation`)
+### 4.2 Section (`/documentation`)
 
 - Hero unchanged.
 - Projects are the same **hairline tiles** as the home page — a letter, a title that turns brand on hover, a two-line
@@ -214,7 +215,7 @@ Becomes a documentation home, not a marketing page.
 - "Other sections" repeats the grid for the remaining five, under its own label row with a count.
 - Tables anywhere else (versions, pages) are **borderless**: a hairline under the header and between rows, no outer box.
 
-### 4.3 Project (`/#/t3000/`)
+### 4.3 Project (`/t3000/`)
 
 The product landing.
 
@@ -223,7 +224,7 @@ The product landing.
   lists grow monotonically and cards stop scanning after four.
 - "In `<latest>`" keeps the page rows, with imported (`docfx`) pages marked.
 
-### 4.4 Version (`/#/t3000/1.0/`)
+### 4.4 Version (`/t3000/1.0/`)
 
 The version landing, and the screen with the most to offer.
 
@@ -256,7 +257,7 @@ Imported (`kind: 'build'`) pages keep the iframe, but gain the same header, meta
 
 ### 4.6 Search
 
-The results page stays (it is a real address: `/#/search?q=alarm`). The overlay (§5.5) is the primary way in.
+The results page stays (it is a real address: `/search?q=alarm`). The overlay (§5.5) is the primary way in.
 
 Page improvements: grouped by product, `<mark>`-highlighted snippet, "jump to heading" entries, and a
 "nothing matches" state that offers the nearest titles rather than only advice.
@@ -423,11 +424,11 @@ Every phase, before it is called done:
 
 ## 8. Not doing
 
-- **No server, no API.** Everything stays static and hash-routed, so one build still works at `/`, under
-  `/temco-learn/`, and at `localhost:1025`.
+- **No server, no API.** Everything stays static. It was also hash-routed at first; §10.1 item 20 records why the
+  addresses became clean paths instead, and what that costs at the host.
 - **No identity or locale UI.** The platform owns who you are and what language you read.
-- **No change to existing addresses.** `#/t3000/1.0/ports` and `#/search?q=` keep working; the overlay and the
-  print route are additive.
+- **No broken links.** An address from the hash-routing days (`#/t3000/1.0/ports`) is rewritten to its clean equivalent
+  before the router starts, so a link already shared still lands on the page it named.
 - **No DOCX/EPUB** until someone actually needs them.
 - **No shadows, no card-on-card nesting, no second accent colour.**
 - **No feedback backend** in phase 6 unless the platform offers a sink; until then the widget records locally
@@ -547,3 +548,17 @@ Five changes came out of reading the built site, and they replace what §3 and �
     artefacts from sources with a rule, the open trigger reads pressed with its chevron turned over, and the popover fades
     and lifts 4px into place. To carry the marks, `downloads()` in `chrome.ts` returns `kind` and `group` per file instead of
     bare label/detail pairs.
+20. **Thirteenth pass — clean addresses.** `/t3000/1.0/ports` replaces `/#/t3000/1.0/ports`. This reverses the "hash routing
+    on purpose" decision in §2 and §8, knowingly:
+    - `HashRouter` became `BrowserRouter` with `basename` from `import.meta.env.BASE_URL`;
+    - `base: './'` could not survive, because a document at a deep path resolves `./assets/…` against the page rather than
+      the app. The prefix is now baked in per host with `VITE_BASE` (`/` locally, `/temco-learn/` on Pages, `/learn/` for a
+      platform mount), and the four `fetch('./…')` calls plus every download link read from `siteBase` in `data.ts`;
+    - GitHub Pages has no rewrites, so the build copies `index.html` to `dist/404.html` and Pages answers unknown paths with
+      it. Verified against a static server with no fallback: `t3000/1.0/ports`, `t3000/1.0/`, `t3000/`, `documentation`,
+      `search?q=alarm` and `print/t3000/1.0` all render, at the clean address, with no console errors. Such responses carry
+      an HTTP 404 status — invisible to a reader, imperfect for a crawler;
+    - `index.html` rewrites an old `#/…` address into its clean path with `history.replaceState` before the router mounts, so
+      every link shared before the change still lands on the page it named;
+    - `scripts/pdf.mts` joins its route onto the preview's base with `new URL()` instead of building `#` addresses, and the
+      eleven PDFs were regenerated to prove it.

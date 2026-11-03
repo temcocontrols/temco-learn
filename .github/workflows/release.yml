@@ -36,7 +36,10 @@ jobs:
 
       - run: npm run check
       - run: npm run guard
+      # The zip is meant to be dropped anywhere, so it is built for a host root. A sub-path needs its own VITE_BASE.
       - run: npm run build:fast
+        env:
+          VITE_BASE: /
 
       # The whole site, including the committed PDFs and Windows Help files that this runner cannot rebuild.
       - name: Pack the built site

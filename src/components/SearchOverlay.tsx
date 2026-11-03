@@ -40,8 +40,8 @@ function remember(query: string): void {
 	}
 }
 
-/** `#/t3000/1.0/ports` is the index's address; the router wants the path without the `#`. */
-const routeOf = (url: string): string => (url.startsWith('#') ? url.slice(1) : url);
+/** The index stores routes, not addresses: `/t3000/1.0/ports` is what the router wants. */
+const routeOf = (url: string): string => url;
 
 export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
 	const navigate = useNavigate();
@@ -95,7 +95,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
 		(result: Result) => {
 			remember(query);
 			onClose();
-			// The anchor travels in router state rather than in the address: a HashRouter address has one hash already.
+			// The heading travels in router state: the address stays on the page, and the article scrolls itself.
 			navigate(routeOf(result.u), result.anchor === undefined ? undefined : { state: { anchor: result.anchor } });
 		},
 		[navigate, onClose, query]

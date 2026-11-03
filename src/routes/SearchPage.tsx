@@ -82,7 +82,7 @@ export function SearchPage() {
 				<ul className="results">
 					{(results ?? []).map((result) => (
 						<li key={`${result.u}-${result.anchor ?? ''}`}>
-							<Link className="result" to={result.u.replace(/^#/u, '')}>
+							<Link className="result" to={result.u}>
 								<span className="result__head">
 									<span className="result__title">
 										<Mark text={result.t} query={query} />
