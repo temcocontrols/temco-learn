@@ -52,9 +52,15 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: temco-learn-${{ github.ref_name }}.zip
-          generate_release_notes: true
+          name: Temco Learn ${{ github.ref_name }}
+          # A draft: the archive can be opened and inspected before anyone is pointed at it.
+          draft: true
           body: |
-            The built site, with its PDFs, Windows Help files and offline bundles.
+            The built site: `index.html`, the bundles, and everything it carries under `pdf/`, `chm/` and `download/`.
 
-            Unzip and serve the folder over plain HTTP. Every address is a hash route, so a static host needs no rewrite
-            rules, and `index.html` works from any sub-path.
+            Unzip the archive and serve the folder from the **root** of a host (`npx serve .`, nginx, IIS, an S3 bucket).
+
+            Routes are paths (`/t3000/1.0/ports`), not hashes, so:
+
+            - a host with no SPA rewrite needs the bundled `404.html` to answer a deep address;
+            - serving under a sub-path needs its own build with `VITE_BASE` set to that prefix.
