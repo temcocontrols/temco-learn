@@ -6,6 +6,11 @@ description: Install the driver and prove the controller answers before anything
 Work through this page at the machine, not at a desk. It takes about ten minutes and ends with a controller that answers,
 which is the state every other page assumes.
 
+::: note
+Work at the controller, not at a desk: the driver install needs the machine plugged in, and the last step asks the hardware
+a question rather than the software.
+:::
+
 ## Install the driver
 The driver ships inside the Temco installer. Run it as an administrator, then plug the controller in. Windows shows a new
 port under **Ports (COM & LPT)** — the number beside it is the one you will point at in the next step.
