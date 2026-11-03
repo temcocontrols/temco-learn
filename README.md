@@ -1,129 +1,73 @@
 # Temco Learn
 
-The documentation site for every Temco Controls product: six sections, one folder per product, one page per version.
+The documentation site for Temco Controls products.
 
-It is a plain front-end project — Vite, React and Fluent UI — and it owns everything the site needs: the screens, the
-theme, the content, the search index, the PDFs and the deployment. Nothing here knows about the editor that publishes
-into it.
+| | |
+|---|---|
+| **Stack** | Vite 6, React 19, React Router 7, Fluent UI v9, TypeScript |
+| **Reads** | Markdown in `content/`, HTML in `public/imported/` |
+| **Writes** | `public/catalog.json`, `public/search.json`, `public/content/`, `public/download/`, `public/pdf/`, `public/chm/`, `dist/` |
+| **Deploys** | GitHub Pages on a push to `main`; a `v*` tag packages a frozen build |
+| **Needs** | Node.js 22.6 or newer; Chromium for the PDFs; `hhc.exe` for the help files |
 
-The reader is built to be read inside the Temco platform as much as on its own: one sticky masthead with the only search on
-the site (`Ctrl K`), a breadcrumb and page actions that sit inline at the top of the content, a filterable page tree, a
-table of contents that follows the reader, and — per page — a version switch, a PDF, the Markdown source, and a pencil that
-opens the page in GitHub.
+Contents: [Quick start](#quick-start) - [Scripts](#scripts) - [Content](#content) - [Routes](#routes) -
+[Ports and the base path](#ports-and-the-base-path) - [Generated files](#generated-files) -
+[Downloads](#downloads) - [Gates](#gates) - [Deploying](#deploying) - [Troubleshooting](#troubleshooting) -
+[Layout](#layout)
 
-
-
-## Run it
+## Quick start
 
 ```bash
 npm install
-npm run client-dev -- --port 1025   # http://localhost:1025/           (hot reload)
-npm run build                       # catalog + index + type-check + bundle + PDFs → dist/
-npm run build:fast                  # the same without the PDFs (local iteration)
-npm run serve -- --port 1025        # http://localhost:1025/           (what the built site looks like)
-npm run check                       # type-check, content rules, lint
-npm run guard                       # every version has its committed PDF and Help file
-npm run pdf                         # only the PDFs (needs dist/ and a Chromium from playwright)
-npm run chm                         # only the Windows Help files (needs HTML Help Workshop)
+npm run client-dev -- --port 1025      # http://localhost:1025/  (hot reload)
+npm run build                          # catalog, search, bundle, PDFs, help files
+npm run serve                          # serve the built dist/
+npm run check && npm run guard         # what CI runs before it deploys
 ```
 
-Neither server script names a port: pass `--port`, so the built pages and the development server answer at the same
-address and the Temco platform's Learn module can move both with one setting (1025 by default).
+`npm run pdf` warns and skips when Chromium is missing, and `npm run chm` does the same without HTML Help Workshop, so a
+machine with neither still builds and serves the site.
 
-`npm run build` is the whole pipeline: `scripts/catalog.mts` compiles the Markdown and lists the versions,
-`scripts/search.mts` writes the index, `tsc` type-checks, `vite build` writes `dist/`, and `scripts/pdf.mts` prints the
-guides through a headless browser.
+## Scripts
 
-## Addresses
-
-```
-/                                    Home — the six sections, and what changed lately
-/documentation                       a section
-/<project>/                          a project
-/<project>/<version>/                one version, its pages in reading order
-/<project>/<version>/ports           one page
-/search?q=alarm                      search
-/print/<project>/<version>           the guide as a document, for the PDF and for Ctrl P
-/print/<project>/<version>/ports     one page as a document
-```
-
-Clean paths, no `#/`. GitHub Pages has no rewrites, so a direct hit on a deep address finds no file and Pages answers with
-`404.html` — the build writes one as a copy of the app shell, and the router reads the path from there. The address stays
-clean; the only consequence is that such a response carries an HTTP 404 status, which readers never see.
-
-Clean paths also mean the browser resolves assets against the mount point, so the prefix is baked in at build time:
-
-| Target | `VITE_BASE` |
+| Command | Does |
 |---|---|
-| `npm run client-dev`, `npm run serve` | unset → `/` |
-| GitHub Pages (`…github.io/temco-learn/`) | `/temco-learn/` — set in `pages.yml` |
-| Platform mount, e.g. `https://platform/learn/` | `/learn/` |
+| `npm run client-dev` | Vite development server |
+| `npm run build` | catalog, search index, type-check, bundle, PDFs, `.chm` |
+| `npm run build:fast` | the same without the PDFs and the `.chm` files |
+| `npm run serve` | Vite preview of `dist/` |
+| `npm run catalog` | compile the Markdown into `public/catalog.json`, `public/content/`, `public/download/` |
+| `npm run search` | rebuild `public/search.json` |
+| `npm run pdf` | rebuild the PDFs; needs `dist/` and Chromium |
+| `npm run chm` | rebuild the help files and `public/download/manifest.json` |
+| `npm run check` | `tsc --noEmit`, the content rules, ESLint |
+| `npm run guard` | every version has a PDF and a `.chm`; `manifest.json` matches disk |
+| `npm run lint` | ESLint only |
 
-A server with an SPA rewrite (Express, IIS, nginx `try_files`) needs no `404.html`; it can serve `index.html` for any path.
-An address from the hash-routing days (`#/t3000/1.0/ports`) is rewritten to its clean equivalent before the router starts,
-so links already shared keep working.
-
-Two query flags exist for the host: `?embed=1` (or being inside an iframe) stands the masthead down, because the Temco
-platform shows its own header, and posts the page height to the parent so the frame needs no scrollbar of its own.
-
-## Downloads
-
-Every page offers the same set of downloads, generated at build time and committed beside the catalog. The page-head
-Download menu lists them in two groups — printed artefacts, then the sources they are made from:
-
-| What | Where it comes from | How big |
-|---|---|---|
-| PDF of the version | `scripts/pdf.mts`, printing `/print/<project>/<version>` | one file per version |
-| PDF of the page | the same script, printing the single-page route | one file per page |
-| Windows Help (.chm) | `scripts/chm.mts`, assembling a help project and running `hhc.exe` | one file per version |
-| Markdown | the source `.md`, plus one concatenated file per version | `public/download/` |
-| HTML and ZIP | one standalone HTML file per version, and a ZIP of the Markdown | `public/download/` |
-
-The PDF script warns and skips when no Chromium is installed, and the CHM script warns and skips when HTML Help Workshop
-is missing — a local build without either still succeeds. CI runs `playwright install chromium` first; the CHMs are
-committed, so a Linux runner keeps serving the files it cannot rebuild, and `scripts/chm.mts` writes
-`public/download/manifest.json` from what is **on disk**, not from what that run managed to compile. The app reads that
-manifest, so the CHM entry only appears where a `.chm` really exists.
-
-If a machine cannot download Chromium, point the script at one it has: `PLAYWRIGHT_CHROMIUM=/path/to/chrome npm run pdf`.
-For the help files, set `HTMLHELP_HHC` to `hhc.exe` if the workshop lives somewhere unusual.
+`catalog` runs before `pdf` and `chm`: both read `public/catalog.json`, and `pdf` also reads `dist/`.
 
 ## Content
 
-`content/` holds only `config.json` and `sections.json` today: the sample projects that came with the build have been
-removed, so the site is an empty shell waiting for real documentation. Nothing else has to change to add it — drop in a
-folder and run `npm run build`.
-
-Two kinds of page, one catalog:
-
-| kind | where it comes from | who writes it |
-|---|---|---|
-| authored | `content/<project>/<version>/*.md` | a person, in Markdown with front matter |
-| imported | `public/imported/<project>/<version>/**/*.html` | a project's own build (docfx), copied verbatim |
-
-```markdown
----
-title: Getting started
-order: 10
-description: Install the driver and prove the controller answers.
----
-
-## Install the driver
-Prose begins at `##`: the page title is the `#`.
-
-::: note
-Callouts are `::: note`, `::: tip`, `::: important` and `::: warning`, with an optional title after the kind.
-:::
+```
+content/
+  config.json                    repository, edit branch, published URL, home-page hints
+  sections.json                  the sections projects are grouped under
+  <project>/
+    site.json                    title, section, summary, optional repository and editBranch
+    <version>/
+      00-index.md                required: the version's landing page
+      <page>.md                  one page
+public/imported/
+  <project>/<version>/**/*.html  a build from another repository, copied verbatim
 ```
 
-`content/<project>/site.json` names the product and the section it is listed under:
+A project is a folder under `content/`; a version is a folder inside it. The same shape under `public/imported/` serves
+HTML built elsewhere.
 
-```json
-{ "title": "Your product", "section": "documentation", "summary": "What the product is, in one sentence." }
-```
+### `config.json` and `sections.json`
 
-`content/config.json` answers the site-wide questions — where the pencil points, where the site is published, and what the
-home page suggests under the search field (`hints` is optional; leave it out and the row disappears):
+`content/config.json` holds the site-wide answers the edit links fall back to, plus the hints offered under the home-page
+search:
 
 ```json
 {
@@ -134,64 +78,199 @@ home page suggests under the search field (`hints` is optional; leave it out and
 }
 ```
 
-With a repository set, every Markdown page gets **Edit this page**, **View history** and **Report an issue** pointing at
-its own source file. A project that lives elsewhere overrides it in its `site.json`, and front matter overrides either one:
+`content/sections.json` lists the groups a project can be filed under:
+
+```json
+[
+	{ "id": "documentation", "title": "Documentation", "description": "Guides and references for every product." },
+	{ "id": "qa", "title": "Q&A", "description": "Questions from installers and engineers." }
+]
+```
+
+`site.json` names the product and one section id from that list:
+
+```json
+{
+	"title": "T3000",
+	"section": "documentation",
+	"summary": "The controller family that began the platform.",
+	"repository": "https://github.com/temcocontrols/T3000_Building_Automation_System",
+	"editBranch": "main"
+}
+```
+
+### Front matter
 
 ```markdown
 ---
-title: A page kept somewhere else
-edit: https://github.com/temcocontrols/another-repo/edit/main/docs/page.md
+title: Getting started
+order: 10
+description: Install the driver and prove the controller answers.
+edit: false
 ---
+
+## Install the driver
+
+Prose starts at `##`: the page title is the `#`. The first page of a version is `00-index.md`.
 ```
 
-`edit: false` hides the pencil for a page that should not be edited here. Pages written by a project's build have no
-Markdown source, so they carry no pencil unless their front matter says where to go.
+| Field | Meaning |
+|---|---|
+| `title` | page title; required, unique within a version |
+| `order` | position in the version; pages without one follow those with one |
+| `description` | shown under the title and in search results |
+| `edit` | a URL to edit the page elsewhere, or `false` to hide the edit link |
 
+### Callouts
 
-`npm run check` enforces the rules a docs repo breaks silently: every page has a title, no two pages in a version share
-one, prose starts at `##`, and each version has a `00-index.md` landing page.
+```markdown
+::: note Optional title
+The text of the note.
+:::
+```
 
-## Publishing
+Four kinds: `note`, `tip`, `important`, `warning`.
 
-Push to `main`; `.github/workflows/pages.yml` builds the site and deploys it to GitHub Pages
-(`https://temcocontrols.github.io/temco-learn/`). The catalog, the search index, the downloads and the PDFs are generated
-by `npm run build` — and they are committed as well, so a fresh clone opens (and downloads) without building first.
+### Imported pages
 
-**CI does not rebuild the PDFs or the help files.** Both need something a Linux runner does not have: Segoe UI (so a PDF
-built there would fall back to other fonts and not match what you reviewed) and `hhc.exe` (Windows only). The deploy runs
-`npm run check`, `npm run guard` and `npm run build:fast`, and `vite build` copies the committed `public/pdf`, `public/chm`
-and `public/download` into `dist/` — so the site serves exactly the files you built.
+A build copied to `public/imported/<project>/<version>/` is served as it was written, inside an iframe, so its own CSS and
+assets apply.
 
-What that asks of you: **run `npm run build` on Windows before committing content changes.** `npm run guard` is the safety
-net — it fails when a version in the catalog has no whole-guide PDF, when a page has no single-page PDF, or when
-`manifest.json` and the `.chm` files on disk disagree. CI runs it before deploying; run it locally too.
+| | |
+|---|---|
+| Title | read from the page's `<title>` |
+| Order | `index.html` first, then by path |
+| Search | indexed by title |
+| Edit link | none: there is no Markdown source |
 
-The Temco platform's Learn module adds a build by copying it into `public/imported/…`, regenerating the catalog and
-pushing — which is the same thing you would do by hand.
+## Routes
 
-### Tags
+| Address | Shows |
+|---|---|
+| `/` | home: the sections, and recent changes |
+| `/search?q=alarm` | search results |
+| `/<section>` | one section, listing its projects |
+| `/<project>` | one project, listing its versions |
+| `/<project>/<version>` | one version, pages in reading order |
+| `/<project>/<version>/<page>` | one page |
+| `/print/<project>/<version>` | the whole version as one document (what the PDF prints) |
+| `/print/<project>/<version>/<page>` | one page as a document |
 
-`main` is the live site, so a deploy needs no tag. Tag only when you want to hand someone a frozen build:
+The build writes `dist/404.html` as a copy of the app shell, so GitHub Pages answers a deep address with the router
+instead of a missing file.
+
+## Ports and the base path
+
+| Started by | Port | Where the number lives |
+|---|---|---|
+| `npm run client-dev` | 5173 | Vite's default; pass `--port` to change it |
+| `npm run serve` | 1011 | `preview.port` in `vite.config.ts` (`strictPort`) |
+| the Temco platform | 1025 | the `temcoLearn.sitePort` setting, passed as `--port` |
+
+Routes are paths, not hashes, so the mount point is fixed at build time:
 
 ```bash
-# bump "version" in package.json first — .github/workflows/release.yml checks that the tag matches
-git tag -a v0.1.0 -m "Temco Learn 0.1.0"
-git push origin v0.1.0
+npm run build                            # VITE_BASE unset   ->  /
+VITE_BASE=/temco-learn/ npm run build    # GitHub Pages      ->  /temco-learn/
+VITE_BASE=/learn/ npm run build          # platform mount    ->  /learn/
 ```
 
-The `Release` workflow then attaches `temco-learn-v0.1.0.zip` — the whole built site, PDFs and help files included — to a
-GitHub release. Bump `patch` for content fixes, `minor` for a new section, project or version, `major` for a redesign or
-a URL change.
+Framed, the site stands its masthead down (`?embed=1`, or any iframe) and reports its height to the parent:
 
-Content versions (`<project>/<version>`) are **not** tags: they already live in the URL and in `content/<project>/<version>/`, and the site
-offers each one as a download.
+```js
+{ type: 'temco-learn:height', height: document.documentElement.scrollHeight }
+```
+
+## Generated files
+
+| Path | Written by | Committed |
+|---|---|---|
+| `public/catalog.json` | `npm run catalog` | yes |
+| `public/search.json` | `npm run search` | yes |
+| `public/content/<project>/<version>.json` | `npm run catalog` | yes |
+| `public/download/` | `npm run catalog`, `npm run chm` (`manifest.json`) | yes |
+| `public/pdf/` | `npm run pdf` | yes |
+| `public/chm/<project>/<version>.chm` | `npm run chm` | yes |
+| `dist/` | `npm run build` | no |
+
+They are committed because CI cannot rebuild them: the PDFs need Segoe UI and the help files need `hhc.exe`, neither of
+which a Linux runner has. `vite build` copies the committed `public/pdf`, `public/chm` and `public/download` into `dist/`,
+so the deploy serves exactly the files that were built and reviewed locally.
+
+## Downloads
+
+Each page offers the files for its version. A download exists only when the file was built and committed.
+
+| Download | File |
+|---|---|
+| The version as a PDF | `public/pdf/<project>/<version>.pdf` |
+| One page as a PDF | `public/pdf/<project>/<version>/<page>.pdf` (authored pages only) |
+| Windows Help | `public/chm/<project>/<version>.chm` |
+| Markdown | the source page, and one concatenated file per version |
+| Standalone HTML, and a ZIP of the Markdown | `public/download/` |
+
+`public/download/manifest.json` lists the help files that exist on disk; the download menu reads it, so it never points at
+a `.chm` that was not built.
+
+## Gates
+
+`npm run check` fails on:
+
+- a page with no `title`, or two pages in one version sharing a title;
+- a version with no `00-index.md`;
+- prose starting at `#`;
+- a callout kind other than `note`, `tip`, `important`, `warning`;
+- `config.json` naming a repository that is not `https://github.com/owner/name`;
+- `site.json` with no title, or naming a section that is not in `sections.json`.
+
+`npm run guard` fails on:
+
+- a version in the catalog with no whole-guide PDF;
+- an authored page with no single-page PDF;
+- `manifest.json` and the `.chm` files on disk disagreeing.
+
+## Deploying
+
+A push to `main` publishes the live site:
+
+```yaml
+npm ci
+npm run check
+npm run guard
+VITE_BASE=/temco-learn/ npm run build:fast
+# upload dist/ as the Pages artifact, then deploy
+```
+
+Served at `https://temcocontrols.github.io/temco-learn/`.
+
+A tag publishes a frozen build. `.github/workflows/release.yml` triggers on `v*`, requires the tag to equal `version` in
+`package.json`, builds with `VITE_BASE=/` and attaches `temco-learn-v<version>.zip`:
+
+```bash
+npm version minor --no-git-tag-version
+git commit -am "Bump the site to $(node -p "require('./package.json').version")"
+git tag -a "v$(node -p "require('./package.json').version")" -m "Temco Learn"
+git push origin main --follow-tags
+```
+
+Content versions (`<project>/<version>`) are folders, not tags: they appear in the URL and each is offered as a download.
+
+## Troubleshooting
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `npm run guard` fails with a missing PDF or `.chm` | the file was never built, or was built but not committed | `npm run build` on Windows, then commit `public/pdf` and `public/chm` |
+| `chm: HTML Help Workshop is not installed` | `hhc.exe` is not on the machine or not in its usual place | install HTML Help Workshop, or set `HTMLHELP_HHC` to the full path of `hhc.exe` |
+| `pdf:` skips every version | no Chromium for Playwright | `npx playwright install chromium`, or set `PLAYWRIGHT_CHROMIUM` to a browser you have |
+| A deep address is 404 on a host other than Pages | the host has no SPA rewrite and no `404.html` | serve `index.html` for unknown paths (`try_files` on nginx, a rewrite on IIS or Express) |
+| The site renders with no styles or missing JSON | it was built with the wrong `VITE_BASE` | rebuild with the prefix the host serves it under |
 
 ## Layout
 
 ```
-content/        config.json and sections.json; add <project>/site.json and <project>/<version>/*.md for documentation
-public/         catalog.json, search.json, content/*.json, download/, pdf/, chm/ (generated) and imported/ (build output)
-scripts/        catalog.mts, search.mts, check-content.mts, check-artifacts.mts, pdf.mts, chm.mts, zip.mts
-src/            the app: routes, theme, chrome (breadcrumb and page actions), catalog reader, styles
-docs/design/    the redesign this site was built from
+content/       config.json, sections.json, <project>/<version>/*.md
+public/        generated catalog, index, downloads, PDFs, help files; imported/ build output
+scripts/       catalog, search, check-content, check-artifacts, pdf, chm, zip
+src/           the application: routes, shell, theme, catalog reader, styles
+docs/design/   design notes
 ```
