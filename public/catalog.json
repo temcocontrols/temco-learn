@@ -1,5 +1,5 @@
 {
-	"generated": "2026-10-30T08:57:44.217Z",
+	"generated": "2026-11-05T05:57:33.221Z",
 	"sections": [
 		{
 			"id": "documentation",
@@ -42,7 +42,7 @@
 			"versions": [
 				{
 					"version": "1.0",
-					"builtAt": "2026-10-30T08:34:32.927Z",
+					"builtAt": "2026-10-31T14:14:17.291Z",
 					"pages": [
 						{
 							"href": "index",
@@ -69,7 +69,7 @@
 			"versions": [
 				{
 					"version": "1.0",
-					"builtAt": "2026-10-30T08:33:12.159Z",
+					"builtAt": "2026-10-31T14:14:17.293Z",
 					"pages": [
 						{
 							"href": "index",
@@ -105,7 +105,7 @@
 				},
 				{
 					"version": "0.9",
-					"builtAt": "2026-10-30T08:34:09.508Z",
+					"builtAt": "2026-10-31T14:14:17.292Z",
 					"pages": [
 						{
 							"href": "index",

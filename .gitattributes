@@ -1,0 +1,6 @@
+# Text files are stored with LF in the repository and checked out with LF everywhere.
+#
+# Without this line, Git on Windows converts them to CRLF in the working copy, `git status` then calls every one of them
+# modified after a build, and `git diff` shows nothing at all — a clone that can never look clean on Windows. The platform
+# reads the same clone, so it saw six changed paths where one had changed.
+* text=auto eol=lf
