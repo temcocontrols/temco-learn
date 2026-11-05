@@ -41,7 +41,13 @@ jobs:
       # After the build, not before: build:fast regenerates catalog.json from content/, so this is what catches a page
       # that was committed without its PDF.
       - run: npm run guard
+      # `enablement: true` creates the Pages site when the repository does not have one yet. Without it the action only
+      # reads the existing site, so a repository that has never had Pages turned on fails here with "Get Pages site
+      # failed … Not Found" — no matter how many times the workflow is pushed. It needs admin on the repository, and the
+      # organisation has to allow Pages; if the org has it blocked, this reports that instead of a bare 404.
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
