@@ -4,7 +4,8 @@
 // top of the content it describes (`PageHeader`), and search lives only here. One bar that follows the reader is enough.
 //
 // Embedded, the masthead stands down: the platform already shows a header, and two headers stacked is how a documentation
-// site starts to feel like a page inside a page.
+// site starts to feel like a page inside a page. A host that wants the navigation — the platform's preview pane, whose own
+// bar has Reload and Stop but no sections — asks for it back with `?embed=0`.
 
 import * as React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
@@ -16,7 +17,14 @@ import { SiteFooter } from './SiteFooter';
 
 const isEmbedded = (): boolean => {
 	try {
-		return new URLSearchParams(window.location.search).get('embed') === '1' || window.self !== window.top;
+		const asked = new URLSearchParams(window.location.search).get('embed');
+		if (asked === '1') {
+			return true;
+		}
+		if (asked === '0') {
+			return false;
+		}
+		return window.self !== window.top;
 	} catch {
 		return false;
 	}
