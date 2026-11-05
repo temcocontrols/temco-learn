@@ -2,6 +2,9 @@
 //
 // Nothing is invented: Fluent supplies every control's look and every colour token, Azure supplies the blue, and Segoe
 // supplies the face. A second theme is the same tokens in dark, so the toggle never changes layout.
+//
+// Fluent's own type tokens are px strings, so they ignore the root font size. They are re-declared here at the site's
+// chrome size (12px) — otherwise a Fluent button would sit at 14px beside a 12px tab and the density would look broken.
 
 import { webDarkTheme, webLightTheme, type Theme } from '@fluentui/react-theme';
 
@@ -11,6 +14,15 @@ function seeded(theme: Theme): Theme {
 	return {
 		...theme,
 		fontFamilyBase: "'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, sans-serif",
+		fontFamilyMonospace: 'ui-monospace, SFMono-Regular, Consolas, monospace',
+		fontSizeBase100: '10px',
+		fontSizeBase200: '11px',
+		fontSizeBase300: '12px',
+		fontSizeBase400: '14px',
+		fontSizeBase500: '16px',
+		fontSizeBase600: '18px',
+		lineHeightBase200: '14px',
+		lineHeightBase300: '16px',
 		colorBrandBackground: AZURE,
 		colorBrandBackgroundHover: '#106ebe',
 		colorBrandBackgroundPressed: '#005a9e',
@@ -24,6 +36,7 @@ function seeded(theme: Theme): Theme {
 		colorCompoundBrandStroke: AZURE
 	};
 }
+
 
 export const lightTheme = seeded(webLightTheme);
 export const darkTheme = seeded(webDarkTheme);
@@ -47,3 +60,4 @@ export function applyScheme(scheme: Scheme): void {
 }
 
 export const themeFor = (scheme: Scheme): Theme => (scheme === 'dark' ? darkTheme : lightTheme);
+

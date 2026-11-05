@@ -4,3 +4,9 @@ dist/
 *.local
 .DS_Store
 Thumbs.db
+
+# Editor and IDE state. Per-user, regenerated on open, and full of binary caches — never part of the site.
+.vs/
+.idea/
+*.suo
+*.user

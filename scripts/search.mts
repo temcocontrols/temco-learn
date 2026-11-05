@@ -1,8 +1,10 @@
 // The search index: one small record per page, built from the catalog and the compiled bodies.
 //
 // The site has no server, so the index is a file the browser downloads once and matches in memory. It is deliberately
-// small — a title, the headings, and the first 200 characters — because a docs index that carries whole articles is
-// slower to fetch than the page the reader was going to open anyway.
+// small — a title, the headings, and the first 400 characters — because a docs index that carries whole articles is
+// slower to fetch than the page the reader was going to open anyway. Heading **ids** are kept beside the heading text so a
+// result can land on a section rather than at the top of a page.
+
 
 import { readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -45,12 +47,15 @@ interface Entry {
 	s: string;
 	u: string;
 	h: string[];
+	ha: string[];
 	x: string;
 }
 
 /** `text`, with the tags gone and the entities the compiler emits put back. */
 function plainText(html: string): string {
 	return html
+		// The `#` a heading carries is an affordance, not a word: it would match every search for it.
+		.replace(/<a class="anchor"[\s\S]*?<\/a>/gu, ' ')
 		.replace(/<[^>]+>/gu, ' ')
 		.replace(/&amp;/gu, '&')
 		.replace(/&lt;/gu, '<')
@@ -70,12 +75,12 @@ for (const project of catalog.projects) {
 		const bodyPath = join(publicDir, 'content', project.id, `${version.version}.json`);
 		const bodies =
 			existsSync(bodyPath)
-				? (JSON.parse(await readFile(bodyPath, 'utf8')) as { pages: globalThis.Record<string, { html: string; headings: { text: string }[] }> }).pages
+				? (JSON.parse(await readFile(bodyPath, 'utf8')) as { pages: globalThis.Record<string, { html: string; headings: { id: string; text: string }[] }> }).pages
 				: {};
 
 		for (const page of version.pages) {
 			const body = bodies[page.href];
-			const url = `#/${project.id}/${encodeURIComponent(version.version)}/${page.href}`;
+			const url = `/${project.id}/${encodeURIComponent(version.version)}/${page.href}`;
 			records.push({
 				t: page.title,
 				p: project.id,
@@ -84,7 +89,8 @@ for (const project of catalog.projects) {
 				s: project.section,
 				u: url,
 				h: (body?.headings ?? []).map((heading) => heading.text),
-				x: page.description ?? (body === undefined ? '' : plainText(body.html).slice(0, 200))
+				ha: (body?.headings ?? []).map((heading) => heading.id),
+				x: body === undefined ? (page.description ?? '') : plainText(body.html).slice(0, 400)
 			});
 		}
 	}

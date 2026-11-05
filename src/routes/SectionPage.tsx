@@ -1,13 +1,15 @@
-// One section: the projects listed in it, as the category itself — no "Projects" heading above the cards.
+// One section: the projects listed in it, then the sections beside it — the same hairline grid the home page uses.
 
-import { Link } from 'react-router-dom';
 import { useCatalog } from '../catalog';
-import { ProjectCard } from '../components/Cards';
+import { plural } from '../data';
+import { PageHeader } from '../components/PageHeader';
+import { ProjectTile, SectionTile } from '../components/Tiles';
 import type { Section } from '../model';
 
 export function SectionPage({ section }: { section: Section }) {
 	const catalog = useCatalog();
 	const projects = catalog.projects.filter((project) => project.section === section.id);
+	const others = catalog.sections.filter((entry) => entry.id !== section.id);
 
 	return (
 		<>
@@ -17,29 +19,33 @@ export function SectionPage({ section }: { section: Section }) {
 				<p className="lede">{section.description}</p>
 			</div>
 			<div className="page">
+				<PageHeader />
+
+				<p className="label__row">
+					<span className="label">Projects</span>
+					<span className="quiet">{plural(projects.length, 'project')}</span>
+				</p>
 				{projects.length === 0 ? (
 					<p className="empty">
 						Nothing has been published in {section.title} yet. A project appears here as soon as one of its versions is added, and
 						this page then lists it beside the others.
 					</p>
 				) : (
-					<div className="cards">
+					<div className="tiles">
 						{projects.map((project) => (
-							<ProjectCard key={project.id} project={project} />
+							<ProjectTile key={project.id} project={project} />
 						))}
 					</div>
 				)}
-				<p className="label">Other sections</p>
-				<div className="rows">
-					{catalog.sections
-						.filter((entry) => entry.id !== section.id)
-						.map((entry) => (
-							<Link key={entry.id} className="row" to={`/${entry.id}`}>
-								<span className="row__title">{entry.title}</span>
-								<span className="row__meta">{entry.description}</span>
-								<span className="row__go">Open →</span>
-							</Link>
-						))}
+
+				<p className="label__row">
+					<span className="label">Other sections</span>
+					<span className="quiet">{plural(others.length, 'section')}</span>
+				</p>
+				<div className="tiles">
+					{others.map((entry) => (
+						<SectionTile key={entry.id} section={entry} projects={catalog.projects.filter((project) => project.section === entry.id)} />
+					))}
 				</div>
 			</div>
 		</>
