@@ -5,14 +5,14 @@
 // (`public/imported/<project>/<version>/*.html`). Both become rows of one version, in one reading order.
 //
 // Each Markdown page also carries what the reader needs to point back at it — the path a pencil opens, when it last
-// changed, how long it takes — and the same content is written again as downloadable Markdown, single-page HTML and a ZIP.
+// changed, how long it takes — and the same content is written again as downloadable Markdown and a ZIP of it.
 //
 // Everything here is derived: delete `catalog.json` and the content tree, run this, and the same file comes back. That is
 // deliberate — a generated file nobody can reproduce by hand is a file that drifts.
 
-import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
-import { join, relative, sep } from 'node:path';
+import { dirname, join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 import MarkdownIt from 'markdown-it';
@@ -202,6 +202,54 @@ async function folders(path: string): Promise<string[]> {
 	return entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name).sort();
 }
 
+/** Every Markdown file under a version folder, as paths relative to it: `control/inputs/inputs.md`. */
+async function markdownFiles(folder: string, under = ''): Promise<string[]> {
+	const found: string[] = [];
+	let entries: { name: string; isDirectory(): boolean }[];
+	try {
+		entries = await readdir(join(folder, under), { withFileTypes: true });
+	} catch {
+		return found;
+	}
+	for (const entry of entries) {
+		const path = under === '' ? entry.name : `${under}/${entry.name}`;
+		if (entry.isDirectory()) {
+			found.push(...(await markdownFiles(folder, path)));
+			continue;
+		}
+		if (entry.name.endsWith('.md')) {
+			found.push(path);
+		}
+	}
+	return found;
+}
+
+/** The prefix the build was made for: `/` locally, `/temco-learn/` on the project site. */
+function assetBase(): string {
+	const base = process.env['VITE_BASE'] ?? '/';
+	return base.endsWith('/') ? base : `${base}/`;
+}
+
+/**
+ * The words of a heading, as a reader hears them.
+ *
+ * The inner HTML is markup, so an `&` in the author's heading arrives as `&amp;`. Decoding here keeps the
+ * text in "In this page" and the anchor a reader copies free of entity names.
+ */
+function headingText(inner: string): string {
+	return inner
+		.replace(/<[^>]+>/gu, '')
+		.replace(/&(#\d+|#x[0-9a-f]+|[a-z]+);/giu, (whole, name: string) => {
+			if (name.startsWith('#')) {
+				const code = name[1] === 'x' || name[1] === 'X' ? Number.parseInt(name.slice(2), 16) : Number.parseInt(name.slice(1), 10);
+				return Number.isFinite(code) ? String.fromCodePoint(code) : whole;
+			}
+			const named: Record<string, string> = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0' };
+			return named[name.toLowerCase()] ?? whole;
+		})
+		.trim();
+}
+
 /** A heading id that is stable between builds, so a shared link keeps working after an edit. */
 function headingId(text: string, taken: Set<string>): string {
 	const base = slugOf(text, 'section');
@@ -231,7 +279,7 @@ function readingMinutes(html: string): number {
  * Each heading carries a `#` link. It is markup rather than a hover effect in the browser, so the affordance exists before
  * any JavaScript runs and the anchor a reader copies is the same string on every build.
  */
-function compile(source: string, slug: string): CompiledPage {
+function compile(source: string, slug: string, project: string, version: string): CompiledPage {
 	const parsed = matter(source);
 	const data = parsed.data as { title?: unknown; description?: unknown };
 	const title = typeof data.title === 'string' && data.title.trim() !== '' ? data.title.trim() : slug;
@@ -247,7 +295,7 @@ function compile(source: string, slug: string): CompiledPage {
 	} as never);
 
 	const withAnchors = rendered.replace(/<h([23])>([\s\S]*?)<\/h\1>/gu, (_whole: string, level: string, inner: string) => {
-		const text = inner.replace(/<[^>]+>/gu, '').trim();
+		const text = headingText(inner);
 		const id = headingId(text, taken);
 		headings.push({ id, text, level: Number(level) });
 		return `<h${level} id="${id}">${inner}<a class="anchor" href="#${id}" data-anchor="${id}" aria-label="Copy a link to ${md.utils.escapeHtml(text)}">#</a></h${level}>`;
@@ -256,7 +304,13 @@ function compile(source: string, slug: string): CompiledPage {
 	return {
 		title,
 		...(typeof data.description === 'string' ? { description: data.description } : {}),
-		html: withAnchors,
+		// A picture is written beside the pages it belongs to and served from `media/<project>/<version>/`: a page is
+		// addressed by its route, so a relative `media/shot.png` would otherwise be looked for under that route.
+		html: withAnchors.replace(
+			/(<img\b[^>]*?\bsrc=")(?!https?:|\/|data:)([^"]+)(")/giu,
+			(_whole: string, before: string, src: string, after: string) =>
+				`${before}${assetBase()}media/${encodeURIComponent(project)}/${encodeURIComponent(version)}/${src.replace(/^(?:\.\.?\/)+/u, '').replace(/^media\//u, '')}${after}`
+		),
 		headings
 	};
 }
@@ -267,15 +321,16 @@ async function markdownVersion(
 	version: string
 ): Promise<{ pages: PageEntry[]; bodies: Record<string, CompiledPage>; raw: Record<string, string>; builtAt?: string }> {
 	const folder = join(content, project, version);
-	const files = (await readdir(folder)).filter((name) => name.endsWith('.md')).sort();
+	// A page's address is its path under the version, so a chapter is a folder here as it is everywhere else.
+	const files = (await markdownFiles(folder)).sort();
 	const ordered: { page: PageEntry; order: number }[] = [];
 	const bodies: Record<string, CompiledPage> = {};
 	const raw: Record<string, string> = {};
 	let newest = 0;
 	for (const file of files) {
-		const slug = file === '00-index.md' ? 'index' : slugOf(file.replace(/\.md$/u, ''), 'page');
+		const slug = file === '00-index.md' ? 'index' : file.replace(/\.md$/u, '').split('/').map((part) => slugOf(part, 'page')).join('/');
 		const source = await readFile(join(folder, file), 'utf8');
-		const compiled = compile(source, slug);
+		const compiled = compile(source, slug, project, version);
 		const front = matter(source).data as { order?: unknown; edit?: unknown };
 		const order = Number(front.order ?? 9999);
 		const changed = (await stat(join(folder, file))).mtime;
@@ -300,6 +355,15 @@ async function markdownVersion(
 		raw[slug] = source;
 		newest = Math.max(newest, changed.getTime());
 	}
+	// The pictures a version carries are copied where the site can serve them, once per build. They are authored next to
+	// the pages (`content/<project>/<version>/media/`), so an image is added in the same pull request as the page using it.
+	const media = join(folder, 'media');
+	if (existsSync(media)) {
+		const published = join(publicDir, 'media', project, version);
+		await mkdir(published, { recursive: true });
+		await cp(media, published, { recursive: true });
+	}
+
 	// The index leads; the rest keep the order their front matter asks for, which is the order a reader gets.
 	ordered.sort(
 		(one, other) =>
@@ -312,65 +376,8 @@ async function markdownVersion(
 		...(newest === 0 ? {} : { builtAt: new Date(newest).toISOString() })
 	};
 }
-
-/** The whole version as one standalone HTML file: the same bodies, no app, no JavaScript, no network. */
-function singlePage(project: string, version: string, pages: PageEntry[], bodies: Record<string, CompiledPage>): string {
-	const escape = (text: string): string => text.replace(/&/gu, '&amp;').replace(/</gu, '&lt;').replace(/>/gu, '&gt;').replace(/"/gu, '&quot;');
-	const sections = pages
-		.map((page) => {
-			const body = bodies[page.href];
-			if (body === undefined) {
-				return '';
-			}
-			// The Copy buttons are a browser affordance; in a file handed to a reader they would do nothing.
-			const html = body.html.replace(/<button class="code__copy"[^>]*>Copy<\/button>/gu, '');
-			return `<section id="${page.href}"><h1>${escape(page.title)}</h1>${body.description === undefined ? '' : `<p class="lead">${escape(body.description)}</p>\n`}${html}</section>`;
-		})
-		.filter((section) => section !== '')
-		.join('\n');
-	const title = `${project} ${version}`;
-	return `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escape(title)}</title>
-<style>
-body{margin:0 auto;padding:32px 20px 64px;max-width:820px;font:13px/1.7 "Segoe UI",system-ui,sans-serif;color:#1b1b1f;background:#fff}
-h1{font-size:24px;line-height:1.25;margin:0 0 8px}
-h2{font-size:20px;margin:32px 0 10px;padding-top:8px;border-top:1px solid #e0e0e0}
-h3{font-size:16px;margin:24px 0 8px}
-.lead{color:#5c5f66;margin:0 0 20px}
-section{break-after:page}
-section:last-of-type{break-after:auto}
-a{color:#0067b8}
-code{font-family:ui-monospace,Consolas,monospace;font-size:12px;background:#f3f2f1;padding:1px 4px;border-radius:3px}
-.code{margin:0 0 18px;border:1px solid #e0e0e0;border-radius:6px;overflow:hidden}
-.code__bar{display:flex;justify-content:space-between;padding:4px 10px;background:#f3f2f1;font-size:11px;color:#6e7379}
-.code__pre{margin:0;padding:12px;overflow:auto;background:#faf9f8}
-.code__pre code{background:none;padding:0}
-table{width:100%;border-collapse:collapse;margin:0 0 18px;font-size:12px}
-th,td{padding:6px 10px;text-align:left;border-bottom:1px solid #e0e0e0}
-th{background:#faf9f8}
-blockquote{margin:0 0 16px;padding-left:12px;border-left:3px solid #e0e0e0;color:#5c5f66}
-.callout{margin:0 0 18px;padding:10px 14px;border-left:3px solid #0078d4;background:#eff6fc;border-radius:4px}
-.callout--warning{border-left-color:#d13438;background:#fdf3f4}
-.callout--important{border-left-color:#c19c00;background:#fff9e6}
-.callout--tip{border-left-color:#107c10;background:#f1faf1}
-.callout__title{margin:0 0 4px;font-weight:600}
-.anchor{display:none}
-</style>
-</head>
-<body>
-<h1>${escape(title)}</h1>
-${sections}
-</body>
-</html>
-`;
-}
-
-/** Markdown, single-page HTML and a ZIP of the version: what "download this guide" actually hands over. */
-async function writeDownloads(project: string, version: string, pages: PageEntry[], raw: Record<string, string>, bodies: Record<string, CompiledPage>): Promise<void> {
+/** Markdown, and a ZIP of it with the images beside it: what "download this guide" actually hands over. */
+async function writeDownloads(project: string, version: string, pages: PageEntry[], raw: Record<string, string>): Promise<void> {
 	const folder = join(downloadDir, project);
 	await mkdir(join(folder, version), { recursive: true });
 	const encoder = new TextEncoder();
@@ -381,8 +388,11 @@ async function writeDownloads(project: string, version: string, pages: PageEntry
 		if (text === undefined) {
 			continue;
 		}
+		// A page's address is its path, so a chapter's pages land in a folder of the same name in the download too.
 		const name = `${page.href}.md`;
-		await writeFile(join(folder, version, name), text, 'utf8');
+		const where = join(folder, version, name);
+		await mkdir(dirname(where), { recursive: true });
+		await writeFile(where, text, 'utf8');
 		entries.push({ name, data: encoder.encode(text) });
 	}
 
@@ -393,15 +403,43 @@ async function writeDownloads(project: string, version: string, pages: PageEntry
 	await writeFile(join(folder, `${version}.md`), guide, 'utf8');
 	entries.push({ name: `${version}.md`, data: encoder.encode(guide) });
 
-	const html = singlePage(project, version, pages, bodies);
-	await writeFile(join(folder, `${version}.html`), html, 'utf8');
-	entries.push({ name: `${version}.html`, data: encoder.encode(html) });
+	// The pages point at `media/<file>`, so the ZIP carries the images at that same relative path: a download that opened
+	// to a folder of broken pictures would be a download nobody can read.
+	for (const name of await listFiles(join(publicDir, 'media', project, version))) {
+		entries.push({ name: `media/${name}`, data: await readFile(join(publicDir, 'media', project, version, name)) });
+	}
 
 	await writeFile(join(folder, `${version}.zip`), zip(entries));
 }
 
+/** Every file under a folder, as paths relative to it, or nothing when the folder is not there. */
+async function listFiles(folder: string, under = ''): Promise<string[]> {
+	let entries;
+	try {
+		entries = await readdir(join(folder, under), { withFileTypes: true });
+	} catch {
+		return [];
+	}
+	const found: string[] = [];
+	for (const entry of entries) {
+		const next = under === '' ? entry.name : `${under}/${entry.name}`;
+		if (entry.isDirectory()) {
+			found.push(...(await listFiles(folder, next)));
+		} else if (entry.isFile()) {
+			found.push(next);
+		}
+	}
+	return found;
+}
 
-/** The pages a build wrote, titled from their own `<title>`, with `index.html` first. */
+
+/**
+ * The pages a build wrote, titled from their own `<title>`, in the order the build published.
+ *
+ * A folder walk only knows the alphabet, and "6.1 Graphic Screens" comes before "6.2 Programs" while "6.10 ALARM LOG"
+ * comes after both — so a build may write `nav.json` with its reading order, and that order wins. Pages it does not list
+ * (an older build, or a file added by hand) follow, alphabetically, and `index.html` still opens the guide.
+ */
 async function importedVersion(project: string, version: string): Promise<{ pages: PageEntry[]; builtAt?: string }> {
 	const folder = join(imported, project, version);
 	if (!existsSync(folder)) {
@@ -427,8 +465,29 @@ async function importedVersion(project: string, version: string): Promise<{ page
 		}
 	}
 	await walk(folder);
-	found.sort((one, other) => (one.href === 'index.html' ? -1 : other.href === 'index.html' ? 1 : one.href.localeCompare(other.href)));
+
+	const ordered = await readNav(folder);
+	const place = new Map(ordered.map((href, index) => [href, index]));
+	const fallback = (one: { href: string }): number => (one.href === 'index.html' ? -1 : ordered.length + 1);
+	found.sort((one, other) => {
+		const at = place.get(one.href);
+		const at2 = place.get(other.href);
+		if (at !== undefined || at2 !== undefined) {
+			return (at ?? fallback(one)) - (at2 ?? fallback(other)) || one.href.localeCompare(other.href);
+		}
+		return fallback(one) - fallback(other) || one.href.localeCompare(other.href);
+	});
 	return { pages: found.map((entry) => ({ href: entry.href, title: entry.title, kind: 'build' as const })), ...(newest === 0 ? {} : { builtAt: new Date(newest).toISOString() }) };
+}
+
+/** The reading order a build publishes, if it published one. */
+async function readNav(folder: string): Promise<string[]> {
+	try {
+		const file = JSON.parse(await readFile(join(folder, 'nav.json'), 'utf8')) as { pages?: { href?: string }[] };
+		return (file.pages ?? []).map((page) => page.href).filter((href): href is string => typeof href === 'string');
+	} catch {
+		return [];
+	}
 }
 
 const sections = JSON.parse(await readFile(join(content, 'sections.json'), 'utf8')) as Section[];
@@ -457,7 +516,7 @@ for (const project of await folders(content)) {
 			const target = join(outDir, project);
 			await mkdir(target, { recursive: true });
 			await writeFile(join(target, `${version}.json`), `${JSON.stringify({ pages: markdown.bodies }, null, '\t')}\n`, 'utf8');
-			await writeDownloads(project, version, markdown.pages, markdown.raw, markdown.bodies);
+			await writeDownloads(project, version, markdown.pages, markdown.raw);
 			written.push(`${project}/${version}.json`);
 		}
 	}

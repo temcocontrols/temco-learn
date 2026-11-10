@@ -13,7 +13,7 @@
 import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = fileURLToPath(new URL('..', import.meta.url));
@@ -110,19 +110,76 @@ ${body}
 `;
 }
 
-function contents(title: string, pages: PageEntry[]): string {
-	const items = pages
-		.map((page) => `    <LI><OBJECT type="text/sitemap"><param name="Name" value="${escape(page.title)}"><param name="Local" value="${page.href}.html"></OBJECT>`)
-		.join('\n');
+/**
+ * The contents tree of the help file: the same hierarchy the pages themselves have.
+ *
+ * A CHM's left pane is sitemap nodes, and a page whose address is a path (`control/inputs/menu`) belongs under the folders
+ * of that path — the chapter's own page first, then its topics, in reading order. This is what makes the compiled help
+ * look like the manual it came from instead of one flat list of 128 titles.
+ */
+function contents(pages: PageEntry[]): string {
+	interface Node {
+		name: string;
+		path: string;
+		seq: { page?: PageEntry; folder?: Node }[];
+		folders: Map<string, Node>;
+	}
+
+	const root: Node = { name: '', path: '', seq: [], folders: new Map() };
+	for (const page of pages) {
+		const parts = page.href.split('/');
+		let node = root;
+		for (const part of parts.slice(0, -1)) {
+			let child = node.folders.get(part);
+			if (child === undefined) {
+				child = { name: part, path: node.path === '' ? part : `${node.path}/${part}`, seq: [], folders: new Map() };
+				node.folders.set(part, child);
+				node.seq.push({ folder: child });
+			}
+			node = child;
+		}
+		node.seq.push({ page });
+	}
+
+	// A folder is named by the page that lives at its own address — "6.1 Graphic Screens", not "graphic-screens".
+	const ownPage = (node: Node): PageEntry | undefined =>
+		node.seq.find((item) => item.page !== undefined && item.page.href === `${node.path}/${node.name}`)?.page;
+
+	const draw = (node: Node, depth: number, skip?: string): string => {
+		const pad = '  '.repeat(depth + 1);
+		const out: string[] = [];
+		for (const item of node.seq) {
+			if (item.page !== undefined) {
+				// A chapter's own page is the folder row itself: printing it again under its own folder lists it twice.
+				if (item.page.href === skip) {
+					continue;
+				}
+				out.push(`${pad}<LI><OBJECT type="text/sitemap"><param name="Name" value="${escape(item.page.title)}"><param name="Local" value="${item.page.href}.html"></OBJECT>`);
+				continue;
+			}
+			const folder = item.folder;
+			if (folder === undefined) {
+				continue;
+			}
+			// A folder that has its own page opens it; one that does not is a plain grouping node.
+			const own = ownPage(folder);
+			const local = own === undefined ? '' : `<param name="Local" value="${own.href}.html">`;
+			out.push(`${pad}<LI><OBJECT type="text/sitemap"><param name="Name" value="${escape(own?.title ?? folder.name.replace(/[-_]+/gu, ' '))}">${local}</OBJECT>`);
+			out.push(`${pad}<UL>`);
+			out.push(draw(folder, depth + 1, own?.href));
+			out.push(`${pad}</UL>`);
+		}
+		return out.join('\n');
+	};
+
+	// The book's own node is not repeated: the help file's title bar already names it, and the original file opens on its
+	// first page rather than on a folder that holds everything.
 	return `<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <HTML><HEAD><meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
 <!-- Sitemap 1.0 --></HEAD><BODY>
 <OBJECT type="text/site properties"><param name="ImageType" value="Folder"><param name="Font" value="Segoe UI,9,,,"></OBJECT>
 <UL>
-  <LI><OBJECT type="text/sitemap"><param name="Name" value="${escape(title)}"></OBJECT>
-  <UL>
-${items}
-  </UL>
+${draw(root, 0)}
 </UL>
 </BODY></HTML>
 `;
@@ -222,16 +279,28 @@ async function main(): Promise<void> {
 				await mkdir(source, { recursive: true });
 
 				const title = `${project.title} ${version.version}`;
+				// A help file is one folder on a reader's disk, so its pictures travel inside it: the served addresses are
+				// rewritten to a `media/` folder beside the topics, and the files are copied there.
+				const media = join(publicDir, 'media', project.id, version.version);
+				const inside = `media/${project.id}/${version.version}/`;
+				if (existsSync(media)) {
+					await cp(media, join(source, 'media'), { recursive: true });
+				}
+				const inFile = (html: string): string => html.split(inside).join('media/');
+
 				await writeFile(join(source, 'index.html'), landing(project.title, version.version, pages), 'utf8');
 				for (const [at, page] of pages.entries()) {
 					const body = bodies[page.href];
 					if (body === undefined) {
 						continue;
 					}
-					await writeFile(join(source, `${page.href}.html`), topic(body, pages[at - 1], pages[at + 1]), 'utf8');
+					// A page's address is its path, so a chapter's topics land in a folder of the same name.
+					const where = join(source, `${page.href}.html`);
+					await mkdir(dirname(where), { recursive: true });
+					await writeFile(where, inFile(topic(body, pages[at - 1], pages[at + 1])), 'utf8');
 				}
 
-				await writeFile(join(source, 'contents.hhc'), contents(title, pages), 'utf8');
+				await writeFile(join(source, 'contents.hhc'), contents(pages), 'utf8');
 				await writeFile(
 					join(source, 'index.hhk'),
 					index([{ title: 'Overview', href: 'index.html' }, ...pages.map((page) => ({ title: page.title, href: `${page.href}.html` }))]),

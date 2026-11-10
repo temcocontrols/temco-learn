@@ -17,7 +17,7 @@ import { cp, mkdir, readFile, rm, stat } from 'node:fs/promises';
 import { createServer } from 'node:net';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { Browser } from 'playwright';
+import type { Browser, Page } from 'playwright';
 
 const here = fileURLToPath(new URL('..', import.meta.url));
 const dist = join(here, 'dist');
@@ -49,6 +49,26 @@ function freePort(): Promise<number> {
 }
 
 const escape = (text: string): string => text.replace(/&/gu, '&amp;').replace(/</gu, '&lt;').replace(/>/gu, '&gt;');
+
+/**
+ * Walks a loaded page from top to bottom, so everything that only loads near the viewport — images, above all — is
+ * fetched before anything is printed.
+ *
+ * The viewport is made tall first: a manual two hundred screens long is then walked in a handful of steps, and the print
+ * afterwards still lays out the whole document rather than the part that was on screen.
+ */
+async function walk(view: Page): Promise<void> {
+	const height = await view.evaluate(() => document.documentElement.scrollHeight);
+	await view.setViewportSize({ width: 1280, height: Math.min(Math.max(height, 1600), 30000) });
+	await view.evaluate(async () => {
+		const step = Math.max(window.innerHeight, 1);
+		for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
+			window.scrollTo(0, y);
+			await new Promise((resolve) => requestAnimationFrame(() => resolve(undefined)));
+		}
+		window.scrollTo(0, 0);
+	});
+}
 
 async function main(): Promise<void> {
 	if (!existsSync(join(dist, 'index.html'))) {
@@ -97,7 +117,11 @@ async function main(): Promise<void> {
 			// `resolvedUrls` already carries the build's base (`/` here, `/temco-learn/` if VITE_BASE said so), and `route`
 			// starts with a slash, so they are joined rather than concatenated.
 			await view.goto(new URL(route.replace(/^\//u, ''), base).toString(), { waitUntil: 'networkidle' });
-			await view.waitForSelector('body[data-print-ready="true"]', { timeout: 20000 });
+			// A browser does not fetch an image until it comes near the viewport, and a guide is far longer than any
+			// window — so the document is walked from the top first. Without this a manual prints with its pictures still
+			// unfetched, which is the one thing worse than a slow print.
+			await walk(view);
+			await view.waitForSelector('body[data-print-ready="true"]', { timeout: 120000 });
 			await mkdir(join(target, '..'), { recursive: true });
 			await view.pdf({
 				path: target,

@@ -111,8 +111,10 @@ export function describePage(pathname: string, catalog: Catalog): PageInfo {
 	}
 
 	const versionCrumb: Crumb = { label: version.version, to: `/${project.id}/${encodeURIComponent(version.version)}/`, mono: true };
-	const slug = parts[2];
-	const page = slug === undefined ? undefined : version.pages.find((entry) => entry.href === decode(slug));
+	// A page's address is its own path, so a page in a folder arrives as several parts: `control/graphic-screens/edit-point`.
+	// Reading only the first of them finds the folder, not the page, and the pencil and the page's own PDF go missing.
+	const href = parts.slice(2).map(decode).filter((part) => part !== '').join('/');
+	const page = href === '' ? undefined : version.pages.find((entry) => entry.href === href);
 
 	const info: PageInfo = {
 		crumbs: [...stem, ...(page === undefined ? [versionCrumb] : [versionCrumb, { label: page.title }])],
@@ -142,7 +144,7 @@ export interface DownloadFile {
 	href: string;
 	detail: string;
 	/** Which mark the menu puts beside it. */
-	kind: 'pdf' | 'chm' | 'md' | 'html' | 'zip';
+	kind: 'pdf' | 'chm' | 'md' | 'zip';
 	/** Printed things first, then the sources they were made from — the menu draws a rule between them. */
 	group: 'print' | 'source';
 }
@@ -174,28 +176,26 @@ export function downloads(info: PageInfo, chm = false): DownloadFile[] {
 			group: 'print'
 		});
 	}
-	files.push(
-		{
-			label: 'Markdown',
-			href: downloadUrl(project.id, version.version, 'md'),
-			detail: 'every page, one file',
-			kind: 'md',
-			group: 'source'
-		},
-		{
-			label: 'HTML',
-			href: downloadUrl(project.id, version.version, 'html'),
-			detail: 'one file, no JavaScript',
-			kind: 'html',
-			group: 'source'
-		},
-		{
-			label: 'ZIP',
-			href: downloadUrl(project.id, version.version, 'zip'),
-			detail: 'Markdown and HTML together',
-			kind: 'zip',
-			group: 'source'
-		}
-	);
+	// The Markdown and ZIP bundles are written from pages authored here — `scripts/catalog.mts` has Markdown to fold
+	// and nothing to fold for a page a project's own build produced. Offering a file nobody wrote is worse than offering
+	// three files fewer, so an imported build hands over its guide PDF and no sources.
+	if (version.pages.some((page) => page.kind === 'md')) {
+		files.push(
+			{
+				label: 'Markdown',
+				href: downloadUrl(project.id, version.version, 'md'),
+				detail: 'every page, one file',
+				kind: 'md',
+				group: 'source'
+			},
+			{
+				label: 'ZIP',
+				href: downloadUrl(project.id, version.version, 'zip'),
+				detail: 'Markdown pages and their images',
+				kind: 'zip',
+				group: 'source'
+			}
+		);
+	}
 	return files;
 }

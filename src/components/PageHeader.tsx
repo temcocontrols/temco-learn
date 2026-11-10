@@ -17,7 +17,6 @@ import {
 	CopyRegular,
 	DocumentPdfRegular,
 	EditRegular,
-	GlobeRegular,
 	HistoryRegular,
 	MoreHorizontalRegular,
 	PrintRegular,
@@ -35,7 +34,6 @@ const MARKS: Record<DownloadFile['kind'], FluentIcon> = {
 	pdf: DocumentPdfRegular,
 	chm: BookRegular,
 	md: TextDescriptionRegular,
-	html: GlobeRegular,
 	zip: ArchiveRegular
 };
 
@@ -171,7 +169,7 @@ export function PageHeader() {
 				{info.edit === undefined ? undefined : (
 					<a className="pagehead__link" href={info.edit.url} target="_blank" rel="noopener noreferrer">
 						<EditRegular aria-hidden="true" />
-						<span className="pagehead__label">Edit</span>
+						<span className="pagehead__label">Edit this page</span>
 					</a>
 				)}
 

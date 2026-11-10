@@ -28,13 +28,15 @@ function App() {
 					<Routes>
 						{/* The print route stands outside the shell: a PDF has no masthead and no rails. */}
 						<Route path="print/:key/:version" element={<Print />} />
-						<Route path="print/:key/:version/:slug" element={<Print />} />
+						<Route path="print/:key/:version/*" element={<Print />} />
 						<Route element={<Shell scheme={scheme} onScheme={setScheme} />}>
 							<Route index element={<Home />} />
 							<Route path="search" element={<SearchPage />} />
 							<Route path=":key" element={<Browse />} />
 							<Route path=":key/:version" element={<VersionPage />} />
-							<Route path=":key/:version/:slug" element={<Article />} />
+							{/* `*` rather than `:slug`: an imported page's address is a path of its own build (`control/inputs/inputs.html`),
+							    and one segment could never match it. */}
+							<Route path=":key/:version/*" element={<Article />} />
 							<Route path="*" element={<NotFound />} />
 						</Route>
 					</Routes>
