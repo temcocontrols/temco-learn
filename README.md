@@ -243,6 +243,11 @@ VITE_BASE=/temco-learn/ npm run build:fast
 
 Served at `https://temcocontrols.github.io/temco-learn/`.
 
+Enabling Pages is a **one-time manual step**: Settings → Pages → Build and deployment → Source: "GitHub Actions". The
+workflow cannot do it, because creating the Pages site needs `administration: write`, a permission `GITHUB_TOKEN` cannot
+hold — which is also why `enablement: true` on `actions/configure-pages` fails with "Resource not accessible by
+integration". Until that switch is thrown, the `build` job fails at `actions/configure-pages` and nothing deploys.
+
 A tag publishes a frozen build. `.github/workflows/release.yml` triggers on `v*`, requires the tag to equal `version` in
 `package.json`, builds with `VITE_BASE=/` and attaches `temco-learn-v<version>.zip`:
 
