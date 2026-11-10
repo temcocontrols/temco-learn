@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { FluentProvider } from '@fluentui/react-components';
 import { CatalogProvider } from './catalog';
+import { ScrollToTop } from './components/ScrollToTop';
 import { Shell } from './components/Shell';
 import { Article } from './routes/Article';
 import { Browse } from './routes/Browse';
@@ -25,6 +26,8 @@ function App() {
 		<FluentProvider theme={themeFor(scheme)}>
 			<CatalogProvider>
 				<BrowserRouter basename={basename}>
+					{/* Inside the router, outside the routes: every navigation starts somewhere, and this is where. */}
+					<ScrollToTop />
 					<Routes>
 						{/* The print route stands outside the shell: a PDF has no masthead and no rails. */}
 						<Route path="print/:key/:version" element={<Print />} />
