@@ -7,12 +7,12 @@ The documentation site for Temco Controls products.
 | **Stack** | Vite 6, React 19, React Router 7, Fluent UI v9, TypeScript |
 | **Reads** | Markdown in `content/`, HTML in `public/imported/` |
 | **Writes** | `public/catalog.json`, `public/search.json`, `public/content/`, `public/download/`, `public/pdf/`, `public/chm/`, `dist/` |
-| **Deploys** | GitHub Pages on a push to `main`; a `v*` tag packages a frozen build |
+| **Publishes** | a `v*` tag: deploys GitHub Pages and attaches a zip to a draft Release |
 | **Needs** | Node.js 22.6 or newer; Chromium for the PDFs; `hhc.exe` for the help files |
 
 Contents: [Quick start](#quick-start) - [Scripts](#scripts) - [Content](#content) - [Routes](#routes) -
 [Ports and the base path](#ports-and-the-base-path) - [Generated files](#generated-files) -
-[Downloads](#downloads) - [Gates](#gates) - [Deploying](#deploying) - [Troubleshooting](#troubleshooting) -
+[Downloads](#downloads) - [Gates](#gates) - [Publishing](#publishing) - [Troubleshooting](#troubleshooting) -
 [Layout](#layout)
 
 ## Quick start
@@ -229,27 +229,21 @@ a `.chm` that was not built.
 - an authored page with no single-page PDF;
 - `manifest.json` and the `.chm` files on disk disagreeing.
 
-## Deploying
+## Publishing
 
-A push to `main` publishes the live site:
+Only a tag publishes. `.github/workflows/publish.yml` triggers on `v*` and produces both outputs from the one commit:
 
 ```yaml
 npm ci
 npm run check
+# the tag must equal `version` in package.json, or the run stops here
+VITE_BASE=/ npm run build:fast               # -> temco-learn-v<version>.zip, attached to a draft Release
 npm run guard
-VITE_BASE=/temco-learn/ npm run build:fast
-# upload dist/ as the Pages artifact, then deploy
+VITE_BASE=/temco-learn/ npm run build:fast   # -> the Pages artifact, deployed
 ```
 
-Served at `https://temcocontrols.github.io/temco-learn/`.
-
-Enabling Pages is a **one-time manual step**: Settings → Pages → Build and deployment → Source: "GitHub Actions". The
-workflow cannot do it, because creating the Pages site needs `administration: write`, a permission `GITHUB_TOKEN` cannot
-hold — which is also why `enablement: true` on `actions/configure-pages` fails with "Resource not accessible by
-integration". Until that switch is thrown, the `build` job fails at `actions/configure-pages` and nothing deploys.
-
-A tag publishes a frozen build. `.github/workflows/release.yml` triggers on `v*`, requires the tag to equal `version` in
-`package.json`, builds with `VITE_BASE=/` and attaches `temco-learn-v<version>.zip`:
+**A push to `main` publishes nothing.** The live site keeps serving the last tag until the next one is cut, so a page fix
+reaches readers only when the version is bumped:
 
 ```bash
 npm version minor --no-git-tag-version
@@ -257,6 +251,17 @@ git commit -am "Bump the site to $(node -p "require('./package.json').version")"
 git tag -a "v$(node -p "require('./package.json').version")" -m "Temco Learn"
 git push origin main --follow-tags
 ```
+
+To publish the current `main` without cutting a tag — Pages only, no Release and no zip — run **Actions → Publish → Run
+workflow**.
+
+Served at `https://temcocontrols.github.io/temco-learn/`.
+
+Enabling Pages is a **one-time manual step**: Settings → Pages → Build and deployment → Source: "GitHub Actions". The
+workflow cannot do it, because creating the Pages site needs `administration: write`, a permission `GITHUB_TOKEN` cannot
+hold — which is also why `enablement: true` on `actions/configure-pages` fails with "Resource not accessible by
+integration". Until that switch is thrown, the `build` job fails at `actions/configure-pages` and nothing deploys — but the
+draft Release, being created before those steps, still appears.
 
 Content versions (`<project>/<version>`) are folders, not tags: they appear in the URL and each is offered as a download.
 
@@ -268,6 +273,7 @@ Content versions (`<project>/<version>`) are folders, not tags: they appear in t
 | `chm: HTML Help Workshop is not installed` | `hhc.exe` is not on the machine or not in its usual place | install HTML Help Workshop, or set `HTMLHELP_HHC` to the full path of `hhc.exe` |
 | `pdf:` skips every version | no Chromium for Playwright | `npx playwright install chromium`, or set `PLAYWRIGHT_CHROMIUM` to a browser you have |
 | A deep address is 404 on a host other than Pages | the host has no SPA rewrite and no `404.html` | serve `index.html` for unknown paths (`try_files` on nginx, a rewrite on IIS or Express) |
+| The live site did not change after a push | only a tag publishes | cut the next tag, or run **Actions → Publish → Run workflow** |
 | The site renders with no styles or missing JSON | it was built with the wrong `VITE_BASE` | rebuild with the prefix the host serves it under |
 
 ## Layout

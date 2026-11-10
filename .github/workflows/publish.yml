@@ -1,0 +1,121 @@
+# Publishes the site. One workflow, one trigger that matters: a tag.
+#
+#   git push                          nothing is published; the live site keeps serving the last tag
+#   git tag -a v0.1.2 -m "..." ...    publishes — deploys GitHub Pages and drafts a Release with a zip
+#   Actions → Publish → Run workflow  publishes the current `main` by hand: Pages only, no tag, no Release
+#
+# A tag publishes two things from one commit, because they need different base paths:
+#
+#   VITE_BASE=/               a zip that can be dropped at the root of any host
+#   VITE_BASE=/temco-learn/   the Pages site, which has to know the mount point its clean addresses hang from
+#
+# The tag must equal `version` in package.json, so a release can never be mislabelled.
+#
+# The PDFs and the Windows Help files are deliberately NOT rebuilt here. They need Segoe UI (absent on a Linux runner) and
+# `hhc.exe` (Windows only), so they are built on a developer's machine and committed. `npm run guard` fails the run when a
+# version in the catalog has no committed PDF or help file, so a stale artefact is caught rather than published.
+name: Publish
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  # A publish is rare and deliberate, so a newer run waits for the one in flight rather than killing it mid-deploy.
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: The tag must match package.json
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          want="v$(node -p "require('./package.json').version")"
+          if [ "$GITHUB_REF_NAME" != "$want" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package.json ($want). Bump the version, or tag $want."
+            exit 1
+          fi
+
+      - run: npm run check
+
+      # The zip is meant to be dropped anywhere, so it is built for a host root. On a manual run this build is only here
+      # to regenerate catalog.json for the guard below; it costs ten seconds.
+      - name: Build for a host root
+        run: npm run build:fast
+        env:
+          VITE_BASE: /
+
+      # After a build, not before: build:fast regenerates catalog.json from content/, so this is what catches a page
+      # that was committed without its PDF.
+      - run: npm run guard
+
+      # The whole site, including the committed PDFs and Windows Help files that this runner cannot rebuild.
+      - name: Pack the built site
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          cd dist
+          zip -qr "$RUNNER_TEMP/temco-learn-${GITHUB_REF_NAME}.zip" .
+          cd ..
+          ls -lh "$RUNNER_TEMP/temco-learn-${GITHUB_REF_NAME}.zip"
+
+      # Ahead of the Pages steps on purpose: the zip is useful even on a repository where Pages is not enabled yet, so a
+      # missing Pages site must not cost you the release.
+      - name: Draft the release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ runner.temp }}/temco-learn-${{ github.ref_name }}.zip
+          name: Temco Learn ${{ github.ref_name }}
+          # A draft: the archive can be opened and inspected before anyone is pointed at it.
+          draft: true
+          body: |
+            The built site: `index.html`, the bundles, and everything it carries under `pdf/`, `chm/` and `download/`.
+
+            Unzip the archive and serve the folder from the **root** of a host (`npx serve .`, nginx, IIS, an S3 bucket).
+
+            Routes are paths (`/t3000/1.0/ports`), not hashes, so:
+
+            - a host with no SPA rewrite needs the bundled `404.html` to answer a deep address;
+            - serving under a sub-path needs its own build with `VITE_BASE` set to that prefix.
+
+      # Clean addresses need the mount point baked in; this is the project site's.
+      - name: Build for GitHub Pages
+        run: npm run build:fast
+        env:
+          VITE_BASE: /temco-learn/
+
+      # This step fails, and the run with it, until Pages has been enabled once for this repository. It cannot enable it:
+      # `POST /repos/{owner}/{repo}/pages` needs `administration: write`, which GITHUB_TOKEN has no way to hold, so
+      # `enablement: true` — the parameter this action's own error message suggests — fails with "Resource not accessible
+      # by integration" however the `permissions:` block above is written. Enabling it is therefore a one-time manual step:
+      #   Settings → Pages → Build and deployment → Source: "GitHub Actions"
+      # Every tag after that deploys normally.
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
