@@ -79,7 +79,16 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v3
         with:
-          files: ${{ runner.temp }}/temco-learn-${{ github.ref_name }}.zip
+          # The zip is the whole site. The two globs add the files most people actually want without unpacking it: one
+          # whole-guide PDF and one help file per version. The 158 per-page PDFs stay out — each page's Downloads menu
+          # already serves them individually.
+          files: |
+            ${{ runner.temp }}/temco-learn-${{ github.ref_name }}.zip
+            dist/pdf/*/*.pdf
+            dist/chm/*/*.chm
+          # A missing PDF or help file already fails `npm run guard`; this also makes a glob that silently matches nothing
+          # loud instead of quietly shipping a release without them.
+          fail_on_unmatched_files: true
           name: Temco Learn ${{ github.ref_name }}
           # A draft: the archive can be opened and inspected before anyone is pointed at it.
           draft: true
