@@ -75,17 +75,29 @@ jobs:
 
       # Ahead of the Pages steps on purpose: the zip is useful even on a repository where Pages is not enabled yet, so a
       # missing Pages site must not cost you the release.
+      # softprops names each asset after the file's basename, so the per-version files are staged under a project-prefixed
+      # name first — `2026.01.pdf` says nothing, `t3000-2026.01.pdf` does.
+      - name: Collect the per-version downloads
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          mkdir -p "$RUNNER_TEMP/assets"
+          for f in dist/pdf/*/*.pdf dist/chm/*/*.chm; do
+            [ -e "$f" ] || continue
+            project="$(basename "$(dirname "$f")")"
+            cp "$f" "$RUNNER_TEMP/assets/${project}-$(basename "$f")"
+          done
+          ls -lh "$RUNNER_TEMP/assets"
+
       - name: Draft the release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v3
         with:
-          # The zip is the whole site. The two globs add the files most people actually want without unpacking it: one
+          # The zip is the whole site. The staged files are the ones most people actually want without unpacking it: one
           # whole-guide PDF and one help file per version. The 158 per-page PDFs stay out — each page's Downloads menu
           # already serves them individually.
           files: |
             ${{ runner.temp }}/temco-learn-${{ github.ref_name }}.zip
-            dist/pdf/*/*.pdf
-            dist/chm/*/*.chm
+            ${{ runner.temp }}/assets/*
           # A missing PDF or help file already fails `npm run guard`; this also makes a glob that silently matches nothing
           # loud instead of quietly shipping a release without them.
           fail_on_unmatched_files: true

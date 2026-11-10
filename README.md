@@ -210,8 +210,8 @@ Each page offers the files for its version. A download exists only when the file
 | Standalone HTML, and a ZIP of the Markdown | `public/download/` |
 
 Each Release carries the same files beside the site, so one can be had without unpacking the build:
-`temco-learn-v<version>.zip` (the whole site), plus `pdf/<project>/<version>.pdf` and
-`chm/<project>/<version>.chm` for every version.
+`temco-learn-v<version>.zip` (the whole site), plus one guide and one help file per version, named after the project they
+belong to — `t3000-2026.01.pdf`, `t3000-2026.01.chm`, `temco-platform-1.0.pdf`, `temco-platform-1.0.chm`.
 
 `public/download/manifest.json` lists the help files that exist on disk; the download menu reads it, so it never points at
 a `.chm` that was not built.
