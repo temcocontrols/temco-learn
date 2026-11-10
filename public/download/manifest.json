@@ -1,8 +1,13 @@
 {
-	"generated": "2026-11-10T02:30:33.559Z",
+	"generated": "2026-11-10T05:20:15.726Z",
 	"projects": {
 		"t3000": {
 			"2026.01": {
+				"chm": true
+			}
+		},
+		"temco-platform": {
+			"1.0": {
 				"chm": true
 			}
 		}

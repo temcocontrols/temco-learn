@@ -68,6 +68,9 @@ for (const project of await folders(content)) {
 		for (const file of files) {
 			const where = `content/${project}/${version}/${file}`;
 			const parsed = matter(await readFile(join(folder, file), 'utf8'));
+			// A comment inside a code fence is code, not a heading and not a callout: a shell sample that starts a line
+			// with `#` is the normal way to write one, and a JSON sample's `:::` is a string.
+			const prose = parsed.content.replace(/^(?:```|~~~)[\s\S]*?^(?:```|~~~)/gmu, '');
 			const data = parsed.data as { title?: unknown; order?: unknown; edit?: unknown };
 			if (typeof data.title !== 'string' || data.title.trim() === '') {
 				problems.push(`${where} has no title`);
@@ -82,10 +85,10 @@ for (const project of await folders(content)) {
 			if (data.edit !== undefined && data.edit !== false && (typeof data.edit !== 'string' || !/^https:\/\//u.test(data.edit))) {
 				problems.push(`${where} has an edit that is neither false nor an https address`);
 			}
-			if (/^#\s/mu.test(parsed.content)) {
+			if (/^#\s/mu.test(prose)) {
 				problems.push(`${where} starts a heading at “#”: the page title is the heading, so prose begins at “##”`);
 			}
-			for (const [, kind] of parsed.content.matchAll(/^:::\s*([a-z]+)/gmu)) {
+			for (const [, kind] of prose.matchAll(/^:::\s*([a-z]+)/gmu)) {
 				if (kind !== undefined && !['note', 'tip', 'important', 'warning'].includes(kind)) {
 					problems.push(`${where} opens a “::: ${kind}” callout; the kinds are note, tip, important and warning`);
 				}

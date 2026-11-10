@@ -1,5 +1,5 @@
 {
-	"generated": "2026-11-10T02:39:21.780Z",
+	"generated": "2026-11-10T05:17:36.568Z",
 	"sections": [
 		{
 			"id": "documentation",
@@ -1067,6 +1067,233 @@
 							"source": "content/t3000/2026.01/offline-mode.md",
 							"updated": "2026-11-09T12:18:13.276Z",
 							"minutes": 2
+						}
+					]
+				}
+			],
+			"repository": "https://github.com/temcocontrols/temco-learn",
+			"editBranch": "main"
+		},
+		{
+			"id": "temco-platform",
+			"title": "Temco Platform",
+			"section": "documentation",
+			"summary": "The authoring application: how a project is made, how its site is built, and how it reaches the site you are reading.",
+			"latest": "1.0",
+			"versions": [
+				{
+					"version": "1.0",
+					"builtAt": "2026-11-10T05:17:01.184Z",
+					"pages": [
+						{
+							"href": "index",
+							"title": "Temco Platform — architecture",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.173Z",
+							"minutes": 13
+						},
+						{
+							"href": "getting-started",
+							"title": "Getting started",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.156Z",
+							"minutes": 44
+						},
+						{
+							"href": "catalog",
+							"title": "The catalog",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.152Z",
+							"minutes": 3
+						},
+						{
+							"href": "naming",
+							"title": "Naming",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.171Z",
+							"minutes": 2
+						},
+						{
+							"href": "entry-points",
+							"title": "Entry points",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.155Z",
+							"minutes": 3
+						},
+						{
+							"href": "platform-design",
+							"title": "TEMCO Platform — Engineering Design (Revision 2)",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.172Z",
+							"minutes": 86
+						},
+						{
+							"href": "design/ai-assistant-and-mcp-server",
+							"title": "The local assistant and its MCP server",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.153Z",
+							"minutes": 53
+						},
+						{
+							"href": "design/authoring-and-msdn-output",
+							"title": "Authoring parity with Dr.Explain, publishing parity with MSDN",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.154Z",
+							"minutes": 10
+						},
+						{
+							"href": "modules/readme",
+							"title": "Modules",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.158Z",
+							"minutes": 8
+						},
+						{
+							"href": "modules/temco-ai/readme",
+							"title": "`temco-ai`",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.158Z",
+							"minutes": 4
+						},
+						{
+							"href": "modules/temco-docs/readme",
+							"title": "Temco Docs — documentation",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.162Z",
+							"minutes": 7
+						},
+						{
+							"href": "modules/temco-docs/architecture",
+							"title": "Architecture",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.160Z",
+							"minutes": 4
+						},
+						{
+							"href": "modules/temco-docs/extension-design",
+							"title": "Extension design",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.161Z",
+							"minutes": 64
+						},
+						{
+							"href": "modules/temco-docs/registry-schema",
+							"title": "The registry the module reads",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.164Z",
+							"minutes": 5
+						},
+						{
+							"href": "modules/temco-editor/readme",
+							"title": "temco-editor",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.165Z",
+							"minutes": 4
+						},
+						{
+							"href": "modules/temco-projects/readme",
+							"title": "`temco-projects`",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.166Z",
+							"minutes": 3
+						},
+						{
+							"href": "modules/temco-repositories/readme",
+							"title": "`temco-repositories`",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.167Z",
+							"minutes": 3
+						},
+						{
+							"href": "modules/temco-store/readme",
+							"title": "`temco-store`",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.168Z",
+							"minutes": 3
+						},
+						{
+							"href": "modules/temco-tools/readme",
+							"title": "`temco-tools`",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.169Z",
+							"minutes": 2
+						},
+						{
+							"href": "modules/temco-ui/readme",
+							"title": "`temco-ui`",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.170Z",
+							"minutes": 3
+						},
+						{
+							"href": "modules/temco-workbench/readme",
+							"title": "`temco-workbench`",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.171Z",
+							"minutes": 6
+						},
+						{
+							"href": "ui/app-flow",
+							"title": "The application flow",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.174Z",
+							"minutes": 7
+						},
+						{
+							"href": "ui/app-layout",
+							"title": "The application window",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.176Z",
+							"minutes": 6
+						},
+						{
+							"href": "ui/application-design",
+							"title": "The application: shell, screens and flow",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.177Z",
+							"minutes": 34
+						},
+						{
+							"href": "ui/authoring-flow",
+							"title": "The authoring flow",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.178Z",
+							"minutes": 5
+						},
+						{
+							"href": "ui/editor-design",
+							"title": "The editor",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.179Z",
+							"minutes": 14
+						},
+						{
+							"href": "ui/platform-design",
+							"title": "The platform",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.180Z",
+							"minutes": 39
+						},
+						{
+							"href": "ui/redesign",
+							"title": "Docs center: the redesign",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.182Z",
+							"minutes": 13
+						},
+						{
+							"href": "ui/shell-v2",
+							"title": "Shell and pages, v2 — the full layout, drawn",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.183Z",
+							"minutes": 42
+						},
+						{
+							"href": "ui/welcome-v3-design",
+							"title": "The front page — the Azure portal's palette and scale",
+							"kind": "md",
+							"updated": "2026-11-10T05:17:01.184Z",
+							"minutes": 12
 						}
 					]
 				}
