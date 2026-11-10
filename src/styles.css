@@ -1360,23 +1360,29 @@ h3 {
 
 /* -- the toc ------------------------------------------------------------------------------------- */
 
+/**
+ * The contents list.
+ *
+ * Plain rows, and one mark: the section being read carries a short accent bar at its left edge and is set in the ink
+ * colour at weight 600. Nothing runs the height of the panel — a rail beside seven links is more furniture than the
+ * links need, and the eye only ever wants to know one thing: which of these am I in.
+ */
 .toc {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	border-left: 1px solid var(--line);
 }
 
 .toc a {
 	display: block;
-	margin-left: -1px;
-	padding: 3px 8px 3px 12px;
+	padding: 4px 8px 4px 11px;
 	border-left: 2px solid transparent;
+	border-radius: 0 var(--radius) var(--radius) 0;
 	color: var(--ink-2);
 }
 
 .toc a:hover {
-	border-left-color: var(--line-strong);
+	background: var(--surface-2);
 	color: var(--ink);
 	text-decoration: none;
 }
@@ -1387,8 +1393,13 @@ h3 {
 	font-weight: 600;
 }
 
+.toc a[aria-current='true']:hover {
+	background: transparent;
+}
+
+/* A subsection is quieter and further in: depth by indent, nothing else. */
 .toc .toc__sub a {
-	padding-left: 22px;
+	padding-left: 20px;
 	font-size: var(--fs-micro);
 }
 

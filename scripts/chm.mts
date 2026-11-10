@@ -177,7 +177,7 @@ function contents(pages: PageEntry[]): string {
 	return `<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <HTML><HEAD><meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
 <!-- Sitemap 1.0 --></HEAD><BODY>
-<OBJECT type="text/site properties"><param name="ImageType" value="Folder"><param name="Font" value="Segoe UI,9,,,"></OBJECT>
+<OBJECT type="text/site properties"><param name="Font" value="Segoe UI,9,,,"></OBJECT>
 <UL>
 ${draw(root, 0)}
 </UL>
