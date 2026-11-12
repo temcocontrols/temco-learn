@@ -18,7 +18,7 @@ The list of communications ports for the various models of controllers is shown 
 
 · RS485 Communication Speed is adjustable for Modbus master or slave and Bacnet MSTP at a baud rates from 9600 to 115k baud. For longer cable runs the practical speed limitation is 38.4kbaud, you can experiment with faster baud rates if the cabling is well laid out with shielding and earthing at all the nodes.
 
-![](media/images-drex_module_5_3_custom.png)
+![](../media/images-drex_module_5_3_custom.png)
 
 Ethernet speed is 100/10 MBaud
 
@@ -30,4 +30,4 @@ Baud rate us adjustable to 9600, 19.2k, 38.4k
 
 The USB Port is normally available as a COM port for debugging purposes. If a GSM modem is installed, the modem will occupy this port and it will not be available for your application or debugging.
 
-![](media/images-drex_module_5_3_custom_2.png)
+![](../media/images-drex_module_5_3_custom_2.png)

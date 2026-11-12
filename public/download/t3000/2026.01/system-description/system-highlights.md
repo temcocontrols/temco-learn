@@ -7,7 +7,7 @@ SUITED FOR BOTH LARGE & SMALL SYSTEMS
 
 The system is equally at home in a single panel controlling a home as it is on a large building with several controllers connected over a network. Programming and managing a large system is the same as a smaller site, the operator can maneuver through the networked system in one seamless interface built from many controllers and devices which is presented as one continuous 'system'.
 
-![](media/images-drex_visual-effects_custom.png)
+![](../media/images-drex_visual-effects_custom.png)
 
 EASY TO USE
 
@@ -21,7 +21,7 @@ ACCESS FROM ANYWHERE
 
 An optional GPRS radio module can plug into the controller for remote sites where there is no internet connection available. Alarms can be routed to a central dispatch office or to phones. Remote users can log in and assist the building operator with both users signed in at the same time. Anywhere you have mobile network coverage you can have remote access, use it to monitor boats or control bathroom lighting in parks for example.
 
-![](media/images-drex_visual-effects_custom_2.png)
+![](../media/images-drex_visual-effects_custom_2.png)
 
 FAULT TOLERANT
 
@@ -31,4 +31,4 @@ FLEXIBLE WARRANTY
 
 If a panel has a problem, send it to us and we'll do our best to fix it free of charge for the life of the system. There's no time limit to this offer. If the board cannot be repaired due to water damage or obvious wiring mistakes, or perhaps it is decades old and due for an update, just return your unit and you'll receive a healthy discount on a new one.
 
-![](media/images-drex_visual-effects_custom_3.png)
+![](../media/images-drex_visual-effects_custom_3.png)

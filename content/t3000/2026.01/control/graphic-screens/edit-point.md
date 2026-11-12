@@ -3,7 +3,7 @@ title: "6.1.2 Edit Point"
 order: 370
 ---
 
-![6.1.2 Edit Point](media/images-drex_module_8_1_2_screen.png)
+![6.1.2 Edit Point](../../media/images-drex_module_8_1_2_screen.png)
 
 POP- UP WINDOW FUNCTIONS
 
@@ -28,27 +28,27 @@ the points info:
 
 Value: Displays value of point only.
 
-![](media/images-drex_module_8_1_2_custom.png)
+![](../../media/images-drex_module_8_1_2_custom.png)
 
 Icon: Displays representative Icon only.
 
-![](media/images-drex_module_8_1_2_custom_2.png)
+![](../../media/images-drex_module_8_1_2_custom_2.png)
 
 Icon/8ch: Displays representative and 8 character Label.
 
-![](media/images-drex_module_8_1_2_custom_3.png)
+![](../../media/images-drex_module_8_1_2_custom_3.png)
 
 Icon/20c: Displays representative and 8 character Full label.
 
-![](media/images-drex_module_8_1_2_custom_4.png)
+![](../../media/images-drex_module_8_1_2_custom_4.png)
 
 Icon/Val: Displays representative icon and point value.
 
-![](media/images-drex_module_8_1_2_custom_5.png)
+![](../../media/images-drex_module_8_1_2_custom_5.png)
 
 8 char: Displays 20 character Label.
 
-![](media/images-drex_module_8_1_2_custom_6.png)
+![](../../media/images-drex_module_8_1_2_custom_6.png)
 
 AUTO/MAN
 . . . .

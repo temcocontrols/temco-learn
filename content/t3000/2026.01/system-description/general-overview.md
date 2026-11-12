@@ -11,4 +11,4 @@ All the software required to set up a system and operate it on a daily basis is 
 
 All hardware communicates using industry standard Bacnet and Modbus protocols over Ethernet and RS485 networks.
 
-![](media/images-drex_layers_custom.png)
+![](../media/images-drex_layers_custom.png)

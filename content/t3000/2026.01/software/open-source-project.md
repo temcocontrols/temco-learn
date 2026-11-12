@@ -20,4 +20,4 @@ T3000 Cross Platform Project
 
 Parties interested in cooperating on the projects are encouraged to contact us and we'll set you up as a contributor.
 
-![](media/images-drex_3d-box-hsot-templates_custom.png)
+![](../media/images-drex_3d-box-hsot-templates_custom.png)

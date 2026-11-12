@@ -7,7 +7,7 @@ order: 1160
 
 When the programming changes are done the user hits the F2 key or "SEND" from the menu system to send the changes to the controller. The software checks the program for errors and if all is clear sends the program to the controller. If errors are found the program is not sent and the errors are displayed in a popup and also at the bottom of the editor.
 
-![](media/images-drex_module_12_51_custom.png)
+![](../media/images-drex_module_12_51_custom.png)
 
 ## 10.5.1 SYNTAX ERRORS
 

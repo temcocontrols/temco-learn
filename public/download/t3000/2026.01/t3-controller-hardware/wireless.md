@@ -13,4 +13,4 @@ Wifi and bluetooth connections are in the product pipeline, expected to be in pr
 
 TBD: Show zigbee, wifi, bluetooth and GSM modules here.
 
-![](media/images-drex_module_5_4_custom.png)
+![](../media/images-drex_module_5_4_custom.png)

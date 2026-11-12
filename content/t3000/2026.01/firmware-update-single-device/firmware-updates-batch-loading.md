@@ -5,13 +5,13 @@ order: 1220
 
 1.You must find your devices by T3000 , using "Scan"
 
-![](media/images-drex_module_18_1_custom.png)
+![](../media/images-drex_module_18_1_custom.png)
 
 2 “Load firmware for many devices”
 
-![](media/images-drex_module_18_1_custom_2.png)
+![](../media/images-drex_module_18_1_custom_2.png)
 
-![](media/images-drex_module_18_1_custom_3.png)
+![](../media/images-drex_module_18_1_custom_3.png)
 
 <table>
   <tr><td>1</td><td>show the path of a hex or bin file</td></tr>

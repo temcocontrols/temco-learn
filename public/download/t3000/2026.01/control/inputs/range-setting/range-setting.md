@@ -65,7 +65,7 @@ input is short circuit and Off will show when the input is open circuit.
 
 TIP: The status LED's for each input are illuminated when there is an open circuit and off when the input is shorted. It will be most intuitive to technicians and personnel in the field if the LED is on when the equipment is on and OFF when it is actually off. You can connect to a normally closed set of contacts, and select range 1. When the relay is closed when the equipment is off and the LED will be off, when the equipment is on the relay is open and the LED goes on. You can also connect to a normally open set of contacts and select the inverted logic, ie range 12 instead of range 1. Then the inverted logic applies, the LED will be the reverse of when range 1 is selected and match the state of the equipment with a normally open set of contacts.
 
-![Range Setting](media/images-drex_module_8_3_4_screen.png)
+![Range Setting](../../../media/images-drex_module_8_3_4_screen.png)
 
 Note:the input card has jumpers for three jumper settings for different types of sensors. The default setting from the factory is the 'thermistors & dry contacts' setting since these are the most common signal type in the HVAC world. In this setting a 10k pullup resistor to 3V creates a weak pullup voltage for excitation for the field device . This excitation voltage is pulled down by the contacts or thermistors to generate the signal voltage to the controller.
 

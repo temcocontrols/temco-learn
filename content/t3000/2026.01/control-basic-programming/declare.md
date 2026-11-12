@@ -29,6 +29,6 @@ Notes:
 
 5. [TBD] Disable the “Timer” field of a program using DECLARE so that it will not run unless called by CALL.
 
-![](media/images-drex_module_12_10_custom.png)
+![](../media/images-drex_module_12_10_custom.png)
 
 6. CALL and DECLARE are useful for keeping a program modular. The logic only has to be written once and can be used by many systems by calling the routine with different arguments for each system.

@@ -3,7 +3,7 @@ title: "6.1.1 Insert Point"
 order: 360
 ---
 
-![6.1.1 Insert Point](media/images-drex_module_8_1_1_screen.png)
+![6.1.1 Insert Point](../../media/images-drex_module_8_1_1_screen.png)
 
 DEALING WITH ELEMENTS ON A SCREEN
 
