@@ -1,7 +1,6 @@
 ---
 title: "`temco-store`"
-order: 260
-edit: false
+order: 10
 ---
 
 The platform's own memory: one SQLite file per window, the selection, and the naming rules the tables are keyed by. It is the base every other module stands on.

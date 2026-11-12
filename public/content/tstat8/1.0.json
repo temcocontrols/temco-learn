@@ -1,0 +1,741 @@
+{
+	"pages": {
+		"index": {
+			"title": "TStat8",
+			"html": "<p>The TStat8 thermostat: its specifications, the TStat8 software screen by screen, its hardware, and how to install and update it.</p>\n<h2 id=\"contents\">Contents<a class=\"anchor\" href=\"#contents\" data-anchor=\"contents\" aria-label=\"Copy a link to Contents\">#</a></h2>\n<ul>\n<li><a href=\"tstat8-manual.md\">TStat8 Manual</a>\n<ul>\n<li><a href=\"tstat8-manual/tstat8-manual.md\">TStat8 Manual</a></li>\n<li><a href=\"introduction/introduction.md\">Introduction</a></li>\n<li><a href=\"introduction/specifications.md\">Specifications</a></li>\n<li><a href=\"introduction/dimension.md\">Dimension</a></li>\n<li><a href=\"introduction/part-number-scheme.md\">Part Number Scheme</a></li>\n<li><a href=\"introduction/typical-application.md\">Typical Application</a></li>\n<li><a href=\"introduction/menu-item-details.md\">Menu Item Details</a></li>\n<li><a href=\"tstat8-software/tstat8-software.md\">Tstat8 Software</a></li>\n<li><a href=\"tstat8-software/t3000-software.md\">T3000 Software</a></li>\n<li><a href=\"tstat8-software/menus-and-work-area.md\">Menus and Work Area</a></li>\n<li><a href=\"tstat8-software/pids-set-dialog-window.md\">PIDs Set Dialog window</a></li>\n<li><a href=\"tstat8-software/building-database.md\">Building Database</a></li>\n<li><a href=\"tstat8-software/system-tree.md\">System Tree</a></li>\n<li><a href=\"tstat8-software/t3000-operation.md\">T3000 Operation</a></li>\n<li><a href=\"tstat8-software/wireless-connections.md\">Wireless Connections</a></li>\n<li><a href=\"tstat8-software/wifi-configuration.md\">Wifi Configuration</a></li>\n<li><a href=\"tstat8-software/heating-cooling-configuration.md\">Heating/Cooling Configuration</a></li>\n<li><a href=\"tstat8-software/input-setting.md\">Input Setting</a></li>\n<li><a href=\"tstat8-software/output-setting.md\">Output Setting</a></li>\n<li><a href=\"tstat8-software/one-heat-one-cool-setting.md\">One heat one cool setting</a></li>\n<li><a href=\"tstat8-software/off-mode.md\">OFF Mode</a></li>\n<li><a href=\"tstat8-software/auto-mode.md\">AUTO Mode</a></li>\n<li><a href=\"tstat8-software/on-mode.md\">ON Mode</a></li>\n<li><a href=\"tstat8-software/pid-loop-setting.md\">PID Loop Setting</a></li>\n<li><a href=\"tstat8-software/two-heat-two-cool-setting.md\">Two heat two cool setting</a></li>\n<li><a href=\"tstat8-software/two-heat-two-cool-setting-off-mode.md\">OFF Mode</a></li>\n<li><a href=\"tstat8-software/two-heat-two-cool-setting-auto-mode.md\">AUTO Mode</a></li>\n<li><a href=\"tstat8-software/schedules.md\">Schedules</a></li>\n<li><a href=\"tstat8-software/managing-schedules-in-t3000.md\">Managing schedules in T3000</a></li>\n<li><a href=\"tstat8-software/managing-schedules-using-bacnet.md\">Managing schedules using Bacnet</a></li>\n<li><a href=\"tstat8-software/weekly-routines-schedule.md\">Weekly routines schedule</a></li>\n<li><a href=\"tstat8-software/annual-routine-schedule.md\">Annual routine schedule</a></li>\n<li><a href=\"tstat8-hardware/tstat8-hardware.md\">Tstat8 Hardware</a></li>\n<li><a href=\"tstat8-hardware/overview.md\">Overview</a></li>\n<li><a href=\"installation/installation.md\">Installation</a></li>\n<li><a href=\"firmware-update-single-device/firmware-update-single-device.md\">FIRMWARE UPDATE, SINGLE DEVICE</a></li>\n<li><a href=\"firmware-update-single-device/firmware-updates-batch-loading.md\">FIRMWARE UPDATES: BATCH LOADING</a></li>\n</ul>\n</li>\n</ul>\n",
+			"headings": [
+				{
+					"id": "contents",
+					"text": "Contents",
+					"level": 2
+				}
+			]
+		},
+		"firmware-update-single-device/firmware-update-single-device": {
+			"title": "FIRMWARE UPDATE, SINGLE DEVICE",
+			"html": "<p>Using the Tstat8 as an example</p>\n<p>1&gt; Download the latest firmware from <a href=\"http://www.temcocontrols.com/ftp/firmware/MINIPANEL/\">temcocontrols.com</a> ,or paste &quot;<a href=\"http://www.temcocontrols.com/ftp/firmware/Tstat8\">http://www.temcocontrols.com/ftp/firmware/Tstat8</a>&quot; to your browser .</p>\n<p>Select the version that you want to update to download .</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_6_custom.png\" alt=\"\"></p>\n<p>If you get the latest firmware from temco's engineer, don't need the step 1.</p>\n<p>2&gt; If your computer didn't install the T3000 ,please download <a href=\"http://temcocontrols.com/ftp/software/9TstatSoftware.zip\">T3000.zip</a> .</p>\n<p>If you have installed the T3000,don't need the step2.</p>\n<p>3&gt; Click the icon of ISPTool</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_6_screen.png\" alt=\"\"></p>\n<p>and then show a window.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_6_custom_2.png\" alt=\"\"></p>\n<p><strong>If you want to update other device ,using Com port ,please select &quot;COM FLASH&quot;</strong></p>\n<p><strong>And then input the Modbus ID of your device .If you don't know your Modbus ID ,you can try flash the device ,using the 255.</strong></p>\n<p><strong>select your Com Port .</strong></p>\n<p><strong>and then just click the button of &quot;FLASH&quot;</strong></p>\n<p><strong>notes: If you don't know the ip address and ip port of the device, don't care about the two parameters .</strong></p>\n<p><strong>ISPTool will show the right message in the blank area ,including the ip and ip port.</strong></p>\n<h3 id=\"the-contents-of-firmware-update-single-device\">The contents of FIRMWARE UPDATE, SINGLE DEVICE<a class=\"anchor\" href=\"#the-contents-of-firmware-update-single-device\" data-anchor=\"the-contents-of-firmware-update-single-device\" aria-label=\"Copy a link to The contents of FIRMWARE UPDATE, SINGLE DEVICE\">#</a></h3>\n",
+			"headings": [
+				{
+					"id": "the-contents-of-firmware-update-single-device",
+					"text": "The contents of FIRMWARE UPDATE, SINGLE DEVICE",
+					"level": 3
+				}
+			]
+		},
+		"firmware-update-single-device/firmware-updates-batch-loading": {
+			"title": "FIRMWARE UPDATES: BATCH LOADING",
+			"html": "<p>1.You must find your devices by T3000 , using &quot;Scan&quot;</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_6_1_custom.png\" alt=\"\"></p>\n<p>2 Load firmware for many devices</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_6_1_custom_2.png\" alt=\"\"></p>\n<p><img src=\"/media/tstat8/1.0/drex_module_6_1_custom_3.png\" alt=\"\"></p>\n<p>1</p>\n<p>show the path of a hex or bin file</p>\n<p>2</p>\n<p>click to select the path of a hex or bin file</p>\n<p>3</p>\n<p>&quot;Apply To All Select&quot; ,the path of the hex or bin(1) will automatically fill in the column of &quot;Hex Bin File&quot; , matching with the column of &quot;Name&quot;</p>\n<p>4</p>\n<p>show the path of a configuration file</p>\n<p>5</p>\n<p>click to select the path of a configuration file</p>\n<p>6</p>\n<p>&quot;Apply To All Select&quot; ,the path of the configuration file (4) will automatically fill in the column of &quot;Configuration File&quot; , matching with the column of &quot;Name&quot;</p>\n<p>7</p>\n<p>Select/Unselect</p>\n<p>8</p>\n<p>Reset ,to clear the column of &quot;Hex Bin File&quot; and the column of &quot;Configuration File&quot;</p>\n<p>9</p>\n<p>if selected ,T3000 will compare the &quot;Software Version&quot; with &quot;Firmware Version&quot;, Only if the Firmware Version is the latest, T3000 will update .</p>\n<p>10</p>\n<p>When you show the window, the tree column will show the values ,automatically.</p>\n<p>11</p>\n<p>show the path of a hex or bin matching with the device. clicking the blank to select the file ,the file will be checked whether the file is fit the product or not .</p>\n<p>12</p>\n<p>show the path of a configuration file matching with the device. clicking the blank to select the file ,the file will be checked whether the file is fit the product or not .</p>\n",
+			"headings": []
+		},
+		"installation/installation": {
+			"title": "Installation",
+			"html": "<p>The Installation Mounting includes Wall Mount and/or Electrical Box Mount.You can install Tstat8 as following steps:</p>\n<p>**1)**Unfasten the screw located at the base and lift off the front panel of the enclosure.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_5_custom.png\" alt=\"\"></p>\n<p>**2)**Fasten the screws on the backplate to the wall or electrical box.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_5_custom_2.png\" alt=\"\"></p>\n<p>**3)**Connect the wires to the terminals and re-attach the front panel.</p>\n<p>** <img src=\"/media/tstat8/1.0/drex_module_5_custom_3.png\" alt=\"\">**</p>\n",
+			"headings": []
+		},
+		"introduction/dimension": {
+			"title": "Dimension",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_2_2_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"introduction/introduction": {
+			"title": "Introduction",
+			"html": "<p>This full-featured thermostat is designed for cooling and heating systems in residential and commercial buildings. The thermostat can be configured for use with air handlers,fan coils, VAVs, modulating valves and many other HVAC applications. All models support BACnet and Modbus protocols which allows for easy integration with big name control systems like Niagara, Siemens,Honeywell, Johnson Controls, Delta, Reliable and Kreuter just to name a few.There are fie relays outputs and two analog outputs as well as 8 universal inputs. These can be confiured using the T3000 free software avialable for download. There are more than 300 settings with many options. This makes it possible to confiure these devices for most any HVAC application. Once the unit is confiured, you can save the fie and copy it to other controllers and backup project settings.Options are available for occupancy, zigbee wireless and humidity / enthalpy control.</p>\n<p><img src=\"/media/tstat8/1.0/drex_overview_custom.png\" alt=\"\"></p>\n<h3 id=\"the-contents-of-introduction\">The contents of Introduction<a class=\"anchor\" href=\"#the-contents-of-introduction\" data-anchor=\"the-contents-of-introduction\" aria-label=\"Copy a link to The contents of Introduction\">#</a></h3>\n",
+			"headings": [
+				{
+					"id": "the-contents-of-introduction",
+					"text": "The contents of Introduction",
+					"level": 3
+				}
+			]
+		},
+		"introduction/menu-item-details": {
+			"title": "Menu Item Details",
+			"html": "<p>Tstat8 have several advanced menu items which can be adjusted in the fild to suit the specifi application and tune the operation of the thermostat. All the parameters are set up at the factory on an order-by-order basis and will give satisfactory results out of the box.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_2_5_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"introduction/part-number-scheme": {
+			"title": "Part Number Scheme",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_2_3_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"introduction/specifications": {
+			"title": "Specifications",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_2_1_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"introduction/typical-application": {
+			"title": "Typical Application",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_2_4_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"tstat8-hardware/overview": {
+			"title": "Overview",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_4_1_screen.png\" alt=\"\"></p>\n<h2 id=\"lcd-display\">LCD Display<a class=\"anchor\" href=\"#lcd-display\" data-anchor=\"lcd-display\" aria-label=\"Copy a link to LCD Display\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_4_1_control_1.png\" alt=\"\"></p>\n<p>Color LCD display,2.4 inch diagonal</p>\n<h2 id=\"analog-inputs\">Analog Inputs<a class=\"anchor\" href=\"#analog-inputs\" data-anchor=\"analog-inputs\" aria-label=\"Copy a link to Analog Inputs\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_4_1_control_2.png\" alt=\"\"></p>\n<p>Analog inputs,8 universal inputs ,10k therm, contacts, 4-20ma, 0-5V,0-10V</p>\n<h2 id=\"power-to-tstat8\">Power to Tstat8<a class=\"anchor\" href=\"#power-to-tstat8\" data-anchor=\"power-to-tstat8\" aria-label=\"Copy a link to Power to Tstat8\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_4_1_control_3.png\" alt=\"\"></p>\n<p>The power supply can be any 12V to 24V supply, AC or DC with capacity of approximately 2 watts. Surge and reverse polarity protected with slow blow self resetting fuse on board.</p>\n<h2 id=\"rs485-connection\">RS485 connection<a class=\"anchor\" href=\"#rs485-connection\" data-anchor=\"rs485-connection\" aria-label=\"Copy a link to RS485 connection\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_4_1_control_4.png\" alt=\"\"></p>\n<p>RS485 connection,BACnet MS/TP and Modbus RTU protocols over RS485.</p>\n<h2 id=\"analog-outputs\">Analog Outputs<a class=\"anchor\" href=\"#analog-outputs\" data-anchor=\"analog-outputs\" aria-label=\"Copy a link to Analog Outputs\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_4_1_control_5.png\" alt=\"\"></p>\n<p>Analog outputs,5 relay outputs 24vac @ 2 amps;2 analog outputs 10V @100mA.</p>\n<h2 id=\"self-resetting-fuse\">Self Resetting Fuse<a class=\"anchor\" href=\"#self-resetting-fuse\" data-anchor=\"self-resetting-fuse\" aria-label=\"Copy a link to Self Resetting Fuse\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_4_1_control_6.png\" alt=\"\"></p>\n<h2 id=\"jack-to-network\">Jack To Network<a class=\"anchor\" href=\"#jack-to-network\" data-anchor=\"jack-to-network\" aria-label=\"Copy a link to Jack To Network\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_4_1_control_7.png\" alt=\"\"></p>\n",
+			"headings": [
+				{
+					"id": "lcd-display",
+					"text": "LCD Display",
+					"level": 2
+				},
+				{
+					"id": "analog-inputs",
+					"text": "Analog Inputs",
+					"level": 2
+				},
+				{
+					"id": "power-to-tstat8",
+					"text": "Power to Tstat8",
+					"level": 2
+				},
+				{
+					"id": "rs485-connection",
+					"text": "RS485 connection",
+					"level": 2
+				},
+				{
+					"id": "analog-outputs",
+					"text": "Analog Outputs",
+					"level": 2
+				},
+				{
+					"id": "self-resetting-fuse",
+					"text": "Self Resetting Fuse",
+					"level": 2
+				},
+				{
+					"id": "jack-to-network",
+					"text": "Jack To Network",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-hardware/tstat8-hardware": {
+			"title": "Tstat8 Hardware",
+			"html": "<p>Highlights:</p>\n<p> 8 universal inputs for external temperature, voltage, contacts, etc.</p>\n<p> 5 relay outputs, rated at 24vac @ 2 amps each;2 analog outputs, 0-10V @ 100ma each.</p>\n<p> Color LCD display,2.4 inch diagonal.</p>\n<p> On board clock with infiite life supercap battery backup.</p>\n<p> Uses a 32 bit Arm CPU with 12 bit analog resolution.</p>\n<h3 id=\"the-contents-of-tstat8-hardware\">The contents of Tstat8 Hardware<a class=\"anchor\" href=\"#the-contents-of-tstat8-hardware\" data-anchor=\"the-contents-of-tstat8-hardware\" aria-label=\"Copy a link to The contents of Tstat8 Hardware\">#</a></h3>\n",
+			"headings": [
+				{
+					"id": "the-contents-of-tstat8-hardware",
+					"text": "The contents of Tstat8 Hardware",
+					"level": 3
+				}
+			]
+		},
+		"tstat8-manual": {
+			"title": "TStat8 Manual",
+			"html": "",
+			"headings": []
+		},
+		"tstat8-manual/tstat8-manual": {
+			"title": "TStat8 Manual",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_index_custom.png\" alt=\"\"></p>\n<p>User guide</p>\n<p>June 2017</p>\n",
+			"headings": []
+		},
+		"tstat8-software/annual-routine-schedule": {
+			"title": "Annual routine schedule",
+			"html": "<p>Step4.Right click AR1 log to set up annual routine date.You can set up the annual date from this tab.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_2_2_custom.png\" alt=\"\">\n<img src=\"/media/tstat8/1.0/drex_module_3_5_2_2_screen.png\" alt=\"\"></p>\n<h2 id=\"add-log\">Add Log<a class=\"anchor\" href=\"#add-log\" data-anchor=\"add-log\" aria-label=\"Copy a link to Add Log\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_2_2_control_1.png\" alt=\"\"></p>\n<p>Click to add the date.</p>\n<h2 id=\"write-read-back\">Write&amp;Read back<a class=\"anchor\" href=\"#write-read-back\" data-anchor=\"write-read-back\" aria-label=\"Copy a link to Write&amp;Read back\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_2_2_control_2.png\" alt=\"\"></p>\n<p>Click to write &amp; read back.</p>\n<h2 id=\"date-entries\">Date Entries<a class=\"anchor\" href=\"#date-entries\" data-anchor=\"date-entries\" aria-label=\"Copy a link to Date Entries\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_2_2_control_3.png\" alt=\"\"></p>\n<p>Click to choose the date.</p>\n",
+			"headings": [
+				{
+					"id": "add-log",
+					"text": "Add Log",
+					"level": 2
+				},
+				{
+					"id": "write-read-back",
+					"text": "Write&Read back",
+					"level": 2
+				},
+				{
+					"id": "date-entries",
+					"text": "Date Entries",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/auto-mode": {
+			"title": "AUTO Mode",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_2_screen.png\" alt=\"\"></p>\n<h2 id=\"heating-cooling-stages\">Heating/Cooling Stages<a class=\"anchor\" href=\"#heating-cooling-stages\" data-anchor=\"heating-cooling-stages\" aria-label=\"Copy a link to Heating/Cooling Stages\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_2_control_1.png\" alt=\"\"></p>\n<p>Here we set how many stages of heating and cooling the system will have. Since this is a three speed fan we can set three heating/cooling at this tab.If we set 2 or other number of heating and cooling stages,there will be corresponding quantity of tabs.</p>\n<h2 id=\"fan-aut\">Fan Aut<a class=\"anchor\" href=\"#fan-aut\" data-anchor=\"fan-aut\" aria-label=\"Copy a link to Fan Aut\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_2_control_2.png\" alt=\"\"></p>\n<p>Now select the Auto mode. The state of each of the outputs has been set to on, off or modulating on all of the various states.</p>\n<h2 id=\"cool1\">Cool1<a class=\"anchor\" href=\"#cool1\" data-anchor=\"cool1\" aria-label=\"Copy a link to Cool1\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_2_control_3.png\" alt=\"\"></p>\n<p>In the first stage of cooling, output1 is on for low speed fan operation and the cooling valve is modulating open from 0-50%.</p>\n<h2 id=\"cool2\">Cool2<a class=\"anchor\" href=\"#cool2\" data-anchor=\"cool2\" aria-label=\"Copy a link to Cool2\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_2_control_4.png\" alt=\"\"></p>\n<p>In stage 2 of cooling, the medium fan speed is on and the valve is opening up from 50 to 100%.</p>\n<h2 id=\"cool3\">Cool3<a class=\"anchor\" href=\"#cool3\" data-anchor=\"cool3\" aria-label=\"Copy a link to Cool3\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_2_control_5.png\" alt=\"\"></p>\n<p>In stage 3 cooling the high speed fan is on and the valve is set once again to modulate from 50 to 100% .</p>\n<h2 id=\"heating-stage\">Heating Stage<a class=\"anchor\" href=\"#heating-stage\" data-anchor=\"heating-stage\" aria-label=\"Copy a link to Heating Stage\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_2_control_6.png\" alt=\"\"></p>\n<p>The same sequence is set up to the right of the table for the three stages of heating. The heating valve modulates open as shown and the cooling valve is closed for all stages of heating.</p>\n<h2 id=\"variable-outputs-state\">Variable Outputs State<a class=\"anchor\" href=\"#variable-outputs-state\" data-anchor=\"variable-outputs-state\" aria-label=\"Copy a link to Variable Outputs State\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_2_control_7.png\" alt=\"\"></p>\n<p>Each cell represents the state of a particular output at a certain stage of heating, cooling or coasting. In the coasting stage, all the outputs are off.</p>\n",
+			"headings": [
+				{
+					"id": "heating-cooling-stages",
+					"text": "Heating/Cooling Stages",
+					"level": 2
+				},
+				{
+					"id": "fan-aut",
+					"text": "Fan Aut",
+					"level": 2
+				},
+				{
+					"id": "cool1",
+					"text": "Cool1",
+					"level": 2
+				},
+				{
+					"id": "cool2",
+					"text": "Cool2",
+					"level": 2
+				},
+				{
+					"id": "cool3",
+					"text": "Cool3",
+					"level": 2
+				},
+				{
+					"id": "heating-stage",
+					"text": "Heating Stage",
+					"level": 2
+				},
+				{
+					"id": "variable-outputs-state",
+					"text": "Variable Outputs State",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/building-database": {
+			"title": "Building Database",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_1_3_custom.png\" alt=\"\"></p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_3_custom_2.png\" alt=\"\"></p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_3_screen.png\" alt=\"\"></p>\n<p>&lt;Building Configuration</p>\n<hr>\n<p>notes: When protocol is auto ,IP ,Port ,Com Port ,Baud Rate disable.</p>\n<p>When protocol is Modbus Tcp or Romote Device ,Ip,Port enable ,Comport Baud Rate disable.</p>\n<p>When protocol is Modbus 485 or Bacnet MSTP ,IP,Port disable ,Comport Baud Rate enable.</p>\n",
+			"headings": []
+		},
+		"tstat8-software/heating-cooling-configuration": {
+			"title": "Heating/Cooling Configuration",
+			"html": "<p>About Heating Cooling Mode Configuration,here are two examples: one heat one cool setting and two heat two cool setting.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_custom.png\" alt=\"\"></p>\n<h3 id=\"the-contents-of-heating-cooling-configuration\">The contents of Heating/Cooling Configuration<a class=\"anchor\" href=\"#the-contents-of-heating-cooling-configuration\" data-anchor=\"the-contents-of-heating-cooling-configuration\" aria-label=\"Copy a link to The contents of Heating/Cooling Configuration\">#</a></h3>\n",
+			"headings": [
+				{
+					"id": "the-contents-of-heating-cooling-configuration",
+					"text": "The contents of Heating/Cooling Configuration",
+					"level": 3
+				}
+			]
+		},
+		"tstat8-software/input-setting": {
+			"title": "Input Setting",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_4_1_screen.png\" alt=\"\"></p>\n<p>As an example of a custom sensor, here we have built up a table for a custom sensor operating from 0 to 5V over the range of 0-100psi.</p>\n<h2 id=\"tstat-log\">Tstat Log<a class=\"anchor\" href=\"#tstat-log\" data-anchor=\"tstat-log\" aria-label=\"Copy a link to Tstat Log\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_1_control_1.png\" alt=\"\"></p>\n<p>Select the thermostat from the tree.</p>\n<h2 id=\"input-icon\">Input Icon<a class=\"anchor\" href=\"#input-icon\" data-anchor=\"input-icon\" aria-label=\"Copy a link to Input Icon\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_1_control_2.png\" alt=\"\"></p>\n<p>Click on the INPUTS icon.</p>\n<h2 id=\"variable-inputs\">Variable Inputs<a class=\"anchor\" href=\"#variable-inputs\" data-anchor=\"variable-inputs\" aria-label=\"Copy a link to Variable Inputs\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_1_control_3.png\" alt=\"\"></p>\n<p>Give each input a name.</p>\n<h2 id=\"range\">Range<a class=\"anchor\" href=\"#range\" data-anchor=\"range\" aria-label=\"Copy a link to Range\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_1_control_4.png\" alt=\"\"></p>\n<p>Set the range for the input by clicking on this column.</p>\n<h2 id=\"select-range-number\">Select Range Number<a class=\"anchor\" href=\"#select-range-number\" data-anchor=\"select-range-number\" aria-label=\"Copy a link to Select Range Number\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_1_control_5.png\" alt=\"\"></p>\n<p>Select from the various ranges or build your own.</p>\n<h2 id=\"build-up-a-table\">Build up a table<a class=\"anchor\" href=\"#build-up-a-table\" data-anchor=\"build-up-a-table\" aria-label=\"Copy a link to Build up a table\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_1_control_6.png\" alt=\"\"></p>\n<p>As an example of a custom sensor, here we have built up a table for a custom sensor operating from 0 to 5V over the range of 0-100psi.</p>\n",
+			"headings": [
+				{
+					"id": "tstat-log",
+					"text": "Tstat Log",
+					"level": 2
+				},
+				{
+					"id": "input-icon",
+					"text": "Input Icon",
+					"level": 2
+				},
+				{
+					"id": "variable-inputs",
+					"text": "Variable Inputs",
+					"level": 2
+				},
+				{
+					"id": "range",
+					"text": "Range",
+					"level": 2
+				},
+				{
+					"id": "select-range-number",
+					"text": "Select Range Number",
+					"level": 2
+				},
+				{
+					"id": "build-up-a-table",
+					"text": "Build up a table",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/managing-schedules-in-t3000": {
+			"title": "Managing schedules in T3000",
+			"html": "<p>The schedules can be managed using T3000 software.Below are the steps:</p>\n<p>Step1.Visit 107.170.34.189/ftp/software/9TstatSoftware.zip ,download T3000 software and install it;</p>\n<p>Step2.Plug Tstat8 in power,connect Tstat8 to PC via RS485 or Ethernet;</p>\n<p>Step3.Start T3000 software,click <img src=\"/media/tstat8/1.0/drex_module_3_5_1_custom.png\" alt=\"\"> to scan,then you can find Tstat8 as below.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_1_screen.png\" alt=\"\"></p>\n<h2 id=\"tstat-log\">Tstat log<a class=\"anchor\" href=\"#tstat-log\" data-anchor=\"tstat-log\" aria-label=\"Copy a link to Tstat log\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_1_control_1.png\" alt=\"\"></p>\n<p>Click to select the thermostat.</p>\n<h2 id=\"schedule-log\">Schedule log<a class=\"anchor\" href=\"#schedule-log\" data-anchor=\"schedule-log\" aria-label=\"Copy a link to Schedule log\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_1_control_2.png\" alt=\"\"></p>\n<p>Click to show schedule details.</p>\n<h2 id=\"time\">Time<a class=\"anchor\" href=\"#time\" data-anchor=\"time\" aria-label=\"Copy a link to Time\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_1_control_3.png\" alt=\"\"></p>\n<p>This is the time list.</p>\n<h2 id=\"date\">Date<a class=\"anchor\" href=\"#date\" data-anchor=\"date\" aria-label=\"Copy a link to Date\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_1_control_4.png\" alt=\"\"></p>\n<p>The date diaplays from Monday to Sunday and Holiday.</p>\n<h2 id=\"schedule-state\">Schedule State<a class=\"anchor\" href=\"#schedule-state\" data-anchor=\"schedule-state\" aria-label=\"Copy a link to Schedule State\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_1_control_5.png\" alt=\"\"></p>\n<p>The tab shows the schedule state:Home/Work/Sleep.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_1_custom_2.png\" alt=\"\"></p>\n",
+			"headings": [
+				{
+					"id": "tstat-log",
+					"text": "Tstat log",
+					"level": 2
+				},
+				{
+					"id": "schedule-log",
+					"text": "Schedule log",
+					"level": 2
+				},
+				{
+					"id": "time",
+					"text": "Time",
+					"level": 2
+				},
+				{
+					"id": "date",
+					"text": "Date",
+					"level": 2
+				},
+				{
+					"id": "schedule-state",
+					"text": "Schedule State",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/managing-schedules-using-bacnet": {
+			"title": "Managing schedules using Bacnet",
+			"html": "<p>The schedules can be managed using Bacnet.Download Yabe software as the link:107.170.34.189/ftp/software/yabe.zip and install it.Connect Tstat8 to the computer,select Bacnet protocol.Start the Yabe software,add the device.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_2_custom.png\" alt=\"\">\n<img src=\"/media/tstat8/1.0/drex_module_3_5_2_screen.png\" alt=\"\"></p>\n<h2 id=\"add-device-search\">Add device(search)<a class=\"anchor\" href=\"#add-device-search\" data-anchor=\"add-device-search\" aria-label=\"Copy a link to Add device(search)\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_2_control_1.png\" alt=\"\"></p>\n<p>Click to add via BACnet/MSTP .</p>\n<h2 id=\"add-device-search-2\">Add device(search)<a class=\"anchor\" href=\"#add-device-search-2\" data-anchor=\"add-device-search-2\" aria-label=\"Copy a link to Add device(search)\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_2_control_2.png\" alt=\"\"></p>\n<p>Click to add device.</p>\n<h3 id=\"the-contents-of-managing-schedules-using-bacnet\">The contents of Managing schedules using Bacnet<a class=\"anchor\" href=\"#the-contents-of-managing-schedules-using-bacnet\" data-anchor=\"the-contents-of-managing-schedules-using-bacnet\" aria-label=\"Copy a link to The contents of Managing schedules using Bacnet\">#</a></h3>\n",
+			"headings": [
+				{
+					"id": "add-device-search",
+					"text": "Add device(search)",
+					"level": 2
+				},
+				{
+					"id": "add-device-search-2",
+					"text": "Add device(search)",
+					"level": 2
+				},
+				{
+					"id": "the-contents-of-managing-schedules-using-bacnet",
+					"text": "The contents of Managing schedules using Bacnet",
+					"level": 3
+				}
+			]
+		},
+		"tstat8-software/menus-and-work-area": {
+			"title": "Menus and Work Area",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_1_1_screen.png\" alt=\"\"></p>\n<p>Tstat8 uses T3000 software to communicate with others.This is the Menu and Work Area of T3000 Building Automation System,including Main Menu System,Icon Menu,Work Area,System Tree,Status Line.</p>\n<h2 id=\"main-menu-system\">Main Menu System<a class=\"anchor\" href=\"#main-menu-system\" data-anchor=\"main-menu-system\" aria-label=\"Copy a link to Main Menu System\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_1_control_1.png\" alt=\"\"></p>\n<p>The main Menu system shows along the top of the screen.</p>\n<h2 id=\"system-tree\">System Tree<a class=\"anchor\" href=\"#system-tree\" data-anchor=\"system-tree\" aria-label=\"Copy a link to System Tree\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_1_control_2.png\" alt=\"\"></p>\n<p>The System Tree section shows in this window area along the left hand panel. The tree can be turned off and sorted &amp; edited in different ways. Items which are offline will have a small red 'X' near the node. The tree is described in more detail here in the <a href=\"../firmware-update-single-device/firmware-update-single-device.md\">System Tree section</a>.</p>\n<h2 id=\"work-area\">Work Area<a class=\"anchor\" href=\"#work-area\" data-anchor=\"work-area\" aria-label=\"Copy a link to Work Area\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_1_control_3.png\" alt=\"\"></p>\n<p>This is the main work area which can be text based for working with grids and setup screens, or it can be graphical for working with the operator displays and floorplans. Setting up graphical displays is described in the Graphical Screens section</p>\n<h2 id=\"icon-menu\">Icon Menu<a class=\"anchor\" href=\"#icon-menu\" data-anchor=\"icon-menu\" aria-label=\"Copy a link to Icon Menu\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_1_control_4.png\" alt=\"\"></p>\n<p>Shortcuts to the most commonly used work areas of the system. Inputs, Outputs, User screens, trend logs and so on all presented here in icon format. There are also these same items available from the text menu system.</p>\n<p>Hover text will show the function of each of these icons when you place the mouse over the icons without pressing any buttons.</p>\n<h2 id=\"status-line\">Status Line<a class=\"anchor\" href=\"#status-line\" data-anchor=\"status-line\" aria-label=\"Copy a link to Status Line\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_1_control_5.png\" alt=\"\"></p>\n<p>The communications status line shows the address of the device which is currently communicating in the Add box. The RX and TX numbers show how many packets have been sent to the current device in the current session, each time you click on a different device the numbers will reset to zero. The ERR box shows the number of errors in the current session with the current device. The Health box shows the percentage of successful packets for the current session for up to 100 packets. When the session hits more than 100 packets the earlier packets are pushed out of the tally, only the latest 100 are used in the math. Finally the status line shows some brief information of the data which is being sent and the status.</p>\n",
+			"headings": [
+				{
+					"id": "main-menu-system",
+					"text": "Main Menu System",
+					"level": 2
+				},
+				{
+					"id": "system-tree",
+					"text": "System Tree",
+					"level": 2
+				},
+				{
+					"id": "work-area",
+					"text": "Work Area",
+					"level": 2
+				},
+				{
+					"id": "icon-menu",
+					"text": "Icon Menu",
+					"level": 2
+				},
+				{
+					"id": "status-line",
+					"text": "Status Line",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/off-mode": {
+			"title": "OFF Mode",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_1_screen.png\" alt=\"\"></p>\n<h2 id=\"heating-cooling-stages\">Heating/Cooling Stages<a class=\"anchor\" href=\"#heating-cooling-stages\" data-anchor=\"heating-cooling-stages\" aria-label=\"Copy a link to Heating/Cooling Stages\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_1_control_1.png\" alt=\"\"></p>\n<p>Here we set how many stages of heating and cooling the system will have. Since this is a three speed fan we can set three heating/cooling at this tab.If we set 2 or other number of heating and cooling stages,there will be corresponding quantity of tabs.</p>\n<h2 id=\"modes-speeds\">Modes/Speeds<a class=\"anchor\" href=\"#modes-speeds\" data-anchor=\"modes-speeds\" aria-label=\"Copy a link to Modes/Speeds\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_1_control_2.png\" alt=\"\"></p>\n<p>Select here from the available options, this establishes the various modes the thermostat will operate in and also whether the user will be able to set the stat in certain modes or not. For example if you select OFF-ON-AUTO the user will be able to select up to three modes from the keypad: OFF, ON and AUTO mode. If we had selected only OFF-AUTO, the user will only be able to see select from the OFF and AUTO modes. Keep in mind that the keypad can be locked as well, this is a separate setting, but this is where we set the number of modes the system will operate in.</p>\n<h2 id=\"fan-mode-name-configuration\">Fan Mode Name Configuration<a class=\"anchor\" href=\"#fan-mode-name-configuration\" data-anchor=\"fan-mode-name-configuration\" aria-label=\"Copy a link to Fan Mode Name Configuration\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_1_control_3.png\" alt=\"\"></p>\n<p>Each of these modes we established in the tab at 2 can be renamed along the row here at tab 3.</p>\n<h2 id=\"off-mode\">Off Mode<a class=\"anchor\" href=\"#off-mode\" data-anchor=\"off-mode\" aria-label=\"Copy a link to Off Mode\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_1_control_4.png\" alt=\"\"></p>\n<p>Now we set up which of the outputs will do what in each of the various stages and modes. We have selected the OFF mode and the state of the outputs is for the off mode.</p>\n<h2 id=\"thermostat-outputs\">Thermostat Outputs<a class=\"anchor\" href=\"#thermostat-outputs\" data-anchor=\"thermostat-outputs\" aria-label=\"Copy a link to Thermostat Outputs\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_1_control_5.png\" alt=\"\"></p>\n<p>Each row represents one of the thermostat outputs.</p>\n<h2 id=\"3-heat-3-cool\">3 Heat 3 cool<a class=\"anchor\" href=\"#3-heat-3-cool\" data-anchor=\"3-heat-3-cool\" aria-label=\"Copy a link to 3 Heat 3 cool\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_1_control_6.png\" alt=\"\"></p>\n<p>Each column represents a certain stage of heating or cooling. Heating is to the left and Cooling is to the right. The columns to the left represent increasing responses to the temperature being below setpoint. Moving to the right are increasing responses to the room temperature being over setpoint.</p>\n<h2 id=\"coast\">Coast<a class=\"anchor\" href=\"#coast\" data-anchor=\"coast\" aria-label=\"Copy a link to Coast\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_1_control_7.png\" alt=\"\"></p>\n<p>The center column represents the thermostat at rest, the setpoint is satisfied and the system is coasting.</p>\n<h2 id=\"various-outputs-state\">Various Outputs State<a class=\"anchor\" href=\"#various-outputs-state\" data-anchor=\"various-outputs-state\" aria-label=\"Copy a link to Various Outputs State\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_1_control_8.png\" alt=\"\"></p>\n<p>Here are the states for the various outputs to each stage of cooling, heating and coasting. Since we have selected the OFF mode at tab18, all the outputs will be OFF with the system is set to OFF mode.</p>\n",
+			"headings": [
+				{
+					"id": "heating-cooling-stages",
+					"text": "Heating/Cooling Stages",
+					"level": 2
+				},
+				{
+					"id": "modes-speeds",
+					"text": "Modes/Speeds",
+					"level": 2
+				},
+				{
+					"id": "fan-mode-name-configuration",
+					"text": "Fan Mode Name Configuration",
+					"level": 2
+				},
+				{
+					"id": "off-mode",
+					"text": "Off Mode",
+					"level": 2
+				},
+				{
+					"id": "thermostat-outputs",
+					"text": "Thermostat Outputs",
+					"level": 2
+				},
+				{
+					"id": "3-heat-3-cool",
+					"text": "3 Heat 3 cool",
+					"level": 2
+				},
+				{
+					"id": "coast",
+					"text": "Coast",
+					"level": 2
+				},
+				{
+					"id": "various-outputs-state",
+					"text": "Various Outputs State",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/on-mode": {
+			"title": "ON Mode",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_3_screen.png\" alt=\"\"></p>\n<h2 id=\"heating-cooling-stage\">Heating/Cooling Stage<a class=\"anchor\" href=\"#heating-cooling-stage\" data-anchor=\"heating-cooling-stage\" aria-label=\"Copy a link to Heating/Cooling Stage\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_3_control_1.png\" alt=\"\"></p>\n<p>Here we set how many stages of heating and cooling the system will have. Since this is a three speed fan we can set three heating/cooling at this tab.If we set 2 or other number of heating and cooling stages,there will be corresponding quantity of tabs.</p>\n<h2 id=\"on-mode\">ON Mode<a class=\"anchor\" href=\"#on-mode\" data-anchor=\"on-mode\" aria-label=\"Copy a link to ON Mode\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_3_control_2.png\" alt=\"\"></p>\n<p>Now select the ON mode, this is generally used if you would like to allow the user to manually turn on the fan to get some fresh air in the zone.</p>\n<h2 id=\"coast\">Coast<a class=\"anchor\" href=\"#coast\" data-anchor=\"coast\" aria-label=\"Copy a link to Coast\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_3_control_3.png\" alt=\"\"></p>\n<p>The stages of heating and cooling are set up exactly as everything was done in the Auto mode,the only difference is the Coast tab, you can see that the fan will be on in the coasting mode. This means even when the setpoint is satisfied at least the low speed fan will be on and the heating &amp; cooling valves will be closed.</p>\n<h2 id=\"variable-outputs-state\">Variable Outputs State<a class=\"anchor\" href=\"#variable-outputs-state\" data-anchor=\"variable-outputs-state\" aria-label=\"Copy a link to Variable Outputs State\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_3_control_4.png\" alt=\"\"></p>\n<p>In all other stages of heating stage three on over to cooling stage3, the fan and valve are sequenced just like they were in the auto table.</p>\n",
+			"headings": [
+				{
+					"id": "heating-cooling-stage",
+					"text": "Heating/Cooling Stage",
+					"level": 2
+				},
+				{
+					"id": "on-mode",
+					"text": "ON Mode",
+					"level": 2
+				},
+				{
+					"id": "coast",
+					"text": "Coast",
+					"level": 2
+				},
+				{
+					"id": "variable-outputs-state",
+					"text": "Variable Outputs State",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/one-heat-one-cool-setting": {
+			"title": "One heat one cool setting",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_screen.png\" alt=\"\"></p>\n<h2 id=\"tstat8-log\">Tstat8 Log<a class=\"anchor\" href=\"#tstat8-log\" data-anchor=\"tstat8-log\" aria-label=\"Copy a link to Tstat8 Log\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_control_1.png\" alt=\"\"></p>\n<p>Select the thermostat from the tree.</p>\n<h2 id=\"setting-icon\">Setting Icon<a class=\"anchor\" href=\"#setting-icon\" data-anchor=\"setting-icon\" aria-label=\"Copy a link to Setting Icon\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_control_2.png\" alt=\"\"></p>\n<p>Click on the gear icon to get to the advanced settings.</p>\n<h2 id=\"pids-table\">PIDs Table<a class=\"anchor\" href=\"#pids-table\" data-anchor=\"pids-table\" aria-label=\"Copy a link to PIDs Table\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_control_3.png\" alt=\"\"></p>\n<p>Click to get to the PID tables, this is where we assign outputs to act over each stage of heating and cooling.</p>\n<h2 id=\"pids-set-dialog\">PIDs Set Dialog<a class=\"anchor\" href=\"#pids-set-dialog\" data-anchor=\"pids-set-dialog\" aria-label=\"Copy a link to PIDs Set Dialog\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_control_4.png\" alt=\"\"></p>\n<p>PIDs Set Dialog shows the details of the setting.</p>\n<h3 id=\"the-contents-of-one-heat-one-cool-setting\">The contents of One heat one cool setting<a class=\"anchor\" href=\"#the-contents-of-one-heat-one-cool-setting\" data-anchor=\"the-contents-of-one-heat-one-cool-setting\" aria-label=\"Copy a link to The contents of One heat one cool setting\">#</a></h3>\n",
+			"headings": [
+				{
+					"id": "tstat8-log",
+					"text": "Tstat8 Log",
+					"level": 2
+				},
+				{
+					"id": "setting-icon",
+					"text": "Setting Icon",
+					"level": 2
+				},
+				{
+					"id": "pids-table",
+					"text": "PIDs Table",
+					"level": 2
+				},
+				{
+					"id": "pids-set-dialog",
+					"text": "PIDs Set Dialog",
+					"level": 2
+				},
+				{
+					"id": "the-contents-of-one-heat-one-cool-setting",
+					"text": "The contents of One heat one cool setting",
+					"level": 3
+				}
+			]
+		},
+		"tstat8-software/output-setting": {
+			"title": "Output Setting",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_4_2_screen.png\" alt=\"\"></p>\n<h2 id=\"scan\">Scan<a class=\"anchor\" href=\"#scan\" data-anchor=\"scan\" aria-label=\"Copy a link to Scan\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_2_control_1.png\" alt=\"\"></p>\n<h2 id=\"scan-the-network-and-discover-all-devices\">Scan the network and discover all devices.<a class=\"anchor\" href=\"#scan-the-network-and-discover-all-devices\" data-anchor=\"scan-the-network-and-discover-all-devices\" aria-label=\"Copy a link to Scan the network and discover all devices.\">#</a></h2>\n<h2 id=\"thermostat\">Thermostat<a class=\"anchor\" href=\"#thermostat\" data-anchor=\"thermostat\" aria-label=\"Copy a link to Thermostat\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_2_control_2.png\" alt=\"\"></p>\n<p>Select the thermostat from the tree.</p>\n<p>For a fast way to set up the stat you can just load the config file, attached. The steps I did to create this config file are explained below.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_2_custom.png\" alt=\"\"></p>\n<h2 id=\"outputs-icon\">Outputs icon<a class=\"anchor\" href=\"#outputs-icon\" data-anchor=\"outputs-icon\" aria-label=\"Copy a link to Outputs icon\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_2_control_3.png\" alt=\"\"></p>\n<p>Select the outputs icon.</p>\n<h2 id=\"variable-outputs\">Variable Outputs<a class=\"anchor\" href=\"#variable-outputs\" data-anchor=\"variable-outputs\" aria-label=\"Copy a link to Variable Outputs\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_2_control_4.png\" alt=\"\"></p>\n<p>Click to give each output a name and a range, in the case of the fan the outputs are on-off and the valves are modulating 0-10V = 0-100% which are the default ranges already.</p>\n<h2 id=\"click-range-column\">Click Range column<a class=\"anchor\" href=\"#click-range-column\" data-anchor=\"click-range-column\" aria-label=\"Copy a link to Click Range column\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_2_control_5.png\" alt=\"\"></p>\n<p>Click the Range column to see many options available for the range setting such as PWM and floating three wire control for modulating actuators using two relay outputs.</p>\n",
+			"headings": [
+				{
+					"id": "scan",
+					"text": "Scan",
+					"level": 2
+				},
+				{
+					"id": "scan-the-network-and-discover-all-devices",
+					"text": "Scan the network and discover all devices.",
+					"level": 2
+				},
+				{
+					"id": "thermostat",
+					"text": "Thermostat",
+					"level": 2
+				},
+				{
+					"id": "outputs-icon",
+					"text": "Outputs icon",
+					"level": 2
+				},
+				{
+					"id": "variable-outputs",
+					"text": "Variable Outputs",
+					"level": 2
+				},
+				{
+					"id": "click-range-column",
+					"text": "Click Range column",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/pid-loop-setting": {
+			"title": "PID Loop Setting",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_4_screen.png\" alt=\"\">PID loop</p>\n<h2 id=\"default\">Default<a class=\"anchor\" href=\"#default\" data-anchor=\"default\" aria-label=\"Copy a link to Default\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_4_control_1.png\" alt=\"\"></p>\n<p>Now we set up the PID loop, for the most part you can leave the settings at their default.</p>\n<p>You can select which of the inputs will provide feedback for the PID loop, the default is the internal temperature sensor.</p>\n<h2 id=\"input-select\">Input Select<a class=\"anchor\" href=\"#input-select\" data-anchor=\"input-select\" aria-label=\"Copy a link to Input Select\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_4_control_2.png\" alt=\"\"></p>\n<p>For the PID feedback you can select from many options such as the average of some sensors, any of the 8 external sensors or the internal humidity or C02 sensor if it has one.</p>\n<h2 id=\"pterm\">Pterm<a class=\"anchor\" href=\"#pterm\" data-anchor=\"pterm\" aria-label=\"Copy a link to Pterm\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_4_control_3.png\" alt=\"\"></p>\n<p>This is the PID proportional setting. The default value of 6 means that the PID loop will output a full response when the temperature error is 6 degrees, in this case celcius, away from setpoint. So if the setpoint were 20C, the maximum heating to the maximum cooling will occur over a span of 6 degrees. When were three degrees below setpoint well be in stage 3 heating and when were 3 degrees above setpoint the PID will be at stage 3 cooling.</p>\n<h2 id=\"iterm\">Iterm<a class=\"anchor\" href=\"#iterm\" data-anchor=\"iterm\" aria-label=\"Copy a link to Iterm\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_4_control_4.png\" alt=\"\"></p>\n<p>This is the integral term. This is a nudge factor so that if the temperature is hovering a little ways below the setpoint for a long period eventually the integral term will accumulate some error over time and begin to bring on the next stage of heating. During commissioning this term can be set to zero because it can wind-up and cause confusion. For example the room is just below the setpoint by half a degree or so you would think the unit will be in stage1 heat yet it is running at high speed. It is the integral term which has wound up and is calling for stage three. When commissioning is done you can enter something for the I term to get better PID loop action, the default value of 5 is reasonable and means you can get an extra 5% of PID action for every degC  hour of accumulated error.</p>\n<p>A small value for the P term means the PID loop will be more sensitive to a deviation from setpoint. A small term for the I term means the PID loop will be lazy over time.</p>\n<p>Small P = hyperactive</p>\n<p>Small I = lazy, over time.</p>\n<h2 id=\"setpoints\">Setpoints<a class=\"anchor\" href=\"#setpoints\" data-anchor=\"setpoints\" aria-label=\"Copy a link to Setpoints\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_3_4_control_5.png\" alt=\"\"></p>\n<p>Finally set up the setpoints. Dual setpoints operate like a residential thermostat where you can set up a separate heating and cooling setpoint. Single setpoints are more for commercial settings where you would like to keep things simple and let the user adjust only a single setpoint up or down. The HOME and WORK columns show the heating and cooling setpoints for occupied (home) and unoccupied modes (work). There are other modes which we need to add to this dialog, SLEEP and AWAY which are common with residential thermostats. In single setpoint mode there is only one setpoint we talk about, so the heating setpoint is calculated from the setpoint minus the heating deadband. Similarly, the cooling setpoint is equal to the setpoint plus the cooling deadband.</p>\n",
+			"headings": [
+				{
+					"id": "default",
+					"text": "Default",
+					"level": 2
+				},
+				{
+					"id": "input-select",
+					"text": "Input Select",
+					"level": 2
+				},
+				{
+					"id": "pterm",
+					"text": "Pterm",
+					"level": 2
+				},
+				{
+					"id": "iterm",
+					"text": "Iterm",
+					"level": 2
+				},
+				{
+					"id": "setpoints",
+					"text": "Setpoints",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/pids-set-dialog-window": {
+			"title": "PIDs Set Dialog window",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_screen.png\" alt=\"\"></p>\n<h2 id=\"system-off-user-name\">System Off User Name<a class=\"anchor\" href=\"#system-off-user-name\" data-anchor=\"system-off-user-name\" aria-label=\"Copy a link to System Off User Name\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_control_1.png\" alt=\"\"></p>\n<p>User name for when the system is off, can change this field to show &quot;SHUTDOWN&quot; , &quot;UNOCCUPIED&quot; or any other user defined name.</p>\n<h2 id=\"number-of-modes\">Number of modes<a class=\"anchor\" href=\"#number-of-modes\" data-anchor=\"number-of-modes\" aria-label=\"Copy a link to Number of modes\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_control_2.png\" alt=\"\"></p>\n<p>Define the number of modes for the system. Most systems will have at least two for the ON and OFF modes. Other systems like a fan coil with a multi speed fan would have five: OFF-LOW-MED-HI-AUTO. The minimum number of modes is fixed as 3 for ON-OFF and AUTO but you can add more to suit the application.</p>\n<h2 id=\"auto-only\">Auto Only<a class=\"anchor\" href=\"#auto-only\" data-anchor=\"auto-only\" aria-label=\"Copy a link to Auto Only\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_control_3.png\" alt=\"\"></p>\n<p>Check this box if you don't want to let the user step into the manual modes, the system will take care of staging the system from stage 1 cool to stage 2 cool and so on automatically. If you want the user to have more control at the keypad to let them put the system on manually, to move some air in the room for example by setting the fan on manually, leave this box unchecked. Note that in this case, the system may not run at its optimum efficiency, the fan would be running full time even when the setpoint is achieved.</p>\n<h2 id=\"fan-auto-user-name\">Fan Auto User Name<a class=\"anchor\" href=\"#fan-auto-user-name\" data-anchor=\"fan-auto-user-name\" aria-label=\"Copy a link to Fan Auto User Name\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_control_4.png\" alt=\"\"></p>\n<p>This is the user defined name for when the system is in the auto mode. It could be changed to RUNNING or OCCUPIED or whatever suits the application.</p>\n<h2 id=\"heating-stages\">Heating Stages<a class=\"anchor\" href=\"#heating-stages\" data-anchor=\"heating-stages\" aria-label=\"Copy a link to Heating Stages\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_control_5.png\" alt=\"\"></p>\n<p>This is the number of stages of heating in the system. A single stage heater would set this item to 1. A two stage air conditioned would set this to two and so on.</p>\n<h2 id=\"cooling-stages\">Cooling Stages<a class=\"anchor\" href=\"#cooling-stages\" data-anchor=\"cooling-stages\" aria-label=\"Copy a link to Cooling Stages\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_control_6.png\" alt=\"\"></p>\n<p>This is the number of stages of cooling in the system. For a single stage air conditioner set this to 1. For an air handler with two stages of cooling, set this to two and so on.</p>\n<h2 id=\"refresh-button\">Refresh button<a class=\"anchor\" href=\"#refresh-button\" data-anchor=\"refresh-button\" aria-label=\"Copy a link to Refresh button\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_control_7.png\" alt=\"\"> Self explanatory, hit this button to refresh the screen.</p>\n<h2 id=\"exit\">Exit<a class=\"anchor\" href=\"#exit\" data-anchor=\"exit\" aria-label=\"Copy a link to Exit\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_control_8.png\" alt=\"\"> Saves the current changes and leaves the setup screen</p>\n<h2 id=\"mode-selector-for-pid1\">Mode selector for PID1<a class=\"anchor\" href=\"#mode-selector-for-pid1\" data-anchor=\"mode-selector-for-pid1\" aria-label=\"Copy a link to Mode selector for PID1\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_control_9.png\" alt=\"\"></p>\n<p>There are several tables to define the staging of the outputs in each mode of operation. Once the number of modes &amp; speeds has been set this tab lets you view the output grid for each of the modes. Note that you can change the names of these modes so your screen may look a little different than described here.</p>\n<p>If you have 3 modes of operation, this tab will have the OFF-ON-AUTO.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_custom.png\" alt=\"\"></p>\n<p>However, if you set the Fan Auto Only box, the ON mode normally reserved for the manual ON settings will be disabled and the manual ON table option is no longer visible.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_custom_2.png\" alt=\"\"></p>\n<h2 id=\"output-grid\">Output Grid<a class=\"anchor\" href=\"#output-grid\" data-anchor=\"output-grid\" aria-label=\"Copy a link to Output Grid\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_2_control_10.png\" alt=\"\"></p>\n<p>Here is where you define which output will be active for a given stage of heating or cooling. Each row represents one of the outputs and each column represents a certain stage of heating or cooling.</p>\n<p>There are one or more 'Mode' tables, each of which is represented by one of these grids with on and off settings for each output over each stage of operation. Normally the occupied mode and the unoccupied mode are enough for a typical HVAC application but you are able to define more modes, such as low-medium-hi in the case of a three speed fan coil system. In the example above, the OFF mode is currently selected so the grid shows the output states when the system is operating in the OFF mode.</p>\n<p>There are two collumns called heat1 and heat2 for the two stages of heating and no columns for cooling since cooling is set to zero. The Coast column represents the state of the outputs when the setpoint is satisfied and the system is said to be 'coasting'. In this example, all the cells are OFF so the system will not try to maintain the setpoint in this mode, all outputs are truly OFF. In cold weather you may want to maintain a certain unoccupied setpoint to keep the pipes from freezing in the building in which case the stage 2 heating would have some of the outputs flipped to ON.</p>\n",
+			"headings": [
+				{
+					"id": "system-off-user-name",
+					"text": "System Off User Name",
+					"level": 2
+				},
+				{
+					"id": "number-of-modes",
+					"text": "Number of modes",
+					"level": 2
+				},
+				{
+					"id": "auto-only",
+					"text": "Auto Only",
+					"level": 2
+				},
+				{
+					"id": "fan-auto-user-name",
+					"text": "Fan Auto User Name",
+					"level": 2
+				},
+				{
+					"id": "heating-stages",
+					"text": "Heating Stages",
+					"level": 2
+				},
+				{
+					"id": "cooling-stages",
+					"text": "Cooling Stages",
+					"level": 2
+				},
+				{
+					"id": "refresh-button",
+					"text": "Refresh button",
+					"level": 2
+				},
+				{
+					"id": "exit",
+					"text": "Exit",
+					"level": 2
+				},
+				{
+					"id": "mode-selector-for-pid1",
+					"text": "Mode selector for PID1",
+					"level": 2
+				},
+				{
+					"id": "output-grid",
+					"text": "Output Grid",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/schedules": {
+			"title": "Schedules",
+			"html": "<p>The schedules of Tstat8 can be managed using T3000 software and Bacnet.Select Modbus protocol when you use T3000,and Bacnet protocol when you use Bacnet.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_custom.png\" alt=\"\"> <img src=\"/media/tstat8/1.0/drex_module_3_5_custom_2.png\" alt=\"\"></p>\n<h3 id=\"the-contents-of-schedules\">The contents of Schedules<a class=\"anchor\" href=\"#the-contents-of-schedules\" data-anchor=\"the-contents-of-schedules\" aria-label=\"Copy a link to The contents of Schedules\">#</a></h3>\n",
+			"headings": [
+				{
+					"id": "the-contents-of-schedules",
+					"text": "The contents of Schedules",
+					"level": 3
+				}
+			]
+		},
+		"tstat8-software/system-tree": {
+			"title": "System Tree",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_1_4_custom.png\" alt=\"\"></p>\n<p>A controller with an RS485 subnetwork will show the subnet devices on a branch below the controller.</p>\n",
+			"headings": []
+		},
+		"tstat8-software/t3000-operation": {
+			"title": "T3000 Operation",
+			"html": "<p>Step1.Visit 107.170.34.189/ftp/software/9TstatSoftware.zip, download T3000 software and install it;</p>\n<p>Step2.Plug Tstat8 in power,connect Tstat8 to PC via RS485 or Ethernet;</p>\n<p>Step3.Start T3000 software,click <img src=\"/media/tstat8/1.0/drex_module_3_2_custom.png\" alt=\"\"> to scan,then you can find Tstat8 as below.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_custom_2.png\" alt=\"\"></p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_screen.png\" alt=\"\"></p>\n<ol start=\"4\">\n<li>Click Tstat8 log, then click <img src=\"/media/tstat8/1.0/drex_module_3_2_custom.png\" alt=\"\"> , this will display all of the Tstat8 inputs. Change the name of the input and range that fis the application.</li>\n</ol>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_custom_3.png\" alt=\"\"></p>\n<p>5.Click <img src=\"/media/tstat8/1.0/drex_module_3_2_custom_4.png\" alt=\"\"> to see the status of the Tstat8. This window will display setpoints, temperature, inputs and outputs.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_custom_5.png\" alt=\"\"></p>\n<p>6.Click <img src=\"/media/tstat8/1.0/drex_module_3_2_custom_6.png\" alt=\"\"> to show parameter tab below,you can do the settings.For example,clickPIDs TablestoPIDs set Dialog,click to set Heating Stagesvalue.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_custom_7.png\" alt=\"\"></p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_custom_8.png\" alt=\"\"></p>\n<p>7.Click the schedule icon <img src=\"/media/tstat8/1.0/drex_module_3_2_custom_9.png\" alt=\"\"> to go to schedule window,you can do schedule settings.</p>\n<p>Each day we support 6 events, and you can select the mode for each event:</p>\n<p>For home mode, unit will use day setpoint to control the outputs;</p>\n<p>For work mode, it will use night setpoint to control the outputs;</p>\n<p>For sleep mode, it will use sleep setpoint to control the outputs</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_custom_10.png\" alt=\"\"></p>\n<p>For example as below:</p>\n<p>when time is between 6:00 to 9:00, unit will work on home mode;</p>\n<p>when time is between 9:00 to 18:00, unit will work on work mode;</p>\n<p>when time is between 18:00 to 22:00, unit will work on home mode;</p>\n<p>when time is between 22:00 to Tuesday 6:00, unit will work on sleep mode</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_custom_11.png\" alt=\"\"></p>\n<p>After you setup the Monday schedule, you can copy the Monday setting from Tuesday to Friday,</p>\n<p>then you can use the Copy To Monday-Friday function to copy the setting.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_custom_12.png\" alt=\"\"></p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_custom_13.png\" alt=\"\"></p>\n<p>If you need different setting for each day, you can use insert function to edit your schedule, for</p>\n<p>example, on Saturday, double click the window and it will show a small dialog to insert new event</p>\n<p>and you can set up the time.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_custom_14.png\" alt=\"\"></p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_custom_15.png\" alt=\"\"></p>\n<p>So on Saturday, when time is between 8:30 to 12:30, unit will work on home mode;when time</p>\n<p>is between 12:30 to 20:30, unit will work on work mode; when time is between 20:00 to 22:30,</p>\n<p>unit will work on home mode;when time is between 22:30 to Sunday 6:00, unit will work on sleep</p>\n<p>mode.</p>\n<p>**Note:**Select Enable option to enable schedule function.After edit schedule, make sure click the</p>\n<p>save button to save the setting !</p>\n<h2 id=\"click-to-scan\">Click to scan<a class=\"anchor\" href=\"#click-to-scan\" data-anchor=\"click-to-scan\" aria-label=\"Copy a link to Click to scan\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_control_1.png\" alt=\"\"></p>\n<h2 id=\"tstat8-connected\">Tstat8 connected<a class=\"anchor\" href=\"#tstat8-connected\" data-anchor=\"tstat8-connected\" aria-label=\"Copy a link to Tstat8 connected\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_2_control_2.png\" alt=\"\"></p>\n",
+			"headings": [
+				{
+					"id": "click-to-scan",
+					"text": "Click to scan",
+					"level": 2
+				},
+				{
+					"id": "tstat8-connected",
+					"text": "Tstat8 connected",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/t3000-software": {
+			"title": "T3000 Software",
+			"html": "<p>Tstat8 uses T3000 software to communicate with others.The T3000 Building Automation System is a complete solution which allows a building operator to manage the indoor environment of commercial, institutional and residential buildings. Equipment such as chillers, air handlers, boilers, fans, lights, pumps, dampers, valves and other mechanical equipment can be scheduled and controlled according to the sequence defined by the control system designers. Extensive monitoring and logging features allow the operator to see what is going on in their building to proactively improve comfort and efficiency. The system has powerful communications capabilities making it possible to integrate with other systems and can scale to virtually any size from a home sized system on up to a university campus with many buildings.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_custom.png\" alt=\"\"></p>\n<p>An operator with the appropriate privileges may access the entire system regardless of whether they are logged on over the internet or locally from a PC inside the building. End users and tenants can be set up with access to only their own areas which gives them the power to control their own area as they like.</p>\n<p>Simultaneous users may access the system over one of the many communications channels. Alarms, system graphics and trend data are stored directly on the controller so there is no central server or single point of failure.</p>\n<p>Interactive graphic displays, floor plans and custom menus make operation simple for any user. The flexible T3000 hardware and software makes it easy to configure and reconfigure the system throughout the life of the building. The system is primarily targeted at HVAC applications but can also be used for many other applications such as lighting, green houses and other light industrial systems. The system also supports industry the standard bacnet and modbus protocols which means its possible to integrate with access control systems, lighting, power meters and others to form a complete building management system.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_1_custom_2.png\" alt=\"\"></p>\n<h3 id=\"the-contents-of-t3000-software\">The contents of T3000 Software<a class=\"anchor\" href=\"#the-contents-of-t3000-software\" data-anchor=\"the-contents-of-t3000-software\" aria-label=\"Copy a link to The contents of T3000 Software\">#</a></h3>\n",
+			"headings": [
+				{
+					"id": "the-contents-of-t3000-software",
+					"text": "The contents of T3000 Software",
+					"level": 3
+				}
+			]
+		},
+		"tstat8-software/tstat8-software": {
+			"title": "Tstat8 Software",
+			"html": "<p>Hightlights:</p>\n<p></p>\n<p> Baudrates of 1.2k,4.8k,9.6k,14.4k,19.2k, 38.4k, 57.6k, 76.8k and 115.2k.</p>\n<p> Well documented register list for easy integration with other systems.</p>\n<p> Easily configure the thermostat for practically any application.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_custom.png\" alt=\"\"></p>\n<h3 id=\"the-contents-of-tstat8-software\">The contents of Tstat8 Software<a class=\"anchor\" href=\"#the-contents-of-tstat8-software\" data-anchor=\"the-contents-of-tstat8-software\" aria-label=\"Copy a link to The contents of Tstat8 Software\">#</a></h3>\n",
+			"headings": [
+				{
+					"id": "the-contents-of-tstat8-software",
+					"text": "The contents of Tstat8 Software",
+					"level": 3
+				}
+			]
+		},
+		"tstat8-software/two-heat-two-cool-setting-auto-mode": {
+			"title": "AUTO Mode",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_2_screen.png\" alt=\"\"></p>\n<h2 id=\"heating-cooling-stage\">Heating/Cooling Stage<a class=\"anchor\" href=\"#heating-cooling-stage\" data-anchor=\"heating-cooling-stage\" aria-label=\"Copy a link to Heating/Cooling Stage\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_2_control_1.png\" alt=\"\"></p>\n<p>Set the number of stages of heating and cooling.</p>\n<h2 id=\"fan-aut\">Fan Aut<a class=\"anchor\" href=\"#fan-aut\" data-anchor=\"fan-aut\" aria-label=\"Copy a link to Fan Aut\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_2_control_2.png\" alt=\"\"></p>\n<p>Fill in the grid for the Auto mode.</p>\n<h2 id=\"heat2\">Heat2<a class=\"anchor\" href=\"#heat2\" data-anchor=\"heat2\" aria-label=\"Copy a link to Heat2\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_2_control_3.png\" alt=\"\"></p>\n<p>Heat2 will be on in the column called Heat2 and off for the other stages and so on. The fan is on all the time as shown by the FAN row with all yellow entries.</p>\n<h2 id=\"coast\">Coast<a class=\"anchor\" href=\"#coast\" data-anchor=\"coast\" aria-label=\"Copy a link to Coast\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_2_control_4.png\" alt=\"\"></p>\n<p>You could optionally turn the fan off during coasting by setting the cell to OFF.</p>\n",
+			"headings": [
+				{
+					"id": "heating-cooling-stage",
+					"text": "Heating/Cooling Stage",
+					"level": 2
+				},
+				{
+					"id": "fan-aut",
+					"text": "Fan Aut",
+					"level": 2
+				},
+				{
+					"id": "heat2",
+					"text": "Heat2",
+					"level": 2
+				},
+				{
+					"id": "coast",
+					"text": "Coast",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/two-heat-two-cool-setting-off-mode": {
+			"title": "OFF Mode",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_1_screen.png\" alt=\"\"></p>\n<h2 id=\"heating-cooling-stage\">Heating/Cooling Stage<a class=\"anchor\" href=\"#heating-cooling-stage\" data-anchor=\"heating-cooling-stage\" aria-label=\"Copy a link to Heating/Cooling Stage\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_1_control_1.png\" alt=\"\"></p>\n<p>Set the number of stages of heating and cooling.</p>\n<h2 id=\"modes-setting\">Modes Setting<a class=\"anchor\" href=\"#modes-setting\" data-anchor=\"modes-setting\" aria-label=\"Copy a link to Modes Setting\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_1_control_2.png\" alt=\"\"></p>\n<p>You can set the number of modes at the tab, two modes have been selected here with the default names as Off and Auto.</p>\n<h2 id=\"offselecting\">OFFSelecting<a class=\"anchor\" href=\"#offselecting\" data-anchor=\"offselecting\" aria-label=\"Copy a link to OFFSelecting\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_1_control_3.png\" alt=\"\"></p>\n<p>You can rename them by editing the names at the tab.Next well edit the Off table by selecting the radio button. The grid shown represents the outputs when the stat is in the off mode.</p>\n<h2 id=\"heat2\">Heat2<a class=\"anchor\" href=\"#heat2\" data-anchor=\"heat2\" aria-label=\"Copy a link to Heat2\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_1_control_4.png\" alt=\"\"></p>\n<p>The center column represents the coasting mode, everything is off there as well.</p>\n<h2 id=\"various-outputs-state\">Various Outputs State<a class=\"anchor\" href=\"#various-outputs-state\" data-anchor=\"various-outputs-state\" aria-label=\"Copy a link to Various Outputs State\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_1_control_5.png\" alt=\"\"></p>\n<p>Each row is one output and the columns represent the outputs in each of the stages of heating and cooling. In this example, everything is off for all 2 stages of heat and two cool.</p>\n",
+			"headings": [
+				{
+					"id": "heating-cooling-stage",
+					"text": "Heating/Cooling Stage",
+					"level": 2
+				},
+				{
+					"id": "modes-setting",
+					"text": "Modes Setting",
+					"level": 2
+				},
+				{
+					"id": "offselecting",
+					"text": "OFFSelecting",
+					"level": 2
+				},
+				{
+					"id": "heat2",
+					"text": "Heat2",
+					"level": 2
+				},
+				{
+					"id": "various-outputs-state",
+					"text": "Various Outputs State",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/two-heat-two-cool-setting": {
+			"title": "Two heat two cool setting",
+			"html": "<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_screen.png\" alt=\"\"></p>\n<h2 id=\"tstat-log\">Tstat Log<a class=\"anchor\" href=\"#tstat-log\" data-anchor=\"tstat-log\" aria-label=\"Copy a link to Tstat Log\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_control_1.png\" alt=\"\"></p>\n<p>Click on the gear icon to get to the advanced settings.</p>\n<h2 id=\"setting-icon\">Setting Icon<a class=\"anchor\" href=\"#setting-icon\" data-anchor=\"setting-icon\" aria-label=\"Copy a link to Setting Icon\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_control_2.png\" alt=\"\"></p>\n<p>Click to get to the PID tables, this is where we assign outputs to act over each stage of heating and cooling.</p>\n<h2 id=\"pids-table\">PIDs Table<a class=\"anchor\" href=\"#pids-table\" data-anchor=\"pids-table\" aria-label=\"Copy a link to PIDs Table\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_control_3.png\" alt=\"\"></p>\n<p><TODO>: Insert description text here...</p>\n<h2 id=\"pids-set-dialog\">PIDs Set Dialog<a class=\"anchor\" href=\"#pids-set-dialog\" data-anchor=\"pids-set-dialog\" aria-label=\"Copy a link to PIDs Set Dialog\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_4_4_control_4.png\" alt=\"\"></p>\n<p>PIDs Set Dialog shows the details of the setting.</p>\n<h3 id=\"the-contents-of-two-heat-two-cool-setting\">The contents of Two heat two cool setting<a class=\"anchor\" href=\"#the-contents-of-two-heat-two-cool-setting\" data-anchor=\"the-contents-of-two-heat-two-cool-setting\" aria-label=\"Copy a link to The contents of Two heat two cool setting\">#</a></h3>\n",
+			"headings": [
+				{
+					"id": "tstat-log",
+					"text": "Tstat Log",
+					"level": 2
+				},
+				{
+					"id": "setting-icon",
+					"text": "Setting Icon",
+					"level": 2
+				},
+				{
+					"id": "pids-table",
+					"text": "PIDs Table",
+					"level": 2
+				},
+				{
+					"id": "pids-set-dialog",
+					"text": "PIDs Set Dialog",
+					"level": 2
+				},
+				{
+					"id": "the-contents-of-two-heat-two-cool-setting",
+					"text": "The contents of Two heat two cool setting",
+					"level": 3
+				}
+			]
+		},
+		"tstat8-software/weekly-routines-schedule": {
+			"title": "Weekly routines schedule",
+			"html": "<p>Right click WR1 log (weekly routines) to set up the weekly schedule date.For the weekly routine, if status = 1, means unit will go to occupied and if status = 0, means unit will go to unoccupied. When the time is set up, click Update &amp; Read back button to save and read the setting back.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_2_1_custom.png\" alt=\"\">\n<img src=\"/media/tstat8/1.0/drex_module_3_5_2_1_screen.png\" alt=\"\"></p>\n<h2 id=\"validity-start-date\">Validity Start Date<a class=\"anchor\" href=\"#validity-start-date\" data-anchor=\"validity-start-date\" aria-label=\"Copy a link to Validity Start Date\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_2_1_control_1.png\" alt=\"\"></p>\n<p>Click to set the start date.</p>\n<h2 id=\"validity-end-date\">Validity End Date<a class=\"anchor\" href=\"#validity-end-date\" data-anchor=\"validity-end-date\" aria-label=\"Copy a link to Validity End Date\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_2_1_control_2.png\" alt=\"\"></p>\n<p>Click to set the End date.</p>\n<h2 id=\"weekly-schedules\">Weekly Schedules<a class=\"anchor\" href=\"#weekly-schedules\" data-anchor=\"weekly-schedules\" aria-label=\"Copy a link to Weekly Schedules\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_2_1_control_3.png\" alt=\"\"></p>\n<p>This tab shows the Weekly Schedules details.</p>\n<h2 id=\"update-read-back\">Update&amp;Read Back<a class=\"anchor\" href=\"#update-read-back\" data-anchor=\"update-read-back\" aria-label=\"Copy a link to Update&amp;Read Back\">#</a></h2>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_5_2_1_control_4.png\" alt=\"\"></p>\n<p>Click the log to update &amp;Read Back.</p>\n",
+			"headings": [
+				{
+					"id": "validity-start-date",
+					"text": "Validity Start Date",
+					"level": 2
+				},
+				{
+					"id": "validity-end-date",
+					"text": "Validity End Date",
+					"level": 2
+				},
+				{
+					"id": "weekly-schedules",
+					"text": "Weekly Schedules",
+					"level": 2
+				},
+				{
+					"id": "update-read-back",
+					"text": "Update&Read Back",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-software/wifi-configuration": {
+			"title": "Wifi Configuration",
+			"html": "<p><strong>1.Confiuration Settings</strong></p>\n<p>To set the password and IP address of the Tstat8, two methods are available:Key setting and ADhoc setting, or using the T3000 software Key setting.</p>\n<p>Sep1. Apply power to the Tstat8.Press<img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom.png\" alt=\"\"><img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_2.png\" alt=\"\"> simultaneously to enter mode selection.There are two modes:Infra Mode and ADhoc Mode,press <img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom.png\" alt=\"\"> or<img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_2.png\" alt=\"\"> to switch mode.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_3.png\" alt=\"\">** **</p>\n<p>Sep2.Press<img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_4.png\" alt=\"\"> to enter WIFI LIST in mode selection.Press<img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_4.png\" alt=\"\"> or<img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_5.png\" alt=\"\"> to select WIFI in the list,press<img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom.png\" alt=\"\"> or<img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_2.png\" alt=\"\"> to go up,and to go down.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_6.png\" alt=\"\"></p>\n<p>Sep3.Press<img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_4.png\" alt=\"\"> to enter Password and IP setting menu.There are letters and numbers in the setting ,with a space character between them.The numbers are from 0 to 9,the capital letters from A to Z,and the small letters from a to z. Press<img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_4.png\" alt=\"\"> or<img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_4.png\" alt=\"\"> to select character,press<img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom.png\" alt=\"\"> to go up,and<img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_2.png\" alt=\"\"> go down.</p>\n<p>*It will return to the main menu if there isnt operation command in 3 seconds.</p>\n<p><strong>ADhoc setting</strong></p>\n<p>ADhoc is a singel hot model,which supports iphone,win7&amp;8.The IP default address is 192.168.10.10.</p>\n<p><a href=\"http://Sep1.To\">Sep1.To</a> set passwords and IP addresses in Adhoc mode, start the Tstat8 fist, then scan for a wifisignal named T8_ADHOC from a computer with wifi connect to the wifi.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_7.png\" alt=\"\"></p>\n<p>Step2.Enter the security key. The key of Tstat8 is always 1234567890123</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_8.png\" alt=\"\"></p>\n<p>Step3.Open your browser,enter IP 192.168.10.10,then you can set your password and IP as below:</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_9.png\" alt=\"\"></p>\n<p><strong>T3000 setting</strong></p>\n<p>The T3000 software also has the ability to set the password and IP of the Tstat8.</p>\n<p>Step1.Visit <a href=\"https://temcocontrols.com/ftp/software/9TstatSoftware.zip\">https://temcocontrols.com/ftp/software/9TstatSoftware.zip</a>, download T3000 software and install it;</p>\n<p>Step2. Apply power to the Tstat8, connect the Tstat8 to a PC via RS485 or Ethernet;</p>\n<p>Step3.Start T3000 software,click to scan,then you can fid Tstat8 as below.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_10.png\" alt=\"\"></p>\n<p><strong>2.Application Settings</strong></p>\n<p>Infra mode is a typical mode in application settings. It works via a Ethernet router.</p>\n<p><a href=\"http://Step1.To\">Step1.To</a> set up in Infra mode, Apply Power to the Tstat8, connect your computer to the Ethernet router.</p>\n<p>Step2.Open your browser, enter IP 192.168.0.145 and then you can set your password and IP Address.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_3_1_custom_11.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"tstat8-software/wireless-connections": {
+			"title": "Wireless Connections",
+			"html": "<p>The system supports an optional zigbee add-on module which enables connecting to wireless thermostats and other zigbee devices. The zigbee devices form a mesh which makes the network more robust than a regular point to point type network. If a particular node experiences interference or goes offline the network will heal itself and work around the problem node.</p>\n<p><img src=\"/media/tstat8/1.0/drex_module_3_3_screen.png\" alt=\"\"></p>\n<h3 id=\"the-contents-of-wireless-connections\">The contents of Wireless Connections<a class=\"anchor\" href=\"#the-contents-of-wireless-connections\" data-anchor=\"the-contents-of-wireless-connections\" aria-label=\"Copy a link to The contents of Wireless Connections\">#</a></h3>\n",
+			"headings": [
+				{
+					"id": "the-contents-of-wireless-connections",
+					"text": "The contents of Wireless Connections",
+					"level": 3
+				}
+			]
+		}
+	}
+}

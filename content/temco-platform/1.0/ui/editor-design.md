@@ -1,7 +1,6 @@
 ---
 title: "The editor"
-order: 404
-edit: false
+order: 50
 ---
 
 The design for **R6 — editing and publishing**: the toolbar, creating a document, images, drafts, and where the

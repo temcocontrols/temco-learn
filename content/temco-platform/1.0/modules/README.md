@@ -1,10 +1,9 @@
 ---
 title: "Modules"
-order: 200
-edit: false
+order: 10
 ---
 
-A module is a real VS Code extension inside the application. Namespaces follow the module ([../architecture/naming.md](../naming)).
+A module is a real VS Code extension inside the application. Namespaces follow the module ([../architecture/naming.md](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/naming.md)).
 
 ## Register
 

@@ -1,7 +1,6 @@
 ---
 title: "The application window"
-order: 401
-edit: false
+order: 20
 ---
 
 What the extension looks like inside **Temco Platform** — the shell's panels are unmodified, and only

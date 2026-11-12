@@ -1,7 +1,6 @@
 ---
 title: "`temco-tools`"
-order: 270
-edit: false
+order: 10
 ---
 
 The device and data surfaces, in the `Tools` activity-bar container.

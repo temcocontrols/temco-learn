@@ -1,7 +1,6 @@
 ---
 title: "`temco-projects`"
-order: 240
-edit: false
+order: 10
 ---
 
 A documentation project as a first-class thing: its name, its sources, its outputs, its builds, and the pages it produces. One page — the edit form — and one command that opens the project's pages.

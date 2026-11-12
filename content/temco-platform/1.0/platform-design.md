@@ -1,7 +1,6 @@
 ---
 title: "TEMCO Platform — Engineering Design (Revision 2)"
-order: 50
-edit: false
+order: 10
 ---
 
 **Host: the VS Code fork. UI library: Fluent UI v9. Editor engine: ONLYOFFICE Docs.**
@@ -11,9 +10,9 @@ Target repository: `temcocontrols/temco-platform` (VS Code 1.144.0.0 fork, 12 `t
 
 ---
 
-### 0. How to use this document
+## 0. How to use this document
 
-#### 0.1 Revision history — what changed, and why it is not cosmetic
+### 0.1 Revision history — what changed, and why it is not cosmetic
 
 Revision 1 proposed a standalone web app (React 19 + Vite) and pushed the VS Code fork down to "an adapter". Revision 2 inverts that. The product **is** the fork; the workbench is the shell users already know; and every surface we own is built with Fluent UI v9 inside it. Three reversals:
 
@@ -25,11 +24,11 @@ Revision 1 proposed a standalone web app (React 19 + Vite) and pushed the VS Cod
 
 Everything else — the five core concepts, the domain model, the publication state machine, the flows, the round-trip law — survives. Only where it is *hosted* changed.
 
-#### 0.2 Reading order for a code generator
+### 0.2 Reading order for a code generator
 
 Read in order. Do not generate UI before §2 (the two-register law) and §4 (the document server contract), because those two sections decide which library owns which pixel and which process owns which file.
 
-#### 0.3 Five rules that override anything else in this document
+### 0.3 Five rules that override anything else in this document
 
 1. **The shell is not ours.** Never restyle, re-implement, or replace the title bar, activity bar, side bar trees, tabs, status bar, command palette, or settings editor. They are VS Code. They use VS Code theme variables. They do not import Fluent.
 2. **Fluent does not leak.** Fluent UI v9 is imported only inside webview content (§2.2). No Fluent component is rendered into shell DOM, and no Fluent token is used to colour a shell surface.
@@ -39,13 +38,13 @@ Read in order. Do not generate UI before §2 (the two-register law) and §4 (the
 
 ---
 
-### 1. Vision and principles
+## 1. Vision and principles
 
 **TEMCO Platform is an engineering operating system**: it holds documentation, hardware descriptions, firmware, programs, releases, and the knowledge derived from them, for products built and supported for ten or more years.
 
 The user is a controls engineer at 2 a.m. with a T3000 that will not talk to a BACnet router. The product succeeds when that engineer finds the right page, sees the firmware version it applies to, and gets a file they can open.
 
-#### 1.1 Principles and what each one forbids in code
+### 1.1 Principles and what each one forbids in code
 
 | Principle | Forbids |
 |---|---|
@@ -56,7 +55,7 @@ The user is a controls engineer at 2 a.m. with a T3000 that will not talk to a B
 | Degrade loudly | A blank iframe, a silent spinner, a swallowed error |
 | The tree is the map | A screen that shows assets but cannot be reached from the tree |
 
-#### 1.2 Success conditions (measure these, not vibes)
+### 1.2 Success conditions (measure these, not vibes)
 
 - Open a 40-page `.docx` from the tree to a usable editor in **under 4 s warm**, **under 9 s cold**.
 - The tree never shows a spinner for more than **300 ms** on a warm start.
@@ -66,11 +65,11 @@ The user is a controls engineer at 2 a.m. with a T3000 that will not talk to a B
 
 ---
 
-### 2. The two-register law
+## 2. The two-register law
 
 This is the single most important structural decision in the document. The workbench and our content are two different UI stacks, and confusing them is how this project fails.
 
-#### 2.1 The boundary
+### 2.1 The boundary
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
@@ -96,7 +95,7 @@ This is the single most important structural decision in the document. The workb
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
-#### 2.2 What each register may use
+### 2.2 What each register may use
 
 | | Shell (A) | Content (B) | Remote (C) |
 |---|---|---|---|
@@ -107,7 +106,7 @@ This is the single most important structural decision in the document. The workb
 | Own context menu | Only via `menus` contributions | Yes (Fluent `Menu`) | Own menus |
 | Own keyboard shortcuts | Only via `keybindings` contributions | Only non-chorded, scoped keys | Own, inside its iframe |
 
-#### 2.3 Why Fluent cannot be "the main lib for VS Code" — and what we do instead
+### 2.3 Why Fluent cannot be "the main lib for VS Code" — and what we do instead
 
 VS Code's workbench is hand-written DOM driven by DI, not React. Replacing its activity bar with `FluentProvider` does not produce a Fluent activity bar; it produces a broken one, and it breaks every extension that positions against those parts. What we can honestly do, and what this design does:
 
@@ -117,7 +116,7 @@ VS Code's workbench is hand-written DOM driven by DI, not React. Replacing its a
 
 **Rule of thumb:** if the control is *chrome* (navigation, tabs, trees, commands), it is VS Code. If the control is *content* (a form, a table of releases, a publish checklist, a document), it is Fluent.
 
-#### 2.4 The seam, drawn
+### 2.4 The seam, drawn
 
 ```
    side bar (register A)                 editor webview (register B)
@@ -136,9 +135,9 @@ VS Code's workbench is hand-written DOM driven by DI, not React. Replacing its a
 
 ---
 
-### 3. Architecture
+## 3. Architecture
 
-#### 3.1 Planes and processes
+### 3.1 Planes and processes
 
 ```
 ┌───────────────────────────────────────────────────────────────────────────┐
@@ -177,7 +176,7 @@ VS Code's workbench is hand-written DOM driven by DI, not React. Replacing its a
 
 > **Plane 4 is optional.** In the embedded topology (§4.1.1 Topology B) it collapses into plane 3: the converter runs as `x2t.wasm` inside the webview, and planes 3 and 5 talk directly. Planes 1, 2, and 5 are identical either way, which is why the transport is pluggable rather than a fork in the design.
 
-#### 3.2 Hard truths this architecture imposes
+### 3.2 Hard truths this architecture imposes
 
 These are not opinions. Each one has sunk an ONLYOFFICE integration before.
 
@@ -193,9 +192,9 @@ These are not opinions. Each one has sunk an ONLYOFFICE integration before.
 
 ---
 
-### 4. The editor engine: ONLYOFFICE Docs
+## 4. The editor engine: ONLYOFFICE Docs
 
-#### 4.1 What we are integrating
+### 4.1 What we are integrating
 
 ONLYOFFICE Docs (the "Document Server") is a **web application** — a separate service, typically `onlyoffice/documentserver` in Docker, listening on 80/443. It renders and edits office files in the browser and exposes them for embedding through `DocsAPI.DocEditor`. It is not a JS library. There is no `npm i` that gives us a Word editor.
 
@@ -209,7 +208,7 @@ ONLYOFFICE Docs (the "Document Server") is a **web application** — a separate 
                                     └───────────►  editor UI inside our iframe
 ```
 
-#### 4.1.1 Two ways to run it: server-hosted, or fully embedded
+### 4.1.1 Two ways to run it: server-hosted, or fully embedded
 
 > **Correction (recorded on purpose).** An earlier revision of this document claimed the engine "cannot be embedded in a VSIX". That was wrong. It is a common belief and it is worth writing down why it is false, because it changes the architecture.
 
@@ -269,7 +268,7 @@ Embedded open/save pipeline:
   .docx bytes ──► store (new revision, §4.5 status "2" semantics)
 ```
 
-#### 4.1.2 What actually decides it
+### 4.1.2 What actually decides it
 
 | Constraint | A — server-hosted | B — fully embedded |
 |---|---|---|
@@ -290,7 +289,7 @@ Embedded open/save pipeline:
 
 Both routes are viable. Topology A ships sooner and keeps co-editing; Topology B removes the server entirely and is the only option if policy forbids standing one up.
 
-#### 4.1.3 Therefore: the transport is pluggable
+### 4.1.3 Therefore: the transport is pluggable
 
 Everything above the transport is identical, so we do not choose permanently. One interface, two implementations, chosen by configuration.
 
@@ -320,7 +319,7 @@ Consequences, all of which keep the code honest:
 - **TR-4** Capability differences must be visible, not silent: with `coEditing: false` the header hides the presence avatars and the asset shows `single-user` in Properties.
 - **TR-5** A test opens the same fixture through both transports and asserts the round-trip law (§14.2). If a feature only works in one, it is listed in §4.1.2 rather than discovered later.
 
-#### 4.1.4 Decision (recorded): both transports, embedded is the default
+### 4.1.4 Decision (recorded): both transports, embedded is the default
 
 Chosen because a server is something the team would rather not run, and because the product may later be sold.
 
@@ -334,7 +333,7 @@ Chosen because a server is something the team would rather not run, and because 
 
 Because "may be sold later" is on the table, the embedded build needs a **build-time gate**, not a promise in a document.
 
-#### 4.1.5 Shipping the embedded build: the office pack and the licence gate
+### 4.1.5 Shipping the embedded build: the office pack and the licence gate
 
 The 300 MB does not belong in a VSIX. It ships beside the app.
 
@@ -386,7 +385,7 @@ Enforceable rules:
 
 The internal/commercial switch is exactly the point the user raised: internal use does not trigger AGPL distribution obligations, shipping does — so the build system, not memory, decides which one is happening.
 
-#### 4.1.6 Size: where it comes from, and how to shrink it
+### 4.1.6 Size: where it comes from, and how to shrink it
 
 Measured on the development machine, so these are facts rather than round numbers:
 
@@ -427,7 +426,7 @@ If either size or licence turns out to be unacceptable, these are the engine alt
 
 **The decision rule:** if AGPL blocks distribution, swap the engine for **ZetaOffice** and keep Topology B — the `OfficeTransport` interface absorbs it. If *size* is the problem, only a commercial component (Syncfusion or TX) actually solves it, and that is a budget conversation, not an engineering one. Keep this table current; re-read it before P5 when the product might ship.
 
-#### 4.1.7 The zero-AGPL routes, and what "mock the editor" can mean
+### 4.1.7 The zero-AGPL routes, and what "mock the editor" can mean
 
 AGPL-3.0 does not forbid *using* the software. It forbids **conveying** it without the corresponding source, and (for modified versions) offering it over a network without source. So there are four clean routes, and only two of them involve settling anything with ONLYOFFICE.
 
@@ -440,7 +439,7 @@ AGPL-3.0 does not forbid *using* the software. It forbids **conveying** it witho
 
 Route **R4** is the one worth taking seriously, because a VS Code fork with a Fluent UI is already a very good document authoring surface — that is what the Markdown host in §4.8 is.
 
-#### 4.1.7.1 The question that decides it
+### 4.1.7.1 The question that decides it
 
 Not "which engine" — but **must existing `.docx` files be edited in place inside the app?**
 
@@ -486,7 +485,7 @@ Routing, as the editor host registry implements it (§4.11):
 
 R4 is honest about its trade: conversion is **lossy**. Tables survive, images survive, headings survive; exact pagination, floating shapes, and complex numbering generally do not. The original `.docx` is kept untouched as a revision, and the conversion is an *opt-in* action with a visible warning — never a silent import.
 
-#### 4.1.7.2 What "mock the editor" can and cannot mean
+### 4.1.7.2 What "mock the editor" can and cannot mean
 
 Three different things hide behind that phrase. Only one of them ships.
 
@@ -498,7 +497,7 @@ Three different things hide behind that phrase. Only one of them ships.
 
 If "mock" means the first one: yes, and it is a good idea — a Fluent mock is how we validate the flow in §10 without committing to an engine. It cannot be shipped as the editor, because a mock has no save path and therefore no revision.
 
-#### 4.1.7.3 Rules
+### 4.1.7.3 Rules
 
 - **ZA-1** No AGPL code enters the VSIX or the office pack unless R2 (commercial licence) is in place. Enforced by the §4.1.5 build gate.
 - **ZA-2** Under R1 we do not fork or patch ONLYOFFICE. Configuration, JWT, and an iframe only. If we ever patch it, we publish the patch — the cheapest way to stay clean is to never touch their source.
@@ -507,7 +506,7 @@ If "mock" means the first one: yes, and it is a good idea — a Fluent mock is h
 - **ZA-5** Import/convert never destroys the source: the original `.docx` stays as a revision, and the converted asset records `derived-from`.
 - **ZA-6** No ONLYOFFICE name or logo in our UI beyond the attribution the licence requires. "Office document" is fine; "ONLYOFFICE" as our feature name is not.
 
-#### 4.1.7.4 Decision (recorded): R4, with R1 kept as the escape hatch
+### 4.1.7.4 Decision (recorded): R4, with R1 kept as the escape hatch
 
 Corpus fact: **a few dozen existing `.docx`, edited occasionally** — not weekly round-trips. That does not justify a 300 MB dependency, a licence purchase, or a service to operate.
 
@@ -526,7 +525,7 @@ Two consequences worth stating plainly:
 1. **The Markdown/Fluent editor is now the primary authoring surface**, so the caret-and-selection work already done there is the main line of investment, not a side quest. §10.5's acceptance criteria become P1 criteria.
 2. **Fidelity is preserved by not competing with Word.** For the few documents that must look exactly right, the user edits in Word; we are the version store around it. That is cheaper and more honest than a lossy converter pretending otherwise.
 
-#### F12 — Edit an original .docx in Word, bring it back as a revision
+### F12 — Edit an original .docx in Word, bring it back as a revision
 
 ```
  user            A workbench          B ext host                E store
@@ -553,7 +552,7 @@ Rules: the temp copy is the user's, never rewritten by us; a hash match produces
 
 
 
-#### 4.2 Composition inside a VS Code custom editor
+### 4.2 Composition inside a VS Code custom editor
 
 ```
 ┌─ VS Code editor tab: "T3000 Manual.docx" ─────────────────────────────────┐
@@ -586,7 +585,7 @@ Rules: the temp copy is the user's, never rewritten by us; a hash match produces
 
 Only three things are ours: the header, the banner, the status bar. The document canvas is theirs. Do not attempt to inject CSS into the iframe — it is cross-origin; it will not work and it voids support.
 
-#### 4.3 The key — the only thing that causes corruption if you get it wrong
+### 4.3 The key — the only thing that causes corruption if you get it wrong
 
 ONLYOFFICE caches a document by `key`. Same key means "same content", so it will reconnect the user to whatever it already has. Change the content without changing the key and users keep editing the old bytes and then save over the new ones.
 
@@ -620,7 +619,7 @@ Invariants the code must enforce:
 - **I3** — When two tabs open the same `(assetId, revision)`, they intentionally share a key: that is co-editing, and it is a feature. When the revision bumps, both are told to reload (§4.7 `onOutdatedVersion`).
 - **I4** — Never derive the key from a timestamp or a random value. Doing so breaks co-editing and orphans the server's cache.
 
-#### 4.4 The content URL — reachable by the server, dead in 15 minutes *(http transport only)*
+### 4.4 The content URL — reachable by the server, dead in 15 minutes *(http transport only)*
 
 ```
 https://platform.temco.local/api/docs/content/AS-8812/7
@@ -636,7 +635,7 @@ Rules:
 - Range requests must be supported (`Accept-Ranges: bytes`) — the server probes.
 - The secret is per-deployment, stored in `SecretStorage`, never in settings JSON.
 
-#### 4.5 The save callback — status machine and the 10-second rule *(http transport only)*
+### 4.5 The save callback — status machine and the 10-second rule *(http transport only)*
 
 ```
  ONLYOFFICE            our callback endpoint            store             webview
@@ -682,7 +681,7 @@ Rules:
 3. For Office types, the body starts with the correct zip magic `PK\x03\x04` (docx/xlsx/pptx are zips). A 200-with-HTML error page from a proxy is common; this catches it.
 4. `assetId` and `revision` in the query match the session ticket; a replayed callback must be rejected.
 
-#### 4.6 Message protocol between extension host (2) and webview (3)
+### 4.6 Message protocol between extension host (2) and webview (3)
 
 Typed, versioned, no free-form strings. Both directions are discriminated unions; unknown types are logged and dropped, never thrown.
 
@@ -706,7 +705,7 @@ type ContentToHost =
 
 `OfficeConfig` is the already-signed ONLYOFFICE config. **The JWT is signed in the extension host** and never in the webview: the secret must not enter a browser context.
 
-#### 4.7 The config builder
+### 4.7 The config builder
 
 ```ts
 // extensions/temco-docs/src/office/config.ts
@@ -768,7 +767,7 @@ export function buildOfficeConfig(r: OfficeRequest, secret: string): SignedOffic
 
 `DOCUMENT_TYPE`: `docx|doc|odt|rtf|txt|md → 'word'`, `xlsx|xls|ods|csv → 'cell'`, `pptx|ppt|odp → 'slide'`, `pdf → 'pdf'`.
 
-#### 4.8 Format matrix — who edits what
+### 4.8 Format matrix — who edits what
 
 | Format | Editor host | Why |
 |---|---|---|
@@ -782,7 +781,7 @@ export function buildOfficeConfig(r: OfficeRequest, secret: string): SignedOffic
 | `.md` **preview** | Fluent Markdown editor, preview pane | Same surface |
 | images | VS Code image preview | Already perfect |
 
-#### 4.8.1 Per-asset host memory
+### 4.8.1 Per-asset host memory
 
 Explicit choice beats a global preference: the same `.md` file may be prose for one author and tabular for another, and nobody should have to remember a setting.
 
@@ -813,7 +812,7 @@ The cost is honest and accepted: **two engines to keep tested for `.md`.** §14.
 
 > **On Markdown and ONLYOFFICE.** ONLYOFFICE Docs 9.0 added native `.md` editing, and **the decision is to support both**, chosen per asset and remembered (§4.8.1). Fluent remains the *default* for four measurable reasons: frontmatter and non-standard fences do not round-trip through a document model; a 2 KB file pays a full editor session; there is no cursor/selection API we can drive for diagnostics; and offline authoring stops working. The escape hatch is real, not decorative: `Open With… → Office` on any markdown asset, then the choice sticks. If a future ONLYOFFICE release makes `.md` a first-class text round trip, the default can change — this row, not the architecture.
 
-#### 4.9 Deployment and licensing — decide before writing code
+### 4.9 Deployment and licensing — decide before writing code
 
 | Option | Setup | Use for | Cost |
 |---|---|---|---|
@@ -825,7 +824,7 @@ The cost is honest and accepted: **two engines to keep tested for `.md`.** §14.
 
 Two configuration values decide whether it works at all: `TEMCO_OFFICE_SERVER_URL` (a `https://` origin, no trailing slash) and `TEMCO_OFFICE_JWT_SECRET` (in `SecretStorage`). A missing or mismatched secret means every editor open fails with ONLYOFFICE's generic "The document security token is not correctly formed" — surface it in diagnostics (§11.9) with the words *"JWT secret mismatch between platform and document server"* so the cause is one search away.
 
-#### 4.10 Degraded states — never a blank frame
+### 4.10 Degraded states — never a blank frame
 
 ```
  server state    what the user sees                                    what still works
@@ -845,7 +844,7 @@ Health probe: `GET {server}/healthcheck` with a **2 s** timeout, cached for 30 s
 
 In embedded mode (Topology B, §4.1.1) there is no probe to run. It is replaced by a **capability check** — `x2t.wasm` loaded, fonts present, `SharedArrayBuffer` available (chromium needs cross-origin isolation for the threaded build) — and the same states apply: `unknown` while loading, `ready`, `unavailable` with the banner. Failure text names the missing piece rather than "server unreachable".
 
-#### 4.11 The editor host registry
+### 4.11 The editor host registry
 
 One table decides everything. A new format is a new row, not a new code path.
 
@@ -875,7 +874,7 @@ The "Open With…" entry on an asset's context menu lists these by display name,
 
 ---
 
-### 5. The five core concepts
+## 5. The five core concepts
 
 Nothing else. If a requirement introduces a sixth noun, it is one of these five wearing a hat.
 
@@ -915,7 +914,7 @@ Nothing else. If a requirement introduces a sixth noun, it is one of these five 
 | Publication | A frozen revision shipped to a channel | "Publish" that mutates in place |
 | Knowledge | Derived index over published content | A hand-maintained second copy of the docs |
 
-#### 5.1 The tree is the product, rendered by VS Code
+### 5.1 The tree is the product, rendered by VS Code
 
 ```
 📦 T3000                        ← Product (register A: VS Code TreeView)
@@ -940,7 +939,7 @@ Deterministic derivation, never hand-curated: `Product → areas(assetKind) → 
 
 ---
 
-### 6. Domain model
+## 6. Domain model
 
 ```ts
 type AssetId = string;      // 'AS-8812'
@@ -1000,7 +999,7 @@ interface RevisionRecord {
 }
 ```
 
-#### 6.1 Invariants the store enforces
+### 6.1 Invariants the store enforces
 
 - **D1** — `revision` increases by exactly 1 per accepted save. Concurrent saves that would produce the same number fail with `ConflictError`.
 - **D2** — Bytes are immutable once written. "Editing" a revision means appending a new one.
@@ -1008,7 +1007,7 @@ interface RevisionRecord {
 - **D4** — Deleting an asset deletes its revisions and removes it from every publication. It never deletes a published revision still referenced by a live publication.
 - **D5** — `slug` is unique within `(productId, kind, parentId)` and, once a publication references it, changing it requires a redirect entry.
 
-#### 6.2 Areas — the documentation taxonomy
+### 6.2 Areas — the documentation taxonomy
 
 Mirrors MSDN, because the audience already knows it:
 
@@ -1025,9 +1024,9 @@ Mirrors MSDN, because the audience already knows it:
 
 ---
 
-### 7. Fluent UI v9 inside VS Code
+## 7. Fluent UI v9 inside VS Code
 
-#### 7.1 Pins and placement
+### 7.1 Pins and placement
 
 | Package | Version | Where |
 |---|---|---|
@@ -1051,7 +1050,7 @@ extensions/temco-ui/
 
 **Import rule (lint-enforced):** `@fluentui/*` may appear only in `extensions/temco-ui/src/**`. Every other extension imports `temco-ui`. This keeps one Fluent version in the bundle and one place to swap it.
 
-#### 7.2 The theme bridge — how Fluent stops looking foreign
+### 7.2 The theme bridge — how Fluent stops looking foreign
 
 VS Code publishes its colours as CSS custom properties (`--vscode-*`) on `:root` in every webview. Fluent publishes its own tokens in a JS theme object. The bridge reads the former and writes the latter.
 
@@ -1121,7 +1120,7 @@ Re-bridge when the theme changes. VS Code sets `document.body.dataset.vscodeThem
 
 **Do not** use `createLightTheme`/`createDarkTheme` alone. Unbridged Fluent is immediately recognisable as "a web page in a panel": different greys, different corner radius, different accent.
 
-#### 7.3 What we never do with Fluent
+### 7.3 What we never do with Fluent
 
 | Forbidden | Why | Instead |
 |---|---|---|
@@ -1132,7 +1131,7 @@ Re-bridge when the theme changes. VS Code sets `document.body.dataset.vscodeThem
 | Fluent `Persona` with a photo | No avatar service; broken images | Initials chip |
 | Fluent's default `fontFamilyBase` | Segoe UI ≠ VS Code's font stack | Bridged from `--vscode-font-family` |
 
-#### 7.4 Density
+### 7.4 Density
 
 VS Code rows are 22 px. Fluent defaults to 32–40 px. In `TemcoProvider`, apply a compact density for editor chrome and normal density for forms:
 
@@ -1145,7 +1144,7 @@ VS Code rows are 22 px. Fluent defaults to 32–40 px. In `TemcoProvider`, apply
 
 Rules: toolbar controls `size="small"`; form controls `size="medium"`; all rows **22 px**; all icons **16 px**; no Fluent shadow on in-content surfaces (VS Code has no elevation inside editors except menus and tooltips).
 
-#### 7.5 CSP and Griffel
+### 7.5 CSP and Griffel
 
 Fluent v9 uses Griffel, which injects `<style>` at runtime. The webview CSP must allow it, and the document server needs a frame slot:
 
@@ -1165,9 +1164,9 @@ Fluent v9 uses Griffel, which injects `<style>` at runtime. The webview CSP must
 
 ---
 
-### 8. The workbench
+## 8. The workbench
 
-#### 8.1 Full layout
+### 8.1 Full layout
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -1203,7 +1202,7 @@ Activity bar legend: `H` Home · `P` Products · `D` Documentation · `W` Hardwa
 
 The ONLYOFFICE status item is a **status bar item contributed by `temco-docs`** (§9.4) — register A, so it uses codicons and theme classes, not Fluent.
 
-#### 8.2 Activity bar — the whole platform, nine items
+### 8.2 Activity bar — the whole platform, nine items
 
 | Order | Icon | id | Opens | Register |
 |---|---|---|---|---|
@@ -1219,13 +1218,13 @@ The ONLYOFFICE status item is a **status bar item contributed by `temco-docs`** 
 
 Below the separator: AI (`sparkle`) from `temco-ai`, then Settings (built-in). **No custom activity bar rendering** — these are `viewsContainers.activitybar` contributions, so drag/drop, hide/show, and keyboard navigation come free.
 
-#### 8.3 Panel (bottom)
+### 8.3 Panel (bottom)
 
 The existing VS Code panel hosts three contributed views: **Problems** (markdown lint), **Output → Temco Docs** (document server calls, one line per open/save), and **Publication log**. Nothing custom is drawn there.
 
 ---
 
-### 9. From routes to VS Code constructs
+## 9. From routes to VS Code constructs
 
 Revision 1 had URLs. In a desktop host there are no URLs — there are **view ids, custom editor ids, commands, and a URI scheme**. This table is the contract; code must not invent a second way to reach a surface.
 
@@ -1246,7 +1245,7 @@ Revision 1 had URLs. In a desktop host there are no URLs — there are **view id
 | `/admin` | webview view | `temcoWorkbench.admin` |
 | `/ai` | webview view (`temco-ai`) | `temcoAi.chat` |
 
-#### 9.1 The asset URI
+### 9.1 The asset URI
 
 Every asset needs an addressable identity so tabs restore, links work, and `Open With…` can be forced.
 
@@ -1261,7 +1260,7 @@ host     editor host id       absent = resolve via registry (§4.11)
 
 Custom editors register for `viewType: 'temcoDocs.office'` and resolve through `CustomTextEditorProvider`-style `CustomEditorProvider` with `supportsMultipleEditorsPerDocument: false` (one editor column, principle §1.1).
 
-#### 9.2 Commands (25 for phase 1)
+### 9.2 Commands (25 for phase 1)
 
 | Command id | Title | Where |
 |---|---|---|
@@ -1291,7 +1290,7 @@ Custom editors register for `viewType: 'temcoDocs.office'` and resolve through `
 | `temco.ai.explainAsset` | Explain This Asset | editor title (`temco-ai`) |
 | `temco.ai.findRelated` | Find Related Assets | context (`temco-ai`) |
 
-#### 9.3 Settings
+### 9.3 Settings
 
 | Key | Type | Default | Meaning |
 |---|---|---|---|
@@ -1306,7 +1305,7 @@ Custom editors register for `viewType: 'temcoDocs.office'` and resolve through `
 
 The **JWT secret is not a setting.** It lives in `SecretStorage` and is set by an administrator through `temco.docs.diagnostics`.
 
-#### 9.4 Status bar items
+### 9.4 Status bar items
 
 | Item | Text | Click |
 |---|---|---|
@@ -1316,11 +1315,11 @@ The **JWT secret is not a setting.** It lives in `SecretStorage` and is set by a
 
 ---
 
-### 10. Screens
+## 10. Screens
 
 Twelve surfaces. Each is either a **tree** (register A) or a **webview** (register B). None is drawn with a third stack.
 
-#### 10.1 Home — `temcoWorkbench.home` (webview)
+### 10.1 Home — `temcoWorkbench.home` (webview)
 
 ```
 ┌─ TEMCO ──────────────────────────────────────────────────────────────────────┐
@@ -1351,7 +1350,7 @@ States: loading → 6 skeleton rows; empty (no products) → `EmptyState` with *
 
 **Acceptance:** first meaningful paint from a cold extension host under 600 ms; no document server call on this screen.
 
-#### 10.2 Product tree — `temcoWorkbench.products` (register A)
+### 10.2 Product tree — `temcoWorkbench.products` (register A)
 
 VS Code `TreeDataProvider`. Rows are 22 px, icons are codicons, selection drives the secondary side bar. Every row has a stable `id` so expansion survives refresh.
 
@@ -1373,7 +1372,7 @@ Selection drives the secondary side bar (§10.6); `Enter` opens the asset throug
 
 **Acceptance:** expanding a product with 300 assets stays responsive (< 100 ms per expansion); no network call per row (batch-load children).
 
-#### 10.3 Product overview — `temcoWorkbench.product` (webview, secondary)
+### 10.3 Product overview — `temcoWorkbench.product` (webview, secondary)
 
 ```
 ┌─ T3000 ─────────────────────────────────── [Open Docs] [New ▾] [Publish ▾] ─┐
@@ -1390,7 +1389,7 @@ Selection drives the secondary side bar (§10.6); `Enter` opens the asset throug
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-#### 10.4 Office editor — `temcoDocs.office` (webview + iframe)
+### 10.4 Office editor — `temcoDocs.office` (webview + iframe)
 
 Drawn in full at §4.2. Acceptance criteria:
 
@@ -1401,7 +1400,7 @@ Drawn in full at §4.2. Acceptance criteria:
 - **OE-5** Closing with unsaved changes prompts once, and *Save* forces a save (§4.5 status 6) before closing.
 - **OE-6** Keyboard: `⌘S` triggers `temco.docs.forceSave`; while the iframe has focus, the host must not steal any key except `⌘S` and `⌘W` (§12.3).
 
-#### 10.5 Markdown editor — `temcoDocs.markdown` (webview, Fluent)
+### 10.5 Markdown editor — `temcoDocs.markdown` (webview, Fluent)
 
 ```
 ┌─ Commissioning.md ───────────────────── rev 7 · draft ─ [Preview] [Publish] ┐
@@ -1428,7 +1427,7 @@ Rules carried over from the incidents that produced this design:
 - **MD-4** Paste of an image inserts and saves an attachment asset; paste of HTML is sanitised to the allowed schema.
 - **MD-5** The context menu is ours (Fluent `Menu`), so a right-click inside a selection keeps the selection.
 
-#### 10.6 Properties — `temcoWorkbench.properties` (webview, secondary side bar)
+### 10.6 Properties — `temcoWorkbench.properties` (webview, secondary side bar)
 
 ```
 ┌─ Properties ─────────────────────────────────┐
@@ -1443,7 +1442,7 @@ Rules carried over from the incidents that produced this design:
 └──────────────────────────────────────────────┘
 ```
 
-#### 10.7 Publish — `temcoWorkbench.publish` (webview)
+### 10.7 Publish — `temcoWorkbench.publish` (webview)
 
 ```
 ┌─ Publish T3000 13.0 ─────────────────────────────────────────────────────────┐
@@ -1460,7 +1459,7 @@ Rules carried over from the incidents that produced this design:
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
 
-#### 10.8 Publication queue — `temcoWorkbench.publish` (webview, admin)
+### 10.8 Publication queue — `temcoWorkbench.publish` (webview, admin)
 
 ```
 ┌─────────────────────┬─────┬──────────┬───────────┬─────────┬────────┬───────┐
@@ -1474,7 +1473,7 @@ Rules carried over from the incidents that produced this design:
 
 Columns: asset · revision · channel · state (`queued | building | live | failed`) · started · duration · actions (*Open log*, *Retry*). Failed rows keep their log and offer Retry; retry re-enqueues the **same** `assetId@revision`, never "latest".
 
-#### 10.9 Releases and Downloads — tree views (register A)
+### 10.9 Releases and Downloads — tree views (register A)
 
 ```
 Releases                                      Downloads
@@ -1488,7 +1487,7 @@ Releases                                      Downloads
 
 Rows show version, date, and a stability marker as a codicon (`$(verified)` latest, `$(shield)` LTS, `$(beaker)` beta). Opening a release opens a small Fluent detail view listing its assets; downloading writes through `vscode.workspace.fs` after a save dialog.
 
-#### 10.10 Search — built-in (register A)
+### 10.10 Search — built-in (register A)
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -1506,7 +1505,7 @@ Rows show version, date, and a stability marker as a codicon (`$(verified)` late
 
 `workbench.view.search` with a contributed `search` context filter: `asset:docx product:T3000`. Do not build a second search UI; extend the one that already has regex, replace, history, and the tree.
 
-#### 10.11 Review — `temcoWorkbench.review` (webview)
+### 10.11 Review — `temcoWorkbench.review` (webview)
 
 ```
 ┌─ Review ─────────────────────────────────────────────────────────────────────┐
@@ -1519,7 +1518,7 @@ Rows show version, date, and a stability marker as a codicon (`$(verified)` late
 
 Honest limitation: a visual diff of `.docx` inside our own UI is out of scope for phase 1. The surface offers *Open rev 6* and *Open rev 7* side by side is forbidden (one editor column), so it offers **Open rev 6**, then **Open rev 7**, and records which the reviewer saw.
 
-#### 10.12 Diagnostics — `temcoWorkbench.admin` (webview)
+### 10.12 Diagnostics — `temcoWorkbench.admin` (webview)
 
 A health matrix, the single place to debug a broken document server:
 
@@ -1539,11 +1538,11 @@ A health matrix, the single place to debug a broken document server:
 
 ---
 
-### 11. Flows
+## 11. Flows
 
 Each flow names its participants by plane: **A** workbench, **B** extension host, **C** webview, **D** document server, **E** store.
 
-#### F1 — Open a Word document from the tree (the primary flow)
+### F1 — Open a Word document from the tree (the primary flow)
 
 ```
 user          A workbench         B ext host            D server          C webview
@@ -1574,7 +1573,7 @@ user          A workbench         B ext host            D server          C webv
 
 Failure branches: health timeout → banner, no iframe (§4.10). Content 403 because the ticket expired → `{t:'error', code:'content-expired'}` → one automatic retry with a fresh ticket, then banner.
 
-#### F2 — Edit, force save, revision bump
+### F2 — Edit, force save, revision bump
 
 ```
  C webview           D doc server            B callback            E store
@@ -1591,7 +1590,7 @@ Failure branches: health timeout → banner, no iframe (§4.10). Content 403 bec
    │  header: "rev 8 · saved 14:02"                │                  │
 ```
 
-#### F3 — New document from a template
+### F3 — New document from a template
 
 ```
  user            A                      B                        E
@@ -1608,7 +1607,7 @@ Failure branches: health timeout → banner, no iframe (§4.10). Content 403 bec
 
 Why copy instead of "Save As": ONLYOFFICE has no template API. A template is a plain asset marked `kind: 'template'`; instantiating is a byte copy plus a new asset row. This also means templates are versioned like everything else.
 
-#### F4 — Publish a product version
+### F4 — Publish a product version
 
 ```
  user        A / B                    E                    build runner
@@ -1629,7 +1628,7 @@ Why copy instead of "Save As": ONLYOFFICE has no template API. A template is a p
 
 Publications are **frozen**: they store `assetId@revision` tuples. Publishing never reads "latest" at build time.
 
-#### F5 — Document server unreachable
+### F5 — Document server unreachable
 
 ```
  click asset
@@ -1645,7 +1644,7 @@ Publications are **frozen**: they store `assetId@revision` tuples. Publishing ne
 
 Never: a blank iframe, an infinite spinner, or a silent fallback to the text editor (that would let a user edit a `.docx` as bytes and destroy it).
 
-#### F6 — Two editors, one asset, revision conflict
+### F6 — Two editors, one asset, revision conflict
 
 ```
  tab 1 (rev 7)         tab 2 (rev 7)            B                    E
@@ -1663,7 +1662,7 @@ Never: a blank iframe, an infinite spinner, or a silent fallback to the text edi
 
 Both revisions survive (D1, D2). "Keep my copy" writes the user's bytes as rev 9 with `message: 'from conflicting edit'`, so nothing is lost.
 
-#### F7 — Import files
+### F7 — Import files
 
 ```
  user          A                B                     E
@@ -1678,7 +1677,7 @@ Both revisions survive (D1, D2). "Keep my copy" writes the user's bytes as rev 9
   │◄─────────────┤ tree refreshes; first asset opens  │
 ```
 
-#### F8 — History and restore
+### F8 — History and restore
 
 ```
  context menu → Show History
@@ -1694,7 +1693,7 @@ Both revisions survive (D1, D2). "Keep my copy" writes the user's bytes as rev 9
 
 Restore never rewinds; it copies old bytes forward as a new revision (D2).
 
-#### F9 — Open With (forcing a host)
+### F9 — Open With (forcing a host)
 
 ```
  context menu → Open With…  →  QuickPick, ordered by the registry
@@ -1712,7 +1711,7 @@ Restore never rewinds; it copies old bytes forward as a new revision (D2).
 
 This is the escape hatch when a document is corrupt, and the mechanism the user asked for when they said *"when you choose … at the default md editor to change"*.
 
-#### F10 — Search to open
+### F10 — Search to open
 
 ```
  ⌘K → type "commissioning"            (command center, register A)
@@ -1724,7 +1723,7 @@ This is the escape hatch when a document is corrupt, and the mechanism the user 
  temco.asset.open → F1
 ```
 
-#### F11 — Open and save with no server (Topology B)
+### F11 — Open and save with no server (Topology B)
 
 ```
 user          A workbench (Fluent)      B ext host + x2t.wasm           C editor iframe
@@ -1746,9 +1745,9 @@ Same host protocol as F1/F2, so nothing above the transport changes. The differe
 
 ---
 
-### 12. Keyboard, focus, accessibility
+## 12. Keyboard, focus, accessibility
 
-#### 12.1 Shortcut ownership
+### 12.1 Shortcut ownership
 
 | Scope | Owner | Examples |
 |---|---|---|
@@ -1757,7 +1756,7 @@ Same host protocol as F1/F2, so nothing above the transport changes. The differe
 | Inside our webview | B/Fluent | `⌘F` find-in-asset, `Esc` close popover, `Tab` traversal |
 | Inside the document iframe | D (ONLYOFFICE) | Everything, including `⌘B`, `⌘F`, `Enter` |
 
-#### 12.2 The focus contract (the rule that prevents the "typing goes somewhere else" class of bug)
+### 12.2 The focus contract (the rule that prevents the "typing goes somewhere else" class of bug)
 
 ```
              ┌──────────────────────────────────────────────┐
@@ -1776,7 +1775,7 @@ Implementation rules:
 4. **FR-4** Never re-create the iframe element to "refresh" it. Change its `key` (React) only when the ONLYOFFICE key changes (§4.3).
 5. **FR-5** When the iframe has focus, the host registers no `keydown` capture handler except for the allowlist in §12.3.
 
-#### 12.3 Routing `⌘S` while the iframe has focus
+### 12.3 Routing `⌘S` while the iframe has focus
 
 A cross-origin iframe swallows key events. VS Code's `keybindings` still fire because they are evaluated in the host document **before** the webview, but a keybinding that only makes sense inside our editor must be scoped:
 
@@ -1791,7 +1790,7 @@ A cross-origin iframe swallows key events. VS Code's `keybindings` still fire be
 
 Track iframe focus in the webview (`window.blur` + `document.activeElement === iframe`) and post `{t:'focus', focused}` so the host can enable iframe-only commands (e.g. `Enter` still belongs to the document, so it is never claimed).
 
-#### 12.4 Accessibility requirements
+### 12.4 Accessibility requirements
 
 | Requirement | Implementation |
 |---|---|
@@ -1806,7 +1805,7 @@ Track iframe focus in the webview (`window.blur` + `document.activeElement === i
 
 ---
 
-### 13. Performance budgets
+## 13. Performance budgets
 
 | Budget | Target | Measured where |
 |---|---|---|
@@ -1825,9 +1824,9 @@ Cold-start is dominated by the document server, not by us. Pre-warming on extens
 
 ---
 
-### 14. Testing
+## 14. Testing
 
-#### 14.1 The pyramid, adapted to a two-register product
+### 14.1 The pyramid, adapted to a two-register product
 
 | Level | What | Tool | Runs |
 |---|---|---|---|
@@ -1838,7 +1837,7 @@ Cold-start is dominated by the document server, not by us. Pre-warming on extens
 | End-to-end | open a real `.docx` in a real VS Code window against a real document server | `validate-ui-scenario` scenario | nightly / on demand |
 | Accessibility | keyboard-only pass, high contrast, screen-reader labels | manual checklist + axe on webviews | before each phase exit |
 
-#### 14.2 Non-negotiable regression tests
+### 14.2 Non-negotiable regression tests
 
 1. **Key test** — same `(assetId, revision)` ⇒ same key; revision bump ⇒ different key; key matches `/^[A-Za-z0-9_-]{1,128}$/`.
 2. **Round-trip law** — open then close with no edit ⇒ zero new revisions, tab not dirty. Applies to both Office (status 4) and Markdown.
@@ -1851,13 +1850,13 @@ Cold-start is dominated by the document server, not by us. Pre-warming on extens
 9. **Licence gate** — a build with `TEMCO_BUILD_CHANNEL=public` and the office pack present but `TEMCO_OFFICE_LICENCE` unset **fails**, and the same build with `commercial` passes (LG-1).
 10. **Pack missing** — with the pack removed, Office assets open read-only with the banner, no crash, and no silent text-editor fallback (LG-4). `x2t.wasm` / `web-apps` version mismatch reports `office-pack-mismatch` (LG-5).
 
-#### 14.3 What cannot be tested in CI
+### 14.3 What cannot be tested in CI
 
 The ONLYOFFICE canvas is cross-origin. We cannot assert on its DOM. We assert on **our** state machine (config sent, callback received, revision written) and screenshot the canvas for human review. Do not write a test that reaches into the iframe.
 
 ---
 
-### 15. Security
+## 15. Security
 
 | Risk | Control |
 |---|---|
@@ -1873,7 +1872,7 @@ The ONLYOFFICE canvas is cross-origin. We cannot assert on its DOM. We assert on
 
 ---
 
-### 16. Repository shape and dependencies
+## 16. Repository shape and dependencies
 
 ```
 temco-platform/                     (VS Code 1.144.0.0 fork)
@@ -1921,7 +1920,7 @@ temco-platform/                     (VS Code 1.144.0.0 fork)
 
 ---
 
-### 17. Roadmap
+## 17. Roadmap
 
 | Phase | Ships | Exit criterion |
 |---|---|---|
@@ -1933,9 +1932,9 @@ temco-platform/                     (VS Code 1.144.0.0 fork)
 
 ---
 
-### 18. Definition of done, and open decisions
+## 18. Definition of done, and open decisions
 
-#### 18.1 Done means
+### 18.1 Done means
 
 - [ ] Every §10 screen has its acceptance criteria met, checked in a real VS Code window.
 - [ ] Every §14.2 regression test exists and fails when its fix is removed.
@@ -1945,7 +1944,7 @@ temco-platform/                     (VS Code 1.144.0.0 fork)
 - [ ] The extension packs and installs as a VSIX; the document server address is configured, never bundled.
 - [ ] `docs/temco-platform/modules/temco-docs/extension-design.md` updated with what was actually built.
 
-#### 18.2 Decisions still open (recommendation in brackets)
+### 18.2 Decisions still open (recommendation in brackets)
 
 1. **Transport** — **decided:** support both, `embedded` by default, `http` opt-in (§4.1.4). Co-editing is therefore *not* in the default build, and the UI must say so (TR-4).
 2. **Distribution scope** — **decided:** internal now, may be sold later. This is exactly the case that needs the build gate in §4.1.5, because the AGPLv3 question only becomes urgent at the moment of conveyance. Next action: legal confirm of LG-1's wording before P1 ships, not before it starts.
@@ -1957,7 +1956,7 @@ temco-platform/                     (VS Code 1.144.0.0 fork)
 8. **Engine fallback if AGPL blocks distribution** — four routes in §4.1.7: R1 separate service, R2 commercial licence, R3 MPL engine (ZetaOffice), R4 no engine at all. [Start on **A + B + R4** (author in Fluent, view via `docx-preview`, convert-on-import with a warning) because that ships with zero AGPL exposure; add **R1** the day a host exists. Re-evaluate at the point the product is sold.]
 9. **How much existing `.docx` must be edited in place** — this, not preference, decides between R4 and R1/R2/R3 (§4.1.7.1). [Answer it with a corpus count: how many documents, and how many of them are round-tripped weekly.]
 
-#### 18.3 One-paragraph brief for the generator
+### 18.3 One-paragraph brief for the generator
 
 The brief is §23, at the end of this document, so it can name the feature under construction.
 
@@ -2108,13 +2107,13 @@ Not a feature list — a set of properties that can be tested:
 | A callout shows what it claims | drag over a region; the inset is that region magnified, not a stock box |
 | Nothing irreversible is one click away | crop is undoable; nothing is deleted, only superseded |
 
-#### 22.7 What is built
+### 22.7 What is built
 
 §22 is no longer only a design. The editor it describes ships as the *Temco Markdown* surface of
 `extensions/temco-docs` — a custom text editor on Fluent UI v9, default for `*.md`, with capture, annotation and the
 paste matrix in the surface and the file still the document. The implementation record — the protocol, the caret
 rules, the defects that only a real window showed, and the deliberate deviations from this section — is
-[`modules/temco-docs/extension-design.md`](modules/temco-docs/extension-design#the-fluent-markdown-surface), and
+[`modules/temco-docs/extension-design.md`](./modules/temco-docs/extension-design.md#the-fluent-markdown-surface), and
 the real-window evidence is the `temco-markdown-editor` scenario (nine steps, all passing).
 
 Of this section's rules, the ones that now ship:
@@ -2138,4 +2137,3 @@ as a workflow (`.github/workflows/docs-propose.yml`) but has not yet run against
 ## 23. One-paragraph brief for the generator
 
 > Build TEMCO Platform inside the existing VS Code fork. The shell is VS Code and must not be touched; every screen we own is a webview built with React 19 and Fluent UI v9 from `extensions/temco-ui`, themed by bridging `--vscode-*` variables into a Fluent theme. Office documents are edited by ONLYOFFICE, behind a pluggable `OfficeTransport`: either a Document Server embedded as a single cross-origin iframe (JWT-signed config, `key` derived from `(assetId, revision, options)`, short-lived signed content URL, save callback that writes an immutable revision), or a fully embedded build with static `web-apps` plus `x2t.wasm` where conversion happens in-process and no server exists at all. Markdown has two hosts — a Fluent editor by default, the same Office host when the asset remembers that choice in `preferredHost` — resolved by `explicit override → preferredHost → setting → format priority`. **The feature under construction is documents (§22): a markdown editor where a screenshot goes from clipboard to annotated and inserted in one keystroke, every image is an attachment with a caption and a version it depicts, and version changes arrive as proposals from CI that a person approves.** The domain is five concepts — Product, Asset, Editor Host, Publication, Knowledge — and no sixth noun may appear. Every save is a revision; nothing edits in place; nothing ever shows a blank iframe.
-

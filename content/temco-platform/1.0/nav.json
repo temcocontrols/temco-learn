@@ -1,0 +1,165 @@
+{
+	"generated": "2026-11-12",
+	"pages": [
+		{
+			"href": "catalog.md",
+			"title": "The catalog",
+			"order": 10
+		},
+		{
+			"href": "design/ai-assistant-and-mcp-server.md",
+			"title": "The local assistant and its MCP server",
+			"order": 10
+		},
+		{
+			"href": "entry-points.md",
+			"title": "Entry points",
+			"order": 10
+		},
+		{
+			"href": "introduction.md",
+			"title": "Platform introduction",
+			"order": 10
+		},
+		{
+			"href": "modules/README.md",
+			"title": "Modules",
+			"order": 10
+		},
+		{
+			"href": "modules/temco-ai/README.md",
+			"title": "`temco-ai`",
+			"order": 10
+		},
+		{
+			"href": "modules/temco-docs/README.md",
+			"title": "Temco Docs — documentation",
+			"order": 10
+		},
+		{
+			"href": "modules/temco-editor/README.md",
+			"title": "temco-editor",
+			"order": 10
+		},
+		{
+			"href": "modules/temco-projects/README.md",
+			"title": "`temco-projects`",
+			"order": 10
+		},
+		{
+			"href": "modules/temco-repositories/README.md",
+			"title": "`temco-repositories`",
+			"order": 10
+		},
+		{
+			"href": "modules/temco-store/README.md",
+			"title": "`temco-store`",
+			"order": 10
+		},
+		{
+			"href": "modules/temco-tools/README.md",
+			"title": "`temco-tools`",
+			"order": 10
+		},
+		{
+			"href": "modules/temco-ui/README.md",
+			"title": "`temco-ui`",
+			"order": 10
+		},
+		{
+			"href": "modules/temco-workbench/README.md",
+			"title": "`temco-workbench`",
+			"order": 10
+		},
+		{
+			"href": "naming.md",
+			"title": "Naming",
+			"order": 10
+		},
+		{
+			"href": "platform-design.md",
+			"title": "TEMCO Platform — Engineering Design (Revision 2)",
+			"order": 10
+		},
+		{
+			"href": "README.md",
+			"title": "Temco Platform — architecture",
+			"order": 10
+		},
+		{
+			"href": "ui/app-flow.md",
+			"title": "The application flow",
+			"order": 10
+		},
+		{
+			"href": "design/authoring-and-msdn-output.md",
+			"title": "Authoring parity with Dr.Explain, publishing parity with MSDN",
+			"order": 20
+		},
+		{
+			"href": "modules/temco-docs/architecture.md",
+			"title": "Architecture",
+			"order": 20
+		},
+		{
+			"href": "ui/app-layout.md",
+			"title": "The application window",
+			"order": 20
+		},
+		{
+			"href": "design/t3000-support-engineering.md",
+			"title": "Support intake — engineering",
+			"order": 30
+		},
+		{
+			"href": "modules/temco-docs/extension-design.md",
+			"title": "Extension design",
+			"order": 30
+		},
+		{
+			"href": "ui/application-design.md",
+			"title": "The application: shell, screens and flow",
+			"order": 30
+		},
+		{
+			"href": "design/t3000-support-intake.md",
+			"title": "Support intake from T3000",
+			"order": 40
+		},
+		{
+			"href": "modules/temco-docs/registry-schema.md",
+			"title": "The registry the module reads",
+			"order": 40
+		},
+		{
+			"href": "ui/authoring-flow.md",
+			"title": "The authoring flow",
+			"order": 40
+		},
+		{
+			"href": "ui/editor-design.md",
+			"title": "The editor",
+			"order": 50
+		},
+		{
+			"href": "ui/platform-design.md",
+			"title": "The platform",
+			"order": 60
+		},
+		{
+			"href": "ui/redesign.md",
+			"title": "Docs center: the redesign",
+			"order": 70
+		},
+		{
+			"href": "ui/shell-v2.md",
+			"title": "Shell and pages, v2 — the full layout, drawn",
+			"order": 80
+		},
+		{
+			"href": "ui/welcome-v3-design.md",
+			"title": "The front page — the Azure portal's palette and scale",
+			"order": 90
+		}
+	]
+}

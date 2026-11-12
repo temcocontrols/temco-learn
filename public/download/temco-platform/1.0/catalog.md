@@ -1,7 +1,6 @@
 ---
 title: "The catalog"
-order: 20
-edit: false
+order: 10
 ---
 
 The platform's memory: one SQLite file, owned by `temco-store`, at

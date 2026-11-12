@@ -1,7 +1,6 @@
 ---
 title: "`temco-workbench`"
-order: 290
-edit: false
+order: 10
 ---
 
 The application's own surfaces. It is the only module that is not a domain: it owns the **Library** (the index of what every module has), the **dashboard**, the **needs page**, and the three layout decisions that come with them — which side panel and which tab open at startup, and which sidebar section comes forward when the project changes.

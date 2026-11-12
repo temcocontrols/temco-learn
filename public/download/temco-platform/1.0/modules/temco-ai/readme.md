@@ -1,7 +1,6 @@
 ---
 title: "`temco-ai`"
-order: 210
-edit: false
+order: 10
 ---
 
 The local-AI module: it runs a model on this machine and answers from the documentation it is given.
@@ -62,7 +61,7 @@ One declared dependency, in one direction:
 
 ## The tool server
 
-The assistant can call tools: a C# MCP server lives at `tools/temco-mcp` and this module is its client. The protocol between them, the tools it exposes, how the server is built, and how the application starts and stops it are specified in [`design/ai-assistant-and-mcp-server.md`](../../design/ai-assistant-and-mcp-server).
+The assistant can call tools: a C# MCP server lives at `tools/temco-mcp` and this module is its client. The protocol between them, the tools it exposes, how the server is built, and how the application starts and stops it are specified in [`design/ai-assistant-and-mcp-server.md`](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/design/ai-assistant-and-mcp-server.md).
 
 ## What it never does
 

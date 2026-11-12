@@ -1,5 +1,5 @@
 {
-	"generated": "2026-11-12T03:33:05.405Z",
+	"generated": "2026-11-12T05:25:58.057Z",
 	"sections": [
 		{
 			"id": "documentation",
@@ -38,1042 +38,1042 @@
 			"title": "T3000",
 			"section": "documentation",
 			"summary": "The T3000 front end: the controller, its hardware, the software, Control Basic, and the examples that tie them together.",
-			"latest": "2026.01",
+			"latest": "1.0",
 			"versions": [
 				{
-					"version": "2026.01",
-					"builtAt": "2026-11-12T03:31:05.564Z",
+					"version": "1.0",
+					"builtAt": "2026-11-12T05:21:02.632Z",
 					"pages": [
 						{
 							"href": "index",
 							"title": "T3000",
 							"kind": "md",
-							"source": "content/t3000/2026.01/00-index.md",
-							"updated": "2026-11-12T03:31:05.564Z",
+							"source": "content/t3000/1.0/00-index.md",
+							"updated": "2026-11-12T05:21:02.632Z",
 							"minutes": 1
 						},
 						{
 							"href": "t3000-manual",
 							"title": "T3000 Manual",
 							"kind": "md",
-							"source": "content/t3000/2026.01/t3000-manual.md",
-							"updated": "2026-11-12T03:31:05.361Z",
+							"source": "content/t3000/1.0/t3000-manual.md",
+							"updated": "2026-11-12T05:21:02.432Z",
 							"minutes": 1
 						},
 						{
 							"href": "introduction",
 							"title": "Introduction",
 							"kind": "md",
-							"source": "content/t3000/2026.01/introduction.md",
-							"updated": "2026-11-12T03:31:05.363Z",
+							"source": "content/t3000/1.0/introduction.md",
+							"updated": "2026-11-12T05:21:02.433Z",
 							"minutes": 1
 						},
 						{
 							"href": "system-description/system-description",
 							"title": "System Description",
 							"kind": "md",
-							"source": "content/t3000/2026.01/system-description/system-description.md",
-							"updated": "2026-11-12T03:31:05.364Z",
+							"source": "content/t3000/1.0/system-description/system-description.md",
+							"updated": "2026-11-12T05:21:02.434Z",
 							"minutes": 1
 						},
 						{
 							"href": "system-description/general-overview",
 							"title": "General Overview",
 							"kind": "md",
-							"source": "content/t3000/2026.01/system-description/general-overview.md",
-							"updated": "2026-11-12T03:31:05.365Z",
+							"source": "content/t3000/1.0/system-description/general-overview.md",
+							"updated": "2026-11-12T05:21:02.435Z",
 							"minutes": 1
 						},
 						{
 							"href": "system-description/system-highlights",
 							"title": "System Highlights",
 							"kind": "md",
-							"source": "content/t3000/2026.01/system-description/system-highlights.md",
-							"updated": "2026-11-12T03:31:05.368Z",
+							"source": "content/t3000/1.0/system-description/system-highlights.md",
+							"updated": "2026-11-12T05:21:02.437Z",
 							"minutes": 2
 						},
 						{
 							"href": "system-description/control-concepts",
 							"title": "Control Concepts",
 							"kind": "md",
-							"source": "content/t3000/2026.01/system-description/control-concepts.md",
-							"updated": "2026-11-12T03:31:05.370Z",
+							"source": "content/t3000/1.0/system-description/control-concepts.md",
+							"updated": "2026-11-12T05:21:02.438Z",
 							"minutes": 4
 						},
 						{
 							"href": "software/software",
 							"title": "Software",
 							"kind": "md",
-							"source": "content/t3000/2026.01/software/software.md",
-							"updated": "2026-11-12T03:31:05.371Z",
+							"source": "content/t3000/1.0/software/software.md",
+							"updated": "2026-11-12T05:21:02.438Z",
 							"minutes": 1
 						},
 						{
 							"href": "software/overview",
 							"title": "Overview",
 							"kind": "md",
-							"source": "content/t3000/2026.01/software/overview.md",
-							"updated": "2026-11-12T03:31:05.372Z",
+							"source": "content/t3000/1.0/software/overview.md",
+							"updated": "2026-11-12T05:21:02.442Z",
 							"minutes": 5
 						},
 						{
 							"href": "software/menus-and-work-area",
 							"title": "Menus and Work Area",
 							"kind": "md",
-							"source": "content/t3000/2026.01/software/menus-and-work-area.md",
-							"updated": "2026-11-12T03:31:05.373Z",
+							"source": "content/t3000/1.0/software/menus-and-work-area.md",
+							"updated": "2026-11-12T05:21:02.446Z",
 							"minutes": 2
 						},
 						{
 							"href": "software/system-requirements",
 							"title": "System Requirements",
 							"kind": "md",
-							"source": "content/t3000/2026.01/software/system-requirements.md",
-							"updated": "2026-11-12T03:31:05.374Z",
+							"source": "content/t3000/1.0/software/system-requirements.md",
+							"updated": "2026-11-12T05:21:02.448Z",
 							"minutes": 1
 						},
 						{
 							"href": "software/keyboard-and-mouse",
 							"title": "Keyboard and Mouse",
 							"kind": "md",
-							"source": "content/t3000/2026.01/software/keyboard-and-mouse.md",
-							"updated": "2026-11-12T03:31:05.376Z",
+							"source": "content/t3000/1.0/software/keyboard-and-mouse.md",
+							"updated": "2026-11-12T05:21:02.450Z",
 							"minutes": 4
 						},
 						{
 							"href": "software/open-source-project",
 							"title": "Open Source Project",
 							"kind": "md",
-							"source": "content/t3000/2026.01/software/open-source-project.md",
-							"updated": "2026-11-12T03:31:05.377Z",
+							"source": "content/t3000/1.0/software/open-source-project.md",
+							"updated": "2026-11-12T05:21:02.451Z",
 							"minutes": 1
 						},
 						{
 							"href": "t3-controller-hardware/t3-controller-hardware",
 							"title": "T3 Controller Hardware",
 							"kind": "md",
-							"source": "content/t3000/2026.01/t3-controller-hardware/t3-controller-hardware.md",
-							"updated": "2026-11-12T03:31:05.378Z",
+							"source": "content/t3000/1.0/t3-controller-hardware/t3-controller-hardware.md",
+							"updated": "2026-11-12T05:21:02.453Z",
 							"minutes": 1
 						},
 						{
 							"href": "t3-controller-hardware/t3-controller",
 							"title": "T3 Controller",
 							"kind": "md",
-							"source": "content/t3000/2026.01/t3-controller-hardware/t3-controller.md",
-							"updated": "2026-11-12T03:31:05.379Z",
+							"source": "content/t3000/1.0/t3-controller-hardware/t3-controller.md",
+							"updated": "2026-11-12T05:21:02.454Z",
 							"minutes": 7
 						},
 						{
 							"href": "t3-controller-hardware/hardware-architecture",
 							"title": "Hardware Architecture",
 							"kind": "md",
-							"source": "content/t3000/2026.01/t3-controller-hardware/hardware-architecture.md",
-							"updated": "2026-11-12T03:31:05.381Z",
+							"source": "content/t3000/1.0/t3-controller-hardware/hardware-architecture.md",
+							"updated": "2026-11-12T05:21:02.455Z",
 							"minutes": 7
 						},
 						{
 							"href": "t3-controller-hardware/communications-ports",
 							"title": "Communications Ports",
 							"kind": "md",
-							"source": "content/t3000/2026.01/t3-controller-hardware/communications-ports.md",
-							"updated": "2026-11-12T03:31:05.383Z",
+							"source": "content/t3000/1.0/t3-controller-hardware/communications-ports.md",
+							"updated": "2026-11-12T05:21:02.456Z",
 							"minutes": 1
 						},
 						{
 							"href": "t3-controller-hardware/wireless",
 							"title": "Wireless",
 							"kind": "md",
-							"source": "content/t3000/2026.01/t3-controller-hardware/wireless.md",
-							"updated": "2026-11-12T03:31:05.385Z",
+							"source": "content/t3000/1.0/t3-controller-hardware/wireless.md",
+							"updated": "2026-11-12T05:21:02.459Z",
 							"minutes": 1
 						},
 						{
 							"href": "t3-controller-hardware/expansion-modules/expansion-modules",
 							"title": "Expansion Modules",
 							"kind": "md",
-							"source": "content/t3000/2026.01/t3-controller-hardware/expansion-modules/expansion-modules.md",
-							"updated": "2026-11-12T03:31:05.387Z",
+							"source": "content/t3000/1.0/t3-controller-hardware/expansion-modules/expansion-modules.md",
+							"updated": "2026-11-12T05:21:02.462Z",
 							"minutes": 2
 						},
 						{
 							"href": "t3-controller-hardware/expansion-modules/t3-8o",
 							"title": "T3-8o",
 							"kind": "md",
-							"source": "content/t3000/2026.01/t3-controller-hardware/expansion-modules/t3-8o.md",
-							"updated": "2026-11-12T03:31:05.389Z",
+							"source": "content/t3000/1.0/t3-controller-hardware/expansion-modules/t3-8o.md",
+							"updated": "2026-11-12T05:21:02.464Z",
 							"minutes": 5
 						},
 						{
 							"href": "t3-controller-hardware/expansion-modules/t3-22i",
 							"title": "T3-22i",
 							"kind": "md",
-							"source": "content/t3000/2026.01/t3-controller-hardware/expansion-modules/t3-22i.md",
-							"updated": "2026-11-12T03:31:05.390Z",
+							"source": "content/t3000/1.0/t3-controller-hardware/expansion-modules/t3-22i.md",
+							"updated": "2026-11-12T05:21:02.465Z",
 							"minutes": 3
 						},
 						{
 							"href": "t3-controller-hardware/expansion-modules/t3-pt12",
 							"title": "T3-PT12",
 							"kind": "md",
-							"source": "content/t3000/2026.01/t3-controller-hardware/expansion-modules/t3-pt12.md",
-							"updated": "2026-11-12T03:31:05.391Z",
+							"source": "content/t3000/1.0/t3-controller-hardware/expansion-modules/t3-pt12.md",
+							"updated": "2026-11-12T05:21:02.466Z",
 							"minutes": 2
 						},
 						{
 							"href": "t3-controller-hardware/expansion-modules/pwm",
 							"title": "PWM",
 							"kind": "md",
-							"source": "content/t3000/2026.01/t3-controller-hardware/expansion-modules/pwm.md",
-							"updated": "2026-11-12T03:31:05.392Z",
+							"source": "content/t3000/1.0/t3-controller-hardware/expansion-modules/pwm.md",
+							"updated": "2026-11-12T05:21:02.467Z",
 							"minutes": 7
 						},
 						{
 							"href": "installing-and-connecting/installing-and-connecting",
 							"title": "Installing and connecting",
 							"kind": "md",
-							"source": "content/t3000/2026.01/installing-and-connecting/installing-and-connecting.md",
-							"updated": "2026-11-12T03:31:05.393Z",
+							"source": "content/t3000/1.0/installing-and-connecting/installing-and-connecting.md",
+							"updated": "2026-11-12T05:21:02.468Z",
 							"minutes": 1
 						},
 						{
 							"href": "installing-and-connecting/installing-t3000-software",
 							"title": "Installing T3000 Software",
 							"kind": "md",
-							"source": "content/t3000/2026.01/installing-and-connecting/installing-t3000-software.md",
-							"updated": "2026-11-12T03:31:05.394Z",
+							"source": "content/t3000/1.0/installing-and-connecting/installing-t3000-software.md",
+							"updated": "2026-11-12T05:21:02.470Z",
 							"minutes": 3
 						},
 						{
 							"href": "installing-and-connecting/hardware-details",
 							"title": "Hardware Details",
 							"kind": "md",
-							"source": "content/t3000/2026.01/installing-and-connecting/hardware-details.md",
-							"updated": "2026-11-12T03:31:05.396Z",
+							"source": "content/t3000/1.0/installing-and-connecting/hardware-details.md",
+							"updated": "2026-11-12T05:21:02.471Z",
 							"minutes": 2
 						},
 						{
 							"href": "installing-and-connecting/misc",
 							"title": "Misc",
 							"kind": "md",
-							"source": "content/t3000/2026.01/installing-and-connecting/misc.md",
-							"updated": "2026-11-12T03:31:05.397Z",
+							"source": "content/t3000/1.0/installing-and-connecting/misc.md",
+							"updated": "2026-11-12T05:21:02.472Z",
 							"minutes": 4
 						},
 						{
 							"href": "installing-and-connecting/troubleshooting-ethernet-connections",
 							"title": "Troubleshooting Ethernet Connections",
 							"kind": "md",
-							"source": "content/t3000/2026.01/installing-and-connecting/troubleshooting-ethernet-connections.md",
-							"updated": "2026-11-12T03:31:05.398Z",
+							"source": "content/t3000/1.0/installing-and-connecting/troubleshooting-ethernet-connections.md",
+							"updated": "2026-11-12T05:21:02.476Z",
 							"minutes": 1
 						},
 						{
 							"href": "installing-and-connecting/installing-t3000-software-2",
 							"title": "Installing T3000 Software",
 							"kind": "md",
-							"source": "content/t3000/2026.01/installing-and-connecting/installing-t3000-software-2.md",
-							"updated": "2026-11-12T03:31:05.400Z",
+							"source": "content/t3000/1.0/installing-and-connecting/installing-t3000-software-2.md",
+							"updated": "2026-11-12T05:21:02.478Z",
 							"minutes": 3
 						},
 						{
 							"href": "menu-items-and-tree/menu-items-and-tree",
 							"title": "Menu Items and Tree",
 							"kind": "md",
-							"source": "content/t3000/2026.01/menu-items-and-tree/menu-items-and-tree.md",
-							"updated": "2026-11-12T03:31:05.402Z",
+							"source": "content/t3000/1.0/menu-items-and-tree/menu-items-and-tree.md",
+							"updated": "2026-11-12T05:21:02.480Z",
 							"minutes": 1
 						},
 						{
 							"href": "menu-items-and-tree/prg-files",
 							"title": "PRG Files",
 							"kind": "md",
-							"source": "content/t3000/2026.01/menu-items-and-tree/prg-files.md",
-							"updated": "2026-11-12T03:31:05.404Z",
+							"source": "content/t3000/1.0/menu-items-and-tree/prg-files.md",
+							"updated": "2026-11-12T05:21:02.481Z",
 							"minutes": 1
 						},
 						{
 							"href": "menu-items-and-tree/system-tree",
 							"title": "System Tree",
 							"kind": "md",
-							"source": "content/t3000/2026.01/menu-items-and-tree/system-tree.md",
-							"updated": "2026-11-12T03:31:05.405Z",
+							"source": "content/t3000/1.0/menu-items-and-tree/system-tree.md",
+							"updated": "2026-11-12T05:21:02.482Z",
 							"minutes": 1
 						},
 						{
 							"href": "menu-items-and-tree/building-database/building-database",
 							"title": "Building Database",
 							"kind": "md",
-							"source": "content/t3000/2026.01/menu-items-and-tree/building-database/building-database.md",
-							"updated": "2026-11-12T03:31:05.407Z",
+							"source": "content/t3000/1.0/menu-items-and-tree/building-database/building-database.md",
+							"updated": "2026-11-12T05:21:02.483Z",
 							"minutes": 1
 						},
 						{
 							"href": "menu-items-and-tree/building-database/t3000-remote-connection",
 							"title": "T3000 Remote Connection",
 							"kind": "md",
-							"source": "content/t3000/2026.01/menu-items-and-tree/building-database/t3000-remote-connection.md",
-							"updated": "2026-11-12T03:31:05.408Z",
+							"source": "content/t3000/1.0/menu-items-and-tree/building-database/t3000-remote-connection.md",
+							"updated": "2026-11-12T05:21:02.484Z",
 							"minutes": 2
 						},
 						{
 							"href": "control/control",
 							"title": "6 Control",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/control.md",
-							"updated": "2026-11-12T03:31:05.408Z",
+							"source": "content/t3000/1.0/control/control.md",
+							"updated": "2026-11-12T05:21:02.486Z",
 							"minutes": 1
 						},
 						{
 							"href": "control/graphic-screens/graphic-screens",
 							"title": "6.1 Graphic Screens",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/graphic-screens/graphic-screens.md",
-							"updated": "2026-11-12T03:31:05.409Z",
+							"source": "content/t3000/1.0/control/graphic-screens/graphic-screens.md",
+							"updated": "2026-11-12T05:21:02.487Z",
 							"minutes": 6
 						},
 						{
 							"href": "control/graphic-screens/insert-point",
 							"title": "6.1.1 Insert Point",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/graphic-screens/insert-point.md",
-							"updated": "2026-11-12T03:31:05.410Z",
+							"source": "content/t3000/1.0/control/graphic-screens/insert-point.md",
+							"updated": "2026-11-12T05:21:02.488Z",
 							"minutes": 2
 						},
 						{
 							"href": "control/graphic-screens/edit-point",
 							"title": "6.1.2 Edit Point",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/graphic-screens/edit-point.md",
-							"updated": "2026-11-12T03:31:05.412Z",
+							"source": "content/t3000/1.0/control/graphic-screens/edit-point.md",
+							"updated": "2026-11-12T05:21:02.491Z",
 							"minutes": 1
 						},
 						{
 							"href": "control/programs",
 							"title": "6.2 Programs",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/programs.md",
-							"updated": "2026-11-12T03:31:05.413Z",
+							"source": "content/t3000/1.0/control/programs.md",
+							"updated": "2026-11-12T05:21:02.494Z",
 							"minutes": 1
 						},
 						{
 							"href": "control/inputs/inputs",
 							"title": "Inputs",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/inputs/inputs.md",
-							"updated": "2026-11-12T03:31:05.414Z",
+							"source": "content/t3000/1.0/control/inputs/inputs.md",
+							"updated": "2026-11-12T05:21:02.496Z",
 							"minutes": 5
 						},
 						{
 							"href": "control/inputs/menu",
 							"title": "Menu",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/inputs/menu.md",
-							"updated": "2026-11-12T03:31:05.415Z",
+							"source": "content/t3000/1.0/control/inputs/menu.md",
+							"updated": "2026-11-12T05:21:02.498Z",
 							"minutes": 1
 						},
 						{
 							"href": "control/inputs/pulse-counting",
 							"title": "Pulse Counting",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/inputs/pulse-counting.md",
-							"updated": "2026-11-12T03:31:05.417Z",
+							"source": "content/t3000/1.0/control/inputs/pulse-counting.md",
+							"updated": "2026-11-12T05:21:02.499Z",
 							"minutes": 1
 						},
 						{
 							"href": "control/inputs/custom-digital-ranges",
 							"title": "Custom Digital Ranges",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/inputs/custom-digital-ranges.md",
-							"updated": "2026-11-12T03:31:05.419Z",
+							"source": "content/t3000/1.0/control/inputs/custom-digital-ranges.md",
+							"updated": "2026-11-12T05:21:02.500Z",
 							"minutes": 2
 						},
 						{
 							"href": "control/inputs/range-setting/range-setting",
 							"title": "Range Setting",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/inputs/range-setting/range-setting.md",
-							"updated": "2026-11-12T03:31:05.421Z",
+							"source": "content/t3000/1.0/control/inputs/range-setting/range-setting.md",
+							"updated": "2026-11-12T05:21:02.502Z",
 							"minutes": 3
 						},
 						{
 							"href": "control/inputs/range-setting/select-range-number-window",
 							"title": "Select Range Number window",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/inputs/range-setting/select-range-number-window.md",
-							"updated": "2026-11-12T03:31:05.423Z",
+							"source": "content/t3000/1.0/control/inputs/range-setting/select-range-number-window.md",
+							"updated": "2026-11-12T05:21:02.503Z",
 							"minutes": 1
 						},
 						{
 							"href": "control/outputs",
 							"title": "6.4 Outputs",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/outputs.md",
-							"updated": "2026-11-12T03:31:05.424Z",
+							"source": "content/t3000/1.0/control/outputs.md",
+							"updated": "2026-11-12T05:21:02.504Z",
 							"minutes": 4
 						},
 						{
 							"href": "control/variables",
 							"title": "6.5 Variables",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/variables.md",
-							"updated": "2026-11-12T03:31:05.426Z",
+							"source": "content/t3000/1.0/control/variables.md",
+							"updated": "2026-11-12T05:21:02.505Z",
 							"minutes": 3
 						},
 						{
 							"href": "control/pid-loops/pid-loops",
 							"title": "6.6 PID Loops",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/pid-loops/pid-loops.md",
-							"updated": "2026-11-12T03:31:05.427Z",
+							"source": "content/t3000/1.0/control/pid-loops/pid-loops.md",
+							"updated": "2026-11-12T05:21:02.507Z",
 							"minutes": 1
 						},
 						{
 							"href": "control/pid-loops/pid-loops-introduction",
 							"title": "PID Loops Introduction",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/pid-loops/pid-loops-introduction.md",
-							"updated": "2026-11-12T03:31:05.428Z",
+							"source": "content/t3000/1.0/control/pid-loops/pid-loops-introduction.md",
+							"updated": "2026-11-12T05:21:02.511Z",
 							"minutes": 4
 						},
 						{
 							"href": "control/pid-loops/pid-loop-work-screen/pid-loop-work-screen",
 							"title": "PID Loop Work Screen",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/pid-loops/pid-loop-work-screen/pid-loop-work-screen.md",
-							"updated": "2026-11-12T03:31:05.430Z",
+							"source": "content/t3000/1.0/control/pid-loops/pid-loop-work-screen/pid-loop-work-screen.md",
+							"updated": "2026-11-12T05:21:02.514Z",
 							"minutes": 7
 						},
 						{
 							"href": "control/pid-loops/pid-loop-work-screen/pid-loop-math-discussion",
 							"title": "PID LOOP MATH DISCUSSION",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/pid-loops/pid-loop-work-screen/pid-loop-math-discussion.md",
-							"updated": "2026-11-12T03:31:05.431Z",
+							"source": "content/t3000/1.0/control/pid-loops/pid-loop-work-screen/pid-loop-math-discussion.md",
+							"updated": "2026-11-12T05:21:02.516Z",
 							"minutes": 1
 						},
 						{
 							"href": "control/pid-loops/pid-loop-work-screen/pid-loops-introduction",
 							"title": "PID Loops Introduction",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/pid-loops/pid-loop-work-screen/pid-loops-introduction.md",
-							"updated": "2026-11-12T03:31:05.433Z",
+							"source": "content/t3000/1.0/control/pid-loops/pid-loop-work-screen/pid-loops-introduction.md",
+							"updated": "2026-11-12T05:21:02.517Z",
 							"minutes": 1
 						},
 						{
 							"href": "control/pid-loops/pid-loop-math-discussion",
 							"title": "PID Loop Math Discussion",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/pid-loops/pid-loop-math-discussion.md",
-							"updated": "2026-11-12T03:31:05.435Z",
+							"source": "content/t3000/1.0/control/pid-loops/pid-loop-math-discussion.md",
+							"updated": "2026-11-12T05:21:02.518Z",
 							"minutes": 1
 						},
 						{
 							"href": "control/schedules",
 							"title": "6.7 Schedules",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/schedules.md",
-							"updated": "2026-11-12T03:31:05.437Z",
+							"source": "content/t3000/1.0/control/schedules.md",
+							"updated": "2026-11-12T05:21:02.519Z",
 							"minutes": 2
 						},
 						{
 							"href": "control/holidays",
 							"title": "6.8 Holidays",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/holidays.md",
-							"updated": "2026-11-12T03:31:05.438Z",
+							"source": "content/t3000/1.0/control/holidays.md",
+							"updated": "2026-11-12T05:21:02.520Z",
 							"minutes": 1
 						},
 						{
 							"href": "control/trend-logs",
 							"title": "6.9 Trend Logs",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/trend-logs.md",
-							"updated": "2026-11-12T03:31:05.439Z",
+							"source": "content/t3000/1.0/control/trend-logs.md",
+							"updated": "2026-11-12T05:21:02.521Z",
 							"minutes": 2
 						},
 						{
 							"href": "control/alarm-log",
 							"title": "6.10 ALARM LOG",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control/alarm-log.md",
-							"updated": "2026-11-12T03:31:05.440Z",
+							"source": "content/t3000/1.0/control/alarm-log.md",
+							"updated": "2026-11-12T05:21:02.522Z",
 							"minutes": 2
 						},
 						{
 							"href": "panel-configuration",
 							"title": "Panel Configuration",
 							"kind": "md",
-							"source": "content/t3000/2026.01/panel-configuration.md",
-							"updated": "2026-11-12T03:31:05.441Z",
+							"source": "content/t3000/1.0/panel-configuration.md",
+							"updated": "2026-11-12T05:21:02.526Z",
 							"minutes": 2
 						},
 						{
 							"href": "control-basic-programming-overview",
 							"title": "8 Control Basic Programming",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming-overview.md",
-							"updated": "2026-11-12T03:31:05.442Z",
+							"source": "content/t3000/1.0/control-basic-programming-overview.md",
+							"updated": "2026-11-12T05:21:02.529Z",
 							"minutes": 15
 						},
 						{
 							"href": "programming-a-controller",
 							"title": "9 Programming a controller",
 							"kind": "md",
-							"source": "content/t3000/2026.01/programming-a-controller.md",
-							"updated": "2026-11-12T03:31:05.444Z",
+							"source": "content/t3000/1.0/programming-a-controller.md",
+							"updated": "2026-11-12T05:21:02.531Z",
 							"minutes": 9
 						},
 						{
 							"href": "control-basic-programming/control-basic-programming",
 							"title": "Control Basic Programming",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/control-basic-programming.md",
-							"updated": "2026-11-12T03:31:05.445Z",
+							"source": "content/t3000/1.0/control-basic-programming/control-basic-programming.md",
+							"updated": "2026-11-12T05:21:02.532Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/numbers-time-and-date-handling/numbers-time-and-date-handling",
 							"title": "Numbers, Time and Date Handling",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/numbers-time-and-date-handling/numbers-time-and-date-handling.md",
-							"updated": "2026-11-12T03:31:05.446Z",
+							"source": "content/t3000/1.0/control-basic-programming/numbers-time-and-date-handling/numbers-time-and-date-handling.md",
+							"updated": "2026-11-12T05:21:02.533Z",
 							"minutes": 3
 						},
 						{
 							"href": "control-basic-programming/numbers-time-and-date-handling/logical-operators",
 							"title": "Logical Operators",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/numbers-time-and-date-handling/logical-operators.md",
-							"updated": "2026-11-12T03:31:05.447Z",
+							"source": "content/t3000/1.0/control-basic-programming/numbers-time-and-date-handling/logical-operators.md",
+							"updated": "2026-11-12T05:21:02.534Z",
 							"minutes": 2
 						},
 						{
 							"href": "control-basic-programming/numbers-time-and-date-handling/expressions",
 							"title": "Expressions",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/numbers-time-and-date-handling/expressions.md",
-							"updated": "2026-11-12T03:31:05.449Z",
+							"source": "content/t3000/1.0/control-basic-programming/numbers-time-and-date-handling/expressions.md",
+							"updated": "2026-11-12T05:21:02.536Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/numbers-time-and-date-handling/variables",
 							"title": "Variables",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/numbers-time-and-date-handling/variables.md",
-							"updated": "2026-11-12T03:31:05.451Z",
+							"source": "content/t3000/1.0/control-basic-programming/numbers-time-and-date-handling/variables.md",
+							"updated": "2026-11-12T05:21:02.537Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/list-of-statements",
 							"title": "List of Statements",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/list-of-statements.md",
-							"updated": "2026-11-12T03:31:05.453Z",
+							"source": "content/t3000/1.0/control-basic-programming/list-of-statements.md",
+							"updated": "2026-11-12T05:21:02.538Z",
 							"minutes": 5
 						},
 						{
 							"href": "control-basic-programming/abs",
 							"title": "ABS",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/abs.md",
-							"updated": "2026-11-12T03:31:05.454Z",
+							"source": "content/t3000/1.0/control-basic-programming/abs.md",
+							"updated": "2026-11-12T05:21:02.538Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/alarm-alarm-at",
 							"title": "ALARM, ALARM-AT",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/alarm-alarm-at.md",
-							"updated": "2026-11-12T03:31:05.456Z",
+							"source": "content/t3000/1.0/control-basic-programming/alarm-alarm-at.md",
+							"updated": "2026-11-12T05:21:02.542Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/avg",
 							"title": "AVG",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/avg.md",
-							"updated": "2026-11-12T03:31:05.457Z",
+							"source": "content/t3000/1.0/control-basic-programming/avg.md",
+							"updated": "2026-11-12T05:21:02.544Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/call",
 							"title": "CALL",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/call.md",
-							"updated": "2026-11-12T03:31:05.458Z",
+							"source": "content/t3000/1.0/control-basic-programming/call.md",
+							"updated": "2026-11-12T05:21:02.547Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/clear",
 							"title": "CLEAR",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/clear.md",
-							"updated": "2026-11-12T03:31:05.459Z",
+							"source": "content/t3000/1.0/control-basic-programming/clear.md",
+							"updated": "2026-11-12T05:21:02.549Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/close",
 							"title": "CLOSE",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/close.md",
-							"updated": "2026-11-12T03:31:05.461Z",
+							"source": "content/t3000/1.0/control-basic-programming/close.md",
+							"updated": "2026-11-12T05:21:02.550Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/dalarm",
 							"title": "DALARM",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/dalarm.md",
-							"updated": "2026-11-12T03:31:05.462Z",
+							"source": "content/t3000/1.0/control-basic-programming/dalarm.md",
+							"updated": "2026-11-12T05:21:02.551Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/declare",
 							"title": "Declare",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/declare.md",
-							"updated": "2026-11-12T03:31:05.464Z",
+							"source": "content/t3000/1.0/control-basic-programming/declare.md",
+							"updated": "2026-11-12T05:21:02.552Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/disable",
 							"title": "DISABLE",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/disable.md",
-							"updated": "2026-11-12T03:31:05.465Z",
+							"source": "content/t3000/1.0/control-basic-programming/disable.md",
+							"updated": "2026-11-12T05:21:02.553Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/dom-dow-doy",
 							"title": "DOM, DOW, DOY",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/dom-dow-doy.md",
-							"updated": "2026-11-12T03:31:05.468Z",
+							"source": "content/t3000/1.0/control-basic-programming/dom-dow-doy.md",
+							"updated": "2026-11-12T05:21:02.554Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/enable",
 							"title": "ENABLE",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/enable.md",
-							"updated": "2026-11-12T03:31:05.469Z",
+							"source": "content/t3000/1.0/control-basic-programming/enable.md",
+							"updated": "2026-11-12T05:21:02.555Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/end",
 							"title": "END",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/end.md",
-							"updated": "2026-11-12T03:31:05.472Z",
+							"source": "content/t3000/1.0/control-basic-programming/end.md",
+							"updated": "2026-11-12T05:21:02.557Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/for",
 							"title": "FOR",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/for.md",
-							"updated": "2026-11-12T03:31:05.473Z",
+							"source": "content/t3000/1.0/control-basic-programming/for.md",
+							"updated": "2026-11-12T05:21:02.561Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/gosub",
 							"title": "GOSUB",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/gosub.md",
-							"updated": "2026-11-12T03:31:05.475Z",
+							"source": "content/t3000/1.0/control-basic-programming/gosub.md",
+							"updated": "2026-11-12T05:21:02.563Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/goto",
 							"title": "GOTO",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/goto.md",
-							"updated": "2026-11-12T03:31:05.477Z",
+							"source": "content/t3000/1.0/control-basic-programming/goto.md",
+							"updated": "2026-11-12T05:21:02.565Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/hangup",
 							"title": "HANGUP",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/hangup.md",
-							"updated": "2026-11-12T03:31:05.479Z",
+							"source": "content/t3000/1.0/control-basic-programming/hangup.md",
+							"updated": "2026-11-12T05:21:02.567Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/if",
 							"title": "IF",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/if.md",
-							"updated": "2026-11-12T03:31:05.480Z",
+							"source": "content/t3000/1.0/control-basic-programming/if.md",
+							"updated": "2026-11-12T05:21:02.568Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/if-if",
 							"title": "IF+ , IF-",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/if-if.md",
-							"updated": "2026-11-12T03:31:05.482Z",
+							"source": "content/t3000/1.0/control-basic-programming/if-if.md",
+							"updated": "2026-11-12T05:21:02.570Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/int",
 							"title": "INT",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/int.md",
-							"updated": "2026-11-12T03:31:05.485Z",
+							"source": "content/t3000/1.0/control-basic-programming/int.md",
+							"updated": "2026-11-12T05:21:02.571Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/interval",
 							"title": "INTERVAL",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/interval.md",
-							"updated": "2026-11-12T03:31:05.487Z",
+							"source": "content/t3000/1.0/control-basic-programming/interval.md",
+							"updated": "2026-11-12T05:21:02.572Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/ln-ln-1",
 							"title": "LN, LN-1",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/ln-ln-1.md",
-							"updated": "2026-11-12T03:31:05.489Z",
+							"source": "content/t3000/1.0/control-basic-programming/ln-ln-1.md",
+							"updated": "2026-11-12T05:21:02.573Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/let",
 							"title": "LET",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/let.md",
-							"updated": "2026-11-12T03:31:05.490Z",
+							"source": "content/t3000/1.0/control-basic-programming/let.md",
+							"updated": "2026-11-12T05:21:02.576Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/max-min",
 							"title": "MAX, MIN",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/max-min.md",
-							"updated": "2026-11-12T03:31:05.491Z",
+							"source": "content/t3000/1.0/control-basic-programming/max-min.md",
+							"updated": "2026-11-12T05:21:02.578Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/next",
 							"title": "NEXT",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/next.md",
-							"updated": "2026-11-12T03:31:05.492Z",
+							"source": "content/t3000/1.0/control-basic-programming/next.md",
+							"updated": "2026-11-12T05:21:02.580Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/on",
 							"title": "ON",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/on.md",
-							"updated": "2026-11-12T03:31:05.494Z",
+							"source": "content/t3000/1.0/control-basic-programming/on.md",
+							"updated": "2026-11-12T05:21:02.581Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/on-alarm",
 							"title": "ON-ALARM",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/on-alarm.md",
-							"updated": "2026-11-12T03:31:05.496Z",
+							"source": "content/t3000/1.0/control-basic-programming/on-alarm.md",
+							"updated": "2026-11-12T05:21:02.582Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/on-error",
 							"title": "ON- ERROR",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/on-error.md",
-							"updated": "2026-11-12T03:31:05.497Z",
+							"source": "content/t3000/1.0/control-basic-programming/on-error.md",
+							"updated": "2026-11-12T05:21:02.583Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/open",
 							"title": "OPEN",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/open.md",
-							"updated": "2026-11-12T03:31:05.499Z",
+							"source": "content/t3000/1.0/control-basic-programming/open.md",
+							"updated": "2026-11-12T05:21:02.584Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/pidprop-pidint-pidderiv/pidprop-pidint-pidderiv",
 							"title": "PIDProp, PIDInt, PIDDeriv",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/pidprop-pidint-pidderiv/pidprop-pidint-pidderiv.md",
-							"updated": "2026-11-12T03:31:05.502Z",
+							"source": "content/t3000/1.0/control-basic-programming/pidprop-pidint-pidderiv/pidprop-pidint-pidderiv.md",
+							"updated": "2026-11-12T05:21:02.585Z",
 							"minutes": 2
 						},
 						{
 							"href": "control-basic-programming/pidprop-pidint-pidderiv/pid-loop-math-discussion",
 							"title": "PID LOOP MATH DISCUSSION",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/pidprop-pidint-pidderiv/pid-loop-math-discussion.md",
-							"updated": "2026-11-12T03:31:05.505Z",
+							"source": "content/t3000/1.0/control-basic-programming/pidprop-pidint-pidderiv/pid-loop-math-discussion.md",
+							"updated": "2026-11-12T05:21:02.586Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/pidprop-pidint-pidderiv/pid-loops-introduction",
 							"title": "PID Loops Introduction",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/pidprop-pidint-pidderiv/pid-loops-introduction.md",
-							"updated": "2026-11-12T03:31:05.507Z",
+							"source": "content/t3000/1.0/control-basic-programming/pidprop-pidint-pidderiv/pid-loops-introduction.md",
+							"updated": "2026-11-12T05:21:02.588Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/phone",
 							"title": "PHONE",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/phone.md",
-							"updated": "2026-11-12T03:31:05.508Z",
+							"source": "content/t3000/1.0/control-basic-programming/phone.md",
+							"updated": "2026-11-12T05:21:02.589Z",
 							"minutes": 2
 						},
 						{
 							"href": "control-basic-programming/power-loss",
 							"title": "POWER-LOSS",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/power-loss.md",
-							"updated": "2026-11-12T03:31:05.510Z",
+							"source": "content/t3000/1.0/control-basic-programming/power-loss.md",
+							"updated": "2026-11-12T05:21:02.593Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/print-print-at",
 							"title": "PRINT, PRINT-AT",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/print-print-at.md",
-							"updated": "2026-11-12T03:31:05.512Z",
+							"source": "content/t3000/1.0/control-basic-programming/print-print-at.md",
+							"updated": "2026-11-12T05:21:02.594Z",
 							"minutes": 2
 						},
 						{
 							"href": "control-basic-programming/rem",
 							"title": "REM",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/rem.md",
-							"updated": "2026-11-12T03:31:05.515Z",
+							"source": "content/t3000/1.0/control-basic-programming/rem.md",
+							"updated": "2026-11-12T05:21:02.595Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/remote-get-remote-set",
 							"title": "REMOTE-GET, REMOTE-SET",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/remote-get-remote-set.md",
-							"updated": "2026-11-12T03:31:05.517Z",
+							"source": "content/t3000/1.0/control-basic-programming/remote-get-remote-set.md",
+							"updated": "2026-11-12T05:21:02.596Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/return",
 							"title": "RETURN",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/return.md",
-							"updated": "2026-11-12T03:31:05.519Z",
+							"source": "content/t3000/1.0/control-basic-programming/return.md",
+							"updated": "2026-11-12T05:21:02.598Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/run-macro",
 							"title": "RUN-MACRO",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/run-macro.md",
-							"updated": "2026-11-12T03:31:05.521Z",
+							"source": "content/t3000/1.0/control-basic-programming/run-macro.md",
+							"updated": "2026-11-12T05:21:02.599Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/scans",
 							"title": "SCANS",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/scans.md",
-							"updated": "2026-11-12T03:31:05.523Z",
+							"source": "content/t3000/1.0/control-basic-programming/scans.md",
+							"updated": "2026-11-12T05:21:02.600Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/set-printer",
 							"title": "SET-PRINTER",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/set-printer.md",
-							"updated": "2026-11-12T03:31:05.525Z",
+							"source": "content/t3000/1.0/control-basic-programming/set-printer.md",
+							"updated": "2026-11-12T05:21:02.601Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/sqr",
 							"title": "SQR",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/sqr.md",
-							"updated": "2026-11-12T03:31:05.527Z",
+							"source": "content/t3000/1.0/control-basic-programming/sqr.md",
+							"updated": "2026-11-12T05:21:02.602Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/start-stop",
 							"title": "START, STOP",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/start-stop.md",
-							"updated": "2026-11-12T03:31:05.528Z",
+							"source": "content/t3000/1.0/control-basic-programming/start-stop.md",
+							"updated": "2026-11-12T05:21:02.603Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/status",
 							"title": "STATUS",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/status.md",
-							"updated": "2026-11-12T03:31:05.530Z",
+							"source": "content/t3000/1.0/control-basic-programming/status.md",
+							"updated": "2026-11-12T05:21:02.604Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/tbl",
 							"title": "TBL",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/tbl.md",
-							"updated": "2026-11-12T03:31:05.531Z",
+							"source": "content/t3000/1.0/control-basic-programming/tbl.md",
+							"updated": "2026-11-12T05:21:02.605Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/time-on-time-off",
 							"title": "TIME-ON, TIME-OFF",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/time-on-time-off.md",
-							"updated": "2026-11-12T03:31:05.533Z",
+							"source": "content/t3000/1.0/control-basic-programming/time-on-time-off.md",
+							"updated": "2026-11-12T05:21:02.607Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/time",
 							"title": "TIME",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/time.md",
-							"updated": "2026-11-12T03:31:05.535Z",
+							"source": "content/t3000/1.0/control-basic-programming/time.md",
+							"updated": "2026-11-12T05:21:02.609Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/unack",
 							"title": "UNACK",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/unack.md",
-							"updated": "2026-11-12T03:31:05.536Z",
+							"source": "content/t3000/1.0/control-basic-programming/unack.md",
+							"updated": "2026-11-12T05:21:02.611Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/user-x",
 							"title": "USER[X]",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/user-x.md",
-							"updated": "2026-11-12T03:31:05.538Z",
+							"source": "content/t3000/1.0/control-basic-programming/user-x.md",
+							"updated": "2026-11-12T05:21:02.612Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/wait",
 							"title": "WAIT",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/wait.md",
-							"updated": "2026-11-12T03:31:05.541Z",
+							"source": "content/t3000/1.0/control-basic-programming/wait.md",
+							"updated": "2026-11-12T05:21:02.613Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/wr-on-wr-off",
 							"title": "WR-ON / WR-OFF",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/wr-on-wr-off.md",
-							"updated": "2026-11-12T03:31:05.542Z",
+							"source": "content/t3000/1.0/control-basic-programming/wr-on-wr-off.md",
+							"updated": "2026-11-12T05:21:02.614Z",
 							"minutes": 1
 						},
 						{
 							"href": "control-basic-programming/errormessages",
 							"title": "ErrorMessages",
 							"kind": "md",
-							"source": "content/t3000/2026.01/control-basic-programming/errormessages.md",
-							"updated": "2026-11-12T03:31:05.544Z",
+							"source": "content/t3000/1.0/control-basic-programming/errormessages.md",
+							"updated": "2026-11-12T05:21:02.615Z",
 							"minutes": 1
 						},
 						{
 							"href": "port-forwarding",
 							"title": "Port Forwarding",
 							"kind": "md",
-							"source": "content/t3000/2026.01/port-forwarding.md",
-							"updated": "2026-11-12T03:31:05.546Z",
+							"source": "content/t3000/1.0/port-forwarding.md",
+							"updated": "2026-11-12T05:21:02.616Z",
 							"minutes": 1
 						},
 						{
 							"href": "network-remote-points-support",
 							"title": "Network&Remote points support",
 							"kind": "md",
-							"source": "content/t3000/2026.01/network-remote-points-support.md",
-							"updated": "2026-11-12T03:31:05.547Z",
+							"source": "content/t3000/1.0/network-remote-points-support.md",
+							"updated": "2026-11-12T05:21:02.617Z",
 							"minutes": 1
 						},
 						{
 							"href": "t3000-release-history",
 							"title": "T3000 Release  History",
 							"kind": "md",
-							"source": "content/t3000/2026.01/t3000-release-history.md",
-							"updated": "2026-11-12T03:31:05.549Z",
+							"source": "content/t3000/1.0/t3000-release-history.md",
+							"updated": "2026-11-12T05:21:02.619Z",
 							"minutes": 23
 						},
 						{
 							"href": "demo-program",
 							"title": "DEMO PROGRAM",
 							"kind": "md",
-							"source": "content/t3000/2026.01/demo-program.md",
-							"updated": "2026-11-12T03:31:05.551Z",
+							"source": "content/t3000/1.0/demo-program.md",
+							"updated": "2026-11-12T05:21:02.620Z",
 							"minutes": 1
 						},
 						{
 							"href": "firmware-update-single-device/firmware-update-single-device",
 							"title": "FIRMWARE UPDATE, SINGLE DEVICE",
 							"kind": "md",
-							"source": "content/t3000/2026.01/firmware-update-single-device/firmware-update-single-device.md",
-							"updated": "2026-11-12T03:31:05.552Z",
+							"source": "content/t3000/1.0/firmware-update-single-device/firmware-update-single-device.md",
+							"updated": "2026-11-12T05:21:02.621Z",
 							"minutes": 1
 						},
 						{
 							"href": "firmware-update-single-device/firmware-updates-batch-loading",
 							"title": "FIRMWARE UPDATES: BATCH LOADING",
 							"kind": "md",
-							"source": "content/t3000/2026.01/firmware-update-single-device/firmware-updates-batch-loading.md",
-							"updated": "2026-11-12T03:31:05.554Z",
+							"source": "content/t3000/1.0/firmware-update-single-device/firmware-updates-batch-loading.md",
+							"updated": "2026-11-12T05:21:02.622Z",
 							"minutes": 1
 						},
 						{
 							"href": "how-to-use-subnet",
 							"title": "14 How to use subnet",
 							"kind": "md",
-							"source": "content/t3000/2026.01/how-to-use-subnet.md",
-							"updated": "2026-11-12T03:31:05.556Z",
+							"source": "content/t3000/1.0/how-to-use-subnet.md",
+							"updated": "2026-11-12T05:21:02.624Z",
 							"minutes": 3
 						},
 						{
 							"href": "expansion-inputs-outputs",
 							"title": "Expansion Inputs & Outputs",
 							"kind": "md",
-							"source": "content/t3000/2026.01/expansion-inputs-outputs.md",
-							"updated": "2026-11-12T03:31:05.558Z",
+							"source": "content/t3000/1.0/expansion-inputs-outputs.md",
+							"updated": "2026-11-12T05:21:02.626Z",
 							"minutes": 1
 						},
 						{
 							"href": "license-agreement",
 							"title": "License Agreement",
 							"kind": "md",
-							"source": "content/t3000/2026.01/license-agreement.md",
-							"updated": "2026-11-12T03:31:05.559Z",
+							"source": "content/t3000/1.0/license-agreement.md",
+							"updated": "2026-11-12T05:21:02.628Z",
 							"minutes": 1
 						},
 						{
 							"href": "bacnet-integration",
 							"title": "Bacnet Integration",
 							"kind": "md",
-							"source": "content/t3000/2026.01/bacnet-integration.md",
-							"updated": "2026-11-12T03:31:05.560Z",
+							"source": "content/t3000/1.0/bacnet-integration.md",
+							"updated": "2026-11-12T05:21:02.629Z",
 							"minutes": 1
 						},
 						{
 							"href": "ip-settings",
 							"title": "IP SETTINGS",
 							"kind": "md",
-							"source": "content/t3000/2026.01/ip-settings.md",
-							"updated": "2026-11-12T03:31:05.561Z",
+							"source": "content/t3000/1.0/ip-settings.md",
+							"updated": "2026-11-12T05:21:02.630Z",
 							"minutes": 1
 						},
 						{
 							"href": "offline-mode",
 							"title": "Offline Mode",
 							"kind": "md",
-							"source": "content/t3000/2026.01/offline-mode.md",
-							"updated": "2026-11-12T03:31:05.563Z",
+							"source": "content/t3000/1.0/offline-mode.md",
+							"updated": "2026-11-12T05:21:02.631Z",
 							"minutes": 2
 						}
 					]
@@ -1091,217 +1091,600 @@
 			"versions": [
 				{
 					"version": "1.0",
-					"builtAt": "2026-11-10T05:17:01.184Z",
+					"builtAt": "2026-11-12T05:21:04.444Z",
 					"pages": [
 						{
 							"href": "index",
-							"title": "Temco Platform — architecture",
+							"title": "Temco Platform",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.173Z",
-							"minutes": 13
-						},
-						{
-							"href": "getting-started",
-							"title": "Getting started",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.156Z",
-							"minutes": 44
-						},
-						{
-							"href": "catalog",
-							"title": "The catalog",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.152Z",
-							"minutes": 3
-						},
-						{
-							"href": "naming",
-							"title": "Naming",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.171Z",
-							"minutes": 2
-						},
-						{
-							"href": "entry-points",
-							"title": "Entry points",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.155Z",
-							"minutes": 3
-						},
-						{
-							"href": "platform-design",
-							"title": "TEMCO Platform — Engineering Design (Revision 2)",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.172Z",
-							"minutes": 86
-						},
-						{
-							"href": "design/ai-assistant-and-mcp-server",
-							"title": "The local assistant and its MCP server",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.153Z",
-							"minutes": 53
-						},
-						{
-							"href": "design/authoring-and-msdn-output",
-							"title": "Authoring parity with Dr.Explain, publishing parity with MSDN",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.154Z",
-							"minutes": 10
-						},
-						{
-							"href": "modules/readme",
-							"title": "Modules",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.158Z",
-							"minutes": 8
+							"source": "content/temco-platform/1.0/00-index.md",
+							"updated": "2026-11-12T05:21:04.444Z",
+							"minutes": 1
 						},
 						{
 							"href": "modules/temco-ai/readme",
 							"title": "`temco-ai`",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.158Z",
-							"minutes": 4
-						},
-						{
-							"href": "modules/temco-docs/readme",
-							"title": "Temco Docs — documentation",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.162Z",
-							"minutes": 7
-						},
-						{
-							"href": "modules/temco-docs/architecture",
-							"title": "Architecture",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.160Z",
-							"minutes": 4
-						},
-						{
-							"href": "modules/temco-docs/extension-design",
-							"title": "Extension design",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.161Z",
-							"minutes": 64
-						},
-						{
-							"href": "modules/temco-docs/registry-schema",
-							"title": "The registry the module reads",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.164Z",
-							"minutes": 5
-						},
-						{
-							"href": "modules/temco-editor/readme",
-							"title": "temco-editor",
-							"kind": "md",
-							"updated": "2026-11-10T05:17:01.165Z",
+							"source": "content/temco-platform/1.0/modules/temco-ai/README.md",
+							"updated": "2026-11-12T05:21:04.299Z",
 							"minutes": 4
 						},
 						{
 							"href": "modules/temco-projects/readme",
 							"title": "`temco-projects`",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.166Z",
+							"source": "content/temco-platform/1.0/modules/temco-projects/README.md",
+							"updated": "2026-11-12T05:21:04.302Z",
 							"minutes": 3
 						},
 						{
 							"href": "modules/temco-repositories/readme",
 							"title": "`temco-repositories`",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.167Z",
+							"source": "content/temco-platform/1.0/modules/temco-repositories/README.md",
+							"updated": "2026-11-12T05:21:04.304Z",
 							"minutes": 3
 						},
 						{
 							"href": "modules/temco-store/readme",
 							"title": "`temco-store`",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.168Z",
+							"source": "content/temco-platform/1.0/modules/temco-store/README.md",
+							"updated": "2026-11-12T05:21:04.305Z",
 							"minutes": 3
 						},
 						{
 							"href": "modules/temco-tools/readme",
 							"title": "`temco-tools`",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.169Z",
+							"source": "content/temco-platform/1.0/modules/temco-tools/README.md",
+							"updated": "2026-11-12T05:21:04.309Z",
 							"minutes": 2
 						},
 						{
 							"href": "modules/temco-ui/readme",
 							"title": "`temco-ui`",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.170Z",
+							"source": "content/temco-platform/1.0/modules/temco-ui/README.md",
+							"updated": "2026-11-12T05:21:04.312Z",
 							"minutes": 3
 						},
 						{
 							"href": "modules/temco-workbench/readme",
 							"title": "`temco-workbench`",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.171Z",
+							"source": "content/temco-platform/1.0/modules/temco-workbench/README.md",
+							"updated": "2026-11-12T05:21:04.313Z",
 							"minutes": 6
+						},
+						{
+							"href": "entry-points",
+							"title": "Entry points",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/entry-points.md",
+							"updated": "2026-11-12T05:21:04.292Z",
+							"minutes": 3
+						},
+						{
+							"href": "modules/readme",
+							"title": "Modules",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/modules/README.md",
+							"updated": "2026-11-12T05:21:04.297Z",
+							"minutes": 8
+						},
+						{
+							"href": "naming",
+							"title": "Naming",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/naming.md",
+							"updated": "2026-11-12T05:21:04.315Z",
+							"minutes": 2
+						},
+						{
+							"href": "introduction",
+							"title": "Platform introduction",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/introduction.md",
+							"updated": "2026-11-12T05:21:04.295Z",
+							"minutes": 40
+						},
+						{
+							"href": "modules/temco-docs/readme",
+							"title": "Temco Docs — documentation",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/modules/temco-docs/README.md",
+							"updated": "2026-11-12T05:21:04.300Z",
+							"minutes": 7
+						},
+						{
+							"href": "readme",
+							"title": "Temco Platform — architecture",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/README.md",
+							"updated": "2026-11-12T05:21:04.320Z",
+							"minutes": 13
+						},
+						{
+							"href": "platform-design",
+							"title": "TEMCO Platform — Engineering Design (Revision 2)",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/platform-design.md",
+							"updated": "2026-11-12T05:21:04.319Z",
+							"minutes": 87
+						},
+						{
+							"href": "modules/temco-editor/readme",
+							"title": "temco-editor",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/modules/temco-editor/README.md",
+							"updated": "2026-11-12T05:21:04.301Z",
+							"minutes": 4
 						},
 						{
 							"href": "ui/app-flow",
 							"title": "The application flow",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.174Z",
+							"source": "content/temco-platform/1.0/ui/app-flow.md",
+							"updated": "2026-11-12T05:21:04.322Z",
 							"minutes": 7
+						},
+						{
+							"href": "catalog",
+							"title": "The catalog",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/catalog.md",
+							"updated": "2026-11-12T05:21:04.287Z",
+							"minutes": 3
+						},
+						{
+							"href": "design/ai-assistant-and-mcp-server",
+							"title": "The local assistant and its MCP server",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/design/ai-assistant-and-mcp-server.md",
+							"updated": "2026-11-12T05:21:04.290Z",
+							"minutes": 53
+						},
+						{
+							"href": "modules/temco-docs/architecture",
+							"title": "Architecture",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/modules/temco-docs/architecture.md",
+							"updated": "2026-11-12T05:21:04.327Z",
+							"minutes": 4
+						},
+						{
+							"href": "design/authoring-and-msdn-output",
+							"title": "Authoring parity with Dr.Explain, publishing parity with MSDN",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/design/authoring-and-msdn-output.md",
+							"updated": "2026-11-12T05:21:04.324Z",
+							"minutes": 10
 						},
 						{
 							"href": "ui/app-layout",
 							"title": "The application window",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.176Z",
+							"source": "content/temco-platform/1.0/ui/app-layout.md",
+							"updated": "2026-11-12T05:21:04.330Z",
 							"minutes": 6
+						},
+						{
+							"href": "modules/temco-docs/extension-design",
+							"title": "Extension design",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/modules/temco-docs/extension-design.md",
+							"updated": "2026-11-12T05:21:04.342Z",
+							"minutes": 64
+						},
+						{
+							"href": "design/t3000-support-engineering",
+							"title": "Support intake — engineering",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/design/t3000-support-engineering.md",
+							"updated": "2026-11-12T05:21:04.338Z",
+							"minutes": 20
 						},
 						{
 							"href": "ui/application-design",
 							"title": "The application: shell, screens and flow",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.177Z",
+							"source": "content/temco-platform/1.0/ui/application-design.md",
+							"updated": "2026-11-12T05:21:04.345Z",
+							"minutes": 34
+						},
+						{
+							"href": "design/t3000-support-intake",
+							"title": "Support intake from T3000",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/design/t3000-support-intake.md",
+							"updated": "2026-11-12T05:21:04.348Z",
 							"minutes": 34
 						},
 						{
 							"href": "ui/authoring-flow",
 							"title": "The authoring flow",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.178Z",
+							"source": "content/temco-platform/1.0/ui/authoring-flow.md",
+							"updated": "2026-11-12T05:21:04.402Z",
+							"minutes": 5
+						},
+						{
+							"href": "modules/temco-docs/registry-schema",
+							"title": "The registry the module reads",
+							"kind": "md",
+							"source": "content/temco-platform/1.0/modules/temco-docs/registry-schema.md",
+							"updated": "2026-11-12T05:21:04.358Z",
 							"minutes": 5
 						},
 						{
 							"href": "ui/editor-design",
 							"title": "The editor",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.179Z",
+							"source": "content/temco-platform/1.0/ui/editor-design.md",
+							"updated": "2026-11-12T05:21:04.403Z",
 							"minutes": 14
 						},
 						{
 							"href": "ui/platform-design",
 							"title": "The platform",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.180Z",
+							"source": "content/temco-platform/1.0/ui/platform-design.md",
+							"updated": "2026-11-12T05:21:04.406Z",
 							"minutes": 39
 						},
 						{
 							"href": "ui/redesign",
 							"title": "Docs center: the redesign",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.182Z",
+							"source": "content/temco-platform/1.0/ui/redesign.md",
+							"updated": "2026-11-12T05:21:04.437Z",
 							"minutes": 13
 						},
 						{
 							"href": "ui/shell-v2",
 							"title": "Shell and pages, v2 — the full layout, drawn",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.183Z",
+							"source": "content/temco-platform/1.0/ui/shell-v2.md",
+							"updated": "2026-11-12T05:21:04.440Z",
 							"minutes": 42
 						},
 						{
 							"href": "ui/welcome-v3-design",
 							"title": "The front page — the Azure portal's palette and scale",
 							"kind": "md",
-							"updated": "2026-11-10T05:17:01.184Z",
+							"source": "content/temco-platform/1.0/ui/welcome-v3-design.md",
+							"updated": "2026-11-12T05:21:04.443Z",
 							"minutes": 12
+						}
+					]
+				}
+			],
+			"repository": "https://github.com/temcocontrols/temco-learn",
+			"editBranch": "main"
+		},
+		{
+			"id": "tstat8",
+			"title": "TStat8",
+			"section": "documentation",
+			"summary": "The TStat8 thermostat: its specifications, the TStat8 software screen by screen, its hardware, and how to install and update it.",
+			"latest": "1.0",
+			"versions": [
+				{
+					"version": "1.0",
+					"builtAt": "2026-11-12T04:59:21.627Z",
+					"pages": [
+						{
+							"href": "index",
+							"title": "TStat8",
+							"kind": "md",
+							"source": "content/tstat8/1.0/00-index.md",
+							"updated": "2026-11-12T04:59:21.627Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-manual",
+							"title": "TStat8 Manual",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-manual.md",
+							"updated": "2026-11-12T04:59:21.557Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-manual/tstat8-manual",
+							"title": "TStat8 Manual",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-manual/tstat8-manual.md",
+							"updated": "2026-11-12T04:59:21.561Z",
+							"minutes": 1
+						},
+						{
+							"href": "introduction/introduction",
+							"title": "Introduction",
+							"kind": "md",
+							"source": "content/tstat8/1.0/introduction/introduction.md",
+							"updated": "2026-11-12T04:59:21.563Z",
+							"minutes": 1
+						},
+						{
+							"href": "introduction/specifications",
+							"title": "Specifications",
+							"kind": "md",
+							"source": "content/tstat8/1.0/introduction/specifications.md",
+							"updated": "2026-11-12T04:59:21.564Z",
+							"minutes": 1
+						},
+						{
+							"href": "introduction/dimension",
+							"title": "Dimension",
+							"kind": "md",
+							"source": "content/tstat8/1.0/introduction/dimension.md",
+							"updated": "2026-11-12T04:59:21.567Z",
+							"minutes": 1
+						},
+						{
+							"href": "introduction/part-number-scheme",
+							"title": "Part Number Scheme",
+							"kind": "md",
+							"source": "content/tstat8/1.0/introduction/part-number-scheme.md",
+							"updated": "2026-11-12T04:59:21.568Z",
+							"minutes": 1
+						},
+						{
+							"href": "introduction/typical-application",
+							"title": "Typical Application",
+							"kind": "md",
+							"source": "content/tstat8/1.0/introduction/typical-application.md",
+							"updated": "2026-11-12T04:59:21.569Z",
+							"minutes": 1
+						},
+						{
+							"href": "introduction/menu-item-details",
+							"title": "Menu Item Details",
+							"kind": "md",
+							"source": "content/tstat8/1.0/introduction/menu-item-details.md",
+							"updated": "2026-11-12T04:59:21.570Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/tstat8-software",
+							"title": "Tstat8 Software",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/tstat8-software.md",
+							"updated": "2026-11-12T04:59:21.572Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/t3000-software",
+							"title": "T3000 Software",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/t3000-software.md",
+							"updated": "2026-11-12T04:59:21.573Z",
+							"minutes": 2
+						},
+						{
+							"href": "tstat8-software/menus-and-work-area",
+							"title": "Menus and Work Area",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/menus-and-work-area.md",
+							"updated": "2026-11-12T04:59:21.575Z",
+							"minutes": 2
+						},
+						{
+							"href": "tstat8-software/pids-set-dialog-window",
+							"title": "PIDs Set Dialog window",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/pids-set-dialog-window.md",
+							"updated": "2026-11-12T04:59:21.578Z",
+							"minutes": 3
+						},
+						{
+							"href": "tstat8-software/building-database",
+							"title": "Building Database",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/building-database.md",
+							"updated": "2026-11-12T04:59:21.580Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/system-tree",
+							"title": "System Tree",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/system-tree.md",
+							"updated": "2026-11-12T04:59:21.581Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/t3000-operation",
+							"title": "T3000 Operation",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/t3000-operation.md",
+							"updated": "2026-11-12T04:59:21.582Z",
+							"minutes": 2
+						},
+						{
+							"href": "tstat8-software/wireless-connections",
+							"title": "Wireless Connections",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/wireless-connections.md",
+							"updated": "2026-11-12T04:59:21.584Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/wifi-configuration",
+							"title": "Wifi Configuration",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/wifi-configuration.md",
+							"updated": "2026-11-12T04:59:21.586Z",
+							"minutes": 2
+						},
+						{
+							"href": "tstat8-software/heating-cooling-configuration",
+							"title": "Heating/Cooling Configuration",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/heating-cooling-configuration.md",
+							"updated": "2026-11-12T04:59:21.587Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/input-setting",
+							"title": "Input Setting",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/input-setting.md",
+							"updated": "2026-11-12T04:59:21.589Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/output-setting",
+							"title": "Output Setting",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/output-setting.md",
+							"updated": "2026-11-12T04:59:21.590Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/one-heat-one-cool-setting",
+							"title": "One heat one cool setting",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/one-heat-one-cool-setting.md",
+							"updated": "2026-11-12T04:59:21.594Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/off-mode",
+							"title": "OFF Mode",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/off-mode.md",
+							"updated": "2026-11-12T04:59:21.596Z",
+							"minutes": 2
+						},
+						{
+							"href": "tstat8-software/auto-mode",
+							"title": "AUTO Mode",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/auto-mode.md",
+							"updated": "2026-11-12T04:59:21.597Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/on-mode",
+							"title": "ON Mode",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/on-mode.md",
+							"updated": "2026-11-12T04:59:21.598Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/pid-loop-setting",
+							"title": "PID Loop Setting",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/pid-loop-setting.md",
+							"updated": "2026-11-12T04:59:21.599Z",
+							"minutes": 2
+						},
+						{
+							"href": "tstat8-software/two-heat-two-cool-setting",
+							"title": "Two heat two cool setting",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/two-heat-two-cool-setting.md",
+							"updated": "2026-11-12T04:59:21.601Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/two-heat-two-cool-setting-off-mode",
+							"title": "OFF Mode",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/two-heat-two-cool-setting-off-mode.md",
+							"updated": "2026-11-12T04:59:21.603Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/two-heat-two-cool-setting-auto-mode",
+							"title": "AUTO Mode",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/two-heat-two-cool-setting-auto-mode.md",
+							"updated": "2026-11-12T04:59:21.604Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/schedules",
+							"title": "Schedules",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/schedules.md",
+							"updated": "2026-11-12T04:59:21.606Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/managing-schedules-in-t3000",
+							"title": "Managing schedules in T3000",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/managing-schedules-in-t3000.md",
+							"updated": "2026-11-12T04:59:21.609Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/managing-schedules-using-bacnet",
+							"title": "Managing schedules using Bacnet",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/managing-schedules-using-bacnet.md",
+							"updated": "2026-11-12T04:59:21.612Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/weekly-routines-schedule",
+							"title": "Weekly routines schedule",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/weekly-routines-schedule.md",
+							"updated": "2026-11-12T04:59:21.614Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-software/annual-routine-schedule",
+							"title": "Annual routine schedule",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-software/annual-routine-schedule.md",
+							"updated": "2026-11-12T04:59:21.615Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-hardware/tstat8-hardware",
+							"title": "Tstat8 Hardware",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-hardware/tstat8-hardware.md",
+							"updated": "2026-11-12T04:59:21.618Z",
+							"minutes": 1
+						},
+						{
+							"href": "tstat8-hardware/overview",
+							"title": "Overview",
+							"kind": "md",
+							"source": "content/tstat8/1.0/tstat8-hardware/overview.md",
+							"updated": "2026-11-12T04:59:21.620Z",
+							"minutes": 1
+						},
+						{
+							"href": "installation/installation",
+							"title": "Installation",
+							"kind": "md",
+							"source": "content/tstat8/1.0/installation/installation.md",
+							"updated": "2026-11-12T04:59:21.621Z",
+							"minutes": 1
+						},
+						{
+							"href": "firmware-update-single-device/firmware-update-single-device",
+							"title": "FIRMWARE UPDATE, SINGLE DEVICE",
+							"kind": "md",
+							"source": "content/tstat8/1.0/firmware-update-single-device/firmware-update-single-device.md",
+							"updated": "2026-11-12T04:59:21.623Z",
+							"minutes": 1
+						},
+						{
+							"href": "firmware-update-single-device/firmware-updates-batch-loading",
+							"title": "FIRMWARE UPDATES: BATCH LOADING",
+							"kind": "md",
+							"source": "content/tstat8/1.0/firmware-update-single-device/firmware-updates-batch-loading.md",
+							"updated": "2026-11-12T04:59:21.624Z",
+							"minutes": 1
 						}
 					]
 				}

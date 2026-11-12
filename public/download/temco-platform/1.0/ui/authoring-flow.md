@@ -1,10 +1,9 @@
 ---
 title: "The authoring flow"
-order: 403
-edit: false
+order: 40
 ---
 
-> **Superseded for the side bar layout.** The Docs side bar (Pages, Needs You, Sources, Publish) is defined in [redesign.md](redesign). This page remains the record for the screenshot capture stage only.
+> **Superseded for the side bar layout.** The Docs side bar (Pages, Needs You, Sources, Publish) is defined in [redesign.md](./redesign.md). This page remains the record for the screenshot capture stage only.
 
 The design for **screenshots in the authoring loop**, and for the side bar that had to change because of them. This is the record the next round argues with, so that a redesign starts from a decision rather than from the previous screenshot.
 

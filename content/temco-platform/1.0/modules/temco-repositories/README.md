@@ -1,7 +1,6 @@
 ---
 title: "`temco-repositories`"
-order: 250
-edit: false
+order: 10
 ---
 
 The organisation and the local copies of it: the repository list, the working area, and reading a source into the platform's memory.

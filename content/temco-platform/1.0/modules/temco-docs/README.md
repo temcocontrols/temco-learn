@@ -1,7 +1,6 @@
 ---
 title: "Temco Docs — documentation"
-order: 220
-edit: false
+order: 10
 ---
 
 This folder documents the **Temco Docs module** (`extensions/temco-docs`): what it does, how it is built, what it
@@ -12,14 +11,14 @@ because that is where the content has to be.
 
 | Document | Read it when |
 |---|---|
-| [`architecture.md`](architecture) | you need the whole picture: the repositories, the flow, how it ships |
-| [`registry-schema.md`](registry-schema) | you touch anything that reads or writes registry data |
-| [`extension-design.md`](extension-design) | you add a view, a command, a check or a diagnostic |
-| [`platform-design.md`](../../ui/platform-design) | you work on the platform itself: sources, the documents a person creates, builds and artifacts, the AI over history, and the catalog |
-| [`editor-design.md`](../../ui/editor-design) | you work on editing: the toolbar, creating a page, images, drafts, and the write rule they wait on |
-| [`app-flow.md`](../../ui/app-flow) | you work on the left toolbar, a panel, or where a row leads: the four containers, what each view asks, and the page behind every row |
-| [`authoring-flow.md`](../../ui/authoring-flow) | you work on screenshots, the side bar, or when a page must be re-illustrated: the capture stage, the two views, and what still waits on a decision |
-| [`app-layout.md`](../../ui/app-layout) | you need the target UI: the application window, the site's generated dashboard, and the seam between them |
+| [`architecture.md`](./architecture.md) | you need the whole picture: the repositories, the flow, how it ships |
+| [`registry-schema.md`](./registry-schema.md) | you touch anything that reads or writes registry data |
+| [`extension-design.md`](./extension-design.md) | you add a view, a command, a check or a diagnostic |
+| [`platform-design.md`](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/ui/platform-design.md) | you work on the platform itself: sources, the documents a person creates, builds and artifacts, the AI over history, and the catalog |
+| [`editor-design.md`](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/ui/editor-design.md) | you work on editing: the toolbar, creating a page, images, drafts, and the write rule they wait on |
+| [`app-flow.md`](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/ui/app-flow.md) | you work on the left toolbar, a panel, or where a row leads: the four containers, what each view asks, and the page behind every row |
+| [`authoring-flow.md`](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/ui/authoring-flow.md) | you work on screenshots, the side bar, or when a page must be re-illustrated: the capture stage, the two views, and what still waits on a decision |
+| [`app-layout.md`](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/ui/app-layout.md) | you need the target UI: the application window, the site's generated dashboard, and the seam between them |
 | [`design/temco-learn/`](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-learn/design/README.md) | you need the platform design itself: content model, registry, search, the offline CHM, editing, feedback, AI, governance |
 
 ## The three names, and why they are different
@@ -57,7 +56,7 @@ Every one of them is drawn with the shared page vocabulary from `temco-ui` (`pag
 registry, search, the offline CHM, the editing and git flow, feedback, the AI features, the implementation
 plan and the governance rules. `16-overview.md` is the one-page version.
 
-[`design/authoring-and-msdn-output.md`](../../design/authoring-and-msdn-output) is the other half: what an
+[`design/authoring-and-msdn-output.md`](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/design/authoring-and-msdn-output.md) is the other half: what an
 author gets, and what a reader gets. Its §5 is the **MSDN contract** — the concrete meaning of "looks like
 Microsoft Learn" that a surface is judged against — and §6 is the project flow that follows from it.
 

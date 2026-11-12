@@ -1,10 +1,9 @@
 ---
 title: "The application flow"
-order: 400
-edit: false
+order: 10
 ---
 
-> **Superseded for the Docs center.** The window layout, the Pages tree, the journey and the Publish flow are defined in [redesign.md](redesign). Where this page disagrees with it, `redesign.md` wins.
+> **Superseded for the Docs center.** The window layout, the Pages tree, the journey and the Publish flow are defined in [redesign.md](./redesign.md). Where this page disagrees with it, `redesign.md` wins.
 
 The information architecture as built: the left toolbar, the four panels, the page in the middle, and the one right-hand panel. This is the confirmed design — `authoring-flow.md` is the capture stage inside it.
 

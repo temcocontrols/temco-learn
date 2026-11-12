@@ -1,7 +1,6 @@
 ---
 title: "The application: shell, screens and flow"
-order: 402
-edit: false
+order: 30
 ---
 
 The record of the agreed shape of Temco Platform as an application — the regions of the window, the screens, the way one
@@ -10,7 +9,7 @@ is either a bug or a proposal to change this file.
 
 Confirmed 2026-10-27. Decisions and their reasons are in *What was decided*; the work order is in *Order of work*.
 
-To **use** the application rather than design it, read [getting-started.md](../getting-started): the same flow as numbered steps, with the button for every page and the command id behind it.
+To **use** the application rather than design it, read [introduction.md](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/introduction.md): the same flow as numbered steps, with the button for every page and the command id behind it.
 
 ## The two rules
 
@@ -453,4 +452,3 @@ The panel (`src/tree.ts`) is three views in the order the questions are asked �
 and **Artifacts** (a project, and the files its build wrote — names only, with the size and the path on hover; a row saves a copy and offers *Show in
 the Folder* inline; `Publish the Site` closes the view, its count at the row's right end). What a row holds is its `description`:
 the grey words beside a name, as the Explorer writes them — and where a row deliberately says nothing, the hover carries it.
-

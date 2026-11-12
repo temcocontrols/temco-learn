@@ -1,7 +1,6 @@
 ---
 title: "The local assistant and its MCP server"
-order: 100
-edit: false
+order: 10
 ---
 
 The assistant runs a model on the user's machine. This document specifies the tool server it calls, the protocol between them, the code on both sides, the build that produces the server, and the way the two processes find each other inside the packaged application.
@@ -16,7 +15,7 @@ Everything in §3 marked *proven* was compiled and executed while this document 
 
 ---
 
-### 1. What runs today
+## 1. What runs today
 
 One funnel. Every AI feature in the product ends at `complete()`.
 
@@ -58,7 +57,7 @@ The state it already keeps, which the server reuses rather than replaces:
 
 ---
 
-### 2. What the model could not do, and what changed
+## 2. What the model could not do, and what changed
 
 | Missing piece | Consequence | State |
 | --- | --- | --- |
@@ -70,11 +69,11 @@ The state it already keeps, which the server reuses rather than replaces:
 | A service for the tools to ask | The device, repository and project tools need one HTTP surface | not built (open decision 1) |
 | The release step that publishes the server | There is nothing to download until a release carries it | done: section 7.4 |
 
-### 3. What is proven, and what is not
+## 3. What is proven, and what is not
 
 > This section is the record of the first end-to-end run, over `stdio`. The application no longer uses that transport: it starts the server in `http` mode and manages the process (§6.5, §8.4). The transcripts below are kept because they are what established that the server, the tool list and the schema are right — and because the `stdio` mode still exists and still behaves this way.
 
-#### 3.1 The server, and the client, over stdio
+### 3.1 The server, and the client, over stdio
 
 Built, published, and driven over stdio. Transcript from the actual run:
 
@@ -109,7 +108,7 @@ bad argument -> pointType must be INPUT, OUTPUT or VARIABLE, not 'NOPE'.
 disposed
 ```
 
-#### 3.2 The tool list, as built
+### 3.2 The tool list, as built
 
 Twenty-three tools, each with the hints that describe it:
 
@@ -128,7 +127,7 @@ Twenty-three tools, each with the hints that describe it:
 
 Fifty is the ceiling in practice: a local 7B model loses accuracy as the list grows and the arguments deepen, so every argument here is a scalar.
 
-#### 3.3 The extension half, and what remains unproven
+### 3.3 The extension half, and what remains unproven
 
 | # | Link | Status |
 | --- | --- | --- |
@@ -141,16 +140,16 @@ Fifty is the ceiling in practice: a local 7B model loses accuracy as the list gr
 | 7 | A turn completes end to end inside the app | needs 6, a model, and the platform service. Section 8.5 step 3 |
 | 8 | The packaged application runs the installed server | follows from rows 1 and 3, but has not been run from an installed build |
 
-#### 3.4 Findings the implementation now depends on
+### 3.4 Findings the implementation now depends on
 
 - **`Microsoft.Extensions.Hosting` is a required explicit reference.** `ModelContextProtocol` does not flow the assembly that contains `Host.CreateApplicationBuilder`; without it the build fails with `CS0103: The name 'Host' does not exist in the current context`.
 - **`Microsoft.Data.Sqlite` 10.0.0 pulls a flagged native SQLite.** Restore raises `NU1903` (high severity, `SQLitePCLRaw.lib.e_sqlite3` 2.1.11). 10.0.14 restores and builds with zero warnings.
 - **A tool with an optional parameter must default the token too.** C# requires optional parameters after required ones, so a tool ends with `(..., string? optional = null, CancellationToken cancellationToken = default)`, or the compiler rejects the order with `CS1737`.
 - **stdin must stay open.** Driving the server from a file that ends immediately produced a full log, executed tool calls, and zero responses: the transport saw end-of-input and finished.
 
-### 4. Change 1 — let the runtime call tools
+## 4. Change 1 — let the runtime call tools
 
-#### 4.1 The argument list
+### 4.1 The argument list
 
 ```ts
   const server = spawn(
@@ -172,7 +171,7 @@ Fifty is the ceiling in practice: a local 7B model loses accuracy as the list gr
   );
 ```
 
-#### 4.2 The types
+### 4.2 The types
 
 ```ts
 /** One tool as the model sees it: a name, a sentence, and a JSON Schema for the arguments. */
@@ -206,7 +205,7 @@ export interface ChatMessage {
 }
 ```
 
-#### 4.3 `complete()` gains `tools` and returns the calls
+### 4.3 `complete()` gains `tools` and returns the calls
 
 ```ts
 export async function complete(
@@ -281,9 +280,9 @@ function parseArguments(text: string): Record<string, unknown> {
 
 ---
 
-### 5. The server — `tools/temco-mcp`
+## 5. The server — `tools/temco-mcp`
 
-#### 5.1 Layout
+### 5.1 Layout
 
 ```
 tools/temco-mcp/
@@ -306,7 +305,7 @@ tools/temco-mcp/
 
 It lives at the repository root rather than under `extensions/` because it is not an extension: it is a program the extension starts.
 
-#### 5.2 `Temco.Mcp.csproj`
+### 5.2 `Temco.Mcp.csproj`
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -334,7 +333,7 @@ It lives at the repository root rather than under `extensions/` because it is no
 </Project>
 ```
 
-#### 5.3 `Program.cs`
+### 5.3 `Program.cs`
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -369,7 +368,7 @@ await builder.Build().RunAsync();
 
 The two `using Temco.Mcp…` lines are load-bearing: top-level statements sit in the global namespace, so the project's own types are not in scope without them.
 
-#### 5.4 A tool, in full
+### 5.4 A tool, in full
 
 The attribute defaults are the unsafe ones — `ReadOnly = false`, `Destructive = true`, `OpenWorld = true` — so every tool states its own intent.
 
@@ -481,7 +480,7 @@ Three rules follow from §3.1 and hold for every tool:
 
 **As built**, the two result constructors and the guard live in `Tools/ToolResults.cs` so that no tool repeats them: `Text(value)`, `Fail(message)` and `Guard(body)`, which turns a refused connection, a missing record or a cancellation into a sentence. The device tools are typed because their answers have a shape; the read-only rest go through `IPlatformApi.ReadJsonAsync(path)` and return the service's own JSON rather than growing a method per route.
 
-#### 5.5 The platform interface
+### 5.5 The platform interface
 
 The tools do not speak T3000 protocols. They call one interface, so the transport can change without touching a tool.
 
@@ -543,7 +542,7 @@ public sealed class HttpPlatformApi : IPlatformApi
 
 Which service answers on `TEMCO_PLATFORM_API` is open decision 1 in §11. Only `HttpPlatformApi` is affected by the answer.
 
-#### 5.6 The catalog database, read-only
+### 5.6 The catalog database, read-only
 
 `temco-store` owns the file; the server only reads it.
 
@@ -598,7 +597,7 @@ public sealed class CatalogDb
 
 The path comes from the extension, which uses the same expression as `catalog/store.ts:1473`: `vscode.Uri.joinPath(context.globalStorageUri, 'catalog', 'catalog.db').fsPath`.
 
-#### 5.7 The tool catalogue
+### 5.7 The tool catalogue
 
 Names are the contract; the model sees them verbatim. Twenty-three is deliberately short — a local 7B model loses accuracy as the list grows and the arguments deepen — and every argument is a scalar.
 
@@ -628,7 +627,7 @@ Names are the contract; the model sees them verbatim. Twenty-three is deliberate
 | `learn.search` | searches the site's content | `IPlatformApi` |
 | `learn.post_status` | reads the publication state of a topic | `IPlatformApi` |
 
-#### 5.8 Audit
+### 5.8 Audit
 
 One row per call, in the extension's storage, so what the assistant did can be read back.
 
@@ -680,15 +679,15 @@ The policy gate is in the loop (§6.4), not in the tool: a call to something in 
 
 ---
 
-### 6. The client inside `temco-ai`
+## 6. The client inside `temco-ai`
 
-#### 6.1 Nothing to install
+### 6.1 Nothing to install
 
 The client is written in `ai/mcp.ts` rather than pulled in as a dependency. `@modelcontextprotocol/client` would be the first runtime dependency in an extension that installs nothing, and this extension is compiled with `tsc` rather than bundled, so a dependency would also have to be packaged and kept in step with every release. The protocol the assistant needs is four messages long, and the server is ours.
 
 `temco-ai` therefore keeps `"dependencies": {}`. The version that used the SDK typechecks, but it would have been the only reason this extension needed a `node_modules`.
 
-#### 6.2 `ai/mcp.ts`
+### 6.2 `ai/mcp.ts`
 
 Two functions over two messages, section 8.4:
 
@@ -703,7 +702,7 @@ There is no session to open and nothing to dispose: the server runs in its defau
 
 Timeouts are 15 s for the list and 30 s per call, both enforced by the socket's own `timeout`, and a `CancellationToken` destroys the request it belongs to. A `401` is reported as it is: the token belongs to the window's process, and a token the server refuses means the process was restarted behind the caller's back.
 
-#### 6.3 `ai/binPath.ts` — where the binary is
+### 6.3 `ai/binPath.ts` — where the binary is
 
 The server is an installed artifact, exactly like the runtime and the models: a catalog entry, a checksum, a folder under `modelRoot(context)`, recorded in the manifest by `install()`.
 
@@ -775,7 +774,7 @@ Three consequences, all of them wanted:
 - `ArtifactKind` in `catalog.ts:7` becomes `'runtime' | 'model' | 'tool-server'`, and one `install()` serves all three. `modelRoot(context)` stays the single root, so `temcoAi.modelFolder` moves the server too.
 - A missing binary is an ordinary state, not an error: the Tool Server page's **Start** downloads and starts it, and until then the plain answer path runs unchanged.
 
-#### 6.4 `ai/agent.ts`, the loop
+### 6.4 `ai/agent.ts`, the loop
 
 The loop keeps its shape — ask, run what it asked for, ask again, with a six-step budget and a set of calls that need a person's yes. What changed is where the server comes from: it is not opened and disposed per turn any more, because it is a process the window owns and the Tool Server page shows.
 
@@ -826,7 +825,7 @@ Three properties are worth naming, because each was a decision:
 - **A missing platform service is a sentence, not a throw.** It used to stop the turn; now the catalog tools answer and the rest say the service did not answer, which is something the model can pass on to a person.
 
 
-#### 6.5 Lifecycle
+### 6.5 Lifecycle
 
 `ai/server.ts` owns the process. It is the one place that starts it, so the panel, the Tools page's runner and the Tool Server page all talk to the same thing.
 
@@ -846,9 +845,9 @@ Three properties are worth naming, because each was a decision:
 
 ---
 
-### 7. Building it
+## 7. Building it
 
-#### 7.1 Locally
+### 7.1 Locally
 
 ```powershell
 winget install Microsoft.DotNet.SDK.10   # once per machine; .NET 10 is the current LTS
@@ -871,11 +870,11 @@ The three RIDs are the three rows of the release matrix in `.github/workflows/re
 
 `serverEntry()` matches on `process.platform` and `process.arch`, so the table is the only place the mapping is written down; the folder name comes from the entry id, which `install()` uses as the unpack folder.
 
-#### 7.2 What it produces
+### 7.2 What it produces
 
 344 files and 108 MB for one platform, because a self-contained publish carries the runtime with it — and, since the HTTP transport arrived, ASP.NET Core with it. The whole folder is the artifact: apphost, `temco-mcp.dll`, `e_sqlite3.dll`, and the framework. Nothing is written next to it at run time, so it may sit in a read-only store.
 
-#### 7.3 Into an archive, and its checksum
+### 7.3 Into an archive, and its checksum
 
 `install()` unpacks with the platform's own `tar`, which reads `.tar.gz` everywhere (GNU tar does not read `.zip`), then finds the executable by name anywhere inside. The archive is the unit that is downloaded and verified, exactly as a model is:
 
@@ -890,7 +889,7 @@ That is the whole first run, and it was exercised end to end against a local HTT
 
 `.gitignore` carries `tools/temco-mcp/bin/`, `tools/temco-mcp/obj/` and `extensions/temco-ai/bin/`: build output of the machine, never of git.
 
-#### 7.4 In CI
+### 7.4 In CI
 
 In `.github/workflows/release.yml`, in the build job. The SDK is installed next to Node, and the publish happens after the application is packaged and before the platform's staging step, so the archive lands in the same `staging/` folder the release collects:
 
@@ -926,7 +925,7 @@ Two properties matter:
 The catalogue does not pin the tag. `TOOL_SERVER_RELEASE` in `catalog.ts` is `` `v${vscode.version.split('-')[0]}` ``, because every release attaches its own three archives: a pinned tag would send a newer application to an older build, or to a tag that never carried one.
 
 
-#### 7.5 During development
+### 7.5 During development
 
 ```powershell
 dotnet publish tools/temco-mcp/Temco.Mcp.csproj -c Release -r win-x64 --self-contained true `
@@ -955,9 +954,9 @@ curl.exe -X POST http://127.0.0.1:7391/mcp -H "Content-Type: application/json" `
 
 ---
 
-### 8. Running it inside the application
+## 8. Running it inside the application
 
-#### 8.1 The process tree
+### 8.1 The process tree
 
 ```
 temco-platform.exe                    the window
@@ -970,7 +969,7 @@ temco-platform.exe                    the window
 Neither child starts at activation. `llama-server` starts on the first `complete()`; `temco-mcp` starts the first time something needs the catalogue — a turn, the Tools page, or the Start button — and then stays until the idle setting or the closing window says otherwise. Both are stopped explicitly, so a closed window leaves no processes behind.
 
 
-#### 8.2 Where the binary is, per layout
+### 8.2 Where the binary is, per layout
 
 | Layout | Install root | Executable |
 | --- | --- | --- |
@@ -992,7 +991,7 @@ if (process.platform !== 'win32') {
 }
 ```
 
-#### 8.3 What the application passes in
+### 8.3 What the application passes in
 
 | Variable | Value | Why the server needs it |
 | --- | --- | --- |
@@ -1006,7 +1005,7 @@ if (process.platform !== 'win32') {
 
 Everything else is a setting read with `vscode.workspace.getConfiguration('temcoAi')` in `serverEnv()` and `server.ts`, never a file next to the binary. `TEMCO_MCP_LOG` is honoured if it is set (`information` puts the server's own per-call logging back); the extension leaves it alone, so the channel carries calls rather than the framework's chatter.
 
-#### 8.4 The wire contract
+### 8.4 The wire contract
 
 The server speaks both transports, chosen by `TEMCO_MCP_TRANSPORT`; the application uses `http`.
 
@@ -1032,7 +1031,7 @@ The listening socket is bound to `127.0.0.1` by name, never to `0.0.0.0`, and th
 **Pasting the address into a browser** used to give 401 — correct, and useless. It now answers with the description above (`GET /` and `GET /mcp`, verified: 200 with the JSON, while `POST /mcp` without the header still answers 401 and with it answers the 23 tools). The Tool Server page says the same thing in one sentence, so nobody has to discover it from a status code.
 
 
-#### 8.5 Verifying it end to end
+### 8.5 Verifying it end to end
 
 ```powershell
 # 1. the server answers MCP at all, without the application
@@ -1055,7 +1054,7 @@ scripts\code.bat
 
 Step 2 decides whether `--jinja` alone is enough for the chosen model. If the reply is prose with no `tool_calls`, the model's template is the reason, and the answer is `--chat-template-file` or a model whose template the runtime already knows.
 
-#### 8.6 The second exposure: the same server for Copilot Chat
+### 8.6 The second exposure: the same server for Copilot Chat
 
 The server is a plain MCP server, so the application can also declare it to the language model that ships with the product — same binary, same environment, started by the editor instead of by `temco-ai`.
 
@@ -1076,7 +1075,7 @@ export function registerToolServer(context: vscode.ExtensionContext): vscode.Dis
 
 `McpStdioServerDefinition(label, command, args?, env?, version?)`; `version` is what makes the editor notice a changed tool list and offer a refresh. The provider is called eagerly and must not prompt — anything interactive belongs in `resolveMcpServerDefinition`.
 
-#### 8.7 When it does not start
+### 8.7 When it does not start
 
 | Symptom | Cause | Fix |
 | --- | --- | --- |
@@ -1093,7 +1092,7 @@ export function registerToolServer(context: vscode.ExtensionContext): vscode.Dis
 
 ---
 
-### 9. Left panel and pages
+## 9. Left panel and pages
 
 The activity-bar group stays `AI` (`temcoAiHub`, owned by `temco-workbench`); `temco-ai` contributes four group views into it and keeps its own secondary-sidebar view.
 
@@ -1150,7 +1149,7 @@ Four things the page does not do, each a decision:
 4. **The state is repainted from the module, not re-rendered.** Start, stop and restart each answer with a `status` message that the page's own script paints into the four facts it owns, so a field halfway through being typed is never thrown away.
 
 Three older dialogs were removed in favour of these pages: a status toast that said only that the server was ready, an input box that asked for an address without saying what it was for, and a row that opened a page with no status on it.
-### 10. Security
+## 10. Security
 
 | Concern | Rule |
 | --- | --- |
@@ -1165,7 +1164,7 @@ Three older dialogs were removed in favour of these pages: a status toast that s
 
 ---
 
-### 11. Decisions
+## 11. Decisions
 
 Settled, with the reason each one was settled that way:
 
@@ -1186,7 +1185,7 @@ Still open:
 
 ---
 
-### 12. Where the code is
+## 12. Where the code is
 
 | Section | File |
 | --- | --- |

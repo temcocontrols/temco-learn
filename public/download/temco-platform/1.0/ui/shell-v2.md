@@ -1,10 +1,9 @@
 ---
 title: "Shell and pages, v2 — the full layout, drawn"
-order: 407
-edit: false
+order: 80
 ---
 
-This supersedes the shell, activity-bar and left-panel parts of [application-design.md](application-design). Every
+This supersedes the shell, activity-bar and left-panel parts of [application-design.md](./application-design.md). Every
 surface below is drawn in full; nothing is summarised as "keeps the same frame".
 
 Counted from the manifests before designing anything:
@@ -1014,7 +1013,7 @@ Nothing in this document has been implemented. Step 1 is the Docs panel, and it 
 
 ## 10. Look and feel
 
-> **Superseded by a proposal awaiting confirmation:** [welcome-v3-design.md](welcome-v3-design) — Fluent 2 tokens with
+> **Superseded by a proposal awaiting confirmation:** [welcome-v3-design.md](./welcome-v3-design.md) — Fluent 2 tokens with
 > Azure's purchase-options anatomy (three option cards, a brand-tinted wash, numbers, one callout, questions). Read that
 > first; the section below describes the version now in the code, which v3 replaces.
 

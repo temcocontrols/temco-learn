@@ -1,7 +1,6 @@
 ---
 title: "Architecture"
-order: 221
-edit: false
+order: 20
 ---
 
 ## The repositories

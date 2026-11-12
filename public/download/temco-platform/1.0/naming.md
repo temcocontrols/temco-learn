@@ -1,7 +1,6 @@
 ---
 title: "Naming"
-order: 30
-edit: false
+order: 10
 ---
 
 Every identifier in the product follows one rule: **the namespace is the module that owns the feature.**

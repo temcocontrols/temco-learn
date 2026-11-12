@@ -1,7 +1,6 @@
 ---
 title: "Entry points"
-order: 40
-edit: false
+order: 10
 ---
 
 The fork touches VS Code's source in exactly two places. Both are additive lines in lists. This is the complete list.

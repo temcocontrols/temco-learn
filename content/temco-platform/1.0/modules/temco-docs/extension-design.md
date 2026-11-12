@@ -1,12 +1,11 @@
 ---
 title: "Extension design"
-order: 222
-edit: false
+order: 30
 ---
 
-> **Layout superseded.** The views, the Pages tree behaviour and the flow are defined in [../../ui/redesign.md](../../ui/redesign). Files such as `home.ts` and `views.ts` mentioned below do not exist; the code is under `extensions/temco-docs/src/`.
+> **Layout superseded.** The views, the Pages tree behaviour and the flow are defined in [../../ui/redesign.md](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/ui/redesign.md). Files such as `home.ts` and `views.ts` mentioned below do not exist; the code is under `extensions/temco-docs/src/`.
 
-### Responsibilities, one file each
+## Responsibilities, one file each
 
 | Module | Owns |
 |---|---|
@@ -51,7 +50,7 @@ It no longer has a `src/catalog/` or a `src/selected.ts`: the database, the sele
 the part any other module reuses to know what pages exist — `temco-ai` reads it through the exported model rather
 than through this folder.
 
-### The tree
+## The tree
 
 ```
 Content                        (view container: Temco Docs)
@@ -75,7 +74,7 @@ Content                        (view container: Temco Docs)
 - Areas and chapters are never empty: an area declared in `areas{}` with no pages still appears, which is
   itself information.
 
-### The page in the editor
+## The page in the editor
 
 The editor of record is **VS Code's own**, deliberately. `15-online-editor.md` rejects a rich editor for these
 files on a reason that survives checking: the pages are written one paragraph per source line (measured: 95
@@ -90,12 +89,12 @@ one-word change becomes a whole-file diff. What was missing was never the engine
 | the **Page** pane | `outline.ts`: headings as a nested jump list, plus a word count in the status bar | line, column, encoding and end-of-line are already the status bar's, so nothing repeats them |
 | **Grid** | `gridEditor.ts` + `webview/grid.ts`: a CSV as cells, reached by *Open in the Grid* | the file stays CSV, one row per line, so a one-cell edit stays a one-line diff |
 | **Temco Markdown** | `fluentEditor.ts` + `webview/docs/`: the page as a document on **Fluent UI**, with capture and annotation built in — the **default** for `*.md` | see *The Fluent Markdown surface* below |
-| **Temco Editor** | not this module any more: the page editor is `extensions/temco-editor` (`temcoEditor.markdown`), and **Open in Temco Editor** asks for it by command | see [temco-editor](../temco-editor/readme) |
+| **Temco Editor** | not this module any more: the page editor is `extensions/temco-editor` (`temcoEditor.markdown`), and **Open in Temco Editor** asks for it by command | see [temco-editor](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/modules/temco-editor/README.md) |
 
-#### One bridge, two surfaces
+### One bridge, two surfaces
 
 > **Record.** This is the period when `temco-docs` shipped two editing surfaces at once. It ended: `Temco Markdown` is
-> gone, the page surface became its own module, and the shared bridge went with it ([temco-editor](../temco-editor/readme)).
+> gone, the page surface became its own module, and the shared bridge went with it ([temco-editor](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/modules/temco-editor/README.md)).
 > What is left here is only the grid.
 
 Two editors over one file is a decision, not an accident: **what you see while editing** is a real choice, and it cannot
@@ -124,7 +123,7 @@ rich document cannot truthfully "replace text" across formatting), `outline.tsx`
 `surface-controls.css`. They were inside `webview/docs/` until the page needed them; a copy in each surface is how the
 two would drift.
 
-#### The page's chrome: a document application, not a card
+### The page's chrome: a document application, not a card
 
 The rich page is arranged the way a document application is, because that is what it is: `Home · View` at the top,
 groups under each, a sheet on a canvas, and a status strip. Two tabs and not three: there are about twenty controls, and
@@ -153,7 +152,7 @@ What is deliberately **not** in this ribbon: font, font size, text colour, align
 hold them, and a control whose effect disappears on the next save is a lie — the same reason the alignment group was
 removed from the source surface.
 
-#### The editor's three files, and the seam between them
+### The editor's three files, and the seam between them
 
 ```
 webview/page/
@@ -194,7 +193,7 @@ webview/grid.ts       ──esbuild──▶  out/webview/grid/grid.js      11.9
 The page surface has its own bundler in its own module (`extensions/temco-editor`, `out/webview/markdown/`), because a
 module builds what it owns.
 
-#### Where this belongs: the extension, and what moving it into core would take
+### Where this belongs: the extension, and what moving it into core would take
 
 The surfaces are an extension today. The question "should this be product code instead" has a factual answer in this
 fork, so it is recorded here rather than argued:
@@ -237,7 +236,7 @@ already treats as build output, so it is ignored by git. It is deliberately **no
 `local/code-no-new-javascript-files` rule rejects a newly added `.js`, and only a CODEOWNERS edit can allowlist one.
 `vscode:prepublish` runs the build for a packaged extension, so a source tree needs `npm run build-webview` once.
 
-#### What was tried and removed: the rich editor
+### What was tried and removed: the rich editor
 
 The page was once offered twice: the source surface, and a **Rich mode** built on the official Tiptap UI Components
 template — 161 vendored files, 21 @tiptap/* packages and a 1.6 MB bundle. It was **removed**, because:
@@ -258,11 +257,11 @@ document under the caret moves the caret to the end of the page, an echo of the 
 than applied, and `applyEdit` landing out of order makes a late write of ours look like an outside change. Those three
 lessons are enforced in `webview/docs/main.tsx` and asserted in `check-docs` and in the scenario below.
 
-#### The rich page: Tiptap, and the round trip that makes it safe
+### The rich page: Tiptap, and the round trip that makes it safe
 
 > **Where it lives now.** This surface became its own module: `extensions/temco-editor`, view type `temcoEditor.markdown`,
 > and it is the **default** for `*.md` today. The paths below are the ones it had while it lived here; the reasoning, the
-> rules and the checks are unchanged and still apply — see [temco-editor](../temco-editor/readme) for the current tree.
+> rules and the checks are unchanged and still apply — see [temco-editor](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/modules/temco-editor/README.md) for the current tree.
 > The two-surface comparison this section describes is over: the winning affordances (a selection menu, a block handle, a
 > placeholder) are in that module, the losing prototype was deleted, and the ribbons of the two surfaces became one.
 
@@ -308,7 +307,7 @@ wants the page instead changes one `priority` in `package.json`, or a person pic
 The two editors also share one ribbon: `.ribbon` and its groups live in `temco-ui/media/page.css`, so the strip a
 writer recognises in the source surface is the strip in the page, drawn from the same buttons and badges.
 
-#### The engine and the design language: both stay
+### The engine and the design language: both stay
 
 Two questions come back often enough to answer once.
 
@@ -332,7 +331,7 @@ vocabulary's own HTML and CSS. `scripts/check-fluent.mts` fails the build if any
 `webview/shared` (in `temco-editor`) imports it, so a second design language cannot creep in unnoticed. Removing Fluent
 entirely would mean replacing those glyphs and one dialog — worth doing when the annotator next needs a change, not before.
 
-#### What was removed: ONLYOFFICE
+### What was removed: ONLYOFFICE
 
 `src/office/` (sign, config, bridge, desktop paths, the custom editor), its four commands, its settings block and
 `scripts/check-office.mts` were deleted. ONLYOFFICE Docs does edit `.md` natively and the integration worked, but the
@@ -346,7 +345,7 @@ licence and the deployment each decide the question on their own:
 
 Tiptap answers the same need — a document, in the product, offline, on the file — with a licence we can ship.
 
-#### Importing Word documents
+### Importing Word documents
 
 `src/docx.ts` + `src/docxConvert.ts`: `mammoth` reads the `.docx` into semantic HTML and `turndown` turns that into
 Markdown, in a child process so the extension host never blocks. The result is a *starting point* — Word's fonts,
@@ -374,7 +373,7 @@ source editor.
 (the maintained options are either deprecated on npm or drag in a pro tier), so a workbook keeps opening as what it
 is — a binary — rather than behind a grid that pretends it can be reviewed.
 
-#### The Grid surface: a spreadsheet over CSV
+### The Grid surface: a spreadsheet over CSV
 
 `webview/grid.ts` is Univer, bundled the same way the page is; `src/gridEditor.ts` is its host. The contract is
 deliberately narrow: the host sends `{ type: 'set', rows }` with what `parseCsv` read, the surface sends back
@@ -417,11 +416,11 @@ Which editor opens what:
 **One editor per kind, on purpose.** There is no second rich-text surface for `.md`: the file is the source of truth and it
 is already readable in the surface's `Page` view, so an engine between the person and the bytes buys formatting they cannot
 review in a diff. The Office question is settled the same way, in
-[`../../platform-design.md`](../../platform-design): `.docx`/`.xlsx`/`.pptx` are *not* edited in the product — Word
+[`../../platform-design.md`](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-platform/platform-design.md): `.docx`/`.xlsx`/`.pptx` are *not* edited in the product — Word
 documents come **in** through `src/docx.ts`, and an OOXML editor would make the source of truth binary, un-diffable, and
 (ONLYOFFICE being AGPL-3.0) unshippable.
 
-### The Markdown surface — removed, and where its features went
+## The Markdown surface — removed, and where its features went
 
 > **This surface is gone.** `temcoDocs.markdown`, `src/fluentEditor.ts` and `webview/docs/` were deleted, and
 > `temcoDocs.page` became the default for `*.md`. What follows is kept as the record of what it did and why it went; the
@@ -521,7 +520,7 @@ Every icon button carries an `aria-label` and a tooltip.
 | **source · split · preview** | the segmented control at the right of the status bar; the divider between the panes **drags** |
 | preview · diff · source | the three icons beside it; each asks the host to run a command **with this document's URI**, and each is also in the tab menu's *Temco Docs* submenu |
 
-#### Writing, not just Markdown
+### Writing, not just Markdown
 
 Four behaviours exist because a page of instructions is written in a list, edited in place and read back:
 
@@ -532,7 +531,7 @@ Four behaviours exist because a page of instructions is written in a list, edite
 | the colour behind the words | see below — the input stays a textarea, so none of the caret rules are put at risk for colour |
 | the caret is revealed after a jump | the outline moves the caret into a line that may be off screen, and a caret you cannot see is a caret you do not trust |
 
-#### Colour without a second editor engine
+### Colour without a second editor engine
 
 The source pane is a `<textarea>`, and it has to stay one: every caret guarantee in this surface rests on the native
 element's own selection behaviour. So the highlighting is a **mirror `<pre>` behind the text**, and the textarea's own
@@ -560,7 +559,7 @@ the textarea a surface, which is precisely what hides the colour, so that one de
 | `webview/docs/theme.ts` | `--vscode-*` → Fluent brand ramp, neutrals, radius and font; `watchTheme` repaints on a theme change |
 | `webview/docs/docs.css` | geometry, the paper, the parts of a document Fluent has no concept of |
 
-#### The protocol
+### The protocol
 
 ```
 webview                              host (WebviewTextEditor)
@@ -587,7 +586,7 @@ surface asks, because a full screen is megabytes of base64 and it would cross th
 `action` carries the document, because inside a custom editor there is no `activeTextEditor`: a command that fell back
 to "whatever editor is in front" would find nothing and quietly do nothing.
 
-#### The caret, in the surface that ships
+### The caret, in the surface that ships
 
 The three rules learned from the rich editor's round trip hold here too, and they are enforced in the webview rather than hoped for:
 
@@ -615,7 +614,7 @@ page against "the text the document opened with" stayed on *unsaved* forever. It
 while the bridge is behind, `in document` once the edit is in the document — and it deliberately does not duplicate
 "is the file saved", which is the tab's dirty dot.
 
-#### Screenshots, and why the capture is host-side
+### Screenshots, and why the capture is host-side
 
 `getDisplayMedia` is not dependable inside a webview — the frame is not granted display capture in every build — so the
 capture happens where the OS window is. `captureScreen()` runs a small platform command (`System.Windows.Forms.Screen`
@@ -635,7 +634,7 @@ relative address back.
 | the words | **one string**, used as the alt text and as the visible caption. A screen reader and a reader see the same sentence, and there is no second field to fall out of step |
 | what a picture depicts | `appliesTo`, recorded at insert time (design §22.4, S1) |
 
-#### The pictures a version leaves behind
+### The pictures a version leaves behind
 
 `media/attachments.json` sits beside the images and says what each one is:
 
@@ -672,7 +671,7 @@ Two silences are deliberate. An image with **no** `appliesTo` is never called st
 claim from "this is old", and a false accusation on every page written before the record existed would make the report
 worthless. And no version report means no report at all, because there is nothing to compare against.
 
-#### What was proven in a real window
+### What was proven in a real window
 
 `.build/vscode-playwright-mcp/temco-markdown-editor.cjs` drives a dev build and passes **sixteen** steps: the surface opens, the source pane holds the file from disk, typing reaches the **file** after `Ctrl+S`, the caret is still where typing left it, re-opening the page costs **zero bytes**, the surface fills the editor area, a screenshot is taken and then asks what it shows, the caption becomes both the reference and the record, the preview renders it as a figure whose alt text is the same words, the colour behind the text lines up with the words, the outline lists the headings and jumps to one, find counts its matches, the view modes show one pane or both, and the tab menu's *Temco Docs* submenu offers the three views for this surface. The last one chooses each ribbon tab and proves the document is untouched by the choosing, because a tab is a place commands live, not a place text does. The sixteenth zooms in and measures the source against its colour mirror, then resets, because a zoom that moves one layer and not the other is invisible in every other check.
 
@@ -711,14 +710,14 @@ Three harness facts are worth writing down, since they cost the most time: a web
 
 The three now live in that submenu rather than in `editor/title`, because the surface already draws them in its own head — as icons, next to the view modes — and a title-bar twin both repeated them and squeezed the breadcrumb. `editor/title` keeps only the source-mode twins keyed on `editorLangId`, so each action appears once in each mode.
 
-#### Two deliberate deviations
+### Two deliberate deviations
 
 | Deviation | Why |
 |---|---|
 | Fluent lives in `extensions/temco-docs/webview/docs/`, not in `temco-ui` | `temco-ui` has no React runtime and no JSX toolchain; extracting means giving it both. It is confined rather than unowned: `scripts/check-fluent.mts` fails the build if any other file imports `@fluentui`. The trigger to extract is a **second** Fluent surface. |
 | `.md` opens in this editor by default | it is the authoring surface. The risk of a custom editor is that it changes what the file means; this one writes Markdown through the document, so it cannot. Every other surface here stays `option`. |
 
-### The reader: what a published version looks like
+## The reader: what a published version looks like
 
 Authoring is one half of documentation; this is the other half. A published version gets a page beside the files the
 generator produced, and **the reader is not a second renderer**: the article is the generated page in a frame, so DocFX
@@ -757,7 +756,7 @@ has, because a long page is crossed by its headings and not by scrolling. Headin
 writes `id` from `slugOf`, so a rail link lands on the section, `levels` indent, and the rail is hidden in `Split`, where
 the pane is already half a tab. `check-docs` asserts the links and their anchors, not the pixels.
 
-### The AI panel
+## The AI panel
 
 ```
 Temco Docs                                     (panel: the AI, docked on the right)
@@ -780,7 +779,7 @@ Temco Docs                                     (panel: the AI, docked on the rig
 - **With nothing installed the panel still opens** and says what to download, so the extension never looks
   broken — the AI is optional the whole way down.
 
-### The dashboard, and why this repository does not have one
+## The dashboard, and why this repository does not have one
 
 `00-architecture.md` puts the dashboard on the **site**, not in the editor: a **generated static page** at
 `/_admin/` — coverage · stale by owner · docs-owed · unowned · unreviewed · broken links · feedback ·
@@ -794,7 +793,7 @@ health) and in a second place. Both are deleted, along with the token setting th
 one this document already carries for checks: **the extension never computes an answer the product repository
 already owns.**
 
-### Commands
+## Commands
 
 | Command | Does |
 |---|---|
@@ -829,7 +828,7 @@ state, so the view and the button that fixes it are never apart. There is no org
 design: that question belongs to the site's generated dashboard, which this extension hands off to rather than
 re-implements.
 
-### What refreshes the view
+## What refreshes the view
 
 - activation, and any workspace-folder change;
 - a change to `**/docs/help/registry.json` (created, changed, deleted) — it changes the shape of the tree;
@@ -839,7 +838,7 @@ re-implements.
 
 Everything else, including saving a page, does not refresh: the tree describes structure, not prose.
 
-### Rules the code follows
+## Rules the code follows
 
 - **Two writes, each asked for.** Reading is what the extension does; it writes in exactly two places, and only
   on a command that names what it will create: the empty file for a page the registry already declares, and an
@@ -872,7 +871,7 @@ Everything else, including saving a page, does not refresh: the tree describes s
   and when the window closes. The extension holds no model in its own process, so nothing to load or unload
   blockingly.
 
-### Guardrails, in code
+## Guardrails, in code
 
 `12-ai-features.md`, *Guardrails*, lists them; this is where each one actually lives, so it can be checked rather than
 trusted.
@@ -893,7 +892,7 @@ trusted.
 | The page in front is a page, not a text editor | `frontUri()` reads the active tab as well as `activeTextEditor`, because a custom editor has none; without it Properties, the capture target and every row command silently saw nothing |
 | Every image has words, and a version | `landImage()` is the only writer into `media/`; it records the caption and the version the picture depicts, and `check-record` proves a picture with no recorded version is never called stale |
 
-### Roadmap
+## Roadmap
 
 | Phase | Adds |
 |---|---|
@@ -903,7 +902,7 @@ trusted.
 | 4 | *(not a module of its own)* — the documentation health report is the platform's generated page at `/_admin/` |
 | 5 | **feedback and health** — intake, and the report of what is owed; the report's cadence stays in the product repo's CI |
 
-The module's design is what this document and [`registry-schema.md`](registry-schema) hold; the platform-wide
+The module's design is what this document and [`registry-schema.md`](./registry-schema.md) hold; the platform-wide
 design is [`design/temco-learn/`](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-learn/design/README.md).
 
 The AI is the reason the module exists. Everything before it is what the AI needs in order to know what it is

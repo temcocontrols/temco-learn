@@ -1,7 +1,6 @@
 ---
 title: "temco-editor"
-order: 230
-edit: false
+order: 10
 ---
 
 The editor for a Markdown page: one module, one editor, three layers. It owns the surface and nothing about what a page

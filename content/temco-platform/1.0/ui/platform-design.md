@@ -1,7 +1,6 @@
 ---
 title: "The platform"
-order: 405
-edit: false
+order: 60
 ---
 
 The center documentation platform. One internal application — VS Code plus this extension — that takes

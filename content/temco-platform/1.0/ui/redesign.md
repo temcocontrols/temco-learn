@@ -1,7 +1,6 @@
 ---
 title: "Docs center: the redesign"
-order: 406
-edit: false
+order: 70
 ---
 
 One consolidated design for the documentation center. It supersedes the layout sections of `app-flow.md`, `authoring-flow.md` and `extension-design.md`, which contradict each other. Nothing here is built yet.

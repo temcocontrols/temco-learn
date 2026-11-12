@@ -1,7 +1,6 @@
 ---
 title: "The registry the module reads"
-order: 223
-edit: false
+order: 40
 ---
 
 `docs/help/registry.json` in each product repository is the single description of that product's

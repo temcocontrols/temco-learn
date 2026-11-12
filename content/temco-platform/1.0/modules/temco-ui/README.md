@@ -1,7 +1,6 @@
 ---
 title: "`temco-ui`"
-order: 280
-edit: false
+order: 10
 ---
 
 The application's shared UI conventions, and nothing else.

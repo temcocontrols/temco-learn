@@ -1,7 +1,6 @@
 ---
 title: "The front page — the Azure portal's palette and scale"
-order: 408
-edit: false
+order: 90
 ---
 
 **Status: implemented, corrected after review.** The page is the **platform description** — titled `Temco Platform`, with no breadcrumb — in the **Azure portal's own palette and type scale** (24px page title, 18px section, 14px card, 13px text; `#0078d4` blue, `#1f2327` ink, `#faf9f8` page, `#edebe9` hairline), not the marketing scale of §2. The rules are in `extensions/temco-ui/media/page.css`; the markup in `extensions/temco-ui/src/components.ts`.

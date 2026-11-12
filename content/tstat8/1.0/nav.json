@@ -1,0 +1,195 @@
+{
+	"generated": "2026-11-12",
+	"pages": [
+		{
+			"href": "tstat8-manual.md",
+			"title": "TStat8 Manual",
+			"order": 10
+		},
+		{
+			"href": "tstat8-manual/tstat8-manual.md",
+			"title": "TStat8 Manual",
+			"order": 10
+		},
+		{
+			"href": "introduction/introduction.md",
+			"title": "Introduction",
+			"order": 20
+		},
+		{
+			"href": "introduction/specifications.md",
+			"title": "Specifications",
+			"order": 30
+		},
+		{
+			"href": "introduction/dimension.md",
+			"title": "Dimension",
+			"order": 40
+		},
+		{
+			"href": "introduction/part-number-scheme.md",
+			"title": "Part Number Scheme",
+			"order": 50
+		},
+		{
+			"href": "introduction/typical-application.md",
+			"title": "Typical Application",
+			"order": 60
+		},
+		{
+			"href": "introduction/menu-item-details.md",
+			"title": "Menu Item Details",
+			"order": 70
+		},
+		{
+			"href": "tstat8-software/tstat8-software.md",
+			"title": "Tstat8 Software",
+			"order": 80
+		},
+		{
+			"href": "tstat8-software/t3000-software.md",
+			"title": "T3000 Software",
+			"order": 90
+		},
+		{
+			"href": "tstat8-software/menus-and-work-area.md",
+			"title": "Menus and Work Area",
+			"order": 100
+		},
+		{
+			"href": "tstat8-software/pids-set-dialog-window.md",
+			"title": "PIDs Set Dialog window",
+			"order": 110
+		},
+		{
+			"href": "tstat8-software/building-database.md",
+			"title": "Building Database",
+			"order": 120
+		},
+		{
+			"href": "tstat8-software/system-tree.md",
+			"title": "System Tree",
+			"order": 130
+		},
+		{
+			"href": "tstat8-software/t3000-operation.md",
+			"title": "T3000 Operation",
+			"order": 140
+		},
+		{
+			"href": "tstat8-software/wireless-connections.md",
+			"title": "Wireless Connections",
+			"order": 150
+		},
+		{
+			"href": "tstat8-software/wifi-configuration.md",
+			"title": "Wifi Configuration",
+			"order": 160
+		},
+		{
+			"href": "tstat8-software/heating-cooling-configuration.md",
+			"title": "Heating/Cooling Configuration",
+			"order": 170
+		},
+		{
+			"href": "tstat8-software/input-setting.md",
+			"title": "Input Setting",
+			"order": 180
+		},
+		{
+			"href": "tstat8-software/output-setting.md",
+			"title": "Output Setting",
+			"order": 190
+		},
+		{
+			"href": "tstat8-software/one-heat-one-cool-setting.md",
+			"title": "One heat one cool setting",
+			"order": 200
+		},
+		{
+			"href": "tstat8-software/off-mode.md",
+			"title": "OFF Mode",
+			"order": 210
+		},
+		{
+			"href": "tstat8-software/auto-mode.md",
+			"title": "AUTO Mode",
+			"order": 220
+		},
+		{
+			"href": "tstat8-software/on-mode.md",
+			"title": "ON Mode",
+			"order": 230
+		},
+		{
+			"href": "tstat8-software/pid-loop-setting.md",
+			"title": "PID Loop Setting",
+			"order": 240
+		},
+		{
+			"href": "tstat8-software/two-heat-two-cool-setting.md",
+			"title": "Two heat two cool setting",
+			"order": 250
+		},
+		{
+			"href": "tstat8-software/two-heat-two-cool-setting-off-mode.md",
+			"title": "OFF Mode",
+			"order": 260
+		},
+		{
+			"href": "tstat8-software/two-heat-two-cool-setting-auto-mode.md",
+			"title": "AUTO Mode",
+			"order": 270
+		},
+		{
+			"href": "tstat8-software/schedules.md",
+			"title": "Schedules",
+			"order": 280
+		},
+		{
+			"href": "tstat8-software/managing-schedules-in-t3000.md",
+			"title": "Managing schedules in T3000",
+			"order": 290
+		},
+		{
+			"href": "tstat8-software/managing-schedules-using-bacnet.md",
+			"title": "Managing schedules using Bacnet",
+			"order": 300
+		},
+		{
+			"href": "tstat8-software/weekly-routines-schedule.md",
+			"title": "Weekly routines schedule",
+			"order": 310
+		},
+		{
+			"href": "tstat8-software/annual-routine-schedule.md",
+			"title": "Annual routine schedule",
+			"order": 320
+		},
+		{
+			"href": "tstat8-hardware/tstat8-hardware.md",
+			"title": "Tstat8 Hardware",
+			"order": 330
+		},
+		{
+			"href": "tstat8-hardware/overview.md",
+			"title": "Overview",
+			"order": 340
+		},
+		{
+			"href": "installation/installation.md",
+			"title": "Installation",
+			"order": 350
+		},
+		{
+			"href": "firmware-update-single-device/firmware-update-single-device.md",
+			"title": "FIRMWARE UPDATE, SINGLE DEVICE",
+			"order": 360
+		},
+		{
+			"href": "firmware-update-single-device/firmware-updates-batch-loading.md",
+			"title": "FIRMWARE UPDATES: BATCH LOADING",
+			"order": 370
+		}
+	]
+}
