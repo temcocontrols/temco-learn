@@ -1,0 +1,60 @@
+{
+	"generated": "2026-11-13",
+	"pages": [
+		{
+			"href": "00-hub.md",
+			"title": "T3 firmware and bootloader",
+			"order": 10
+		},
+		{
+			"href": "update-flow.md",
+			"title": "How a firmware update runs",
+			"order": 20
+		},
+		{
+			"href": "update-registers.md",
+			"title": "The update registers",
+			"order": 30
+		},
+		{
+			"href": "resuming-an-update.md",
+			"title": "Resuming an interrupted update",
+			"order": 40
+		},
+		{
+			"href": "inside-the-bootloader.md",
+			"title": "Inside the bootloader",
+			"order": 50
+		},
+		{
+			"href": "trying-the-commands.md",
+			"title": "Trying the commands",
+			"order": 60
+		},
+		{
+			"href": "signing-firmware.md",
+			"title": "Firmware signing guide",
+			"order": 70
+		},
+		{
+			"href": "skip-signature-validation.md",
+			"title": "Skip firmware signature validation",
+			"order": 80
+		},
+		{
+			"href": "bacnet-cov.md",
+			"title": "BACnet change of value",
+			"order": 90
+		},
+		{
+			"href": "bacnet-stack.md",
+			"title": "BACnet protocol stack and flow",
+			"order": 100
+		},
+		{
+			"href": "wifi-station-mode.md",
+			"title": "Wi-Fi station mode",
+			"order": 110
+		}
+	]
+}

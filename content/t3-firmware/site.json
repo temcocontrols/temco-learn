@@ -1,0 +1,5 @@
+{
+	"title": "T3 Firmware & Bootloader",
+	"section": "documentation",
+	"summary": "Replacing the firmware on a T3 controller: the update flow and its registers, resuming an interrupted transfer, image signing, and the protocol notes for the ESP32 controllers."
+}
