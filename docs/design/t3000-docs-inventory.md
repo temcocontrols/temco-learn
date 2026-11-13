@@ -641,3 +641,76 @@ is reflow work, and T3000 alone is 24 of the 49 conversions.
 
 Not in the table, by design: `cpr-1000` (a variant, §M/§U), the 13 duplicate CHM copies, the 8 engineering `.docx`
 files, the Microsoft SDK help files, `BacnetExplore\`, and the 7 395 raw sample programs (only the curated subset above).
+
+---
+
+# Part V — What has been built, and what this plan got wrong
+
+**Written:** 2026-11-12. This part is the record of the work this document planned; the parts above are left as written so the difference is readable.
+
+## What exists now
+
+| # | Project | Plan said | Built | Note |
+|---|---|---|---|---|
+| 1 | `t3000` | 27 pages | **136** | 129 converted from the CHM/PDF/docx, plus the six in §Y below |
+| 2 | `tstat8` | 6 pages | **39** | the CHM's contents tree produced far more topics than the plan guessed |
+| 3 | `psychrometric` | 7 pages | **51** | the CHM holds 51 topics, 195 files, 123 images with captions |
+| 4 | `ph-chart` | 4 pages | **24** | 25 topics in the CHM; one is its cover, which is not a page |
+| 5 | — | — | `temco-platform` (33) | not foreseen here: the platform's own design set became a project |
+
+Projects 5–10 are still unbuilt, deliberately (see "Not projects" above): `testtool`, `bravo-api`, `airlab`, `bacnet-reference`, `modbus-registers`, `sample-programs`.
+
+## Where the plan was wrong
+
+Four findings that change the file mapping, all found by opening the sources:
+
+1. **`T3000-BAS.docx` is not a manual.** It is *Get Started with GitHub* — installing Git and TortoiseGit, SSH keys, merging, compiling in Visual Studio 2010, across 18 headings and 138 images. So §Y rows 1, 11, 24 and 27 have no source: the `00-index.md`, `schedules`, `troubleshooting` and `glossary` targets cannot come from it. The first three were written from other material; the glossary has **no legacy source at all** and was authored from the manual's own vocabulary.
+2. **`HowToUseDll.docx` and `HowToUseT3000 Interpreter DLL.docx` are the same document**, byte for byte in their text. §Y rows 25 and 26 are one page, `dll-programming`, not two.
+3. **The two CHMs are far larger than planned** — 51 and 25 topics against 7 and 4 — because the plan counted *files* (`Psychrometric Help.chm` = 1) where the reader counts *topics*.
+4. **`T3000 Data Flow Chart.pdf` and `PTP_T3000_Client.pdf` are diagrams with almost no text** (751 and 835 characters). They cannot be reflowed; the pages were written from the flowchart's own labels — the scan command bytes, `refresh_net_device`, `Str_T3000_Connect` — and the PDFs ship beside the pages as figures.
+
+## The six pages this plan listed but nobody had written
+
+| Page | Source | How |
+|---|---|---|
+| `data-flow` | `T3000 Data Flow Chart.pdf` | written from the chart, PDF linked as a figure |
+| `ptp-client` | `PTP_T3000_Client.pdf` | written from the chart, PDF linked as a figure |
+| `wireguard` | `T3000_WireGuard_Implementation.docx` | the specification, with its three screens extracted |
+| `dll-programming` | both `HowToUse*.docx` | the encode/decode API, with its two screenshots |
+| `annual-routines` | `T3000\Annual_Routines.cpp` | written; no prose source existed |
+| `glossary` | — | written; `T3000-BAS.docx` was the wrong source |
+
+`wireguard` is the one page that has to say what it is: the DOCX calls itself a *proposed framework*, so the page ends with a status note rather than pretending to describe a shipped screen.
+
+---
+
+# Part VI — The second pass, 2026-11-13
+
+Part V closed five projects. This part is what came after re-reading the C++ repository with the measurements from Part V in hand, and it corrects four of the plan's assumptions.
+
+## What the estate actually holds
+
+| Source | Measured | Verdict |
+|---|---|---|
+| `T3000 Output\Debug\ResourceFile\**\*.txt` | 7 394 of them are **`t3web\logs\`** — webview log files, not sample programs; the only program is `DemoPrg.txt` (already published) | **`sample-programs` is withdrawn** |
+| `Documentation\Bacnet List.xlsx` | 3.4 MB, but **3 sheets × 12 rows** (T3-BB 56 channels, T3-LB 26, T3-TB 22) | a page, not a project — folded into `register-maps` |
+| The 13 engineering DOCX | **~4 900 words against ~190 screenshots**; `How to debug` is 380 words and 29 images | one project, not five |
+| `HelpDocs\T3000SoftwareManualRev3.PDF` | 180 pages, **53 TOC entries**, all of them already published | nothing to mine |
+| `T3_Bootloader\FIRMWARE_UPDATE_FLOWCHART.md` | **24 335 characters**, 14 sections | the largest unconverted document in the estate — it became `t3-firmware` |
+
+## The five projects this pass added
+
+| Project | Section | Pages | Built from |
+|---|---|---|---|
+| `t3000-api` | documentation | **83** | `T3000Webview\docs\t3000` — 100 md, minus 13 status notes and the 12 tagging pages, minus 4 indexed out |
+| `t3000-engineering` | documentation (internal) | **15** | the 13 DOCX, 297 screenshots in the order the authors placed them |
+| `semantic-tagging` | topics | **13** | the `haystack/` pages moved out of the API set, plus `t3000_openbim_haystack_plan.md` and a hub |
+| `t3-firmware` | documentation | **11** | the bootloader flowchart split by its own sections, 2 signing guides, 3 ESP32 protocol documents |
+| `register-maps` | topics | **8** | `ModbusRegistersList.xls` (385 register rows + 81 notes), the BACnet matrix, the WireGuard register map |
+
+Two structural notes for whoever reads this next:
+
+1. **The reading tree is still flat, and it is now 135 pages for `t3000` and 83 for `t3000-api`.** §V predicted this at ~40. The `group:` field it proposed is still unimplemented; the version page numbers every page `01…N` in one grid.
+2. **`semantic-tagging` was carved out of `t3000-api` deliberately** — the tagging layer is read by the C++ shell, the web front end and the firmware alike, which is what the `topics` section is for. Publishing the same twelve pages in both projects would have been the easier and worse choice.
+
+

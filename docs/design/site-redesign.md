@@ -231,8 +231,14 @@ The version landing, and the screen with the most to offer.
 - Hero: section eyebrow, `Product 1.0`, one meta line (`5 pages · built 2 hours ago`), a sentence-style banner when the
   version is not the newest (`You are reading 0.9. Switch to 1.0 →`), and **four actions**: `Start reading`, `PDF`,
   `Windows help` (only when a `.chm` exists) and `All versions`.
-- **Pages as a numbered grid**, not a table: `01 · title · description · 5 min read` in three columns, two below 900px, one
-  below 620px. No lines, no columns — the number and the title are all a reader is choosing between.
+- **The version's contents**, not a table of pages. The folders the build wrote become **tabs** in a Fluent `TabList`: the
+  version's own front pages lead the strip, named by the page they open with (`TStat8`, `T3000`), each tab carries the
+  chapter's first page number and its title, and the chosen chapter's pages fill the panel below in **three columns read
+  down and then across** — two below 900px, one below 620px — as `01 · title · 1 min` rows under a line that gives the range
+  they cover (`10–34`) and the chapter's size (`25 pages · 33 min`). Numbers follow the contents rather than the file listing,
+  because a build writes its pages in an order that interleaves folders. A version with no folders at all (psychrometric,
+  ph-chart) is the plain list with no strip, since a strip of one tab says nothing. The section label carries the total:
+  `39 pages · 47 min`.
 - **Other versions** as quiet chips (`0.9 · 1 page`) with no borders.
 - The page head above carries the version switcher and the full download menu for anything the hero does not show.
 
@@ -562,3 +568,23 @@ Five changes came out of reading the built site, and they replace what §3 and �
       every link shared before the change still lands on the page it named;
     - `scripts/pdf.mts` joins its route onto the preview's base with `new URL()` instead of building `#` addresses, and the
       eleven PDFs were regenerated to prove it.
+21. **Fourteenth pass — the version's contents.** The numbered page grid became a contents page. The pages were already
+    grouped by their addresses (`introduction/specifications`), so `VersionPage` reads the chapters out of those addresses
+    rather than out of a second list kept in step with them: a folder is a chapter, named by its own page — the page that
+    carries the folder's name, or the `readme`/`index` a tool gives it — and headed by the range it covers. Grouping comes
+    **before** the numbering, because a build writes its pages in an order that interleaves folders (t3000 lists two pages of
+    `menu-items-and-tree`, then three of something else, then three more of it), and numbering the file listing first made
+    every chapter's range run over pages that were listed somewhere else on the page. Numbers are therefore the reader's
+    count down the contents page, not the catalogue's. Each chapter's rows run in CSS columns — down one column and then the
+    next, which is how a contents page is read and what a row-major grid cannot do — and every row is `number · title · time`
+    on one line, with the number column measured once (34px) so titles line up whether they sit under a heading or under
+    nothing. A chapter of one page is its heading alone. Reading time is the catalogue's own `minutes`, summed per chapter and
+    for the version (`39 pages · 47 min`), and `readingTime()` in `data.ts` lets it say `1 hr 9 min`. Three chapters or more
+    adds the `Chapters` jump list; a version with no folders at all (psychrometric, ph-chart) is the same list without the
+    headings.
+22. **Fifteenth pass — the chapters as tabs.** The stacked contents page became a Fluent `TabList`: one chapter at a time,
+    with the strip keeping every chapter in reach. The cost is measured and accepted — t3000's eighteen chapters wrap the
+    strip to three rows (Fluent v9 has no overflow menu for tabs), and the tabs pull about 86 kB more into the bundle (373 →
+    459 kB raw, 116 → 139 kB gzipped). The pages that sit in no folder became the first tab, named by the page they open
+    with, so a version never opens on an empty panel, and a version with no folders keeps the plain list rather than a strip
+    of one tab. The page rows, the number column and the reading-time line are unchanged; only the way a chapter is chosen is.
