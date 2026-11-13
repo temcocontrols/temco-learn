@@ -1,0 +1,80 @@
+{
+	"generated": "2026-11-13",
+	"pages": [
+		{
+			"href": "00-hub.md",
+			"title": "Building T3000",
+			"order": 10
+		},
+		{
+			"href": "build-steps.md",
+			"title": "Building T3000 from source",
+			"order": 20
+		},
+		{
+			"href": "build-and-installer.md",
+			"title": "Compiling T3000 and making the setup file",
+			"order": 30
+		},
+		{
+			"href": "installshield.md",
+			"title": "The InstallShield project",
+			"order": 40
+		},
+		{
+			"href": "debugging-the-webview.md",
+			"title": "Debugging the webview",
+			"order": 50
+		},
+		{
+			"href": "merging-the-editor.md",
+			"title": "Merging the new editor",
+			"order": 60
+		},
+		{
+			"href": "c-sharp-components.md",
+			"title": "Using C# components in T3000",
+			"order": 70
+		},
+		{
+			"href": "help-file-authoring.md",
+			"title": "Authoring the help file",
+			"order": 80
+		},
+		{
+			"href": "github-workflow.md",
+			"title": "The GitHub workflow",
+			"order": 90
+		},
+		{
+			"href": "get-started-with-github.md",
+			"title": "Get started with GitHub",
+			"order": 100
+		},
+		{
+			"href": "releasing.md",
+			"title": "Creating a release",
+			"order": 110
+		},
+		{
+			"href": "testtool-trendlogs.md",
+			"title": "TestTool: trend logs",
+			"order": 120
+		},
+		{
+			"href": "testtool-record-data.md",
+			"title": "TestTool: recording data",
+			"order": 130
+		},
+		{
+			"href": "bravo-controls-api.md",
+			"title": "Building the Bravo Controls API",
+			"order": 140
+		},
+		{
+			"href": "airlab-bootloader.md",
+			"title": "Updating the Airlab bootloader",
+			"order": 150
+		}
+	]
+}
