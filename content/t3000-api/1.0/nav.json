@@ -342,134 +342,79 @@
 			"order": 700
 		},
 		{
-			"href": "haystack/ai-chat-page-design.md",
-			"title": "AI Chat Page — Integration Design",
-			"order": 710
-		},
-		{
-			"href": "haystack/ai-llm-api-integration.md",
-			"title": "AI Integration — Cloud LLM APIs",
-			"order": 720
-		},
-		{
-			"href": "haystack/ai-local-llm-server.md",
-			"title": "AI Integration — Local LLM Server",
-			"order": 730
-		},
-		{
-			"href": "haystack/fdd-native-engine.md",
-			"title": "FDD — Native Fault Detection & Diagnostics for T3000",
-			"order": 740
-		},
-		{
-			"href": "haystack/mcp-api-examples.md",
-			"title": "MCP API Examples",
-			"order": 750
-		},
-		{
-			"href": "haystack/mcp-claude-desktop.md",
-			"title": "mcp-claude-desktop",
-			"order": 760
-		},
-		{
-			"href": "haystack/mcp-vscode-copilot.md",
-			"title": "mcp-vscode-copilot",
-			"order": 770
-		},
-		{
-			"href": "haystack/v1-haystack-legacy-single-table.md",
-			"title": "Haystack v1 — Legacy Single-Table Design",
-			"order": 790
-		},
-		{
-			"href": "haystack/v2-haystack-current-implementation.md",
-			"title": "Haystack v2 — Current Implementation",
-			"order": 800
-		},
-		{
-			"href": "haystack/v3-haystack-auto-tagging-mcp.md",
-			"title": "T3000 Haystack & Brick Auto-Tagging + MCP — Design Document",
-			"order": 810
-		},
-		{
-			"href": "haystack/v4-haystack-mcp-complete.md",
-			"title": "T3000 MCP Server — Design",
-			"order": 820
-		},
-		{
 			"href": "t3-eez-studio/device-firmware-lvgl-architecture.md",
 			"title": "T3 Firmware — LVGL Display Architecture",
-			"order": 830
+			"order": 710
 		},
 		{
 			"href": "t3-eez-studio/device-interface-deployment-via-bacnet-design.md",
 			"title": "Device Interface Deployment via BACnet — Design",
-			"order": 840
+			"order": 720
 		},
 		{
 			"href": "t3-eez-studio/import-from-device-design.md",
 			"title": "Import from Device — Design",
-			"order": 850
+			"order": 730
 		},
 		{
 			"href": "t3-eez-studio/lvgl-eez-project-json-format.md",
 			"title": ".EEZ-Project JSON Format — Design Document",
-			"order": 860
+			"order": 740
 		},
 		{
 			"href": "t3-eez-studio/static-resource-copy-build.md",
 			"title": "Static Resource Copy — Build-Time Asset Pipeline",
-			"order": 870
+			"order": 750
 		},
 		{
 			"href": "t3-eez-studio/wasm-browser-build-migration.md",
 			"title": "LVGL WASM Browser Build Migration",
-			"order": 880
+			"order": 760
 		},
 		{
 			"href": "components/status-bar.md",
 			"title": "Status Bar Component",
-			"order": 890
+			"order": 770
 		},
 		{
 			"href": "shared-db/shared-center-db-summary.md",
 			"title": "Shared Center DB — Overview",
-			"order": 900
+			"order": 780
 		},
 		{
 			"href": "shared-db/sql-server-express-setup.md",
 			"title": "SQL Server Express 2022 Setup for T3000 (Detailed Step-by-Step)",
-			"order": 910
+			"order": 790
 		},
 		{
 			"href": "shared-db/t3000-center-db-config.md",
 			"title": "T3000 Center DB Configuration",
-			"order": 920
+			"order": 800
 		},
 		{
 			"href": "tstat-lcd/index.md",
 			"title": "Tstat LCD System — Documentation Index",
-			"order": 940
+			"order": 820
 		},
 		{
 			"href": "tstat-lcd/edit-mode.md",
 			"title": "LCD Screen Designer",
-			"order": 950
+			"order": 830
 		},
 		{
 			"href": "tstat-lcd/json-schema.md",
 			"title": "JSON Schema — screenDefinition.json",
-			"order": 970
+			"order": 850
 		},
 		{
 			"href": "tstat-lcd/system-overview.md",
 			"title": "System Overview",
-			"order": 980
+			"order": 860
 		},
 		{
 			"href": "tstat-lcd/widget-types.md",
 			"title": "Widget Types",
-			"order": 990
+			"order": 870
 		}
 	]
 }

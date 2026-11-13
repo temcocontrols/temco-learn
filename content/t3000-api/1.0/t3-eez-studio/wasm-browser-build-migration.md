@@ -1,6 +1,6 @@
 ---
 title: "LVGL WASM Browser Build Migration"
-order: 880
+order: 760
 ---
 
 **Date:** 2025-06-25 (updated 2026-07-10)

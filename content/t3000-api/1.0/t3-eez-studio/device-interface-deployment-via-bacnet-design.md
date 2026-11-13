@@ -1,6 +1,6 @@
 ---
 title: "Device Interface Deployment via BACnet — Design"
-order: 840
+order: 720
 ---
 
 Send firmware screens from the EEZ Editor to T3000 hardware devices, and load them back for display in EEZ Studio.

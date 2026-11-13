@@ -1,6 +1,6 @@
 ---
 title: "T3 Firmware — LVGL Display Architecture"
-order: 830
+order: 710
 ---
 
 ## Part 1 — Current Firmware (SquareLine Studio)

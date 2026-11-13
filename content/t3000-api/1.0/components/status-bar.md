@@ -1,6 +1,6 @@
 ---
 title: "Status Bar Component"
-order: 890
+order: 770
 ---
 
 ## Overview

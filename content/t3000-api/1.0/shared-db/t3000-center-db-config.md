@@ -1,6 +1,6 @@
 ---
 title: "T3000 Center DB Configuration"
-order: 920
+order: 800
 ---
 
 Use this guide to configure a shared central SQL Server database in T3000. This allows multiple T3000 PCs on the same network to share trend logs and device data through one central Microsoft SQL Server instance.

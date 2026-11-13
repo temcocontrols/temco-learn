@@ -1,6 +1,6 @@
 ---
 title: "Widget Types"
-order: 990
+order: 870
 ---
 
 All widget types available for LCD page definitions. Each maps to an LVGL equivalent on the device firmware.

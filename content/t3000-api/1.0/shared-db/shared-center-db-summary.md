@@ -1,6 +1,6 @@
 ---
 title: "Shared Center DB — Overview"
-order: 900
+order: 780
 ---
 
 Use this page to understand what Shared Center DB is and whether you need it. If you manage multiple T3000 PCs and want them to share trend logs and device data across the network — this is the feature for you.

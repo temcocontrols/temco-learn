@@ -1,6 +1,6 @@
 ---
 title: "SQL Server Express 2022 Setup for T3000 (Detailed Step-by-Step)"
-order: 910
+order: 790
 ---
 
 Estimated time: 25 to 40 minutes.

@@ -1,6 +1,6 @@
 ---
 title: "Tstat LCD System — Documentation Index"
-order: 940
+order: 820
 ---
 
 This folder contains the complete technical documentation for the Tstat10/Tstat11 LCD UI system: a visual drag-and-drop screen designer that outputs JSON, rendered identically on browser, device, and phone.

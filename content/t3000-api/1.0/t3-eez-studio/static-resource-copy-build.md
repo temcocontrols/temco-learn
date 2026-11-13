@@ -1,6 +1,6 @@
 ---
 title: "Static Resource Copy — Build-Time Asset Pipeline"
-order: 870
+order: 750
 ---
 
 **Date:** 2026-07-10

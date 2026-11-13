@@ -1,6 +1,6 @@
 ---
 title: "Import from Device — Design"
-order: 850
+order: 730
 ---
 
 Import firmware screens from a T3000 hardware controller, convert to `.eez-project`, and open in EEZ Studio.
