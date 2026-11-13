@@ -1,0 +1,5 @@
+{
+	"title": "T3000 API & Protocol",
+	"section": "documentation",
+	"summary": "The developer reference for T3000: the REST and WebSocket API, the Modbus and BACnet protocol, the webview message set, the data structures behind every point, and the semantic tagging layer."
+}

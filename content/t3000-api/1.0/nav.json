@@ -1,0 +1,475 @@
+{
+	"generated": "2026-11-13",
+	"pages": [
+		{
+			"href": "api-reference/overview.md",
+			"title": "API Reference Overview",
+			"order": 10
+		},
+		{
+			"href": "api-reference/rest-api.md",
+			"title": "REST API",
+			"order": 20
+		},
+		{
+			"href": "api-reference/websocket-api.md",
+			"title": "WebSocket API",
+			"order": 30
+		},
+		{
+			"href": "api-reference/modbus-protocol.md",
+			"title": "Modbus Protocol",
+			"order": 40
+		},
+		{
+			"href": "api-reference/data-points.md",
+			"title": "Data Points API",
+			"order": 50
+		},
+		{
+			"href": "api-reference/device-management.md",
+			"title": "Device Management API",
+			"order": 60
+		},
+		{
+			"href": "api-reference/control-automation.md",
+			"title": "Control & Automation API",
+			"order": 70
+		},
+		{
+			"href": "api-reference/trendlogs.md",
+			"title": "Trend Logging API",
+			"order": 80
+		},
+		{
+			"href": "api-reference/events.md",
+			"title": "Events",
+			"order": 90
+		},
+		{
+			"href": "api-reference/generic-tables.md",
+			"title": "Generic Tables API",
+			"order": 100
+		},
+		{
+			"href": "api-reference/database-management.md",
+			"title": "Database Management API",
+			"order": 110
+		},
+		{
+			"href": "api-reference/system-utilities.md",
+			"title": "System & Utilities API",
+			"order": 120
+		},
+		{
+			"href": "api-reference/developer-tools.md",
+			"title": "Developer Tools API",
+			"order": 130
+		},
+		{
+			"href": "building-platform/bacnet-commands.md",
+			"title": "BACnet Commands Reference",
+			"order": 140
+		},
+		{
+			"href": "building-platform/data-structures.md",
+			"title": "Data Structures Reference",
+			"order": 150
+		},
+		{
+			"href": "building-platform/device-settings-structure.md",
+			"title": "Device Settings (READ_SETTING_COMMAND)",
+			"order": 160
+		},
+		{
+			"href": "building-platform/overview.md",
+			"title": "Building Platform Overview",
+			"order": 170
+		},
+		{
+			"href": "building-platform/control-messages/message-index.md",
+			"title": "Control Messages Index",
+			"order": 180
+		},
+		{
+			"href": "building-platform/control-messages/message-get-initial-data.md",
+			"title": "Graphics Messages: GET_INITIAL_DATA & LOAD_GRAPHIC_ENTRY",
+			"order": 190
+		},
+		{
+			"href": "building-platform/control-messages/message-get-panels-list.md",
+			"title": "Message: GET_PANELS_LIST",
+			"order": 200
+		},
+		{
+			"href": "building-platform/control-messages/message-get-panel-data.md",
+			"title": "Message: GET_PANEL_DATA",
+			"order": 210
+		},
+		{
+			"href": "building-platform/control-messages/message-get-entries.md",
+			"title": "Message: GET_ENTRIES",
+			"order": 220
+		},
+		{
+			"href": "building-platform/control-messages/message-5-get-panel-range-info.md",
+			"title": "Message 5: GET_PANEL_RANGE_INFO",
+			"order": 230
+		},
+		{
+			"href": "building-platform/control-messages/message-8-open-entry-edit-window.md",
+			"title": "Message 8: OPEN_ENTRY_EDIT_WINDOW",
+			"order": 240
+		},
+		{
+			"href": "building-platform/control-messages/message-9-save-image.md",
+			"title": "Message 9: SAVE_IMAGE",
+			"order": 250
+		},
+		{
+			"href": "building-platform/control-messages/message-10-save-library-data.md",
+			"title": "Message 10: SAVE_LIBRARY_DATA",
+			"order": 260
+		},
+		{
+			"href": "building-platform/control-messages/message-11-delete-image.md",
+			"title": "Message 11: DELETE_IMAGE",
+			"order": 270
+		},
+		{
+			"href": "building-platform/control-messages/message-12-get-selected-device-info.md",
+			"title": "Message 12: GET_SELECTED_DEVICE_INFO",
+			"order": 280
+		},
+		{
+			"href": "building-platform/control-messages/message-13-bind-device.md",
+			"title": "Message 13: BIND_DEVICE",
+			"order": 290
+		},
+		{
+			"href": "building-platform/control-messages/message-14-save-new-library-data.md",
+			"title": "Message 14: SAVE_NEW_LIBRARY_DATA",
+			"order": 300
+		},
+		{
+			"href": "building-platform/control-messages/message-15-logging-data.md",
+			"title": "Message 15: LOGGING_DATA",
+			"order": 310
+		},
+		{
+			"href": "building-platform/control-messages/message-17.md",
+			"title": "Message 17: GET_WEBVIEW_LIST",
+			"order": 320
+		},
+		{
+			"href": "building-platform/control-messages/message-save-graphic-data.md",
+			"title": "Message: SAVE_GRAPHIC_DATA",
+			"order": 330
+		},
+		{
+			"href": "building-platform/control-messages/message-update-entry.md",
+			"title": "Message: UPDATE_ENTRY",
+			"order": 340
+		},
+		{
+			"href": "building-platform/control-messages/message-update-webview-list.md",
+			"title": "Message: UPDATE_WEBVIEW_LIST",
+			"order": 350
+		},
+		{
+			"href": "quick-start/installation.md",
+			"title": "Installation Guide",
+			"order": 360
+		},
+		{
+			"href": "quick-start/configuration.md",
+			"title": "Configuration Guide",
+			"order": 370
+		},
+		{
+			"href": "quick-start/overview.md",
+			"title": "Quick Start Overview",
+			"order": 380
+		},
+		{
+			"href": "data-points/inputs.md",
+			"title": "Inputs",
+			"order": 400
+		},
+		{
+			"href": "data-points/outputs.md",
+			"title": "Outputs",
+			"order": 410
+		},
+		{
+			"href": "data-points/pid-loops.md",
+			"title": "PID Loops",
+			"order": 420
+		},
+		{
+			"href": "data-points/programs.md",
+			"title": "Programs",
+			"order": 430
+		},
+		{
+			"href": "data-points/variables.md",
+			"title": "Variables",
+			"order": 440
+		},
+		{
+			"href": "device-management/connecting-devices.md",
+			"title": "Connecting Devices",
+			"order": 450
+		},
+		{
+			"href": "device-management/device-configuration.md",
+			"title": "Device Configuration",
+			"order": 460
+		},
+		{
+			"href": "device-management/device-monitoring.md",
+			"title": "Device Monitoring",
+			"order": 470
+		},
+		{
+			"href": "device-management/device-troubleshooting.md",
+			"title": "Device Troubleshooting",
+			"order": 480
+		},
+		{
+			"href": "device-management/lan-scanner.md",
+			"title": "LAN Scanner — UDP Device Discovery",
+			"order": 490
+		},
+		{
+			"href": "features/alarms.md",
+			"title": "Alarms",
+			"order": 500
+		},
+		{
+			"href": "features/graphics.md",
+			"title": "Graphics",
+			"order": 510
+		},
+		{
+			"href": "features/holidays.md",
+			"title": "Holidays",
+			"order": 520
+		},
+		{
+			"href": "features/schedules.md",
+			"title": "Schedules",
+			"order": 530
+		},
+		{
+			"href": "features/SETTINGS_FIELD_MAPPING.md",
+			"title": "Settings Field Mapping: C++ ↔ Frontend",
+			"order": 540
+		},
+		{
+			"href": "features/trend-center-unified-design.md",
+			"title": "Trend Center Unified Design",
+			"order": 560
+		},
+		{
+			"href": "features/trendlog-xaxis-design.md",
+			"title": "TrendLog Chart X-Axis Design",
+			"order": 570
+		},
+		{
+			"href": "features/trendlogs.md",
+			"title": "Trend Logs",
+			"order": 580
+		},
+		{
+			"href": "guides/best-practices.md",
+			"title": "Best Practices",
+			"order": 590
+		},
+		{
+			"href": "guides/faq.md",
+			"title": "Frequently Asked Questions",
+			"order": 600
+		},
+		{
+			"href": "guides/performance-tuning.md",
+			"title": "Performance Tuning",
+			"order": 610
+		},
+		{
+			"href": "guides/troubleshooting.md",
+			"title": "Troubleshooting Guide",
+			"order": 620
+		},
+		{
+			"href": "architecture/centralized-database-design.md",
+			"title": "Centralized Database Design",
+			"order": 630
+		},
+		{
+			"href": "architecture/centralized-database-multipc.md",
+			"title": "Centralized Database: Multi-PC Architecture (v4 Final)",
+			"order": 640
+		},
+		{
+			"href": "architecture/centralized-logging-design.md",
+			"title": "Centralized Logging Design",
+			"order": 650
+		},
+		{
+			"href": "architecture/device-loading.md",
+			"title": "Device Panel Loading",
+			"order": 660
+		},
+		{
+			"href": "architecture/flow-logging-design.md",
+			"title": "Flow Logging Architecture — Design Document",
+			"order": 670
+		},
+		{
+			"href": "architecture/MOBILE_ARCHITECTURE_GUIDE.md",
+			"title": "T3000 Mobile Architecture Guide",
+			"order": 680
+		},
+		{
+			"href": "architecture/multipc-data-flow-details.md",
+			"title": "Multi-PC Data Flow Details",
+			"order": 690
+		},
+		{
+			"href": "architecture/system-overview.md",
+			"title": "T3000 WebView System Architecture",
+			"order": 700
+		},
+		{
+			"href": "haystack/ai-chat-page-design.md",
+			"title": "AI Chat Page — Integration Design",
+			"order": 710
+		},
+		{
+			"href": "haystack/ai-llm-api-integration.md",
+			"title": "AI Integration — Cloud LLM APIs",
+			"order": 720
+		},
+		{
+			"href": "haystack/ai-local-llm-server.md",
+			"title": "AI Integration — Local LLM Server",
+			"order": 730
+		},
+		{
+			"href": "haystack/fdd-native-engine.md",
+			"title": "FDD — Native Fault Detection & Diagnostics for T3000",
+			"order": 740
+		},
+		{
+			"href": "haystack/mcp-api-examples.md",
+			"title": "MCP API Examples",
+			"order": 750
+		},
+		{
+			"href": "haystack/mcp-claude-desktop.md",
+			"title": "mcp-claude-desktop",
+			"order": 760
+		},
+		{
+			"href": "haystack/mcp-vscode-copilot.md",
+			"title": "mcp-vscode-copilot",
+			"order": 770
+		},
+		{
+			"href": "haystack/v1-haystack-legacy-single-table.md",
+			"title": "Haystack v1 — Legacy Single-Table Design",
+			"order": 790
+		},
+		{
+			"href": "haystack/v2-haystack-current-implementation.md",
+			"title": "Haystack v2 — Current Implementation",
+			"order": 800
+		},
+		{
+			"href": "haystack/v3-haystack-auto-tagging-mcp.md",
+			"title": "T3000 Haystack & Brick Auto-Tagging + MCP — Design Document",
+			"order": 810
+		},
+		{
+			"href": "haystack/v4-haystack-mcp-complete.md",
+			"title": "T3000 MCP Server — Design",
+			"order": 820
+		},
+		{
+			"href": "t3-eez-studio/device-firmware-lvgl-architecture.md",
+			"title": "T3 Firmware — LVGL Display Architecture",
+			"order": 830
+		},
+		{
+			"href": "t3-eez-studio/device-interface-deployment-via-bacnet-design.md",
+			"title": "Device Interface Deployment via BACnet — Design",
+			"order": 840
+		},
+		{
+			"href": "t3-eez-studio/import-from-device-design.md",
+			"title": "Import from Device — Design",
+			"order": 850
+		},
+		{
+			"href": "t3-eez-studio/lvgl-eez-project-json-format.md",
+			"title": ".EEZ-Project JSON Format — Design Document",
+			"order": 860
+		},
+		{
+			"href": "t3-eez-studio/static-resource-copy-build.md",
+			"title": "Static Resource Copy — Build-Time Asset Pipeline",
+			"order": 870
+		},
+		{
+			"href": "t3-eez-studio/wasm-browser-build-migration.md",
+			"title": "LVGL WASM Browser Build Migration",
+			"order": 880
+		},
+		{
+			"href": "components/status-bar.md",
+			"title": "Status Bar Component",
+			"order": 890
+		},
+		{
+			"href": "shared-db/shared-center-db-summary.md",
+			"title": "Shared Center DB — Overview",
+			"order": 900
+		},
+		{
+			"href": "shared-db/sql-server-express-setup.md",
+			"title": "SQL Server Express 2022 Setup for T3000 (Detailed Step-by-Step)",
+			"order": 910
+		},
+		{
+			"href": "shared-db/t3000-center-db-config.md",
+			"title": "T3000 Center DB Configuration",
+			"order": 920
+		},
+		{
+			"href": "tstat-lcd/index.md",
+			"title": "Tstat LCD System — Documentation Index",
+			"order": 940
+		},
+		{
+			"href": "tstat-lcd/edit-mode.md",
+			"title": "LCD Screen Designer",
+			"order": 950
+		},
+		{
+			"href": "tstat-lcd/json-schema.md",
+			"title": "JSON Schema — screenDefinition.json",
+			"order": 970
+		},
+		{
+			"href": "tstat-lcd/system-overview.md",
+			"title": "System Overview",
+			"order": 980
+		},
+		{
+			"href": "tstat-lcd/widget-types.md",
+			"title": "Widget Types",
+			"order": 990
+		}
+	]
+}
