@@ -1007,46 +1007,148 @@ h3 {
 	text-transform: uppercase;
 }
 
-/* -- the pages of a version: a numbered grid, no lines --------------------------------------------- */
+/* -- the contents of a version: the chapters as tabs, the chosen chapter's pages in columns --------- */
+/* A manual is read by chapter, so the folders the build wrote are what the page is divided by. The chapters are a tab strip
+   — every chapter stays in reach without printing forty rows to arrive at the last one — and the chosen chapter's pages run
+   in columns, read down one column and then the next, which is the order a contents page is read in. */
 
-.pagegrid {
-	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 4px 32px;
+/* Fluent draws the strip and its tabs; these are the page's own colours, rules and rhythm laid over them, two classes deep
+   so that they win against Fluent's own styles wherever the two disagree. */
+.page .chapters {
+	flex-wrap: wrap;
+	gap: 0 2px;
 	margin: 0;
-	padding: 0;
-	list-style: none;
+	border-bottom: 1px solid var(--line);
 }
 
-.pagetile {
+.page .chapters__tab {
+	height: 32px;
+	padding: 0 10px;
+	border-radius: var(--radius) var(--radius) 0 0;
+	color: var(--ink-2);
+	font-size: var(--fs-ui-lg);
+	font-weight: 400;
+}
+
+.page .chapters__tab:hover {
+	background: var(--surface-2);
+	color: var(--ink);
+}
+
+.page .chapters__tab[aria-selected='true'] {
+	color: var(--ink);
+	font-weight: 600;
+}
+
+/* Fluent rings a focused tab with a black box-shadow; the page rings everything with its own brand outline instead. */
+.page .chapters__tab:focus-visible {
+	outline: 2px solid var(--brand-strong);
+	outline-offset: 0;
+	box-shadow: none;
+}
+
+.chapters__no {
+	margin-right: 7px;
+	color: var(--ink-3);
+	font-family: var(--mono);
+	font-size: var(--fs-micro);
+	font-weight: 400;
+}
+
+.contents__loose {
+	padding: 14px 0 10px;
+	border-top: 1px solid var(--line);
+}
+
+.contents__chapter {
+	padding: 12px 0 8px;
+}
+
+/* The chapter's size above its pages: the range on the number column's line, the count and reading time opposite. */
+.contents__scale {
 	display: grid;
-	grid-template-columns: auto minmax(0, 1fr);
-	column-gap: 12px;
-	padding: 12px 0;
+	grid-template-columns: minmax(42px, auto) minmax(0, 1fr) auto;
+	align-items: baseline;
+	column-gap: 10px;
+	margin: 0 0 2px;
+	padding: 0 8px;
+}
+
+/* One measure for the number column, on a scale and on a row alike: a chapter's pages and its titles start on the same
+   line, which is the one thing that makes a contents page look like a contents page. 42px holds a three-digit range
+   (`134–135`) without turning it over onto a second line. */
+.pagerow {
+	display: grid;
+	grid-template-columns: minmax(42px, auto) minmax(0, 1fr) auto;
+	align-items: baseline;
+	column-gap: 10px;
+	padding: 5px 8px;
+	border-radius: var(--radius);
 	color: inherit;
 }
 
-.pagetile__no {
-	grid-row: 1 / span 3;
-	padding-top: 1px;
+.contents__range {
+	color: var(--ink-3);
+	font-family: var(--mono);
+	font-size: var(--fs-micro);
+	letter-spacing: -0.02em;
+	white-space: nowrap;
+}
+
+.contents__meta {
+	grid-column: 3;
+	color: var(--ink-3);
+	font-size: var(--fs-micro);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.pages {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	columns: 3;
+	column-gap: 32px;
+}
+
+.pages li {
+	break-inside: avoid;
+}
+
+.pagerow:hover {
+	background: var(--surface-2);
+	text-decoration: none;
+}
+
+.pagerow__no {
 	color: var(--ink-3);
 	font-family: var(--mono);
 	font-size: var(--fs-micro);
 }
 
-.pagetile__title {
+.pagerow__title {
 	color: var(--ink);
 	font-size: var(--fs-ui-lg);
 	font-weight: 600;
 	line-height: 1.35;
 }
 
-.pagetile:hover .pagetile__title {
+.pagerow:hover .pagerow__title {
 	color: var(--brand);
 	text-decoration: underline;
 }
 
-.pagetile__desc {
+.pagerow__time {
+	color: var(--ink-3);
+	font-size: var(--fs-micro);
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.pagerow__desc {
+	grid-column: 2 / -1;
 	overflow: hidden;
 	color: var(--ink-2);
 	font-size: var(--fs-ui);
@@ -1054,14 +1156,6 @@ h3 {
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
-}
-
-.pagetile__meta {
-	margin-top: 3px;
-	color: var(--ink-3);
-	font-size: var(--fs-micro);
-	letter-spacing: 0.03em;
-	text-transform: uppercase;
 }
 
 /* -- other versions: quiet chips, no borders ------------------------------------------------------- */
@@ -2439,8 +2533,8 @@ html[data-embed='true'] .print {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
-	.pagegrid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+	.pages {
+		columns: 2;
 	}
 }
 
@@ -2520,8 +2614,17 @@ html[data-embed='true'] .print {
 		grid-template-columns: minmax(0, 1fr);
 	}
 
-	.pagegrid {
-		grid-template-columns: minmax(0, 1fr);
+	.pages {
+		columns: 1;
+	}
+
+	/* The count of pages drops below the range rather than squeezing the rows beside it. */
+	.contents__scale {
+		grid-template-columns: auto minmax(0, 1fr);
+	}
+
+	.contents__meta {
+		grid-column: 2;
 	}
 }
 

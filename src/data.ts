@@ -114,6 +114,15 @@ export function versionOf(project: Project, version: string | undefined): Versio
 
 export const plural = (count: number, one: string): string => `${count} ${count === 1 ? one : `${one}s`}`;
 
+/** `1 min`, `27 min`, `1 hr 9 min` — reading time in the shape a reader scans rather than reads. */
+export function readingTime(minutes: number): string {
+	if (minutes < 60) {
+		return `${minutes} min`;
+	}
+	const rest = minutes % 60;
+	return rest === 0 ? `${Math.floor(minutes / 60)} hr` : `${Math.floor(minutes / 60)} hr ${rest} min`;
+}
+
 /** `just now`, `2 hours ago`, `yesterday` — the words a reader uses, from an ISO date. */
 export function since(iso: string | undefined): string {	const then = Date.parse(String(iso));
 	if (Number.isNaN(then)) {
