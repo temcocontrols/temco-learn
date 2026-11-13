@@ -1,0 +1,5 @@
+{
+	"title": "PH Chart",
+	"section": "documentation",
+	"summary": "The pressure-enthalpy chart and the Temco PH tool: reading a refrigerant cycle, plotting nodes, and pulling live data from the hardware."
+}
