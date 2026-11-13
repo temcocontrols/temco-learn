@@ -1,7 +1,42 @@
 {
-	"generated": "2026-11-12T05:24:41.724Z",
+	"generated": "2026-11-13T07:12:40.486Z",
 	"projects": {
+		"ph-chart": {
+			"1.0": {
+				"chm": true
+			}
+		},
+		"psychrometric": {
+			"1.0": {
+				"chm": true
+			}
+		},
+		"register-maps": {
+			"1.0": {
+				"chm": true
+			}
+		},
+		"semantic-tagging": {
+			"1.0": {
+				"chm": true
+			}
+		},
+		"t3-firmware": {
+			"1.0": {
+				"chm": true
+			}
+		},
 		"t3000": {
+			"1.0": {
+				"chm": true
+			}
+		},
+		"t3000-api": {
+			"1.0": {
+				"chm": true
+			}
+		},
+		"t3000-engineering": {
 			"1.0": {
 				"chm": true
 			}

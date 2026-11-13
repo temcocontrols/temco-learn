@@ -1,0 +1,254 @@
+{
+	"pages": {
+		"index": {
+			"title": "PH Chart",
+			"html": "<p>The pressure-enthalpy chart and the Temco PH tool: reading a refrigerant cycle, plotting nodes, and pulling live data from the hardware.</p>\n<h2 id=\"contents\">Contents<a class=\"anchor\" href=\"#contents\" data-anchor=\"contents\" aria-label=\"Copy a link to Contents\">#</a></h2>\n<ul>\n<li><a href=\"ph-chart.md\">PH chart</a></li>\n<li><a href=\"definition.md\">Definition</a></li>\n<li><a href=\"parameter-reading-in-chart.md\">Parameter reading in Chart</a></li>\n<li><a href=\"liquid-vapour-dome-region.md\">Liquid / vapour dome region</a></li>\n<li><a href=\"reading-vapour-fraction.md\">Reading vapour fraction</a></li>\n<li><a href=\"reading-pressure.md\">Reading pressure</a></li>\n<li><a href=\"reading-enthalpy.md\">Reading enthalpy</a></li>\n<li><a href=\"reading-temperature.md\">Reading temperature</a></li>\n<li><a href=\"reading-entropy.md\">Reading entropy</a></li>\n<li><a href=\"refrigeration-cycle.md\">Refrigeration Cycle</a></li>\n<li><a href=\"example-to-draw-refrigeration-cycle.md\">Example to draw refrigeration cycle</a></li>\n<li><a href=\"temco-ph-tool.md\">Temco PH Tool</a></li>\n<li><a href=\"t3000-ph-application.md\">T3000 &amp; PH Application</a></li>\n<li><a href=\"chart-window.md\">The chart window</a></li>\n<li><a href=\"reading-parameters.md\">Reading parameters</a></li>\n<li><a href=\"adding-charts-and-nodes.md\">Adding charts and nodes</a></li>\n<li><a href=\"node-repositioning.md\">Node repositioning</a></li>\n<li><a href=\"disconnect-process-line.md\">Disconnect process line</a></li>\n<li><a href=\"form-edit-node-and-line-window.md\">Form Edit Node and Line window</a></li>\n<li><a href=\"chart-printing.md\">Chart printing</a></li>\n<li><a href=\"chart-saving.md\">Chart saving</a></li>\n<li><a href=\"save-and-load-configuration.md\">Save and Load configuration</a></li>\n<li><a href=\"pulling-data-from-temco-hardware.md\">Pulling data from Temco hardware</a></li>\n<li><a href=\"references.md\">References</a></li>\n</ul>\n",
+			"headings": [
+				{
+					"id": "contents",
+					"text": "Contents",
+					"level": 2
+				}
+			]
+		},
+		"adding-charts-and-nodes": {
+			"title": "Adding charts and nodes",
+			"html": "<p>The very first step you need to be sure before making any operation Lock icon shhould be UNLOCK i.e it should be in 'Edit Mode'. If not, please click on the Edit icon.</p>\n<p>Adding Charts</p>\n<p>You should create a chart before adding node in blank chart. Just double click on blank table space in 'Chart Panel' and type name ('Chart1' for eg.) and after typing the name,press 'Enter' key. If you want to add next chart, select  the first one and press 'Enter' and add chart for next refirigeration system as described above. You can put as many charts as you want. You can see total number of charts in 'Status Panel'.</p>\n<p>Adding Nodes</p>\n<p>Right click the mouse and click 'Insert Node'. The node will have node name 'Node1' and blue color by default. If you dont know the node position, dont worry.You can change the positions and edit all other parameters later.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_4__adding_charts_and_nodes_custom.png\" alt=\"\"></p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_4__adding_charts_and_nodes_custom_2.png\" alt=\"\"></p>\n<p>Likewise, you can add upto 4 nodes in the chart. To edit node property you can edit it in &quot;Node Edit&quot; section which will be explained later.</p>\n",
+			"headings": []
+		},
+		"chart-printing": {
+			"title": "Chart printing",
+			"html": "<p>You can print the chart by simply clicking 'Print' under File menu.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_8__chart_printing_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"chart-saving": {
+			"title": "Chart saving",
+			"html": "<p>You can save the chart in picture format in your desired location with help of 'Save As' under File menu. You can save the chart in three different formats : PNG, JPEG and Bitmap.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_9__chart_saving_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"chart-window": {
+			"title": "The chart window",
+			"html": "<h2 id=\"ph-chart\">PH chart<a class=\"anchor\" href=\"#ph-chart\" data-anchor=\"ph-chart\" aria-label=\"Copy a link to PH chart\">#</a></h2>\n<p><img src=\"/media/ph-chart/1.0/drex_2_2__ph_chart_custom.png\" alt=\"\"></p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_2__ph_chart_custom_2.png\" alt=\"\"></p>\n<h2 id=\"parameter-of-mouse-pointer\">Parameter of mouse pointer<a class=\"anchor\" href=\"#parameter-of-mouse-pointer\" data-anchor=\"parameter-of-mouse-pointer\" aria-label=\"Copy a link to Parameter of mouse pointer\">#</a></h2>\n<p>  This shows the pressure(P), enthalpy(H), and temperature(T) of the current mouse move over the chart.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_2__ph_chart_custom_3.png\" alt=\"\"></p>\n<h2 id=\"navigation-bar\">Navigation bar<a class=\"anchor\" href=\"#navigation-bar\" data-anchor=\"navigation-bar\" aria-label=\"Copy a link to Navigation bar\">#</a></h2>\n<p>It contains file, option and help section.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_2__ph_chart_custom_4.png\" alt=\"\"></p>\n<h2 id=\"lock-icon\">Lock icon<a class=\"anchor\" href=\"#lock-icon\" data-anchor=\"lock-icon\" aria-label=\"Copy a link to Lock icon\">#</a></h2>\n<p>Initially the icon is locked. We need to unlock the icon to use the chart.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_2__ph_chart_custom_5.png\" alt=\"\"></p>\n<h2 id=\"unit\">Unit<a class=\"anchor\" href=\"#unit\" data-anchor=\"unit\" aria-label=\"Copy a link to Unit\">#</a></h2>\n<p>Show the unit used in the application.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_2__ph_chart_custom_6.png\" alt=\"\"></p>\n<h2 id=\"fluid-name\">Fluid Name<a class=\"anchor\" href=\"#fluid-name\" data-anchor=\"fluid-name\" aria-label=\"Copy a link to Fluid Name\">#</a></h2>\n<p>Show the name of the fluid for which the chart is plotted. We support different fluids such as water, ammonia , acetone, n-propane, etc.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_2__ph_chart_custom_7.png\" alt=\"\"></p>\n<h2 id=\"different-chart-area\">Different chart area<a class=\"anchor\" href=\"#different-chart-area\" data-anchor=\"different-chart-area\" aria-label=\"Copy a link to Different chart area\">#</a></h2>\n<p>Initially the chart is blank. We need to add a chart to begin further processing.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_2__ph_chart_custom_8.png\" alt=\"\"></p>\n<h2 id=\"number-of-chart\">Number of Chart<a class=\"anchor\" href=\"#number-of-chart\" data-anchor=\"number-of-chart\" aria-label=\"Copy a link to Number of Chart\">#</a></h2>\n<p>Count the number of chart currently present in chart name area.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_2__ph_chart_custom_9.png\" alt=\"\"></p>\n<h2 id=\"device-status\">Device status<a class=\"anchor\" href=\"#device-status\" data-anchor=\"device-status\" aria-label=\"Copy a link to Device status\">#</a></h2>\n<p>Show whether the Temco device is connected or not.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_2__ph_chart_custom_10.png\" alt=\"\"></p>\n<h2 id=\"mode\">Mode<a class=\"anchor\" href=\"#mode\" data-anchor=\"mode\" aria-label=\"Copy a link to Mode\">#</a></h2>\n<p>The mode of the chart. It could be either real time mode or editing mode. In real time mode data are updated from device. Editing mode is used to edit different</p>\n",
+			"headings": [
+				{
+					"id": "ph-chart",
+					"text": "PH chart",
+					"level": 2
+				},
+				{
+					"id": "parameter-of-mouse-pointer",
+					"text": "Parameter of mouse pointer",
+					"level": 2
+				},
+				{
+					"id": "navigation-bar",
+					"text": "Navigation bar",
+					"level": 2
+				},
+				{
+					"id": "lock-icon",
+					"text": "Lock icon",
+					"level": 2
+				},
+				{
+					"id": "unit",
+					"text": "Unit",
+					"level": 2
+				},
+				{
+					"id": "fluid-name",
+					"text": "Fluid Name",
+					"level": 2
+				},
+				{
+					"id": "different-chart-area",
+					"text": "Different chart area",
+					"level": 2
+				},
+				{
+					"id": "number-of-chart",
+					"text": "Number of Chart",
+					"level": 2
+				},
+				{
+					"id": "device-status",
+					"text": "Device status",
+					"level": 2
+				},
+				{
+					"id": "mode",
+					"text": "Mode",
+					"level": 2
+				}
+			]
+		},
+		"definition": {
+			"title": "Definition",
+			"html": "<p>PH Diagram:</p>\n<p>Pressure -Enthalpy(PH) diagram describes the relationship between pressure and enthalpy for a given refrigerant. The refregent could be water, ammonia, Propane.R134-a, butene,etc. Enthalpy is plotted on x-axis and pressure on y-axis. The unit of enthalpy is KJ/Kg, and of pressure is MPa.</p>\n<p>Use :</p>\n<p>This diagram is helpful on studying the refregration cycle. Refregration cycle has four stages :</p>\n<p>1. Evaporation.</p>\n<p>2. Compression</p>\n<p>3. Condensation</p>\n<p>4. Exapnsion</p>\n<p><img src=\"/media/ph-chart/1.0/drex_definition_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"disconnect-process-line": {
+			"title": "Disconnect process line",
+			"html": "<p>You can always disconnect process line and make new arrangement.</p>\n<p>The process line color becomes BLACK when you point the desired process line.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_6__disconnect_process_line_custom.png\" alt=\"\"></p>\n<p>Right click and choose from which node you want to disconnect the line. You can see the connecting nodes there.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_6__disconnect_process_line_custom_2.png\" alt=\"\"></p>\n<p>Choose the desired node, move the line to another node and click to connect the line again to connect with other node.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_6__disconnect_process_line_custom_3.png\" alt=\"\"></p>\n<p>Finally the line will be connect as:</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_6__disconnect_process_line_custom_4.png\" alt=\"\"></p>\n<p>Using this feature, you can make any desired arrangememnt.</p>\n",
+			"headings": []
+		},
+		"example-to-draw-refrigeration-cycle": {
+			"title": "Example to draw refrigeration cycle",
+			"html": "<p><strong>Draw the following refrigeration cycle on a p-h diagram.</strong></p>\n<p>Refrigerant</p>\n<p>Evaporating</p>\n<p>Temperature</p>\n<p>Condensing</p>\n<p>Temperature</p>\n<p>Liquid Temperature before the Expansion Valve</p>\n<p>Suction Gas Temperature</p>\n<p>R22</p>\n<p>-15 degC</p>\n<p>30 degC</p>\n<p>25 degC</p>\n<p>-10 degC</p>\n<p>Notice :     Conditions may be given as follows. Meanings of both are the same.</p>\n<p>Refrigerant</p>\n<p>Evaporating</p>\n<p>Pressure</p>\n<p>Condensing</p>\n<p>Pressure</p>\n<p>Subcool</p>\n<p>Superheat</p>\n<p>R22</p>\n<p>0.296 MPa</p>\n<p>1.192 MPa</p>\n<p>5 degC</p>\n<p>5 degC</p>\n<p><strong>Procedure</strong></p>\n<p>(1) Draw a line for a condenser</p>\n<p>Draw a horizontal line (1) crossing both on a saturated vapor line and saturated liquid line at 30 degC. The length of the line is adjusted later. Shorter the line is, easier adjusted.</p>\n<p>A horizontal line passing through a condensing pressure of 1.192 MPa for 30 degC is same as the above line.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_example_to_draw_refrigeration_cycle_custom.png\" alt=\"\"></p>\n<p>(2) Draw a line for an evaporator</p>\n<p>Draw a horizontal line (2) crossing both on a saturated vapor line and saturated liquid line at -15 degC. The length of the line is also adjusted later.</p>\n<p>A horizontal line passing through a condensing pressure of 0.296 MPa for -15 degC is same as the above line.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_example_to_draw_refrigeration_cycle_custom_2.png\" alt=\"\"></p>\n<p>(3) Draw a line for a compressor</p>\n<p>An intersection point (Point 1) of the line for an evaporator (2) and an isothermal line for -10 degC shows a position of a suction gas to a compressor. Draw a curve (3) from Point 1 parallel to an isentropic line. An isentropic line is a curve.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_example_to_draw_refrigeration_cycle_custom_3.png\" alt=\"\"></p>\n<p>(4) Draw a line through an expansion valve</p>\n<p>Since the refrigerant is a subcooled liquid of 25 degC, draw a vertical line (4) that passes through a saturated liquid line for 25 degC (Point E). An intersection point (Point 3) of the line (4) and the line (1) shows a position before the expansion valve.</p>\n<p>Point E obtained from a saturate pressure of 1.045 MPa for 25 degC is the same.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_example_to_draw_refrigeration_cycle_custom_4.png\" alt=\"\"></p>\n<p>(5) Complete the figure</p>\n<p>You can draw a refrigeration cycle on a  p-h diagram as above stated. Since it is not good to look at, please finish it like the following figure by erasing extra lines outside of Point 1 to 4. You can read various values from the diagram.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_example_to_draw_refrigeration_cycle_custom_5.png\" alt=\"\"></p>\n<p><strong>Have you finished drawing a refrigeration cycle on a p-h diagram well?</strong></p>\n<p>You can read out a specific volume (v1) and specific enthalpies (h1, h2, h4) from the figure.</p>\n<p>(Answer)</p>\n<p>A specific volume and specific enthalpies at each point</p>\n<p>Specific volume     v11=0.08 m3/kg</p>\n<p>Specific enthalpy     h1=403 kJ/kg, h2=438 kJ/kg, h4=230 kJ/kg</p>\n",
+			"headings": []
+		},
+		"form-edit-node-and-line-window": {
+			"title": "Form Edit Node and Line window",
+			"html": "<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom.png\" alt=\"\"></p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom_2.png\" alt=\"\"></p>\n<h2 id=\"node-edit-panel\">**Node Edit Panel<a class=\"anchor\" href=\"#node-edit-panel\" data-anchor=\"node-edit-panel\" aria-label=\"Copy a link to **Node Edit Panel\">#</a></h2>\n<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom_3.png\" alt=\"\"></p>\n<p>**</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom_4.png\" alt=\"\"></p>\n<h2 id=\"name-of-the-node\">Name of the node<a class=\"anchor\" href=\"#name-of-the-node\" data-anchor=\"name-of-the-node\" aria-label=\"Copy a link to Name of the node\">#</a></h2>\n<p>Displays the node name</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom_5.png\" alt=\"\"></p>\n<h2 id=\"temperature-source\">Temperature Source<a class=\"anchor\" href=\"#temperature-source\" data-anchor=\"temperature-source\" aria-label=\"Copy a link to Temperature Source\">#</a></h2>\n<p>Shows weather the data is from manual input or from device.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom_6.png\" alt=\"\"></p>\n<h2 id=\"temperature-value\">Temperature value<a class=\"anchor\" href=\"#temperature-value\" data-anchor=\"temperature-value\" aria-label=\"Copy a link to Temperature value\">#</a></h2>\n<p>Shows the value of temperature a node is representing. Unit is degree celcius.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom_7.png\" alt=\"\"></p>\n<h2 id=\"pressure-source\">Pressure source<a class=\"anchor\" href=\"#pressure-source\" data-anchor=\"pressure-source\" aria-label=\"Copy a link to Pressure source\">#</a></h2>\n<p>Shows whether the pressure is from manual input or from device.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom_8.png\" alt=\"\"></p>\n<h2 id=\"pressure-value\">Pressure value<a class=\"anchor\" href=\"#pressure-value\" data-anchor=\"pressure-value\" aria-label=\"Copy a link to Pressure value\">#</a></h2>\n<p>Shows the value of the pressure. Unit is MPa(Mega pascal)</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom_9.png\" alt=\"\"></p>\n<h2 id=\"line-edit-section\">Line Edit section<a class=\"anchor\" href=\"#line-edit-section\" data-anchor=\"line-edit-section\" aria-label=\"Copy a link to Line Edit section\">#</a></h2>\n<p>Helps in editing different line property. We can change line size,color and also control weather we want line caption to appear or not in chart.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom_10.png\" alt=\"\"></p>\n<h2 id=\"equivalent-enthalpy\">Equivalent Enthalpy<a class=\"anchor\" href=\"#equivalent-enthalpy\" data-anchor=\"equivalent-enthalpy\" aria-label=\"Copy a link to Equivalent Enthalpy\">#</a></h2>\n<p>Represent x asix(or enthalpy) value which in KJ/KG.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom_11.png\" alt=\"\"></p>\n<h2 id=\"color\">Color<a class=\"anchor\" href=\"#color\" data-anchor=\"color\" aria-label=\"Copy a link to Color\">#</a></h2>\n<p>This helps to change the color of the node.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom_12.png\" alt=\"\"></p>\n<h2 id=\"node-size\">Node size<a class=\"anchor\" href=\"#node-size\" data-anchor=\"node-size\" aria-label=\"Copy a link to Node size\">#</a></h2>\n<p>Helps to change the size of the node.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_7__form_edit_node_and_line_window_custom_13.png\" alt=\"\"></p>\n<h2 id=\"line-property-panel\">Line property panel<a class=\"anchor\" href=\"#line-property-panel\" data-anchor=\"line-property-panel\" aria-label=\"Copy a link to Line property panel\">#</a></h2>\n<p>Shows the line property</p>\n",
+			"headings": [
+				{
+					"id": "node-edit-panel",
+					"text": "**Node Edit Panel",
+					"level": 2
+				},
+				{
+					"id": "name-of-the-node",
+					"text": "Name of the node",
+					"level": 2
+				},
+				{
+					"id": "temperature-source",
+					"text": "Temperature Source",
+					"level": 2
+				},
+				{
+					"id": "temperature-value",
+					"text": "Temperature value",
+					"level": 2
+				},
+				{
+					"id": "pressure-source",
+					"text": "Pressure source",
+					"level": 2
+				},
+				{
+					"id": "pressure-value",
+					"text": "Pressure value",
+					"level": 2
+				},
+				{
+					"id": "line-edit-section",
+					"text": "Line Edit section",
+					"level": 2
+				},
+				{
+					"id": "equivalent-enthalpy",
+					"text": "Equivalent Enthalpy",
+					"level": 2
+				},
+				{
+					"id": "color",
+					"text": "Color",
+					"level": 2
+				},
+				{
+					"id": "node-size",
+					"text": "Node size",
+					"level": 2
+				},
+				{
+					"id": "line-property-panel",
+					"text": "Line property panel",
+					"level": 2
+				}
+			]
+		},
+		"liquid-vapour-dome-region": {
+			"title": "Liquid / vapour dome region",
+			"html": "<p>The shaded dome-like region outlines when the compound is both a mix of saturated liquid and saturated vapor. The tip of the dome marks the critical point. The area to the right of the critical point is vapor. The area to the left of the critical point is liquid. The region above is supercritical fluid.</p>\n<p>The dome line (blue) that lies right of the critical point is the saturated vapor line. The dome line (red) that lies left of the critical point is the saturated liquid line.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_liquid___vapour_dome_region_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"node-repositioning": {
+			"title": "Node repositioning",
+			"html": "<p>If you want to change the node position, just hover mouse over the node , click it and you can reposition anywhere inside the chart and at the end click to release the node at the new position, Below screenshots show the reposition of Node1.</p>\n<p>When you hover the node, you can see node properties like temperature, pressure,name etc.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_5__node_repositioning_custom.png\" alt=\"\"></p>\n<p><strong>Horizontal movement (Constant Humidity Ratio)</strong></p>\n<p>If you drag the node pressing the 'SHIFT; key, the node only moves horizontally (Pressure remains same)</p>\n<p><strong>Vertical movement (Constant DBT)</strong></p>\n<p>If you drag the node pressing the 'Alter' key, the node only moves vertically (Enthalpy remains same)</p>\n",
+			"headings": []
+		},
+		"parameter-reading-in-chart": {
+			"title": "Parameter reading in Chart",
+			"html": "<p>The different parameters of chart are</p>\n<p>1. pressure,</p>\n<p>2. enthalpy,</p>\n<p>3. temperature,</p>\n<p>4. Quality</p>\n<p>Pressure : It is represented by vertical axis. Pressure is measure either in psi or MPa or other pressure unit. In this chart we use MPa as a standard unit.</p>\n<p>Enthalpy :</p>\n<p>It represents the head in the system. Enthalpy is represented along the horizontal axis. The unit of enthalpy is taken as KJ/Kg(Kilo joule per kg).</p>\n<p>Temperature:</p>\n<p> It is represented by vertical lines in liquid and vapour section, and by horizontal lines in liquid vapour dome.</p>\n<p>Quality :</p>\n<p>This line exist inside the dome, and varies in terms of percentage(%).</p>\n<p><img src=\"/media/ph-chart/1.0/drex_1_2__parameter_reading_in_chart_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"ph-chart": {
+			"title": "PH chart",
+			"html": "<p><a href=\"definition.md\">Definition</a></p>\n<p><a href=\"parameter-reading-in-chart.md\">Parameter reading in Chart</a></p>\n<p><a href=\"refrigeration-cycle.md\">Refrigeration Cycle</a></p>\n<p> <a href=\"parameter-reading-in-chart.md\"></a></p>\n",
+			"headings": []
+		},
+		"pulling-data-from-temco-hardware": {
+			"title": "Pulling data from Temco hardware",
+			"html": "<p>After setting nodes we can pull data from temco hardware such as T3000. Follow following steps to pull the data:</p>\n<p>1. Turn on T3000</p>\n<p>2. insert some nodes.</p>\n<p>3. Go to edit node</p>\n<p>4. Click on dropdown menu of source (either temperature or pressure which ever you want to pull the data)</p>\n<p>5. Click on device</p>\n<p>6. Input hardware detail.</p>\n<p>7. Click ok</p>\n<p>Hardware detail :</p>\n<p>If you want to pull the data from controller 1 and from input section which have index 2 in T3000 then type:</p>\n<p>1-IN2</p>\n<p>Likewise, for controller 2 and input 3 : 2-IN3</p>\n<p>and so on.</p>\n<p>Screenshots:</p>\n<p>1. Go to T3000 to select the parameter you want to pull.</p>\n<p>Note: For temperature unit should be Deg.C and for Pressure unit should be psi.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_11__pulling_data_from_temco_hardware_custom.png\" alt=\"\"></p>\n<p>2. Go to PH application edit node section.</p>\n<p>i) select the node you want to pull data from</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_11__pulling_data_from_temco_hardware_custom_2.png\" alt=\"\"></p>\n<p>II) A dialog box will appear, type the controller number, hypen and panel id.</p>\n<p>Here, in this case : 1-IN3</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_11__pulling_data_from_temco_hardware_custom_3.png\" alt=\"\"></p>\n<p>Click ok and close the edit node section.</p>\n<p>Note: Node data will be automatically updated after setting this.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_11__pulling_data_from_temco_hardware_custom_4.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"reading-enthalpy": {
+			"title": "Reading enthalpy",
+			"html": "<h2 id=\"reasding-enthalpy\">Reasding enthalpy<a class=\"anchor\" href=\"#reasding-enthalpy\" data-anchor=\"reasding-enthalpy\" aria-label=\"Copy a link to Reasding enthalpy\">#</a></h2>\n<p>Since this is a ln Pressure-Enthalpy graph, the enthalpy is marked on the x-axis. Then, a vertical line is a line of constant enthalpy.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_reasding_enthalpy_custom.png\" alt=\"\"></p>\n",
+			"headings": [
+				{
+					"id": "reasding-enthalpy",
+					"text": "Reasding enthalpy",
+					"level": 2
+				}
+			]
+		},
+		"reading-entropy": {
+			"title": "Reading entropy",
+			"html": "<h2 id=\"reading-enthropy\">Reading enthropy<a class=\"anchor\" href=\"#reading-enthropy\" data-anchor=\"reading-enthropy\" aria-label=\"Copy a link to Reading enthropy\">#</a></h2>\n<p>Entropy lines are lines with a fairly steep, upward slope. Usually, these lines will have a more upward slope than volume. The lower the enthalpy, the more vertical the entropy lines become. The entropy lines don't change much when they enter the liquid-vapor dome.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_reading_enthropy_custom.png\" alt=\"\"></p>\n",
+			"headings": [
+				{
+					"id": "reading-enthropy",
+					"text": "Reading enthropy",
+					"level": 2
+				}
+			]
+		},
+		"reading-parameters": {
+			"title": "Reading parameters",
+			"html": "<p>You can read all PH paraments of any pont inside the chart. You just need to hover the mouse inside the chart anad you can see all parameters in PH Parameters Panel. Please check the following screenshot:</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_3__reading_parameters_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"reading-pressure": {
+			"title": "Reading pressure",
+			"html": "<p>Since this is a ln Pressure-Enthalpy graph, the natural logarithm of pressure is marked on the y-axis. Then, any horizontal line is an isobaric (equal pressure) line.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_reading_pressure_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"reading-temperature": {
+			"title": "Reading temperature",
+			"html": "<p>Temperature is slightly harder to read than other properties. An isotherm, or equal temperature line, has a downward slope until is hits the liquid-vapor dome. Once the line hits the liquid-vapor dome, the isotherm has no slope and is horizontal. Once the isotherm leaves the liquid-vapor dome, it has a negative slope again.</p>\n<p>Since the isotherm is horizontal within the liquid-vapor dome, that means that the pressure is constant at the same time that temperature is constant. How can both pressure and temperature stay constant?</p>\n<p>The compound in question is undergoing a change in state from all liquid to all gas. Heat put into the system must be used to break the intermolecular bonds between molecules. Thus, the heat does not raise the temperature. The pressure can be kept constant by varying the volume.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_reading_temperature_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"reading-vapour-fraction": {
+			"title": "Reading vapour fraction",
+			"html": "<p>When a compound is in the liquid-vapor dome, it is often useful to know what fraction of the compound is in a saturated liquid state and what fraction is in a saturated vapor state. The term, vapor fraction, gives the fraction that is in a gaseous state. Vapor fraction is represented by the variable, x.</p>\n<p>The line left of the critical point on the dome is the saturated liquid line. That means the vapor fraction anywhere on that line is 0. However, the line to the right on the dome is the saturated vapor line. That means the vapor fraction on that line is 1. Any point between those too lines then has a vapor fraction value between 0 and 1.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_reading_vapour_fraction_custom.png\" alt=\"\"></p>\n<p><img src=\"/media/ph-chart/1.0/drex_reading_vapour_fraction_custom_2.png\" alt=\"\"></p>\n<p>The relation between position in the dome and vapor fraction is linear. That is, a point halfway between the saturated vapor line and the saturated liquid line has a vapor fraction of 0.5. A point (see diagram) that is 3 times farther from the liquid line then the vapor line has a vapor fraction of 0.75. This kind of calculation follows the lever rule.</p>\n<p>We can then draw a line between all points that have the same vapor fraction to give a Constant x line. Note that the saturated vapor line is a Constant x line with x=1, and a saturated liquid line is a Constant x line with x=0.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_reading_vapour_fraction_custom_3.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"references": {
+			"title": "References",
+			"html": "<p>1. <a href=\"http://www.engproguides.com/phdiagram.html\">http://www.engproguides.com/phdiagram.html</a></p>\n<p>2. <a href=\"http://web.mit.edu/10.213/oldpages/f99/diagrams/preenth/index.html\">http://web.mit.edu/10.213/oldpages/f99/diagrams/preenth/index.html</a></p>\n",
+			"headings": []
+		},
+		"refrigeration-cycle": {
+			"title": "Refrigeration Cycle",
+			"html": "<p><img src=\"/media/ph-chart/1.0/drex_1_3__refrigeration_cycle_custom.png\" alt=\"\"></p>\n<p>Evaporation:</p>\n<p>The line from point B to point C denotes expansion line. In this process the enthalpy changes while the pressure remains constant.</p>\n<p>Compression:</p>\n<p>Line from C to D denotes the compression line.</p>\n<p>Condensation:</p>\n<p>Line form D to A denotes the condensation line.</p>\n<p>Exapnsion:</p>\n<p>Line from A to B denotes the expansion process.</p>\n<p>Point 1 to 2: Refrigerant change in a compressor</p>\n<p>Point 2 to 3: Refrigerant change in a condenser</p>\n<p>Point 3 to 4: Refrigerant change through an expansion valve</p>\n<p>Point 4 to 1: Refrigerant change in an evaporator</p>\n<p><img src=\"/media/ph-chart/1.0/drex_1_3__refrigeration_cycle_custom_2.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"save-and-load-configuration": {
+			"title": "Save and Load configuration",
+			"html": "<p>You can save all your work and load later if you wish. It saves all the configurations of nodes, charts, process lines, building information.</p>\n<p>Once you load the file, you can get the saved configuration.</p>\n<p>Note: The configuration will be saved in SQLite file format</p>\n<p>For this feature, go to 'Save Configuration' and 'Load Configuration' under File Menue.</p>\n<p>Save screenshots</p>\n<p>Save the configuration</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_10__save_and_load_configuration_custom.png\" alt=\"\"></p>\n<p>Save in your desired location as '.s3db' format</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_10__save_and_load_configuration_custom_2.png\" alt=\"\"></p>\n<p>Load Screenshots</p>\n<p>Load the configuration. Here you can see we have blank chart</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_10__save_and_load_configuration_custom_3.png\" alt=\"\"></p>\n<p>Select the desired configuration file to load</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_10__save_and_load_configuration_custom_4.png\" alt=\"\"></p>\n<p>Note: In the screenshot, we have shown for a single chart. It works same if you have many charts and many nodes.</p>\n",
+			"headings": []
+		},
+		"t3000-ph-application": {
+			"title": "T3000 & PH Application",
+			"html": "<p>To enter the Temco PH Tool, click on 'PH Chart' under Tools in T3000 software.</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_1__t3000___ph_application_custom.png\" alt=\"\"></p>\n<p>PH Tool apllication will appear as :</p>\n<p><img src=\"/media/ph-chart/1.0/drex_2_1__t3000___ph_application_custom_2.png\" alt=\"\"></p>\n<p>This is a blank chart. It shows the behaviour of the building selected in T3000. Currently the selected building is 'Default_Building'. This chart is for water.</p>\n",
+			"headings": []
+		},
+		"temco-ph-tool": {
+			"title": "Temco PH Tool",
+			"html": "<p><a href=\"t3000-ph-application.md\">T3000 &amp; PH Application</a></p>\n<p><a href=\"chart-window.md\">PH Chart</a></p>\n<p><a href=\"reading-parameters.md\">Reading Parameters</a></p>\n<p><a href=\"adding-charts-and-nodes.md\">Adding Charts and Nodes</a></p>\n<p><a href=\"node-repositioning.md\">Node Repositioning</a></p>\n<p><a href=\"disconnect-process-line.md\">Disconnect Process Line</a></p>\n<p><a href=\"form-edit-node-and-line-window.md\">FormEditNodeAndLine window</a></p>\n<p><a href=\"chart-printing.md\">Chart Printing</a></p>\n<p><a href=\"chart-saving.md\">Chart Saving</a></p>\n<p><a href=\"save-and-load-configuration.md\">Save and Load Configuration</a></p>\n<p><a href=\"pulling-data-from-temco-hardware.md\">Pulling data from Temco hardware</a></p>\n",
+			"headings": []
+		}
+	}
+}

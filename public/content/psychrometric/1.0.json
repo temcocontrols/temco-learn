@@ -1,0 +1,413 @@
+{
+	"pages": {
+		"index": {
+			"title": "Psychrometric Tool",
+			"html": "<p>Reading air: dry-bulb and wet-bulb temperature, humidity, enthalpy, the chart itself, and the calculations that follow from it.</p>\n<h2 id=\"contents\">Contents<a class=\"anchor\" href=\"#contents\" data-anchor=\"contents\" aria-label=\"Copy a link to Contents\">#</a></h2>\n<ul>\n<li><a href=\"title.md\">Title</a></li>\n<li><a href=\"psychrometry-and-psychrometric-chart.md\">Psychrometry and Psychrometric Chart</a></li>\n<li><a href=\"psychrometric-parameters.md\">Psychrometric Parameters</a></li>\n<li><a href=\"the-dry-bulb-temperature-dbt.md\">The dry-bulb temperature (DBT)</a></li>\n<li><a href=\"the-wet-bulb-temperature-wbt.md\">The wet-bulb temperature (WBT)</a></li>\n<li><a href=\"dew-point-temperature.md\">Dew point temperature</a></li>\n<li><a href=\"relative-humidity.md\">Relative humidity</a></li>\n<li><a href=\"moisture-content.md\">Moisture content</a></li>\n<li><a href=\"specific-volume.md\">Specific volume</a></li>\n<li><a href=\"enthalpy.md\">Enthalpy</a></li>\n<li><a href=\"example-enthalpy-calculation.md\">Example: Enthalpy Calculation</a></li>\n<li><a href=\"reading-parameters-using-chart.md\">Reading Parameters Using Chart</a></li>\n<li><a href=\"psychrometric-processes.md\">Psychrometric Processes</a></li>\n<li><a href=\"sensible-heating-of-the-air.md\">Sensible Heating of the Air</a></li>\n<li><a href=\"numerical-example-sensible-heating.md\">Numerical Example: Sensible Heating</a></li>\n<li><a href=\"sensible-cooling-of-the-air.md\">Sensible Cooling of the Air</a></li>\n<li><a href=\"humidification.md\">Humidification</a></li>\n<li><a href=\"heating-and-humidification-process.md\">Heating and Humidification Process</a></li>\n<li><a href=\"numerical-example-heating-and-humidification.md\">Numerical Example: Heating and Humidification</a></li>\n<li><a href=\"cooling-humidification.md\">Cooling &amp; Humidification </a></li>\n<li><a href=\"cooling-dehumidification.md\">Cooling &amp; Dehumidification</a></li>\n<li><a href=\"numerical-example-cooling-dehumidification.md\">Numerical Example : Cooling &amp; Dehumidification</a></li>\n<li><a href=\"heating-and-dehumidification-process.md\">Heating and Dehumidification Process</a></li>\n<li><a href=\"adiabatic-humidification-evaporative-cooling.md\">Adiabatic humidification (evaporative cooling)</a></li>\n<li><a href=\"adiabatic-dehumidification-by-absorbents.md\">Adiabatic dehumidification (by absorbents)</a></li>\n<li><a href=\"mixing-process.md\">Mixing Process</a></li>\n<li><a href=\"numerical-example-air-mixing.md\">Numerical Example: Air Mixing</a></li>\n<li><a href=\"comfort-zone.md\">Comfort Zone</a></li>\n<li><a href=\"numerical-example-comfort-zone.md\">Numerical Example: Comfort Zone</a></li>\n<li><a href=\"miscellaneous-numerical-examples.md\">Miscellaneous Numerical Examples</a></li>\n<li><a href=\"application-hvac.md\">Application: HVAC</a></li>\n<li><a href=\"temco-psychrometric-tool.md\">Temco Psychrometric Tool</a></li>\n<li><a href=\"t3000-psychrometric-tool.md\">T3000 &amp; Psychrometric Tool</a></li>\n<li><a href=\"tool-componentns.md\">Tool Componentns</a></li>\n<li><a href=\"reading-parameters.md\">Reading Parameters</a></li>\n<li><a href=\"adding-charts-and-nodes.md\">Adding Charts and Nodes</a></li>\n<li><a href=\"node-repositioning.md\">Node Repositioning</a></li>\n<li><a href=\"disconnect-process-line.md\">Disconnect Process Line</a></li>\n<li><a href=\"node-grid-view.md\">Node Grid View</a></li>\n<li><a href=\"edit-node-properties.md\">Edit Node Properties</a></li>\n<li><a href=\"edit-process-line-properties.md\">Edit Process Line Properties</a></li>\n<li><a href=\"working-with-comfort-zones.md\">Working with comfort zones</a></li>\n<li><a href=\"clear-chart-and-delete-air-handler.md\">Clear chart and delete air handler</a></li>\n<li><a href=\"chart-printing.md\">Chart Printing</a></li>\n<li><a href=\"chart-saving.md\">Chart Saving</a></li>\n<li><a href=\"save-and-load-configuration.md\">Save and Load Configuration</a></li>\n<li><a href=\"weather-service.md\">Weather Service</a></li>\n<li><a href=\"psychrometric-calculator.md\">Psychrometric Calculator</a></li>\n<li><a href=\"export-data.md\">Export Data</a></li>\n<li><a href=\"historical-data-plot.md\">Historical Data Plot</a></li>\n<li><a href=\"references.md\">References</a></li>\n</ul>\n",
+			"headings": [
+				{
+					"id": "contents",
+					"text": "Contents",
+					"level": 2
+				}
+			]
+		},
+		"adding-charts-and-nodes": {
+			"title": "Adding Charts and Nodes",
+			"html": "<p>The very first step you need to be sure before making any operation Lock icon shhould be UNLOCK i.e it should be in 'Edit Mode'. If not, please click on the Edit icon.</p>\n<p>Adding Charts</p>\n<p>You should create an airhandler before adding node in blank chart. Just double click on blank table space in 'Air Handler Panel' and type name ('AirHandler1' for eg.) and after typing the name,press 'Enter' key. If you want to add next airhander, select  the first one and press 'Enter' and second air handler as described above. You can put as many air handlers as you want. You can see total number of air handlers in 'Status Panel'.</p>\n<p>Adding Nodes</p>\n<p>Right click the mouse and click 'Quick Node Insert'. The node will have node name 'Node1' and blue color by default. If you dont know the node position, dont worry.You can change the positions and edit all other parameters later.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_adding_charts_and_nodes_custom.png\" alt=\"\"></p>\n<p>Please note that you can always change node.</p>\n<p>If you want to add more than one node, you simply right click and click 'Quick Node Insert' . You can add many nodes as your requirements. When you have two are more nodes, you can start seeing Process Lines connecting the susquent nodes as shown in below scrrenshot.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_adding_charts_and_nodes_custom_2.png\" alt=\"\"></p>\n<p>Please note that node parameters and position can always be changed.</p>\n",
+			"headings": []
+		},
+		"adiabatic-dehumidification-by-absorbents": {
+			"title": "Adiabatic dehumidification (by absorbents)",
+			"html": "<p>The process in which the air is passed through a chemical absorbent material (e.g., silica gel), some of the moisture is removed and the latent heat of evaporation is released. There will be an increase in sensible heat content (i.e. DBT), in the system, the state point will move down and towards the right along an enthalpy line. This process, in effect is the reverse of the previous one.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_adiabatic_dehumidification__by_absorbents__custom.png\" alt=\"\"></p>\n<p>Fig: Nature of adiabatic dehumidification process in a psychrometric chart</p>\n",
+			"headings": []
+		},
+		"adiabatic-humidification-evaporative-cooling": {
+			"title": "Adiabatic humidification (evaporative cooling)",
+			"html": "<p>The process in which moisture is evaporated into an air volume without any heat input or removal. The latent heat of evaporation is taken from the atmosphere i.e. there will be use of DBT heat present in air. The sensible heat content (i.e. the DBT) is reduced, but the latent heat content is increased. The status point moves up and to the left, along a WBT line. This is the process involved in evaporative cooling. Note that this process increases the relative humidity. It increases only until it hits the saturation line, at which it becomes 100%. Beyond it there is no decrease in sensible temperature. This is the reason why during hot and humid months, evaporative cooling is ineffective and uncomfortable.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_adiabatic_humidification__evaporative_cooling__custom.png\" alt=\"\"></p>\n<p>Fig: Nature of adiabatic humidification process in a psychrometric chart</p>\n",
+			"headings": []
+		},
+		"application-hvac": {
+			"title": "Application: HVAC",
+			"html": "<p><a href=\"https://en.wikipedia.org/wiki/HVAC\">Heating, ventilation and air conditioning (HVAC)</a> is the technology of indoor and vehicular environmental comfort. Its goal is to provide thermal comfort and acceptable indoor air quality. HVAC system design is a subdiscipline of mechanical engineering, based on the principles of thermodynamics, fluid mechanics, and heat transfer. Refrigeration is sometimes added to the field's abbreviation as HVAC&amp;R or HVACR, or ventilating is dropped as in HACR (such as the designation of HACR-rated circuit breakers).</p>\n<p>HVAC is an important part of residential structures such as single family homes, apartment buildings, hotels and senior living facilities, medium to large industrial and office buildings such as skyscrapers and hospitals, onboard vessels, and in marine environments, where safe and healthy building conditions are regulated with respect to temperature and humidity, using fresh air from outdoors.</p>\n<p>HVAC engineers use psychrometrics to translate the knowledge of heating or cooling loads (which are in kW or tons) into volume flow rates (in m3/s or CFM) for the air to be circulated into the duct system. The volume flow rate is used to determine the size of fans, grills, outlets, air-handling units, and packaged units. This in turn affects the physical size (foot print) of air handling units and package units and is the single most important factor in conceptualizing the space requirements for mechanical rooms and also the air-distribution ducts. The main function of the psychrometric analysis of an air-conditioning system is to determine the volume flow rates of air to be pushed into the ducting system and the sizing of the major system components.</p>\n",
+			"headings": []
+		},
+		"chart-printing": {
+			"title": "Chart Printing",
+			"html": "<p>You can print the chart by simply clicking 'Print' under File menu.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_chart_printing_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"chart-saving": {
+			"title": "Chart Saving",
+			"html": "<p>You can save the chart in picture format in your desired location with help of 'Save As' under File menu. You can save the chart in three different formats : PNG, JPEG and Bitmap.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_chart_saving_custom.png\" alt=\"\"></p>\n<p><img src=\"/media/psychrometric/1.0/drex_chart_saving_custom_2.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"clear-chart-and-delete-air-handler": {
+			"title": "Clear chart and delete air handler",
+			"html": "<p>Clear chart</p>\n<p>Right click and select 'Clear Chart' to clear all available nodes, process lines and comfort zones there in the chart. Program asks to confirm before clearing the chart.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_clear_chart_and_delete_air_handler_custom.png\" alt=\"\"></p>\n<p><img src=\"/media/psychrometric/1.0/drex_clear_chart_and_delete_air_handler_custom_2.png\" alt=\"\"></p>\n<p>Delete air handler</p>\n<p>Right click on the air handler you want to delee and click delete chart. Program asks to confirm before deleting the chart.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_clear_chart_and_delete_air_handler_custom_3.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"comfort-zone": {
+			"title": "Comfort Zone",
+			"html": "<p>One of the major applications of the Psychrometric Chart is air conditioning, and we find that most humans feel comfortable when the temperature is between 22°C and 27°C, and the relative humidity between 40% and 60%. This defines the &quot;comfort zone&quot; which is shown on the Psychrometric Chart as shown below. Taking help of the chart we either heat or cool, add moisture or dehumidify as required in order to bring the air into the comfort zone.</p>\n<p>Though there is no standard, comfort zone parameters ranges vary like people in gym, data centre, summer time, winter time etc.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_comfort_zone_1_custom.png\" alt=\"\"></p>\n<p>Fig: Comfort zone in a psychrometric chart.</p>\n",
+			"headings": []
+		},
+		"cooling-dehumidification": {
+			"title": "Cooling & Dehumidification",
+			"html": "<p>When the air comes in contact with the cooling coil that is maintained at the temperature below its dew point temperature, its DB temperature starts reducing. The process of cooling continues and at some point it reaches the value of dew point temperature of the air. At this point the water vapor within the air starts getting converted into the dew particles due to which the dew is formed on the surface of the cooling and the moisture content of the air reduces thereby reducing its humidity level. Thus when the air is cooled below its dew point temperature, there is cooling as well as dehumidification of air.</p>\n<p>During the cooling and dehumidification process the dry bulb, wet bulb and the dew point temperature of air reduces. Similarly, the sensible heat and the latent heat of the air also reduce leading to overall reduction in the enthalpy of the air. The cooling and dehumidification process is represented by a straight angular line on the psychrometric chart. The line starts from the given value of the DB temperature and extends downwards towards left.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_cooling___dehumidification_custom.png\" alt=\"\"></p>\n<p>Fig: Nature of Cooling &amp; Dehumidification in a pschrometric chart</p>\n",
+			"headings": []
+		},
+		"cooling-humidification": {
+			"title": "Cooling & Humidification",
+			"html": "<p>Cooling and humidification process is one of the most commonly used air conditioning application for the cooling purposes. In this process the moisture is added to the air by passing it over the stream or spray of water which is at temperature lower than the dry bulb temperature of the air. When the ordinary air passes over the stream of water, the particles of water present within the stream tend to get evaporated by giving up the heat to the stream. The evaporated water is absorbed by the air so its moisture content increases, thus the humidity increases. At the same time, since the temperature of the absorbed moisture is less than the DB bulb temperature of the air, there is reduction in the overall temperature of the air. Since the heat is released in the stream or spray of water, its temperature increases.</p>\n<p>Cooling and humidification process is represented by an angular line on the psychrometric chart starting from the given value of the dry bulb temperature and the relative humidity and extending upwards toward left.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_cooling___humidification__custom.png\" alt=\"\"></p>\n<p>Fig: Nature of Cooling &amp; Humidification in a psychrometric chart</p>\n",
+			"headings": []
+		},
+		"dew-point-temperature": {
+			"title": "Dew point temperature",
+			"html": "<p>Dewpoint (DP) temperature indicates the temperature at which water will begin to condense out of moist air. Given air at a certain dry-bulb temperature and relative humidity, if the temperature is allowed to decrease, the air is no longer able to hold as much moisture. When air is cooled, the relative humidity increases until saturation is reached and condensation occurs. At this point where the dew point temperature equals the air temperature, the relative humidity is 100%. Condensation occurs on surfaces which are at or below the dewpoint temperature.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_dew_point_temperature_screen.png\" alt=\"Dew point temperature\"></p>\n<p>Fig: Dew-point in a psychrometric chart.</p>\n<p>Dew-point temperature is determined by moving from a state point horizontally to the left along lines of constant humidity ratio until the upper, curved, saturation temperature boundary is reached.</p>\n",
+			"headings": []
+		},
+		"disconnect-process-line": {
+			"title": "Disconnect Process Line",
+			"html": "<p>You can always disconnect process line and make new arrangement.</p>\n<p>The process line color becomes BLACK when you point the desired process line.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_disconnect_process_line_custom.png\" alt=\"\"></p>\n<p>Right click and choose from which node you want to disconnect the line. You can see the connecting nodes there.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_disconnect_process_line_custom_2.png\" alt=\"\"></p>\n<p>Choose the desired node, move the line to another node and click to connect the line again to connect with other node.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_disconnect_process_line_custom_3.png\" alt=\"\"></p>\n<p>Click there and now Line3 will be between SUP_Node and Node5</p>\n<p><img src=\"/media/psychrometric/1.0/drex_disconnect_process_line_custom_4.png\" alt=\"\"></p>\n<p>Using this feature, you can make any desired arrangememnt.</p>\n",
+			"headings": []
+		},
+		"edit-node-properties": {
+			"title": "Edit Node Properties",
+			"html": "<p><strong>Name</strong></p>\n<p>The default NAME of node is 'Node1', 'Node2', etc... You can change NAME clicking in the NAME field.</p>\n<p><strong>Temperature Source</strong></p>\n<p>Initially when you simply insert the nodes, the source of temperature is  'Manual'. These values can be used for simulation purpose. You can always change the source. You will always have three options:</p>\n<ol>\n<li>\n<p>Manual</p>\n</li>\n<li>\n<p>From web (weather station from internet)</p>\n</li>\n<li>\n<p>From  device (T300 controller using bacnet data)</p>\n</li>\n</ol>\n<p>If you dont have temperature sensors available , you can always take help of  WEB to get the current outdoor temperature.</p>\n<p>If source is 'Manual', you can edit and change Temperature value (Just double click on the vale and enter new value). Based on new value, nodes also get adjusted.</p>\n<p>If you chhose 'Web' or 'Device', you are not allowed to edit the values.</p>\n<p>'Web' gets data from nearest weather station based on current selected building location. Please note that you must mention country, city, street etc  while you insert new building in T3000 software. Baaed on that information, our tool finds nearest weather station and get the data (for example in below screenshot: temperature =13.47 degree centigratee from web).</p>\n<p><img src=\"/media/psychrometric/1.0/drex_edit_node_properties_custom.png\" alt=\"\"></p>\n<p>And node ('Node1') gets repositioned in new data.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_edit_node_properties_custom_2.png\" alt=\"\"></p>\n<p>Before entering into the 'Device' option for source selection, please have a look on the screenshot of current T3000 staus here.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_edit_node_properties_custom_3.png\" alt=\"\"></p>\n<p>If you choose and click 'Device' option for source, you willl get option to chhose variables from current input and output in T3000 controller.</p>\n<p>The screenshot example shows that you are getting Temperature from 'FD_DEMO' controller whose label is 'OUT_TEMP' (i.e it is from IN3)' and value is 23 degree centigrade. It only lists the temperature parameters.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_edit_node_properties_custom_4.png\" alt=\"\"></p>\n<p><strong>Humidity Source</strong></p>\n<p>Simlarly, we can choose the source for humidity .</p>\n<p>You can change the node name . Lets change the 'Node1' to 'WEB' and 'Node2' to 'OUT_Node' and also the colors. As you change in grid, the effect can be seen in the chart instantly.</p>\n<p>If any values in T3000 gets changed, the node position also gets changed if that node sources are from T3000 controller (See the below screenshot). The refresh rate is 10 second for each node.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_edit_node_properties_custom_5.png\" alt=\"\"></p>\n<p>If you move the node from one position to another and if node source is either Web or Device, it will again go to its original position automatically. If node source is Manual, it will remain to the new position if repositioned.</p>\n<p>What happens if controller or internet goes offline?</p>\n<p>&gt;&gt; It shows the last scanned value just before offline. Once device necomes online, it starts updating again.</p>\n<p>Enthalpy is auto calculated based on available temperature, humidity and pressure.</p>\n<p>Show Text</p>\n<p>You can select which parameter you want to show in chart . If you choose 'Name' there, 'WEB' will be displayed on the chart. Please see above screenshot.</p>\n<p>Node Size</p>\n<p>You can increase or decrease the node size by manually entering the new size. The default NODE SIZE is 20.</p>\n",
+			"headings": []
+		},
+		"edit-process-line-properties": {
+			"title": "Edit Process Line Properties",
+			"html": "<p>The defalt Process line name is 'Line1', 'Line2', etc..</p>\n<p>You can always change Process Line name. You can tick or untick on 'Show Name' to show or hide the process name in chart. By default, you can see the Process Line name. Similarly, you can also change the color and thickness of process line.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_edit_process_line_properties_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"enthalpy": {
+			"title": "Enthalpy",
+			"html": "<p><a href=\"https://en.wikipedia.org/wiki/Enthalpy\">When we talk of <strong>Enthalpy</strong> of air we are referring to the amount of energy stored in nthe air. Enthalpyy</a> is a thermodynamic quantity equivalent to the total heat (energy) content of a system/moist air. It is expressed in  kJ/Kg and represents the heat energy due to temperature and moisture in the air. When we talk of the enthalpy of air we are referring to the amount of energy stored in the air. The amount of energy stored in a gas such as air is simple to understand, hotter gas means proportionally more energy content. Lines of constant enthalpy run diagonally downward from left to right across the chart. Lines of constant enthalpy and constant wet-bulb are almost parallel but values are read off separate scales. Less accurate psychrometric charts sometime use same lines for wetbulb temperature and enthalpy.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_enthalpy_custom.png\" alt=\"\"></p>\n<p>Fig: Constant Enthalpy lines on a psychrometric chart</p>\n",
+			"headings": []
+		},
+		"example-enthalpy-calculation": {
+			"title": "Example: Enthalpy Calculation",
+			"html": "<p>Enthalpy can be calculated from known Dry Bulb Temperature (DBT), Relative Humidity (RH) and Atmospheric Pressure. Steps to determine enthalpy are listed below:</p>\n<p> <strong>1. Calculate Dew point from DBT, RH and atmospheric pressure</strong></p>\n<p>             </p>\n<p><img src=\"/media/psychrometric/1.0/drex_example__enthalpy_calculation_custom.png\" alt=\"\"></p>\n<p>        where</p>\n<p>Td=  Dew point temperature in degree centigrate</p>\n<p>LN = Natural logarithm</p>\n<p>RH= Relative HUmidity in percent</p>\n<p>DBT= Dry Bulb Temperature</p>\n<p>Atmosphere = Atmospheric pressure, [Hpa]</p>\n<p><strong>2.  Calculate Water Vapor Saturation Pressure (Pws) from the dew point temperature</strong></p>\n<p><img src=\"/media/psychrometric/1.0/drex_example__enthalpy_calculation_custom_2.png\" alt=\"\"></p>\n<p>where ,</p>\n<p>Pws = Partial Pressure of water at saturation at given temperature, [hPa]</p>\n<p>Td = Dewpoint temperature</p>\n<p>A, m, Tn =  curve fitting constants which are obtained as below</p>\n<p><img src=\"/media/psychrometric/1.0/drex_example__enthalpy_calculation_custom_3.png\" alt=\"\"></p>\n<p><strong>3. Calculate the mixing ratio (X), mass of water to mass of air</strong></p>\n<p><img src=\"/media/psychrometric/1.0/drex_example__enthalpy_calculation_custom_4.png\" alt=\"\"></p>\n<p>where.</p>\n<p>X= mixing ration, [g/Kg]</p>\n<p>Pws = Partial Pressure of water at saturation at given temperature, [hPa]</p>\n<p>Patm = Atmospheric pressure, [hPa]</p>\n<p>B = Molecular mass of water over the molecular weight of gas x 1000 , 621.9907 for air [g/kg]</p>\n<p><strong>4. Calculate the enthalpy</strong></p>\n<p>    </p>\n<p><img src=\"/media/psychrometric/1.0/drex_example__enthalpy_calculation_custom_5.png\" alt=\"\"></p>\n<p>Note: TBD: Below zero degrees, use different formula for dewpoint.</p>\n<p>Example</p>\n<p>Let's see one example here. Lets assume your outdoor environment has 20 degree centigrate with 80% RH. Consider standard pressure 1013 Hpa.  We will calculate all other parameters and enthalpy finally.</p>\n<p>So, given:</p>\n<p>     </p>\n<p><img src=\"/media/psychrometric/1.0/drex_example__enthalpy_calculation_custom_6.png\" alt=\"\"></p>\n<p>Using above mentioned formula, we will have following:</p>\n<p> </p>\n<p><img src=\"/media/psychrometric/1.0/drex_example__enthalpy_calculation_custom_7.png\" alt=\"\"></p>\n<p><img src=\"/media/psychrometric/1.0/drex_example__enthalpy_calculation_custom_8.png\" alt=\"\"></p>\n<p><img src=\"/media/psychrometric/1.0/drex_example__enthalpy_calculation_custom_9.png\" alt=\"\"></p>\n<p><img src=\"/media/psychrometric/1.0/drex_example__enthalpy_calculation_custom_10.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"export-data": {
+			"title": "Export Data",
+			"html": "<p>User can export all data available in Excel, CSV or txt format between two dates.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_export_data_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"heating-and-dehumidification-process": {
+			"title": "Heating and Dehumidification Process",
+			"html": "<p>The process in which the air is heated and at the same time moisture is removed from it is called as heating and dehumidification process. This process is obtained by passing the air over certain chemicals like alumina and molecular sieves. These elements have inherent properties due to which they keep on releasing the heat and also have the tendency to absorb the moisture. These are called as the hygroscopic chemicals.</p>\n<p>In actual practice the hygroscopic elements are enclosed in the large vessel and the high pressure air is passed inside the vessel through one opening. When the air comes in contact with the chemicals the moisture from the air is absorbed and since the chemicals emit heat, the DB temperature of the air increases. The hot and dehumidified air comes out from the vessel through other opening in the vessel. The inlet and outlet openings of the vessel are controlled by the valve.</p>\n<p>The heating and humidification process is commonly used for reducing the dew point temperature of air. There are number of automatic valves in the chemical plants that are operated by the compressed air at high pressure. If the dew point temperature of this air is high, there are chances of formation of dew inside the valves which can lead to their corrosion and also faulty their operation. Thus it is very important that the air passing to such automatic valves have very low dew point temperature. The heating and dehumidification process by using hygroscopic materials is used often in the air drying units.</p>\n<p>During the heating and dehumidification process dry bulb temperature of the air increases while its dew point and wet bulb temperature reduces. On the psychrometric chart, this process is represented by a straight angular line starting from the given DB temperature conditions and extending downwards towards right to the final DB temperature conditions.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_heating_and_dehumidification_process_custom.png\" alt=\"\"></p>\n<p>Fig: Nature of Heating &amp; Dehumidification process in a psychrometric chart</p>\n",
+			"headings": []
+		},
+		"heating-and-humidification-process": {
+			"title": "Heating and Humidification Process",
+			"html": "<p>In heating and humidification psychrometric process of the air, the dry bulb temperature as well as the humidity of the air increases. The heating and humidification process is carried out by passing the air over spray of water, which is maintained at temperature higher than the dry bulb temperature of air or by mixing air and the steam. Comparing to cooling and humidification heating and humidification is just mixing of air with water content at higher temperature than that of air.</p>\n<p>When the ordinary air is passed over the spray of water maintained at temperature higher than the dry bulb temperature of the air, the moisture particles from the spray tend to get evaporated and get absorbed in the air due to which the moisture content of the air increase. At the same time, since the temperature of the moisture is greater than the dry bulb temperature of the air, there is overall increase in its temperature.</p>\n<p>During heating and humidification process the dry bulb, wet bulb, and dew point temperature of the air increases along with its relative humidity. The heating and humidification process is represented on the psychrometric chart by an angular line that starts from the given value of the dry bulb temperature and extends upwards towards right (see the figure below).</p>\n<p><img src=\"/media/psychrometric/1.0/drex_heating_and_humidification_process_custom.png\" alt=\"\"></p>\n<p>Fig: Nature of Heating &amp; Humidification in a psychrometric chart</p>\n",
+			"headings": []
+		},
+		"historical-data-plot": {
+			"title": "Historical Data Plot",
+			"html": "<p>User can plot all historical available data.</p>\n<p>User can filter data based on Hour and Date</p>\n<p>For example, if user wants to plot only 10AM to 5PM data, then user needs to select from 10 to 17 hours.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_historical_data_plot_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"humidification": {
+			"title": "Humidification",
+			"html": "<p>The process in which the moisture or water vapor or humidity is added to the air without changing its dry-bulb temperature is called as humidification process. This process is represented by a straight vertical line on the psychrometric chart starting from the initial value of relative humidity, extending upwards and ending at the final value of the relative humidity. In actual practice the pure humidification process is not possible, since the humidification is always accompanied by cooling or heating of the air. Humidification process along with cooling or heating is used in number of air conditioning applications.</p>\n",
+			"headings": []
+		},
+		"miscellaneous-numerical-examples": {
+			"title": "Miscellaneous Numerical Examples",
+			"html": "<p><strong>Example 1</strong></p>\n<p>Heated air at 50 C and 10% relative humidity is used to dry rice in a bin dryer. The air exits the bin under saturated conditions. Determine the amount of water removed per kg of dry air.</p>\n<p><strong>Solution</strong></p>\n<p><img src=\"/media/psychrometric/1.0/drex_miscellaneous_numerical_examples_custom.png\" alt=\"\"></p>\n<ul>\n<li>\n<p>Locate point A on the psychrometric chart, as shown in Figure. Read humidity ratio  0.0076 kg water/kg dry air.</p>\n</li>\n<li>\n<p>Follow the constant enthalpy line to the saturation curve, point B.</p>\n</li>\n<li>\n<p>At point B, read the humidity ratio  0.02 kg water/kg dry air.</p>\n</li>\n<li>\n<p>The amount of moisture removed from rice  0.02 – 0.0076 = 0.0124 kg water/kg dry air</p>\n<p><strong>Example 2</strong></p>\n<p>In efforts to conserve energy, a food dryer is being modified to reuse part of the exhaust air along with ambient air. The exhaust air flow of 10 m3/s at 400C and 30% relative humidity is mixed with 20 m3/s of ambient air at 300C and 60% relative humidity. Using the psychrometric chart, determine: the dry bulb temperature and humidity ratio of the mixed air.</p>\n</li>\n</ul>\n<p><strong>Solution</strong></p>\n<p>Let us draw plot the points and follow the steps given below the figure:</p>\n<p><img src=\"/media/psychrometric/1.0/drex_miscellaneous_numerical_examples_custom_2.png\" alt=\"\"></p>\n<ul>\n<li>\n<p>From the given data, locate the state points A and B, identifying the exit and ambient air as shown on the skeleton chart</p>\n</li>\n<li>\n<p>Join points A and B with a straight line.</p>\n</li>\n<li>\n<p>The division of line AB is done according to the relative influence of the particular air mass. Since the mixed air contains 2 parts ambient air and 1part    exhaust air, line AB is divided in 1:2 proportion to locate point C. Thus, the shorter length of line AC corresponds to larger air mass.</p>\n</li>\n<li>\n<p>The mixed air, represented by point C, will have a dry bulb temperature of 32.60C and a humidity ratio of 0.018 kg water/kg dry air.</p>\n<p><strong>Example 3</strong></p>\n<p>Assume that the outside air temperature is 8°C. If the air in a room is at 25°C with a relative humidity 40%, use the psychrometric chart to determine if the windows of that room which are in contact with the outside will become foggy.</p>\n<p><strong>Solution:</strong></p>\n<p><img src=\"/media/psychrometric/1.0/drex_miscellaneous_numerical_examples_custom_3.png\" alt=\"\"></p>\n<p>The air in contact with the windows will become colder until the dew point is reached. Notice that under the conditions of 25°C and 40% relative humidity the dew point temperature is slightly higher than 10°C, At that point the water vapor condenses as the temperature approaches 8°C along the saturation line, and the windows will become foggy.</p>\n</li>\n</ul>\n",
+			"headings": []
+		},
+		"mixing-process": {
+			"title": "Mixing Process",
+			"html": "<p>When two streams of air with different properties and flow rates are mixed, the properties of the resulting mixture (enthalpy, dry bulb temperature and saturation ratio) can be determined by simple proportional mass and energy balances.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_mixing_process_custom.png\" alt=\"\"></p>\n<p>When air streams are mixing the properties of the resulting stream can be determined by mass balances or graphically on the psychrometric chart. In most cases, heat loss from the system is negligible and the system can be modeled at adiabatic.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_mixing_process_custom_2.png\" alt=\"\"></p>\n<p>Multiple air mixing from different ducts, are normally performed in central air conditioners. The most common mixing, is between re-circulated air, and fresh air. Fresh air and re-circulated air mixing is very important in maintaining low operating cost of an air conditioner.</p>\n<p>If two air streams are mixed, having:</p>\n<ul>\n<li>\n<p>Mass flow rates <strong>m1</strong> and <strong>m2</strong>,</p>\n</li>\n<li>\n<p>dry bulb temperatures <strong>t1</strong> and <strong>t2</strong>,</p>\n</li>\n<li>\n<p>enthalpies <strong>H1</strong> and <strong>H2</strong>,</p>\n</li>\n</ul>\n<p>The result will be:</p>\n<p><strong>m1t1 + m2t2 = [m1 + m2] t3,</strong></p>\n<p><strong>m1H1 + m2H2 = [m1 + m2]H3</strong></p>\n<p>Therefore:</p>\n<p><strong>t3 = (m1t1 + m2t2) / (m1 + m2)</strong></p>\n<p><strong>H3 = (m1H1 + m2H2) / (m1 + m2)</strong></p>\n",
+			"headings": []
+		},
+		"moisture-content": {
+			"title": "Moisture content",
+			"html": "<p><a href=\"https://en.wikipedia.org/wiki/Water_content\">Moisture content</a> (or Humidity ratio) of moist air is the weight of the water contained in the air per unit of dry air. The humidity ratio of moist air can be expressed with the mass of water vapor in the humid air - to the mass of dry air, or by the partial pressure of vapor in the air - to the partial pressure of the dry air. Humidity ratio is found on the vertical, y-axis with lines of constant humidity ratio running horizontally across the chart.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_moisture_content_custom.png\" alt=\"\"></p>\n<p>Fig: Humidity ratio curve on a psychrometric chart</p>\n",
+			"headings": []
+		},
+		"node-grid-view": {
+			"title": "Node Grid View",
+			"html": "<p>This is strong part of our tool. We can see and edit node and process line properties. To see the node grid view, right click on the chart and 'Edit Node'  as shown below:</p>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_custom.png\" alt=\"\"></p>\n<p>Once you click, you will see the following grid view pop up.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_screen.png\" alt=\"Node Grid View\"></p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_1.png\" alt=\"1\"></p>\n<h2 id=\"selector\">Selector<a class=\"anchor\" href=\"#selector\" data-anchor=\"selector\" aria-label=\"Copy a link to Selector\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_1.png\" alt=\"1. Selector\"></p>\n<p>Node Selector</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_2.png\" alt=\"2\"></p>\n<h2 id=\"name\">Name<a class=\"anchor\" href=\"#name\" data-anchor=\"name\" aria-label=\"Copy a link to Name\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_2.png\" alt=\"2. Name\"></p>\n<p>It shows Node name</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_3.png\" alt=\"3\"></p>\n<h2 id=\"temperature-source\">Temperature Source<a class=\"anchor\" href=\"#temperature-source\" data-anchor=\"temperature-source\" aria-label=\"Copy a link to Temperature Source\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_3.png\" alt=\"3. Temperature Source\"></p>\n<p>It shows the source of temperature data. It may be from T3000(device) or nearest weather station (Web) or simulated (Manual).</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_4.png\" alt=\"4\"></p>\n<h2 id=\"temperature\">Temperature<a class=\"anchor\" href=\"#temperature\" data-anchor=\"temperature\" aria-label=\"Copy a link to Temperature\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_4.png\" alt=\"4. Temperature\"></p>\n<p>It shows the temperature value.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_5.png\" alt=\"5\"></p>\n<h2 id=\"humidity-source\">Humidity Source<a class=\"anchor\" href=\"#humidity-source\" data-anchor=\"humidity-source\" aria-label=\"Copy a link to Humidity Source\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_5.png\" alt=\"5. Humidity Source\"></p>\n<p>It shows the source of humidity data. It may be from T3000(device) or nearest weather station (Web) or simulated (Manual).</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_6.png\" alt=\"6\"></p>\n<h2 id=\"humidity\">Humidity<a class=\"anchor\" href=\"#humidity\" data-anchor=\"humidity\" aria-label=\"Copy a link to Humidity\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_6.png\" alt=\"6. Humidity\"></p>\n<p>It shows the temperature value.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_7.png\" alt=\"7\"></p>\n<h2 id=\"equivalent-enthalpy\">Equivalent Enthalpy<a class=\"anchor\" href=\"#equivalent-enthalpy\" data-anchor=\"equivalent-enthalpy\" aria-label=\"Copy a link to Equivalent Enthalpy\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_7.png\" alt=\"7. Equivalent Enthalpy\"></p>\n<p>It shows the equivalent enthalpy (calculted from Temperature and Humidity)</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_8.png\" alt=\"8\"></p>\n<h2 id=\"color\">Color<a class=\"anchor\" href=\"#color\" data-anchor=\"color\" aria-label=\"Copy a link to Color\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_8.png\" alt=\"8. Color\"></p>\n<p>It shows the node color.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_9.png\" alt=\"9\"></p>\n<h2 id=\"node-size\">Node Size<a class=\"anchor\" href=\"#node-size\" data-anchor=\"node-size\" aria-label=\"Copy a link to Node Size\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_9.png\" alt=\"9. Node Size\"></p>\n<p>It shows the node size.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_10.png\" alt=\"10\"></p>\n<h2 id=\"air-flow\">Air Flow<a class=\"anchor\" href=\"#air-flow\" data-anchor=\"air-flow\" aria-label=\"Copy a link to Air Flow\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_10.png\" alt=\"10. Air Flow\"></p>\n<p>It shows the Air flow value.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_11.png\" alt=\"11\"></p>\n<h2 id=\"line-name\">Line name<a class=\"anchor\" href=\"#line-name\" data-anchor=\"line-name\" aria-label=\"Copy a link to Line name\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_11.png\" alt=\"11. Line name\"></p>\n<p>It shows the process line name connecting two nodes.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_12.png\" alt=\"12\"></p>\n<h2 id=\"start-node-name\">Start Node Name<a class=\"anchor\" href=\"#start-node-name\" data-anchor=\"start-node-name\" aria-label=\"Copy a link to Start Node Name\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_12.png\" alt=\"12. Start Node Name\"></p>\n<p>It shows the name of Starting Node of the particular process line.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_13.png\" alt=\"13\"></p>\n<h2 id=\"end-node-name\">End Node Name<a class=\"anchor\" href=\"#end-node-name\" data-anchor=\"end-node-name\" aria-label=\"Copy a link to End Node Name\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_13.png\" alt=\"13. End Node Name\"></p>\n<p>It shows the name of Ending Node of the particular process line.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_14.png\" alt=\"14\"></p>\n<h2 id=\"color-2\">Color<a class=\"anchor\" href=\"#color-2\" data-anchor=\"color-2\" aria-label=\"Copy a link to Color\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_14.png\" alt=\"14. Color\"></p>\n<p>It shows the color of process line.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_15.png\" alt=\"15\"></p>\n<h2 id=\"thickness\">Thickness<a class=\"anchor\" href=\"#thickness\" data-anchor=\"thickness\" aria-label=\"Copy a link to Thickness\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_15.png\" alt=\"15. Thickness\"></p>\n<p>It shows the thickness of process line in chart.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_16.png\" alt=\"16\"></p>\n<h2 id=\"show\">Show<a class=\"anchor\" href=\"#show\" data-anchor=\"show\" aria-label=\"Copy a link to Show\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_16.png\" alt=\"16. Show\"></p>\n<p>User has option to show the line name or not. If user doesnot want to show Process Line name, he/she can untick.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_17.png\" alt=\"17\"></p>\n<h2 id=\"process-energy-calculation\">Process Energy Calculation<a class=\"anchor\" href=\"#process-energy-calculation\" data-anchor=\"process-energy-calculation\" aria-label=\"Copy a link to Process Energy Calculation\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_node_grid_view_control_17.png\" alt=\"17. Process Energy Calculation\"></p>\n<p>This portion shows different energy calculation of the selected process line.</p>\n",
+			"headings": [
+				{
+					"id": "selector",
+					"text": "Selector",
+					"level": 2
+				},
+				{
+					"id": "name",
+					"text": "Name",
+					"level": 2
+				},
+				{
+					"id": "temperature-source",
+					"text": "Temperature Source",
+					"level": 2
+				},
+				{
+					"id": "temperature",
+					"text": "Temperature",
+					"level": 2
+				},
+				{
+					"id": "humidity-source",
+					"text": "Humidity Source",
+					"level": 2
+				},
+				{
+					"id": "humidity",
+					"text": "Humidity",
+					"level": 2
+				},
+				{
+					"id": "equivalent-enthalpy",
+					"text": "Equivalent Enthalpy",
+					"level": 2
+				},
+				{
+					"id": "color",
+					"text": "Color",
+					"level": 2
+				},
+				{
+					"id": "node-size",
+					"text": "Node Size",
+					"level": 2
+				},
+				{
+					"id": "air-flow",
+					"text": "Air Flow",
+					"level": 2
+				},
+				{
+					"id": "line-name",
+					"text": "Line name",
+					"level": 2
+				},
+				{
+					"id": "start-node-name",
+					"text": "Start Node Name",
+					"level": 2
+				},
+				{
+					"id": "end-node-name",
+					"text": "End Node Name",
+					"level": 2
+				},
+				{
+					"id": "color-2",
+					"text": "Color",
+					"level": 2
+				},
+				{
+					"id": "thickness",
+					"text": "Thickness",
+					"level": 2
+				},
+				{
+					"id": "show",
+					"text": "Show",
+					"level": 2
+				},
+				{
+					"id": "process-energy-calculation",
+					"text": "Process Energy Calculation",
+					"level": 2
+				}
+			]
+		},
+		"node-repositioning": {
+			"title": "Node Repositioning",
+			"html": "<p>If you want to change the node position, just hover mouse over the node , click it and you can reposition anywhere inside the chart and at the end click to release the node at the new position, Below screenshots show the reposition of Node1.</p>\n<p>When you hover the node, you can see node properties like source,name , label etc.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_node_repositioning_custom.png\" alt=\"\"></p>\n<p><strong>Horizontal movement (Constant Humidity Ratio)</strong></p>\n<p>If you drag the node pressing the 'SHIFT; key, the node only moves horizontally (Humidity Ratio remains same)</p>\n<p><strong>Vertical movement (Constant DBT)</strong></p>\n<p>If you drag the node pressing the 'ALT' key, the node only moves vertically (Dry Bulb Temperature remains same)</p>\n",
+			"headings": []
+		},
+		"numerical-example-air-mixing": {
+			"title": "Numerical Example: Air Mixing",
+			"html": "<p><strong>Example:</strong></p>\n<p>The makeup air at rate of 100 m3/min from the environment having tdb = 40°C and twb = 27°C is mixed with 600 m3/min of return air from the conditioned space having state Tdb = 23°C and relative humidity 50%. Compute dry and wet-bulb temperatures and specific humidity of the mixture.</p>\n<p><strong>Solution:</strong></p>\n<p>With the help of chart,</p>\n<p>At state 1</p>\n<p>Specific vol= 0.913 cu m / kg</p>\n<p>Sp humidity= 0.017 kg/ kg</p>\n<p>h1= 84 KJ/Kg-K</p>\n<p>m1=100/ 0.913 kg/min</p>\n<p>At state 2</p>\n<p>Specific vol= 0.852 cu m / kg</p>\n<p>Sp humidity= 0.009 kg/ kg</p>\n<p>h2= 45 KJ/Kg-K</p>\n<p>m2=600/0.852 kg/min</p>\n<p>For mixing, we will have</p>\n<p>m1*h1+m2*h2=(m1+m2)*h3</p>\n<p>109*84+705*45=(109+705)*h3</p>\n<p>h3=50 kJ/Kg-K</p>\n<p><img src=\"/media/psychrometric/1.0/drex_numerical_example__air_mixing_custom.png\" alt=\"\"></p>\n<p>Locate mixed state point</p>\n<p>DBT at mixed state point= 26 degree C</p>\n<p>Specific humidity at mixed state point  =0.0102 Kg/ Kg of dry air</p>\n<p>WBT=18 degree C</p>\n<p>Note: (mixed state point can also be located by dividing the line State 1- State 2 in m1/m2 ratio)</p>\n",
+			"headings": []
+		},
+		"numerical-example-comfort-zone": {
+			"title": "Numerical Example: Comfort Zone",
+			"html": "<p><strong>Example</strong></p>\n<p>Outside air at 35°C and 60% relative humidity is to be conditioned by cooling and heating so as to bring the air to within the &quot;comfort zone&quot;. Using the Psychrometric Chart neatly plot the required air conditioning process and estimate (a) the amount of moisture removed, (b) the heat removed(1)-(2), and (c) the amount of heat added (2)-(3).</p>\n<p><strong>Solution:</strong></p>\n<p>Let us analysis with the chart and the figure below.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_numerical_example__comfort_zone_custom.png\" alt=\"\"></p>\n<p>For shifting current region to the comfort zone let us cool the air (sensible cooling) till saturation occurs. Upon cooling when the temperature reaches to 150 C let us supply heat on air (sensible heating)  to reach the comfort zone. After plotting all the states we can find the psychrometric parameters.</p>\n<p>(a) The amount of moisture removed (ΔHR) = 11.5g-H2O/kg-dry-air</p>\n<p>From the enthalpy scale upon states (1)-(2), we get</p>\n<p> (b) the heat removed ,             qcool = 48kJ/kg-dry-air</p>\n<p>From the enthalpy scale upon states (2)-(3), we get</p>\n<p> (c) the amount of heat added ,  qheat = 10kJ/kg-dry-air.</p>\n<p><strong>Example</strong></p>\n<p>Hot dry air at 40°C and 10% relative humidity passes through an evaporative cooler. Water is added as the air passes through a series of wicks and the mixture exits at 27°C. Using the psychrometric chart determine (a) the outlet relative humidity, (b) the amount of water added , and (c) the lowest temperature that could be realized.</p>\n<p><strong>Solution:</strong></p>\n<p>As in the question, lets plot initial point.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_numerical_example__comfort_zone_custom_2.png\" alt=\"\"></p>\n<p>This is the case of cooling and humidification, final temperature of the mixture is 270C and enthalpy is constant, thus we can locate state 2 in the chart as above. Now with respect to the states (1) - (2) and points  (1) and (2) we can get the results as :</p>\n<p>(a) the outlet relative humidity  = 45%,</p>\n<p>(b) the amount of water added  = 5.4g-H2O/kg-dry-air</p>\n<p>(c) the lowest temperature that could be realized  = 18.5°C</p>\n",
+			"headings": []
+		},
+		"numerical-example-cooling-dehumidification": {
+			"title": "Numerical Example : Cooling & Dehumidification",
+			"html": "<p>Moist air at 35°C dry bulb temperature and 60% relative humidity enters the cooling coil of a dehumidification kiln heat pump system and is cooled to a temperature of 18°C. If the drying rate of 6 m3 of red oak lumber is 4 kg/hour, determine the W of refrigeration required.</p>\n<p><strong>Solution:</strong></p>\n<p>Following the steps used in the previous example of sensible heating we can get the general parameters.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_numerical_example___cooling___dehumidification_custom.png\" alt=\"\"></p>\n<p><strong>Now:</strong></p>\n<p>ΔHR = 0.021-0.012</p>\n<p>         = 0.009 kg water / kg dry air</p>\n<p>Wa  = drying rate / ΔHR</p>\n<p>        =  (4 kg water/h) /0.009</p>\n<p>        = 444.44 kg dry air / h</p>\n<p>Δh = (89.8 – 50) kJ/kg dry air</p>\n<p>                  = 39.8 kJ/kg dry air</p>\n<p>q  = (Δh)(Wa)</p>\n<p>                = [39.8 x (kJ/ kg dry air)] [444.44 x (kg dry air/ h)]</p>\n<p>   =17688.712 (kJ/h)</p>\n<p>                = 4913.531111W</p>\n<p>   = 4.913KW</p>\n",
+			"headings": []
+		},
+		"numerical-example-heating-and-humidification": {
+			"title": "Numerical Example: Heating and Humidification",
+			"html": "<p>Two and a half cubic meters of lumber is being dried at 40°C dry bulb temperature and 25°C wet bulb temperature. The drying rate of the lumber is 12.5kg of water per hour. If outside air is at 27°C dry bulb temperature and 60% relative humidity, how much outside air is needed per minute to carry away the evaporated moisture?</p>\n<p><strong>Solution:</strong></p>\n<p>Following the steps used in the previous example of sensible heating we can get the general parameters.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_numerical_example__heating_and_humidification_custom.png\" alt=\"\"></p>\n<p><strong>Now,</strong></p>\n<p>Humidity Ratio difference (ΔHR) = (17.2 – 15.8) g water / kg dry air</p>\n<p>= 1.4 g water / kg dry air</p>\n<p>= 0.00014  kg water / kg dry air</p>\n<p>water added (wa1) = drying rate/ΔHR</p>\n<p>= (12.5 kg/hour)/(0.00014 kg water / kg dry air)</p>\n<p>= 89285.71 kg dry air/hour</p>\n<p>VF1=(wa1)(v1)</p>\n<p>=(89285.71 kg dry air/hour)(0.868 m3/kg dry air)</p>\n<p>= 102863.72 m3/hour</p>\n<p>= 1714.39 m3/minute</p>\n<p>Thus, it requires 1714.39 m3/minute</p>\n",
+			"headings": []
+		},
+		"numerical-example-sensible-heating": {
+			"title": "Numerical Example: Sensible Heating",
+			"html": "<p>A room has a temperature of 200 C and the relative humidity of 58.8%. Determine wet bulb temperature and relative humidity of the roof after raising the temperature of the room by 100 C.</p>\n<p><strong>Solution:</strong></p>\n<p>As in the graph below, all the red lines correspond to the initial psychometric properties. The blue lines corresponds to the obtained result after sensible heating by 100 C. Thus after heating, parameters change as:</p>\n<ul>\n<li>\n<p>Wet-bulb Temperature (Twb) = 17.50 C</p>\n</li>\n<li>\n<p>Relative Humidity (R.H.) = 30.5%</p>\n</li>\n<li>\n<p>Enthalpy (h) = 53.0 kJ/kg</p>\n</li>\n</ul>\n<p><img src=\"/media/psychrometric/1.0/drex_numerical_example__sensible_heating_custom.png\" alt=\"\"></p>\n<p>Fig: Results obtained using the chart for sensible heating</p>\n<p><strong>Steps :</strong></p>\n<ul>\n<li>\n<p>Draw straight horizontal lines to the left till the desired temperature level is reached and mark the end point.</p>\n</li>\n<li>\n<p>Draw the vertical line parallel to wet bulb temperature line intersecting the marked point.</p>\n</li>\n<li>\n<p>Now measure the point's location wit respect to all the parameters and note them.</p>\n<p><strong>Note: Sensible cooling is opposite to sensible heating. It is just decrease of temperature instead of increasing as in sensible heating.</strong></p>\n</li>\n</ul>\n",
+			"headings": []
+		},
+		"psychrometric-calculator": {
+			"title": "Psychrometric Calculator",
+			"html": "<p>This calculator helps to find all psychrometric parameters. The defult pressure is 1013 HPa. User can enter Temperature(DBT), Relative Humidity and Atmospheric Pressure.</p>\n<p>User can chose either SI or IP Unit system.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_psychrometric_calculator_custom.png\" alt=\"\"></p>\n<p><img src=\"/media/psychrometric/1.0/drex_psychrometric_calculator_custom_2.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"psychrometric-parameters": {
+			"title": "Psychrometric Parameters",
+			"html": "<p>The psychrometric chart indicates the properties of this water vapor and also known as psychrometric through the following parameters, each of which is explained in more detail below:</p>\n<ul>\n<li>\n<p>Dry bulb temperature</p>\n</li>\n<li>\n<p>Wet bulb temperature</p>\n</li>\n<li>\n<p>Dew point temperature</p>\n</li>\n<li>\n<p>Relative humidity</p>\n</li>\n<li>\n<p>Moisture content</p>\n</li>\n<li>\n<p>Specific volume</p>\n</li>\n<li>\n<p>Enthalpy</p>\n</li>\n</ul>\n",
+			"headings": []
+		},
+		"psychrometric-processes": {
+			"title": "Psychrometric Processes",
+			"html": "<p>Some of the common psychrometric processes carried out on air are: sensible heating and cooling of air, humidification and dehumidification of air, mixing of various streams of air, or there may be combinations of the various processes.</p>\n<p>Illustrating and analyzing the psychrometric properties and psychrometric processes by using the psychrometric chart is very easy, convenient and time saving. In the following sections we will see these processes and some real time example based on the psychrometric chart.</p>\n",
+			"headings": []
+		},
+		"psychrometry-and-psychrometric-chart": {
+			"title": "Psychrometry and Psychrometric Chart",
+			"html": "<p><strong>Psychrometry OR Psychometric Chart ?? Getting trouble hmm?</strong> The pronunciation goes like this, <strong>p-sai-khro-metric</strong></p>\n<p>Ok, one final practice of the pronunciation: <strong>Psychrometry</strong>. “cool”</p>\n<p><a href=\"https://en.wikipedia.org/wiki/Psychrometrics\">Psychrometrics</a> is the field of engineering concerned with the determination of physical and thermodynamic properties of gas-vapor mixtures. It explains various properties of air, method of controlling its temperature and moisture content or humidity and its effect on various materials and human beings. Psychrometry is an impressive word which is defined as the measurement of the moisture content of air. In broader terms it is the science and practices associated with atmospheric air mixtures, their control, and the effect on materials and human comfort. This can be accomplished through use of psychrometric tables or a psychrometric chart. The tables are somewhat more accurate, but the chart is accurate enough for all practical purposes and is much easier to use.</p>\n<p>The psychrometric chart1 is a graphic representation of the relationship between air temperature and humidity. It helps to describe climate data and human thermal comfort conditions.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_psychrometry_and_psychrometric_chart_screen.png\" alt=\"1. Psychrometry and Psychrometric Chart\"></p>\n<p>Fig : Sample psychrometric chart</p>\n<p>Air comprises approximately 78% nitrogen, 21% oxygen, and 1% other gases. But air is never dry, even in a desert. Two-thirds of the earth’s surface is covered with water and this, along with other surface water and rain, maintain low pressure water vapor to be suspended in the air making up part of the 1% of other gases.</p>\n<p>Any psychrometric chart is valid at a certain pressure of air. The pressure of air is related to the height above (or below) sea level.</p>\n<p>1: Service Application Manual, THE PSYCHROMETRIC CHART AND ITS USE, SAM Chapter 630-16 Section 3A.</p>\n",
+			"headings": []
+		},
+		"reading-parameters-using-chart": {
+			"title": "Reading Parameters Using Chart",
+			"html": "<p>Lets start with one example to locate a point in Psychrometric chart and read other remaining psychrmetric parameters.</p>\n<p><strong>Example 1</strong></p>\n<p>Assume that the outside air temperature is 32°C with a relative humidity 60%. Use the psychrometric chart to determine the specific humidity, the enthalpy (h), the wet-bulb temperature (Twb), the dew-point temperature (Tdp), and the specific volume of the dry air (v). Indicate all the values determined on the chart.</p>\n<p><strong>Solution:</strong></p>\n<p>First, we need to locate the given point in chart. Since outside air temperature (DBT) is 32°C with a relative humidity (RH) 60%, we need to follow the Dry Bulb Temperature (DBT) horizontal line and follow the Relative Humidity (RH) curve.</p>\n<p>After locating the given point, we need to read other parameters from chart as explained in previous sections.</p>\n<p>From the chart, we can see following:</p>\n<ul>\n<li>\n<p>Humidity ratio = 21.5</p>\n</li>\n<li>\n<p>Enthalpy (h) = 84 kJ/kg-air</p>\n</li>\n<li>\n<p>Wet-bulb temperature (Twb) = 25.5°C</p>\n</li>\n<li>\n<p>Dew-point temperature (Tdp) = 23°C</p>\n</li>\n<li>\n<p>Specific volume of the dry air (v) = 0.889m3/kg</p>\n</li>\n</ul>\n<p><img src=\"/media/psychrometric/1.0/drex_reading_parameters_using_chart_custom.png\" alt=\"\"></p>\n<p>Please note that this chart is at 0.8759 atm (88.76 Kpa) total pressure. If we have different atmospheric pressure, the change occurs in the chart and parameters as well.</p>\n",
+			"headings": []
+		},
+		"reading-parameters": {
+			"title": "Reading Parameters",
+			"html": "<p>You can read all psychrometirc paraments of any pont inside the chart. You just need to hover the mouse inside the chart anad you can see all parameters in Psychro Parameters Panel. Please check the following screenshot:</p>\n<p><img src=\"/media/psychrometric/1.0/drex_reading_parameters_custom.png\" alt=\"\"></p>\n",
+			"headings": []
+		},
+		"references": {
+			"title": "References",
+			"html": "<ul>\n<li>\n<p>Service Application Manual, THE PSYCHROMETRIC CHART AND ITS USE, SAM Chapter 630-16 Section 3A.</p>\n</li>\n<li>\n<p><a href=\"http://www.powerknot.com/how-to-read-and-use-a-psychrometric-chart.html\">http://www.powerknot.com/how-to-read-and-use-a-psychrometric-chart.html</a></p>\n</li>\n<li>\n<p><a href=\"https://en.wikipedia.org/wiki/Psychrometrics\">https://en.wikipedia.org/wiki/Psychrometrics</a></p>\n</li>\n<li>\n<p><a href=\"http://www.powerknot.com/how-to-read-and-use-a-psychrometric-chart.html\">http://www.powerknot.com/how-to-read-and-use-a-psychrometric-chart.html</a></p>\n</li>\n<li>\n<p>Dew-Point Temperature: <a href=\"http://www.weatherquestions.com/What%5C_is%5C_dewpoint%5C_temperature.htm\">http://www.weatherquestions.com/What\\_is\\_dewpoint\\_temperature.htm</a></p>\n</li>\n<li>\n<p><a href=\"http://web.uconn.edu/poultry/NE-127/NewFiles/psychrometric%5C_inset.html\">http://web.uconn.edu/poultry/NE-127/NewFiles/psychrometric\\_inset.html</a></p>\n</li>\n<li>\n<p><a href=\"http://www.brighthubengineering.com/hvac/41262-what-is-psychrometric-chart-components-of-psychrometric-chart/\">http://www.brighthubengineering.com/hvac/41262-what-is-psychrometric-chart-components-of-psychrometric-chart/</a></p>\n</li>\n</ul>\n",
+			"headings": []
+		},
+		"relative-humidity": {
+			"title": "Relative humidity",
+			"html": "<p><a href=\"https://en.wikipedia.org/wiki/Relative_humidity\">Relative humidity</a>  is the ratio of the fraction of water vapor in the air to the fraction of saturated moist air at the same temperature and pressure. RH is dimensionless, and is usually expressed as a percentage. 100% RH indicates the air is saturated and cannot hold any more moisture. Preferred values of comfort for people are between 35% and 60%.</p>\n<p>Warmer air can hold more moisture than cold air. Air at 60 percent relative humidity contains 60 percent of the water it could possibly hold (at that temperature). It could pick up 40 percent more water to reach saturation. Lines of constant relative humidity are represented by the curved lines running from the bottom left and sweeping up through to the top right of the chart. The line for 100 percent relative humidity, or saturation, is the upper, left boundary of the chart.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_relative_humidity_custom.png\" alt=\"\"></p>\n<p>Fig: Relative humidity curve on a psychrometric chart</p>\n",
+			"headings": []
+		},
+		"save-and-load-configuration": {
+			"title": "Save and Load Configuration",
+			"html": "<p>You can save all your work and load later if you wish. It saves all the configurations of nodes, air handlers, process lines, comfort zones , building information.</p>\n<p>Once you load the file, you can get the saved configuration.</p>\n<p>Note: The configuration will be saved in SQLite file format</p>\n<p>For this feature, go to 'Save Configuration' and 'Load Configuration' under File Menue.</p>\n<p>Save screenshots</p>\n<p>Save the configuration</p>\n<p><img src=\"/media/psychrometric/1.0/drex_save_and_load_configuration_custom.png\" alt=\"\"></p>\n<p>Save in your desired location as '.s3db' format</p>\n<p><img src=\"/media/psychrometric/1.0/drex_save_and_load_configuration_custom_2.png\" alt=\"\"></p>\n<p>Load Screenshots</p>\n<p>Load the configuration. Here you can see we have blank chart</p>\n<p><img src=\"/media/psychrometric/1.0/drex_save_and_load_configuration_custom_3.png\" alt=\"\"></p>\n<p>Select the desired configuration file to load</p>\n<p><img src=\"/media/psychrometric/1.0/drex_save_and_load_configuration_custom_4.png\" alt=\"\"></p>\n<p>After selecting the saved configuration file, we got the following chart that we had saved before. Please note that chart was blank before loading.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_save_and_load_configuration_custom_5.png\" alt=\"\"></p>\n<p>Note: In the screenshot, we have shown for a single air handler. It works same if you have many air handlers and many nodes.</p>\n",
+			"headings": []
+		},
+		"sensible-cooling-of-the-air": {
+			"title": "Sensible Cooling of the Air",
+			"html": "<p>In contrast to sensible heating, sensible cooling is just an opposite process in which the temperature of air is decreased without changing its moisture content. In other words sensible cooling is the process in which pure heat is removed from the air. During this process the sensible heat, dry-bulb and wet-bulb temperature of the air decreases other all remaining constant.</p>\n<p>In case of sensible cooling we can see status point moving horizontally to the left on a psychrometric chart. Note that while the AH (represented on the y axis) does not change, the change in temperature means the relative humidity (RH) changes.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_sensible_cooling_of_the_air_custom.png\" alt=\"\"></p>\n<p>Fig: Nature of Sensible Cooling in the chart</p>\n",
+			"headings": []
+		},
+		"sensible-heating-of-the-air": {
+			"title": "Sensible Heating of the Air",
+			"html": "<p>In sensible heating process the temperature of air is increased without changing its moisture content. In other words sensible heating is the process in which pure heat is added into the air. During this process the sensible heat, dry-bulb and wet-bulb temperature of the air increases other all remaining constant.</p>\n<p>In case of sensible heating we can see status point moving horizontally to the right on a psychrometric chart. Note that while the AH (represented on the y axis) does not change, the change in temperature means the relative humidity (RH) changes.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_sensible_heating_of_the_air_custom.png\" alt=\"\"></p>\n<p>Fig: Nature of Sensible Heating on the chart</p>\n",
+			"headings": []
+		},
+		"specific-volume": {
+			"title": "Specific volume",
+			"html": "<p>Specific volume indicates the space occupied by air. It is the reciprocal of density and is expressed as a volume per unit weight in m3/kg (density is weight per unit volume). Warm air is less dense than cool air, which causes warmed air to rise. This phenomenon is known as thermal buoyancy. By similar reasoning, warmer air has greater specific volume and is hence lighter than cool air. On the psychrometric chart, lines of constant specific volume are almost vertical lines with scale values written above the dry-bulb temperature scale. Greater specific volume is associated with warmer temperatures (dry-bulb).</p>\n<p><img src=\"/media/psychrometric/1.0/drex_specific_volume_custom.png\" alt=\"\"></p>\n<p>Fig: Lines of constant Specefic volumes on a psychrometric chart</p>\n",
+			"headings": []
+		},
+		"t3000-psychrometric-tool": {
+			"title": "T3000 & Psychrometric Tool",
+			"html": "<p>To enter the Temco Psychromentric Tool, click on 'Psyschrometric' under Tools in T3000 software.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_t3000___psychrometric_tool_custom.png\" alt=\"\"></p>\n<p>Psychrometric Tool apllication will appear as :</p>\n<p><img src=\"/media/psychrometric/1.0/drex_t3000___psychrometric_tool_custom_2.png\" alt=\"\"></p>\n<p>This is blank chart. The very basic thing we need to understand that this chart shows the Psychrometric behaviour of currently selected building in T3000. For example, the current selected building is 'RajuBuilding'. The chart is drawn based on selected building location pressure. For example, the selected building 'RajuBuilding' has 88.78KPa. If you chhose different building in T3000, you will get different current building and different chart based on new selected building location pressure.</p>\n<p>Each components of charts are described in next section.</p>\n",
+			"headings": []
+		},
+		"temco-psychrometric-tool": {
+			"title": "Temco Psychrometric Tool",
+			"html": "<p>We can find many Psychrometric softwares tools to calculate Psychrometric Paremeters and Psychrometric Processess. These tools make work very simple.They help to eliminate paper based standard Psychrometric Chart. Generally, we have standard pressure charts, but pressure varies from place to place. Based on the building location, we have unique pressure and we need unique Psychrometric Chart to analyse the psychrometric for that building. Paper based Psychrometric Chart will not be relevent for every building and so we require software based tool.</p>\n<p>'Temco Psychrometric Tool' is designed to work tightly with 'T3000 Building Automation System'. It shows and anlayses the building psychrometric paremetres chosen in T3000 system. It shows real time analysis based on the connected sensors in T3000 system in a particular building. It takes care of building location, and hence it shows real time data. User will have three options to to get data : one is using T3000 bacnet, second is from web using near weather station, and the third is simulation mode where user is free to enter any desired data. Based on these data, it shows other Psychrometric Parameters and Processes.</p>\n<p>In the  following sections, you can see how this tool is connected with T3000 system.</p>\n",
+			"headings": []
+		},
+		"the-dry-bulb-temperature-dbt": {
+			"title": "The dry-bulb temperature (DBT)",
+			"html": "<p>The <a href=\"https://en.wikipedia.org/wiki/Dry-bulb_temperature\">dry-bulb temperature (DBT)</a> is the most commonly measured air temperature by a thermometer freely exposed to the air but protected  from radiation and moisture. DBT is the temperature that is usually thought of as air temperature, and it is the true thermodynamic temperature. It indicates the amount of heat in the air and is directly proportional to the average kinetic energy of the air molecules.</p>\n<p>It is called &quot;dry-bulb&quot; since the sensing tip of the alcoholic thermometer is dry (see wet bulb temperature for comparison). In a psychometric chart the horizontal x-axis represents the dry-bulb temperature and the vertical lines to the axis are lines of constant temperature. In the figure below vertical black lines are the constant DBT lines. It is the most commonly temperature used, therefore it can be assumed that temperatures are dry-bulb temperatures unless particularly designated.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_the_dry_bulb_temperature__dbt__custom.png\" alt=\"\"></p>\n<p>Fig : Dry-bulb Temperature in a psychrometric chart</p>\n",
+			"headings": []
+		},
+		"the-wet-bulb-temperature-wbt": {
+			"title": "The wet-bulb temperature (WBT)",
+			"html": "<p>The <a href=\"https://en.wikipedia.org/wiki/Wet-bulb_temperature\">wet-bulb temperature</a> (a.k.a. saturation temperature) is the temperature measured by a thermometer as the temperature of a parcel of air would have if it were cooled to saturation (100% relative humidity) by the evaporation of water into it, with the latent heat being supplied by the parcel.</p>\n<p>Practically it cane be measured with its bulb kept moist by shielding it with a wet/moist cloth. As air passes through the bulb the water around the bulb gets evaporated and  the bulb is cooled. Less moisture in the air will result in a faster rate of evaporation and therefore a colder reading. In practice, we can use an electronic thermometer and wrap a paper tissue over the thermocouple. Make the paper tissue moist, but not too wet that water is dripping from it. Move air over the tissue (or move the thermocouple through the air) so the water evaporates. When the air sample is saturated with water (that is, it has 100% relative humidity), no water can evaporate from the moist tissue so the WB temperature will read the same as the DB temperature. This temperature is therefore also referred to as the saturation temperature. In a psychrometric chart wet bulb temperature is indicated by diagonal lines, which is almost parallel to the constant enthalpy lines.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_the_wet_bulb_temperature__wbt__custom.png\" alt=\"\"></p>\n<p>Fig: Wet-bulb temperature (Saturation Temperature)</p>\n",
+			"headings": []
+		},
+		"title": {
+			"title": "Title",
+			"html": "<hr>\n<p>User Guide</p>\n<p>2016</p>\n<p>Temco Nepal</p>\n",
+			"headings": []
+		},
+		"tool-componentns": {
+			"title": "Tool Componentns",
+			"html": "<p>The following description may help you to understand each componets of Temco Psychrometric Tool.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_tool_componentns_screen.png\" alt=\"Tool Componentns\"></p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_1.png\" alt=\"1\"></p>\n<h2 id=\"chart-title\">Chart Title<a class=\"anchor\" href=\"#chart-title\" data-anchor=\"chart-title\" aria-label=\"Copy a link to Chart Title\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_tool_componentns_control_1.png\" alt=\"1. Chart Title\"></p>\n<p>This is chart title , just to say you are in Temco Psychrometric Tool.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_2.png\" alt=\"2\"></p>\n<h2 id=\"menu-items\">Menu Items<a class=\"anchor\" href=\"#menu-items\" data-anchor=\"menu-items\" aria-label=\"Copy a link to Menu Items\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_tool_componentns_control_2.png\" alt=\"2. Menu Items\"></p>\n<p>This menu items helps you to choose many other items. We will discuss all items in next sections.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_3.png\" alt=\"3\"></p>\n<h2 id=\"psychro-parameters-panel\">Psychro Parameters Panel<a class=\"anchor\" href=\"#psychro-parameters-panel\" data-anchor=\"psychro-parameters-panel\" aria-label=\"Copy a link to Psychro Parameters Panel\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_tool_componentns_control_3.png\" alt=\"3. Psychro Parameters Panel\"></p>\n<p>This panel shows the current Dry Bulb Temperature (DBT), Specific Humidity (Sp.H) , Relative Humidity (RH), DewPoint (DP) and Enthalpy (H) of current mouse hovered position in chart.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_4.png\" alt=\"4\"></p>\n<h2 id=\"current-building\">Current Building<a class=\"anchor\" href=\"#current-building\" data-anchor=\"current-building\" aria-label=\"Copy a link to Current Building\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_tool_componentns_control_4.png\" alt=\"4. Current Building\"></p>\n<p>This panel shows the current selected building in T3000 system. Currently, 'RajuBuilding' is chhosen in T3000 system.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_5.png\" alt=\"5\"></p>\n<h2 id=\"air-handlers-panel\">Air Handlers Panel<a class=\"anchor\" href=\"#air-handlers-panel\" data-anchor=\"air-handlers-panel\" aria-label=\"Copy a link to Air Handlers Panel\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_tool_componentns_control_5.png\" alt=\"5. Air Handlers Panel\"></p>\n<p>This panel shows all the air handlers present in the selected building. AT the moment, there is no any handlers present, so panel is blank.'id' starts from 1. You can add, modify and delete the air handlers here as your requirement.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_6.png\" alt=\"6\"></p>\n<h2 id=\"edit-icon\">Edit Icon<a class=\"anchor\" href=\"#edit-icon\" data-anchor=\"edit-icon\" aria-label=\"Copy a link to Edit Icon\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_tool_componentns_control_6.png\" alt=\"6. Edit Icon\"></p>\n<p>This icon is for 'Edit' operation. You can simply click to lock and unlock it. Here, you can see 'unlock' that means you are in edit mode. If you click here again, it becomes 'lock' and system starts updating. In 'Edit mode', system will not update. When you have a blank chart, default is in 'Edit' mode.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_7.png\" alt=\"7\"></p>\n<h2 id=\"psychrometric-chart\">Psychrometric Chart<a class=\"anchor\" href=\"#psychrometric-chart\" data-anchor=\"psychrometric-chart\" aria-label=\"Copy a link to Psychrometric Chart\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_tool_componentns_control_7.png\" alt=\"7. Psychrometric Chart\"></p>\n<p>This is the main working area. You can insert node, process line and all here.  You can see all psychrometric parameters here.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_8.png\" alt=\"8\"></p>\n<h2 id=\"pressure-panel\">Pressure Panel<a class=\"anchor\" href=\"#pressure-panel\" data-anchor=\"pressure-panel\" aria-label=\"Copy a link to Pressure Panel\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_tool_componentns_control_8.png\" alt=\"8. Pressure Panel\"></p>\n<p>The current building has 88.76KPa atmospheric pressure . The present chart is based on the curent pressure of the selected building .</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_9.png\" alt=\"9\"></p>\n<h2 id=\"unit-panel\">Unit Panel<a class=\"anchor\" href=\"#unit-panel\" data-anchor=\"unit-panel\" aria-label=\"Copy a link to Unit Panel\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_tool_componentns_control_9.png\" alt=\"9. Unit Panel\"></p>\n<p>This is the unit selected in T3000. Currently we have only SI unit.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_bullet_10.png\" alt=\"10\"></p>\n<h2 id=\"status-panel\">Status Panel<a class=\"anchor\" href=\"#status-panel\" data-anchor=\"status-panel\" aria-label=\"Copy a link to Status Panel\">#</a></h2>\n<p><img src=\"/media/psychrometric/1.0/drex_tool_componentns_control_10.png\" alt=\"10. Status Panel\"></p>\n<p>This panel helps to get a quick view of the status of our system. </p>\n<p>'Number of chart' -&gt; It swos total number of air handlers (one chart for each airhandler) in the selected building.</p>\n<p>'Device Status' -&gt; It shows the current T3000 controller status. If its connected our sytem will get updated.</p>\n<p>'Web Status'-&gt; It shows current internet connection ststus</p>\n<p>'Mode' -&gt; It shows whether our system is on either edit mode or real time mode.</p>\n",
+			"headings": [
+				{
+					"id": "chart-title",
+					"text": "Chart Title",
+					"level": 2
+				},
+				{
+					"id": "menu-items",
+					"text": "Menu Items",
+					"level": 2
+				},
+				{
+					"id": "psychro-parameters-panel",
+					"text": "Psychro Parameters Panel",
+					"level": 2
+				},
+				{
+					"id": "current-building",
+					"text": "Current Building",
+					"level": 2
+				},
+				{
+					"id": "air-handlers-panel",
+					"text": "Air Handlers Panel",
+					"level": 2
+				},
+				{
+					"id": "edit-icon",
+					"text": "Edit Icon",
+					"level": 2
+				},
+				{
+					"id": "psychrometric-chart",
+					"text": "Psychrometric Chart",
+					"level": 2
+				},
+				{
+					"id": "pressure-panel",
+					"text": "Pressure Panel",
+					"level": 2
+				},
+				{
+					"id": "unit-panel",
+					"text": "Unit Panel",
+					"level": 2
+				},
+				{
+					"id": "status-panel",
+					"text": "Status Panel",
+					"level": 2
+				}
+			]
+		},
+		"weather-service": {
+			"title": "Weather Service",
+			"html": "<p>This feature helps user for the following:</p>\n<ol>\n<li>\n<p>Building information</p>\n</li>\n<li>\n<p>Outdoor Sensors data</p>\n</li>\n<li>\n<p>Remote weather station</p>\n</li>\n<li>\n<p>Humidity Self Calibration</p>\n</li>\n</ol>\n<p><strong>Building information</strong></p>\n<p>Once you select the building in T3000 software, it shows other information (Country, State, City, Street, ZIP, Latitude, Longitude and Elevation) of the building. To grab all the information, your PC should have internet connection.</p>\n<p><strong>Outdoor Sensor data</strong></p>\n<p>You need to chhose the controller and its pannel (I/O) for temperature and humidity data. Once you chhose panel for temperature and humidity, you can see the real time value there seen in T3000.</p>\n<p><strong>Remote Weather Station</strong></p>\n<p>Based on the building location, it shows all the available weather stations with distance from the current building. You can chhose the nearest weather station to get the nearest weather station data. It dispalys the selected weather station location,  last updated duration and connection status whether it is GOOD or BAD. If there is internet disruption, it records the status in Log File, you can click and view.</p>\n<p><strong>Humidity Self Calibration</strong></p>\n<p>You must enable this service to use. It compares sensor humidity data from T3000 and Weather station and if data is different, it calibrates the sensor data with weather station data based on 'Maximum Adjustment Per day' entered by user. User can enter 0 to 1 % 'Maximum Adjustment Per day'. You can click 'Help' to understand better. Once you enter the value, you can see current offset %.</p>\n",
+			"headings": []
+		},
+		"working-with-comfort-zones": {
+			"title": "Working with comfort zones",
+			"html": "<h2 id=\"comfort-zone\">Comfort Zone<a class=\"anchor\" href=\"#comfort-zone\" data-anchor=\"comfort-zone\" aria-label=\"Copy a link to Comfort Zone\">#</a></h2>\n<p>Our tool  is quite flexible for comfort zone. We have set of comfort zones libraries available there, you can select,edit and detele them. You can also change comfort zone area by simply dragging.</p>\n<p>Following screenshots and explanations will help you to understand the comfort zone feature.</p>\n<ol>\n<li>Right click and choose 'Comfort Zone'. 'Show' is for whether to show comfort zone in chart or not. 'Edit Comfort Zone' is to edit the comfort zone. Once you click 'Edit Comfort Zone',the comfort zone goes into edit mode.</li>\n</ol>\n<p>For the first time, you need to choose 'Setting' and choose the desired comfort zone in libary. There are few comfort zone libraries, you can also add libraries of your own if you desire it.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_comfort_zone_2_custom.png\" alt=\"\"></p>\n<p><img src=\"/media/psychrometric/1.0/drex_comfort_zone_2_custom_2.png\" alt=\"\"></p>\n<p>If you click 'More Option', you will get feature of adding new comfort zone, editing and deleting the existing comfort zone.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_comfort_zone_2_custom_3.png\" alt=\"\"></p>\n<p>After chosing the desired comfort zone, please click on 'Ok' and and tick the 'Show' to see the selected ('museum' for example) in the chart.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_comfort_zone_2_custom_4.png\" alt=\"\"></p>\n<p>If you want to edit the chart, click 'Edit Comfort Zone' and drag as desired.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_comfort_zone_2_custom_5.png\" alt=\"\"></p>\n<p>This is new chart after editing. The new comfort zone will be saved as new name as 'museum_2'. You can find the new comfort zone in the library.</p>\n<p><img src=\"/media/psychrometric/1.0/drex_comfort_zone_2_custom_6.png\" alt=\"\"></p>\n",
+			"headings": [
+				{
+					"id": "comfort-zone",
+					"text": "Comfort Zone",
+					"level": 2
+				}
+			]
+		}
+	}
+}

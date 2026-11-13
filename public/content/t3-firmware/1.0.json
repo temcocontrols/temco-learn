@@ -1,0 +1,461 @@
+{
+	"pages": {
+		"00-hub": {
+			"title": "T3 firmware and bootloader",
+			"html": "<p>A T3 controller runs firmware that can be replaced over the wire. Three things make that safe enough to do on a site: the image is signed, the transfer can resume after a drop, and the controller reports where the update has got to rather than leaving you to guess.</p>\n<p>This project is the engineering side of that: the bootloader's registers and state machine, the signing tool, the bypass that exists for recovery, and the protocol notes for the ESP32-based controllers.</p>\n<h2 id=\"read-it-in-this-order\">Read it in this order<a class=\"anchor\" href=\"#read-it-in-this-order\" data-anchor=\"read-it-in-this-order\" aria-label=\"Copy a link to Read it in this order\">#</a></h2>\n<ol>\n<li><strong>How a firmware update runs</strong> — the flow, and the partition layout it writes into.</li>\n<li><strong>The update registers</strong> — the control, checksum and status registers.</li>\n<li><strong>Resuming an interrupted update</strong> — why a dropped transfer does not start over.</li>\n<li><strong>Inside the bootloader</strong> — the code path, the state machine, the errors.</li>\n<li><strong>Trying the commands</strong> — the sequence to send by hand.</li>\n<li><strong>Signing firmware</strong>, and the <strong>signature bypass</strong> kept for recovery only.</li>\n<li><strong>BACnet COV</strong>, <strong>BACnet stack</strong> and <strong>Wi-Fi station mode</strong> — the same controllers, from the protocol side.</li>\n</ol>\n<h2 id=\"related\">Related<a class=\"anchor\" href=\"#related\" data-anchor=\"related\" aria-label=\"Copy a link to Related\">#</a></h2>\n<ul>\n<li><a href=\"../t3000/1.0/firmware-update-single-device/firmware-update-single-device.md\">Firmware update, on a single device</a> — the same job from the T3000 screen.</li>\n</ul>\n",
+			"headings": [
+				{
+					"id": "read-it-in-this-order",
+					"text": "Read it in this order",
+					"level": 2
+				},
+				{
+					"id": "related",
+					"text": "Related",
+					"level": 2
+				}
+			]
+		},
+		"index": {
+			"title": "T3 Firmware & Bootloader",
+			"html": "<p>Replacing the firmware on a T3 controller: the update flow and its registers, resuming an interrupted transfer, image signing, and the protocol notes for the ESP32 controllers.</p>\n<h2 id=\"contents\">Contents<a class=\"anchor\" href=\"#contents\" data-anchor=\"contents\" aria-label=\"Copy a link to Contents\">#</a></h2>\n<ul>\n<li><a href=\"00-hub.md\">T3 firmware and bootloader</a></li>\n<li><a href=\"update-flow.md\">How a firmware update runs</a></li>\n<li><a href=\"update-registers.md\">The update registers</a></li>\n<li><a href=\"resuming-an-update.md\">Resuming an interrupted update</a></li>\n<li><a href=\"inside-the-bootloader.md\">Inside the bootloader</a></li>\n<li><a href=\"trying-the-commands.md\">Trying the commands</a></li>\n<li><a href=\"signing-firmware.md\">Firmware signing guide</a></li>\n<li><a href=\"skip-signature-validation.md\">Skip firmware signature validation</a></li>\n<li><a href=\"bacnet-cov.md\">BACnet change of value</a></li>\n<li><a href=\"bacnet-stack.md\">BACnet protocol stack and flow</a></li>\n<li><a href=\"wifi-station-mode.md\">Wi-Fi station mode</a></li>\n</ul>\n",
+			"headings": [
+				{
+					"id": "contents",
+					"text": "Contents",
+					"level": 2
+				}
+			]
+		},
+		"bacnet-cov": {
+			"title": "BACnet change of value",
+			"html": "<h2 id=\"bacnet-change-of-value-cov-architectural-guide\">BACnet Change of Value (COV) Architectural Guide<a class=\"anchor\" href=\"#bacnet-change-of-value-cov-architectural-guide\" data-anchor=\"bacnet-change-of-value-cov-architectural-guide\" aria-label=\"Copy a link to BACnet Change of Value (COV) Architectural Guide\">#</a></h2>\n<p>This document details how the Change of Value (COV) service works in the T3 firmware, including subscription tracking, change detection, state machine execution, and MQTT publishing.</p>\n<hr>\n<h2 id=\"1-what-is-cov-and-why-is-it-used\">1. What is COV and why is it used?<a class=\"anchor\" href=\"#1-what-is-cov-and-why-is-it-used\" data-anchor=\"1-what-is-cov-and-why-is-it-used\" aria-label=\"Copy a link to 1. What is COV and why is it used?\">#</a></h2>\n<p><strong>Change of Value (COV)</strong> is a BACnet service designed to minimize network congestion and save processing cycles. Instead of a client constantly polling a device for point values (which consumes CPU and network bandwidth), the client subscribes to specific points of interest.</p>\n<p>The controller then monitors these points locally and sends a notification to the subscriber <strong>only when a change occurs</strong> (or when the subscription is first registered).</p>\n<hr>\n<h2 id=\"2-subscription-tracking-cov-subscriptions\">2. Subscription Tracking (<code>COV_Subscriptions[]</code>)<a class=\"anchor\" href=\"#2-subscription-tracking-cov-subscriptions\" data-anchor=\"2-subscription-tracking-cov-subscriptions\" aria-label=\"Copy a link to 2. Subscription Tracking (COV_Subscriptions[])\">#</a></h2>\n<p>Subscriptions are tracked in a static array defined in [h_cov.c](file://T3-programmable-controller-on-ESP32/temco_bacnet/src/h_cov.c):</p>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">C</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\"><span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MAX_COV_SUBCRIPTIONS 20</span>\n<span class=\"hljs-type\">static</span> BACNET_COV_SUBSCRIPTION COV_Subscriptions[MAX_COV_SUBCRIPTIONS];\n</code></pre></div>\n<p>Each slot tracks:</p>\n<ul>\n<li><code>monitoredObjectIdentifier</code>: The point type (AI, AO, AV, BI, BO, BV) and its 1-based instance.</li>\n<li><code>subscriberProcessIdentifier</code>: Process ID of the client (usually <code>1</code> for MQTT, or client-defined for BACnet).</li>\n<li><code>lifetime</code>: Time remaining in seconds before this subscription expires.</li>\n<li><code>dest_index</code>: Reference to the client's destination address in <code>COV_Addresses[]</code>.</li>\n<li><code>flag.send_requested</code>: Set to <code>true</code> to request an immediate update.</li>\n<li><code>flag.issueConfirmedNotifications</code>: Indicates whether confirmed or unconfirmed notifications should be sent.</li>\n</ul>\n<hr>\n<h2 id=\"3-subscription-lifetime-expiration\">3. Subscription Lifetime &amp; Expiration<a class=\"anchor\" href=\"#3-subscription-lifetime-expiration\" data-anchor=\"3-subscription-lifetime-expiration\" aria-label=\"Copy a link to 3. Subscription Lifetime &amp; Expiration\">#</a></h2>\n<p>Subscriptions can have a defined lifetime (in seconds):</p>\n<ul>\n<li><strong>Infinite Subscriptions</strong>: Registered with <code>lifetime = 0</code>. These never expire and remain active until manually unsubscribed or the device reboots.</li>\n<li><strong>Definite Subscriptions</strong>: Registered with <code>lifetime &gt; 0</code>.</li>\n<li><strong>Expiration Process</strong>:\n<ol>\n<li>Every 1 second, the main task calls <code>handler_cov_timer_seconds(1)</code>.</li>\n<li>For each active subscription with a non-zero lifetime, it decrements the remaining time by <code>1</code>.</li>\n<li>Once <code>lifetime</code> reaches <code>0</code>, the subscription is expired (<code>flag.valid = false</code>).</li>\n<li>The address is cleaned up using <code>cov_address_remove_unused()</code>.</li>\n</ol>\n</li>\n</ul>\n<hr>\n<h2 id=\"4-change-detection-state-machine\">4. Change Detection &amp; State Machine<a class=\"anchor\" href=\"#4-change-detection-state-machine\" data-anchor=\"4-change-detection-state-machine\" aria-label=\"Copy a link to 4. Change Detection &amp; State Machine\">#</a></h2>\n<p>COV changes are monitored and processed through two mechanisms:</p>\n<h3 id=\"a-second-by-second-timer-handler-cov-timer-seconds\">A. Second-by-Second Timer (<code>handler_cov_timer_seconds</code>)<a class=\"anchor\" href=\"#a-second-by-second-timer-handler-cov-timer-seconds\" data-anchor=\"a-second-by-second-timer-handler-cov-timer-seconds\" aria-label=\"Copy a link to A. Second-by-Second Timer (handler_cov_timer_seconds)\">#</a></h3>\n<p>Runs every 1 second inside <code>Bacnet_Control</code> and executes local change checks on the registered subscriptions:</p>\n<ul>\n<li>Checks value changes using type-specific functions:\n<ul>\n<li><code>Analog_Value_Change_Of_Value(instance)</code></li>\n<li><code>Analog_Input_Change_Of_Value(instance)</code></li>\n<li><code>Analog_Output_Change_Of_Value(instance)</code></li>\n<li><code>Binary_Value_Change_Of_Value(instance)</code></li>\n<li><code>Binary_Input_Change_Of_Value(instance)</code></li>\n<li><code>Binary_Output_Change_Of_Value(instance)</code></li>\n</ul>\n</li>\n<li>These compare the current hardware value against a stored backup buffer. If they differ, <code>cov_send_request</code> is triggered immediately.</li>\n</ul>\n<h3 id=\"b-state-machine-task-handler-cov-task\">B. State Machine Task (<code>handler_cov_task</code>)<a class=\"anchor\" href=\"#b-state-machine-task-handler-cov-task\" data-anchor=\"b-state-machine-task-handler-cov-task\" aria-label=\"Copy a link to B. State Machine Task (handler_cov_task)\">#</a></h3>\n<p>Runs every 10ms to manage queueing, clearing, and transmission. It cycles through 5 states:</p>\n<ol>\n<li><strong><code>COV_STATE_IDLE</code></strong>: Resets tracking pointers.</li>\n<li><strong><code>COV_STATE_MARK</code></strong>: Scans the subscriptions. Calls <code>Device_COV(type, instance)</code> to see if a point value changed. If yes, sets <code>flag.send_requested = true</code>.</li>\n<li><strong><code>COV_STATE_CLEAR</code></strong>: Clears the change flag on the device using <code>Device_COV_Clear()</code>.</li>\n<li><strong><code>COV_STATE_FREE</code></strong>: Clean up confirmed transactions that finished or failed.</li>\n<li><strong><code>COV_STATE_SEND</code></strong>: Encodes the property lists (<code>Device_Encode_Value_List()</code>) and invokes <code>cov_send_request()</code> to transmit the update.</li>\n</ol>\n<hr>\n<h2 id=\"5-mqtt-and-bacnet-cov-integration-flow\">5. MQTT and BACnet COV Integration Flow<a class=\"anchor\" href=\"#5-mqtt-and-bacnet-cov-integration-flow\" data-anchor=\"5-mqtt-and-bacnet-cov-integration-flow\" aria-label=\"Copy a link to 5. MQTT and BACnet COV Integration Flow\">#</a></h2>\n<p>When MQTT and BACnet are unified, the flow behaves as follows:</p>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">MERMAID</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">graph TD\n    MQTT[MQTT Client JSON Subscribe] --&gt;|Parse JSON| Mqtt_H[Mqtt_Handler.c]\n    Mqtt_H --&gt;|Encode Subscribe APDU| apdu[apdu buffer]\n    apdu --&gt;|handler_cov_subscribe| cov_list[Register in COV_Subscriptions with dest = {0}]\n\n    subgraph Detection\n        Timer[1s Timer / 10ms Task] --&gt;|Check change| detect[Value changed]\n        detect --&gt;|cov_send_request| send[cov_send_request]\n    end\n\n    send --&gt;|Update_Value_List| uvl[Update_Value_List in app_main.c]\n    uvl --&gt;|#if BACNET_SUB_COV| mqtt_pub[Mqtt_Handler_Send_COV]\n    uvl --&gt;|BACnet IP| bacnet_pub[Send unconfirmed broadcast notification]\n</code></pre></div>\n<h3 id=\"a-subscribing-via-mqtt\">A. Subscribing via MQTT<a class=\"anchor\" href=\"#a-subscribing-via-mqtt\" data-anchor=\"a-subscribing-via-mqtt\" aria-label=\"Copy a link to A. Subscribing via MQTT\">#</a></h3>\n<ol>\n<li>The MQTT client publishes a JSON payload to <code>temco/cov/tstat11/sub</code>.</li>\n<li><code>Mqtt_Handler.c</code> parses the object type, instance, and lifetime.</li>\n<li>It builds a standard BACnet APDU subscription packet using <code>cov_subscribe_encode_apdu()</code>.</li>\n<li>It calls <code>handler_cov_subscribe()</code> directly with a dummy address <code>src = {0}</code> (acting as local broadcast).</li>\n<li>This registers the subscription directly into BACnet's internal <code>COV_Subscriptions[]</code> table.</li>\n</ol>\n<h3 id=\"b-publishing-updates-unification\">B. Publishing Updates (Unification)<a class=\"anchor\" href=\"#b-publishing-updates-unification\" data-anchor=\"b-publishing-updates-unification\" aria-label=\"Copy a link to B. Publishing Updates (Unification)\">#</a></h3>\n<p>When a point changes (whether subscribed to by a BACnet client or an MQTT client):</p>\n<ol>\n<li>The BACnet stack detects the change and triggers <code>cov_send_request()</code>.</li>\n<li><code>cov_send_request()</code> calls <code>Update_Value_List(type, instance)</code> in <code>app_main.c</code>.</li>\n<li><code>Update_Value_List()</code> reads the value, formats it as a BACnet tag, and:\n<ul>\n<li>Forwards it to MQTT: Calls <code>Mqtt_Handler_Send_COV()</code> (if <code>BACNET_SUB_COV</code> is <code>1</code>), which publishes the update to the MQTT broker.</li>\n<li>Forwards it to BACnet: Sends the COV notification packet to the subscriber's address (since the MQTT subscriber used address <code>{0}</code>, it sends it as a local broadcast packet, updating all BACnet clients on the network).</li>\n</ul>\n</li>\n<li>This ensures that <strong>any</strong> subscription triggers updates to <strong>both</strong> MQTT and BACnet simultaneously.</li>\n</ol>\n",
+			"headings": [
+				{
+					"id": "bacnet-change-of-value-cov-architectural-guide",
+					"text": "BACnet Change of Value (COV) Architectural Guide",
+					"level": 2
+				},
+				{
+					"id": "1-what-is-cov-and-why-is-it-used",
+					"text": "1. What is COV and why is it used?",
+					"level": 2
+				},
+				{
+					"id": "2-subscription-tracking-cov-subscriptions",
+					"text": "2. Subscription Tracking (COV_Subscriptions[])",
+					"level": 2
+				},
+				{
+					"id": "3-subscription-lifetime-expiration",
+					"text": "3. Subscription Lifetime & Expiration",
+					"level": 2
+				},
+				{
+					"id": "4-change-detection-state-machine",
+					"text": "4. Change Detection & State Machine",
+					"level": 2
+				},
+				{
+					"id": "a-second-by-second-timer-handler-cov-timer-seconds",
+					"text": "A. Second-by-Second Timer (handler_cov_timer_seconds)",
+					"level": 3
+				},
+				{
+					"id": "b-state-machine-task-handler-cov-task",
+					"text": "B. State Machine Task (handler_cov_task)",
+					"level": 3
+				},
+				{
+					"id": "5-mqtt-and-bacnet-cov-integration-flow",
+					"text": "5. MQTT and BACnet COV Integration Flow",
+					"level": 2
+				},
+				{
+					"id": "a-subscribing-via-mqtt",
+					"text": "A. Subscribing via MQTT",
+					"level": 3
+				},
+				{
+					"id": "b-publishing-updates-unification",
+					"text": "B. Publishing Updates (Unification)",
+					"level": 3
+				}
+			]
+		},
+		"bacnet-stack": {
+			"title": "BACnet protocol stack and flow",
+			"html": "<h2 id=\"bacnet-protocol-stack-flow-guide\">BACnet Protocol Stack &amp; Flow Guide<a class=\"anchor\" href=\"#bacnet-protocol-stack-flow-guide\" data-anchor=\"bacnet-protocol-stack-flow-guide\" aria-label=\"Copy a link to BACnet Protocol Stack &amp; Flow Guide\">#</a></h2>\n<p>This document explains the overall architecture and data flow of the BACnet protocol stack within the T3 controller firmware.</p>\n<hr>\n<h2 id=\"1-initialization-flow\">1. Initialization Flow<a class=\"anchor\" href=\"#1-initialization-flow\" data-anchor=\"1-initialization-flow\" aria-label=\"Copy a link to 1. Initialization Flow\">#</a></h2>\n<p>When the controller boots, the main task starts BACnet-related services. The initialization steps are:</p>\n<h3 id=\"device-and-stack-startup\">Device and Stack Startup<a class=\"anchor\" href=\"#device-and-stack-startup\" data-anchor=\"device-and-stack-startup\" aria-label=\"Copy a link to Device and Stack Startup\">#</a></h3>\n<ol>\n<li><strong>Device Initialization</strong>: In <a href=\"T3-programmable-controller-on-ESP32/temco_bacnet/src/device.c\">device.c</a>, the function <code>Device_Init()</code> is called to set up the device object database, including device instance numbers, MAC address parameters, and object lists.</li>\n<li><strong>COV Subscription Initialization</strong>: In <code>Bacnet_Control</code> startup, <code>handler_cov_init()</code> (defined in <a href=\"T3-programmable-controller-on-ESP32/temco_bacnet/src/h_cov.c\">h_cov.c</a>) is called to clear the unified subscription tracking list <code>COV_Subscriptions[]</code> and the address routing list <code>COV_Addresses[]</code>.</li>\n<li><strong>Handler Registration</strong>: APDU service handlers are registered using functions like <code>apdu_set_confirmed_handler()</code> and <code>apdu_set_unconfirmed_handler()</code>. This maps service types to handler functions:\n<ul>\n<li><code>SERVICE_CONFIRMED_READ_PROPERTY</code> $\\rightarrow$ <code>handler_read_property()</code></li>\n<li><code>SERVICE_CONFIRMED_WRITE_PROPERTY</code> $\\rightarrow$ <code>handler_write_property()</code></li>\n<li><code>SERVICE_CONFIRMED_SUBSCRIBE_COV</code> $\\rightarrow$ <code>handler_cov_subscribe()</code></li>\n<li><code>SERVICE_UNCONFIRMED_WHO_IS</code> $\\rightarrow$ <code>handler_who_is()</code></li>\n</ul>\n</li>\n</ol>\n<hr>\n<h2 id=\"2-packet-processing-and-task-execution\">2. Packet Processing and Task Execution<a class=\"anchor\" href=\"#2-packet-processing-and-task-execution\" data-anchor=\"2-packet-processing-and-task-execution\" aria-label=\"Copy a link to 2. Packet Processing and Task Execution\">#</a></h2>\n<p>The BACnet stack operates across three main ESP-IDF tasks created in <a href=\"T3-programmable-controller-on-ESP32/main/app_main.c\">app_main.c</a>:</p>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">MERMAID</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">graph TD\n    UDP[UDP Port 47808] --&gt;|recvfrom| bip_task[bip_task in app_main.c]\n    bip_task --&gt;|datalink_receive| datalink[datalink layer]\n    datalink --&gt;|npdu_handler| npdu[NPDU parsing]\n    npdu --&gt;|apdu_handler| apdu[APDU routing]\n    apdu --&gt;|confirmed / unconfirmed| handlers[Service Handlers e.g. handler_cov_subscribe]\n</code></pre></div>\n<h3 id=\"a-network-packet-reception-bip-task\">A. Network Packet Reception (<code>bip_task</code>)<a class=\"anchor\" href=\"#a-network-packet-reception-bip-task\" data-anchor=\"a-network-packet-reception-bip-task\" aria-label=\"Copy a link to A. Network Packet Reception (bip_task)\">#</a></h3>\n<ul>\n<li><strong>Execution</strong>: Runs a UDP server bound to port <code>47808</code> (<code>0xBAC0</code>).</li>\n<li><strong>Packet Intake</strong>: Blocks on <code>recvfrom</code> waiting for incoming BACnet/IP packets.</li>\n<li><strong>Datalink Processing</strong>: Extracts BACnet Virtual Link Control (BVLC) headers and copies the payload via <code>datalink_receive()</code>.</li>\n<li><strong>NPDU Handler</strong>: Invokes <code>npdu_handler()</code> (defined in <a href=\"T3-programmable-controller-on-ESP32/temco_bacnet/src/h_npdu.c\">h_npdu.c</a>) to extract BACnet source and destination network routing parameters.</li>\n<li><strong>APDU Router</strong>: Passes the request payload to <code>apdu_handler()</code> to extract confirmed or unconfirmed requests, invoking the matching registered service handler.</li>\n</ul>\n<h3 id=\"b-state-machine-task-bacnet-control-task\">B. State Machine Task (<code>Bacnet_Control</code> task)<a class=\"anchor\" href=\"#b-state-machine-task-bacnet-control-task\" data-anchor=\"b-state-machine-task-bacnet-control-task\" aria-label=\"Copy a link to B. State Machine Task (Bacnet_Control task)\">#</a></h3>\n<ul>\n<li><strong>Execution</strong>: Runs in a continuous loop every 10ms.</li>\n<li><strong>COV Handler Task</strong>: Invokes <code>handler_cov_task(BAC_IP_CLIENT)</code> every 10ms. This processes the COV state machine (<code>COV_STATE_MARK</code>, <code>COV_STATE_CLEAR</code>, <code>COV_STATE_SEND</code>) to check for changes and dispatch unsent notifications.</li>\n<li><strong>COV Timer Task</strong>: Every 1000ms (1 second), it invokes <code>handler_cov_timer_seconds(1)</code>. This updates active subscription lifetimes, expires dead entries, and does a backup check for changed local inputs, outputs, and variables.</li>\n</ul>\n<hr>\n<h2 id=\"3-core-api-and-service-routing\">3. Core API and Service Routing<a class=\"anchor\" href=\"#3-core-api-and-service-routing\" data-anchor=\"3-core-api-and-service-routing\" aria-label=\"Copy a link to 3. Core API and Service Routing\">#</a></h2>\n<h3 id=\"reading-properties\">Reading Properties<a class=\"anchor\" href=\"#reading-properties\" data-anchor=\"reading-properties\" aria-label=\"Copy a link to Reading Properties\">#</a></h3>\n<ul>\n<li><strong>API</strong>: <code>handler_read_property()</code> in <a href=\"T3-programmable-controller-on-ESP32/temco_bacnet/src/h_rp.c\">h_rp.c</a></li>\n<li><strong>Flow</strong>:\n<ol>\n<li>Decodes <code>monitoredObjectIdentifier</code> and <code>propertyIdentifier</code>.</li>\n<li>Invokes object-specific encoding callbacks (e.g. <code>Analog_Input_Encode_Property_APDU</code>).</li>\n<li>Sends back a Read Property Ack payload containing the requested value.</li>\n</ol>\n</li>\n</ul>\n<h3 id=\"writing-properties\">Writing Properties<a class=\"anchor\" href=\"#writing-properties\" data-anchor=\"writing-properties\" aria-label=\"Copy a link to Writing Properties\">#</a></h3>\n<ul>\n<li><strong>API</strong>: <code>handler_write_property()</code> in <a href=\"T3-programmable-controller-on-ESP32/temco_bacnet/src/h_wp.c\">h_wp.c</a></li>\n<li><strong>Flow</strong>:\n<ol>\n<li>Decodes write parameters (value, tag, priority, and object index).</li>\n<li>Updates local registers (<code>inputs[]</code>, <code>outputs[]</code>, or <code>vars[]</code>).</li>\n<li>Invokes Modbus or hardware updating commands.</li>\n<li>Returns a Simple Ack or Error APDU.</li>\n</ol>\n</li>\n</ul>\n",
+			"headings": [
+				{
+					"id": "bacnet-protocol-stack-flow-guide",
+					"text": "BACnet Protocol Stack & Flow Guide",
+					"level": 2
+				},
+				{
+					"id": "1-initialization-flow",
+					"text": "1. Initialization Flow",
+					"level": 2
+				},
+				{
+					"id": "device-and-stack-startup",
+					"text": "Device and Stack Startup",
+					"level": 3
+				},
+				{
+					"id": "2-packet-processing-and-task-execution",
+					"text": "2. Packet Processing and Task Execution",
+					"level": 2
+				},
+				{
+					"id": "a-network-packet-reception-bip-task",
+					"text": "A. Network Packet Reception (bip_task)",
+					"level": 3
+				},
+				{
+					"id": "b-state-machine-task-bacnet-control-task",
+					"text": "B. State Machine Task (Bacnet_Control task)",
+					"level": 3
+				},
+				{
+					"id": "3-core-api-and-service-routing",
+					"text": "3. Core API and Service Routing",
+					"level": 2
+				},
+				{
+					"id": "reading-properties",
+					"text": "Reading Properties",
+					"level": 3
+				},
+				{
+					"id": "writing-properties",
+					"text": "Writing Properties",
+					"level": 3
+				}
+			]
+		},
+		"inside-the-bootloader": {
+			"title": "Inside the bootloader",
+			"html": "<p>The variables, the checksum verification and the handler that receives a write, plus the files worth reading and the errors the flow can end in.</p>\n<h2 id=\"9-code-implementation-details\">9. Code Implementation Details<a class=\"anchor\" href=\"#9-code-implementation-details\" data-anchor=\"9-code-implementation-details\" aria-label=\"Copy a link to 9. Code Implementation Details\">#</a></h2>\n<h3 id=\"key-variables-app-main-c\">Key Variables (app_main.c)<a class=\"anchor\" href=\"#key-variables-app-main-c\" data-anchor=\"key-variables-app-main-c\" aria-label=\"Copy a link to Key Variables (app_main.c)\">#</a></h3>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">C</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\"><span class=\"hljs-comment\">// Firmware Update State</span>\n<span class=\"hljs-type\">uint8_t</span> com_update_firmware = <span class=\"hljs-number\">0</span>;           <span class=\"hljs-comment\">// Update in progress flag</span>\n<span class=\"hljs-type\">uint8_t</span> com_update_firmware_timer = <span class=\"hljs-number\">0</span>;     <span class=\"hljs-comment\">// Watchdog counter</span>\n<span class=\"hljs-type\">uint8_t</span> update_flag = <span class=\"hljs-number\">0</span>;                   <span class=\"hljs-comment\">// 0x55 when successful</span>\n<span class=\"hljs-type\">uint16_t</span> rs485_resume_chunk = <span class=\"hljs-number\">0</span>;           <span class=\"hljs-comment\">// Packet count for resume</span>\n\n<span class=\"hljs-comment\">// OTA Handle &amp; Partition</span>\n<span class=\"hljs-type\">esp_ota_handle_t</span> update_com_handle = <span class=\"hljs-number\">0</span>;\n<span class=\"hljs-type\">const</span> <span class=\"hljs-type\">esp_partition_t</span> *update_com_partition = <span class=\"hljs-literal\">NULL</span>;\n\n<span class=\"hljs-comment\">// Buffering</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> OTA_PACKET_SIZE 128u</span>\n<span class=\"hljs-type\">static</span> <span class=\"hljs-type\">uint8_t</span> s_rs485_ota_chunk_buf[OTA_FLASH_CHUNK_SIZE];  <span class=\"hljs-comment\">// 4096 bytes</span>\n<span class=\"hljs-type\">static</span> <span class=\"hljs-type\">size_t</span> s_rs485_ota_chunk_len = <span class=\"hljs-number\">0</span>;   <span class=\"hljs-comment\">// Current buffer fill</span>\n<span class=\"hljs-type\">static</span> <span class=\"hljs-type\">uint32_t</span> s_rs485_ota_next_offset = <span class=\"hljs-number\">0</span>;  <span class=\"hljs-comment\">// Flash write offset</span>\n\n<span class=\"hljs-comment\">// Resume Tracking</span>\n<span class=\"hljs-type\">uint8_t</span> com_flash_high = <span class=\"hljs-number\">0</span>;                <span class=\"hljs-comment\">// Packet count HIGH byte</span>\n<span class=\"hljs-type\">uint8_t</span> com_flash_low = <span class=\"hljs-number\">0</span>;                 <span class=\"hljs-comment\">// Packet count LOW byte</span>\n<span class=\"hljs-type\">uint32_t</span> rs485_resume_bytes = <span class=\"hljs-number\">0</span>;           <span class=\"hljs-comment\">// Backup variable</span>\n<span class=\"hljs-type\">uint8_t</span> rs485_run_begin_one_time = <span class=\"hljs-number\">0</span>;      <span class=\"hljs-comment\">// One-time esp_ota_begin flag</span>\n</code></pre></div>\n<h3 id=\"md5-verification\">MD5 Verification<a class=\"anchor\" href=\"#md5-verification\" data-anchor=\"md5-verification\" aria-label=\"Copy a link to MD5 Verification\">#</a></h3>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">C</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\"><span class=\"hljs-comment\">// MD5 Registers (1995-1998) store expected firmware checksum</span>\n<span class=\"hljs-type\">unsigned</span> <span class=\"hljs-type\">short</span> firmware_md5[<span class=\"hljs-number\">4</span>];\n\n<span class=\"hljs-comment\">// On completion, device can compare:</span>\n<span class=\"hljs-comment\">// - Hardware computed MD5 from esp_ota_end()</span>\n<span class=\"hljs-comment\">// - vs. ISP tool provided MD5 (in registers 1995-1998)</span>\n</code></pre></div>\n<h3 id=\"modbus-write-handler-partial-code\">Modbus Write Handler (Partial Code)<a class=\"anchor\" href=\"#modbus-write-handler-partial-code\" data-anchor=\"modbus-write-handler-partial-code\" aria-label=\"Copy a link to Modbus Write Handler (Partial Code)\">#</a></h3>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">C</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\"><span class=\"hljs-keyword\">if</span> (address == UPDATE_STATUS) {\n    <span class=\"hljs-keyword\">if</span> (*(bufadd+<span class=\"hljs-number\">5</span>) == <span class=\"hljs-number\">0x1F</span>) {\n        <span class=\"hljs-comment\">// START/RESUME Update</span>\n        com_update_firmware = <span class=\"hljs-number\">1</span>;\n        update_com_partition = esp_ota_get_next_update_partition(<span class=\"hljs-literal\">NULL</span>);\n        update_ota_address(rs485_resume_chunk);  <span class=\"hljs-comment\">// Derive resume offset</span>\n        esp_ota_begin(update_com_partition, OTA_SIZE_UNKNOWN, &amp;update_com_handle);\n        s_rs485_ota_next_offset = rs485_resume_chunk * OTA_PACKET_SIZE;\n        rs485_run_begin_one_time = <span class=\"hljs-number\">1</span>;\n    }\n    <span class=\"hljs-keyword\">else</span> <span class=\"hljs-keyword\">if</span> (*(bufadd+<span class=\"hljs-number\">5</span>) == <span class=\"hljs-number\">0x01</span>) {\n        <span class=\"hljs-comment\">// FINISH Update</span>\n        esp_ota_end(update_com_handle);\n        esp_ota_set_boot_partition(update_com_partition);\n        update_flag = <span class=\"hljs-number\">0x55</span>;  <span class=\"hljs-comment\">// Success marker</span>\n        rs485_resume_chunk = <span class=\"hljs-number\">0</span>;\n        save_uint32_to_flash(FLASH_RS_RES_PACKAGE, <span class=\"hljs-number\">0</span>);  <span class=\"hljs-comment\">// Clear resume</span>\n        com_update_firmware = <span class=\"hljs-number\">0</span>;\n    }\n    <span class=\"hljs-keyword\">else</span> <span class=\"hljs-keyword\">if</span> (*(bufadd+<span class=\"hljs-number\">5</span>) == <span class=\"hljs-number\">0x3F</span>) {\n        <span class=\"hljs-comment\">// ERASE OTA Partition</span>\n        esp_partition_erase_range(update_com_partition, <span class=\"hljs-number\">0</span>, update_com_partition-&gt;size);\n        rs485_resume_chunk = <span class=\"hljs-number\">0</span>;\n        save_uint32_to_flash(FLASH_RS_RES_PACKAGE, <span class=\"hljs-number\">0</span>);\n    }\n}\n</code></pre></div>\n<hr>\n<h2 id=\"10-flowchart-state-machine-overview\">10. Flowchart - State Machine Overview<a class=\"anchor\" href=\"#10-flowchart-state-machine-overview\" data-anchor=\"10-flowchart-state-machine-overview\" aria-label=\"Copy a link to 10. Flowchart - State Machine Overview\">#</a></h2>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">                        ┌─────────────────────┐\n                        │   IDLE State        │\n                        │ Waiting for command │\n                        └──────────┬──────────┘\n                                   │\n                ┌──────────────────┼──────────────────┐\n                │                  │                  │\n                ▼                  ▼                  ▼\n        ┌───────────────┐  ┌──────────────┐  ┌──────────────┐\n        │ Write 0x1F    │  │ Write 0x01   │  │ Write 0x3F   │\n        │ (START/RESUME)│  │ (FINALIZE)   │  │ (ERASE)      │\n        └───────┬───────┘  └──────┬───────┘  └──────┬───────┘\n                │                 │                 │\n                ▼                 ▼                 ▼\n        ┌───────────────┐  ┌──────────────┐  ┌──────────────┐\n        │ PREPARE State │  │ FINISH State │  │ ERASE State  │\n        │               │  │              │  │              │\n        │ Load resume   │  │ End OTA      │  │ Erase OTA    │\n        │ esp_ota_begin │  │ Set partition│  │ Clear resume │\n        │ Ready for RX  │  │ Mark success │  │ Back to IDLE │\n        └───────┬───────┘  └──────┬───────┘  └──────────────┘\n                │                 │\n                ▼                 ▼\n        ┌───────────────┐  ┌──────────────┐\n        │ RX State      │  │ IDLE State   │\n        │               │  │ Ready for    │\n        │ Receive FW    │  │ reboot/next  │\n        │ Data packets  │  │ command      │\n        │ Buffer &amp; write│  └──────────────┘\n        │ to OTA        │\n        └───────┬───────┘\n                │\n                │ (All packets?)\n                ├─ NO ─→ (Stay in RX, wait next packet)\n                │\n                └─ YES ─→ (Write 0x01 to finish)\n                         │\n                         ▼\n                    (Goto FINISH State above)\n</code></pre></div>\n<hr>\n<h2 id=\"11-error-handling\">11. Error Handling<a class=\"anchor\" href=\"#11-error-handling\" data-anchor=\"11-error-handling\" aria-label=\"Copy a link to 11. Error Handling\">#</a></h2>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">Error Scenarios:\n\n1. Invalid Partition:\n   ├─ esp_ota_get_next_update_partition() returns NULL\n   ├─ Log: &quot;No OTA partition available&quot;\n   └─ Action: Return error, stay in IDLE\n\n2. OTA Begin Failure:\n   ├─ esp_ota_begin() returns error\n   ├─ Log: &quot;esp_ota_begin failed&quot;\n   └─ Action: esp_restart() to recover\n\n3. Flash Write Error:\n   ├─ esp_ota_write_with_offset() fails\n   ├─ Log: &quot;OTA flash write failed at offset X&quot;\n   └─ Action: Return error, but resume position saved\n\n4. Image Validation Failure:\n   ├─ esp_ota_end() returns ESP_ERR_OTA_VALIDATE_FAILED\n   ├─ Log: &quot;Image validation failed, image is corrupted&quot;\n   └─ Action: Do NOT call esp_ota_set_boot_partition()\n   └─ Recovery: Write 0x3F to erase and retry\n\n5. Boot Partition Switch Failure:\n   ├─ esp_ota_set_boot_partition() returns error\n   ├─ Log: &quot;esp_ota_set_boot_partition failed&quot;\n   └─ Action: Log error but DO NOT restart (allows retry)\n</code></pre></div>\n<hr>\n<h2 id=\"13-key-files-reference\">13. Key Files Reference<a class=\"anchor\" href=\"#13-key-files-reference\" data-anchor=\"13-key-files-reference\" aria-label=\"Copy a link to 13. Key Files Reference\">#</a></h2>\n<ul>\n<li><strong>app_main.c</strong> - Main update logic &amp; Modbus handlers (lines 800-1000+)</li>\n<li><strong>temco_dfu.c</strong> - DFU protocol implementation (if using TFTP)</li>\n<li><strong>flash.c</strong> - NVS storage for resume state</li>\n<li><strong>modbus.h</strong> - Register address definitions</li>\n<li><strong>temco_partitions.csv</strong> - Partition layout definition</li>\n<li><strong>FIRMWARE_UPDATE_PROCESS.md</strong> - Original detailed process docs</li>\n</ul>\n<hr>\n<h2 id=\"14-summary\">14. Summary<a class=\"anchor\" href=\"#14-summary\" data-anchor=\"14-summary\" aria-label=\"Copy a link to 14. Summary\">#</a></h2>\n<table>\n<thead>\n<tr>\n<th>Aspect</th>\n<th>Details</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>OTA Partition Address</strong></td>\n<td>0x120000 (6 MB)</td>\n</tr>\n<tr>\n<td><strong>OTA Select Data</strong></td>\n<td>0x19000 (2 KB)</td>\n</tr>\n<tr>\n<td><strong>Packet Size</strong></td>\n<td>128 bytes</td>\n</tr>\n<tr>\n<td><strong>Resume Granularity</strong></td>\n<td>1 packet (128 bytes)</td>\n</tr>\n<tr>\n<td><strong>Max Packets</strong></td>\n<td>~48,000 (6 MB ÷ 128 bytes)</td>\n</tr>\n<tr>\n<td><strong>Update Commands</strong></td>\n<td>0x1F (start/resume), 0x01 (finish), 0x3F (erase)</td>\n</tr>\n<tr>\n<td><strong>MD5 Registers</strong></td>\n<td>1995-1998</td>\n</tr>\n<tr>\n<td><strong>Success Flag</strong></td>\n<td>UPDATE_FLAG = 0x55</td>\n</tr>\n<tr>\n<td><strong>Recovery Method</strong></td>\n<td>Automatic resume on power loss</td>\n</tr>\n</tbody>\n</table>\n",
+			"headings": [
+				{
+					"id": "9-code-implementation-details",
+					"text": "9. Code Implementation Details",
+					"level": 2
+				},
+				{
+					"id": "key-variables-app-main-c",
+					"text": "Key Variables (app_main.c)",
+					"level": 3
+				},
+				{
+					"id": "md5-verification",
+					"text": "MD5 Verification",
+					"level": 3
+				},
+				{
+					"id": "modbus-write-handler-partial-code",
+					"text": "Modbus Write Handler (Partial Code)",
+					"level": 3
+				},
+				{
+					"id": "10-flowchart-state-machine-overview",
+					"text": "10. Flowchart - State Machine Overview",
+					"level": 2
+				},
+				{
+					"id": "11-error-handling",
+					"text": "11. Error Handling",
+					"level": 2
+				},
+				{
+					"id": "13-key-files-reference",
+					"text": "13. Key Files Reference",
+					"level": 2
+				},
+				{
+					"id": "14-summary",
+					"text": "14. Summary",
+					"level": 2
+				}
+			]
+		},
+		"resuming-an-update": {
+			"title": "Resuming an interrupted update",
+			"html": "<p>A transfer over RS485 to a controller in a plant room will be interrupted. The bootloader records how far it got, so the next attempt continues from there instead of starting again — and there is an erase path when resuming is not what you want.</p>\n<h2 id=\"5-resumable-firmware-update-mechanism\">5. Resumable Firmware Update Mechanism<a class=\"anchor\" href=\"#5-resumable-firmware-update-mechanism\" data-anchor=\"5-resumable-firmware-update-mechanism\" aria-label=\"Copy a link to 5. Resumable Firmware Update Mechanism\">#</a></h2>\n<h3 id=\"packet-structure\">Packet Structure<a class=\"anchor\" href=\"#packet-structure\" data-anchor=\"packet-structure\" aria-label=\"Copy a link to Packet Structure\">#</a></h3>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">Each firmware packet is 128 bytes:\n\nPacket Format:\n┌────────────────────────────────────┐\n│ Packet Header (varies by protocol) │ ← Protocol dependent\n├────────────────────────────────────┤\n│ Firmware Data (up to 128 bytes)    │ ← Actual firmware code/data\n└────────────────────────────────────┘\n\nOTA Packet Addressing:\n- Packet 0-N numbered sequentially\n- Each packet = 128 bytes\n- Flash offset = Packet_Number × 128\n- Example: Packet 5 starts at byte offset 640 (5 × 128)\n</code></pre></div>\n<h3 id=\"resume-state-tracking\">Resume State Tracking<a class=\"anchor\" href=\"#resume-state-tracking\" data-anchor=\"resume-state-tracking\" aria-label=\"Copy a link to Resume State Tracking\">#</a></h3>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">Flash Storage (NVS):\n┌─────────────────────────────────────────────────────────┐\n│ Key: &quot;RS_RES_PACKAGE&quot;                                   │\n│ Value: uint32_t rs485_resume_chunk (packet count)       │\n│                                                         │\n│ On boot, this value is loaded into:                     │\n│   rs485_resume_chunk = load_uint32_from_flash(...)      │\n│                                                         │\n│ Example: rs485_resume_chunk = 100 means:                │\n│   ├─ Update successfully wrote packets 0-99             │\n│   ├─ Next update should start at packet 100             │\n│   ├─ Flash byte offset = 100 × 128 = 12,800 bytes      │\n│   └─ UPDATE_PTR_HI = 0x50, UPDATE_PTR_LO = 0x00        │\n└─────────────────────────────────────────────────────────┘\n\nRuntime Variables:\n┌─────────────────────────────────────────────────────────┐\n│ rs485_resume_chunk                                      │\n│  └─ Packet count (0 to max packets)                     │\n│                                                         │\n│ com_flash_high / com_flash_low                          │\n│  ├─ Derived from packet count                           │\n│  └─ Used for protocol feedback to ISP tool              │\n│                                                         │\n│ s_rs485_ota_next_offset                                 │\n│  ├─ Byte offset in flash = resume_chunk × 128          │\n│  └─ esp_ota_write_with_offset() writes starting here   │\n│                                                         │\n│ s_rs485_ota_chunk_len / s_rs485_ota_chunk_buf[]        │\n│  ├─ Buffering: accumulate received data                │\n│  ├─ When buffer full (128 bytes), flush to flash       │\n│  └─ Ensures atomic flash writes                        │\n└─────────────────────────────────────────────────────────┘\n</code></pre></div>\n<hr>\n<h2 id=\"6-complete-firmware-update-flow-normal-path\">6. Complete Firmware Update Flow - Normal Path<a class=\"anchor\" href=\"#6-complete-firmware-update-flow-normal-path\" data-anchor=\"6-complete-firmware-update-flow-normal-path\" aria-label=\"Copy a link to 6. Complete Firmware Update Flow - Normal Path\">#</a></h2>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">                        ┌─ User Initiates Update ─┐\n                        │   (via ISP.exe or tool)  │\n                        └──────────┬────────────────┘\n                                   │\n                                   ▼\n                    ┌──────────────────────────┐\n                    │ ISP Tool sends Modbus    │\n                    │ Write to Reg 1995-1998   │\n                    │ (Set expected MD5)       │\n                    └───────────┬──────────────┘\n                                │\n                                ▼\n                    ┌──────────────────────────┐\n                    │ Write 0x1F to UPDATE_     │\n                    │ STATUS (Reg 16) [START]  │\n                    └───────────┬──────────────┘\n                                │\n                                ▼\n                    ┌──────────────────────────┐\n                    │ Device Actions:          │\n                    │ • Get next OTA partition │\n                    │ • Call esp_ota_begin()   │\n                    │ • Set com_update_firmware│\n                    │   = 1                    │\n                    │ • Initialize buffering   │\n                    └───────────┬──────────────┘\n                                │\n                        ┌───────┴───────┐\n                        │               │\n                        ▼               ▼\n            ┌──────────────────┐  ┌─────────────────┐\n            │ ISP sends packet │  │ ISP sends packet│\n            │ 0 (128 bytes)    │  │ 1 (128 bytes)   │\n            │ to UPDATE_PTR_   │  │ to UPDATE_PTR_  │\n            │ HI/LO registers  │  │ HI/LO registers │\n            └────────┬─────────┘  └────────┬────────┘\n                     │                     │\n                     └──────────┬──────────┘\n                                │\n                                ▼\n                    ┌──────────────────────────┐\n                    │ For Each Packet:         │\n                    │ • Receive 128 bytes      │\n                    │ • Buffer in RAM          │\n                    │ • On full buffer:        │\n                    │   - esp_ota_write_with_  │\n                    │     offset(handle, data,│\n                    │     offset)             │\n                    │   - Update flash offset  │\n                    │   - Save resume count    │\n                    │     to NVS               │\n                    └───────────┬──────────────┘\n                                │\n                        ┌───────┴────────┐\n                        │ Repeat for all │\n                        │ firmware packets│\n                        │ (e.g. 1-1000)  │\n                        └────────┬────────┘\n                                 │\n                                 ▼\n                    ┌──────────────────────────┐\n                    │ All packets received     │\n                    │ Write 0x01 to UPDATE_    │\n                    │ STATUS (Reg 16) [END]   │\n                    └───────────┬──────────────┘\n                                │\n                                ▼\n                    ┌──────────────────────────┐\n                    │ Device Actions:          │\n                    │ • esp_ota_end() called   │\n                    │   Validates image       │\n                    │ • esp_ota_set_boot_     │\n                    │   partition() called     │\n                    │   → Sets OTA select to   │\n                    │     mark ota_0 active   │\n                    │ • Update UPDATE_FLAG to  │\n                    │   0x55 (success)        │\n                    │ • Clear rs485_resume_   │\n                    │   chunk = 0             │\n                    │ • com_update_firmware=0 │\n                    └───────────┬──────────────┘\n                                │\n                                ▼\n                    ┌──────────────────────────┐\n                    │ Device Ready:            │\n                    │ Waiting for restart or  │\n                    │ command                  │\n                    │ (esp_restart() at app   │\n                    │ discretion)              │\n                    └──────────────────────────┘\n</code></pre></div>\n<hr>\n<h2 id=\"7-resumable-firmware-update-flow-recovery-path\">7. Resumable Firmware Update Flow - Recovery Path<a class=\"anchor\" href=\"#7-resumable-firmware-update-flow-recovery-path\" data-anchor=\"7-resumable-firmware-update-flow-recovery-path\" aria-label=\"Copy a link to 7. Resumable Firmware Update Flow - Recovery Path\">#</a></h2>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">            ┌─ Power Loss During Update ─┐\n            │ (e.g., after packet 250)   │\n            └────────────┬────────────────┘\n                         │\n                         ▼\n            ┌──────────────────────────┐\n            │ Device Reboots           │\n            │ Bootloader loads app     │\n            │ (factory app, since OTA  │\n            │  incomplete)             │\n            └────────────┬─────────────┘\n                         │\n                         ▼\n            ┌──────────────────────────┐\n            │ Boot: Load resume state  │\n            │ from NVS:                │\n            │ rs485_resume_chunk=250   │\n            │ (packet count at save)   │\n            │                          │\n            │ Calculate:               │\n            │ • Byte offset = 250×128  │\n            │ • com_flash_high = 1     │\n            │ • com_flash_low  = 0x00  │\n            └────────────┬─────────────┘\n                         │\n                         ▼\n            ┌──────────────────────────┐\n            │ ISP Tool detects failure │\n            │ Queries UPDATE_PTR_HI/LO │\n            │ Reads packet count: 250  │\n            │ (from com_flash_high/low)│\n            └────────────┬─────────────┘\n                         │\n                         ▼\n            ┌──────────────────────────┐\n            │ ISP Tool sends Modbus    │\n            │ Write 0x1F to UPDATE_    │\n            │ STATUS (Reg 16) [RESUME]│\n            └────────────┬─────────────┘\n                         │\n                         ▼\n            ┌──────────────────────────┐\n            │ Device Actions:          │\n            │ • Load rs485_resume_     │\n            │   chunk from NVS         │\n            │ • Set s_rs485_ota_next_  │\n            │   offset = 250 × 128     │\n            │   (byte 32,000)          │\n            │ • Call esp_ota_begin()   │\n            │ • Ready for packet 250   │\n            └────────────┬─────────────┘\n                         │\n                         ▼\n            ┌──────────────────────────┐\n            │ ISP sends packet 250,    │\n            │ packet 251, ... (all     │\n            │ remaining packets)       │\n            │ to UPDATE_PTR_HI/LO      │\n            └────────────┬─────────────┘\n                         │\n                         ▼\n            ┌──────────────────────────┐\n            │ For each resume packet:  │\n            │ • esp_ota_write_with_    │\n            │   offset(handle, buf,    │\n            │   offset) continues from │\n            │   offset 32,000+         │\n            │ • Update resume count    │\n            └────────────┬─────────────┘\n                         │\n                         ▼\n            ┌──────────────────────────┐\n            │ All remaining packets    │\n            │ Write 0x01 to UPDATE_    │\n            │ STATUS [FINALIZE]       │\n            └────────────┬─────────────┘\n                         │\n                         ▼\n            ┌──────────────────────────┐\n            │ • esp_ota_end()          │\n            │ • esp_ota_set_boot_      │\n            │   partition()            │\n            │ • UPDATE_FLAG = 0x55     │\n            │ • Ready to boot new app  │\n            └──────────────────────────┘\n</code></pre></div>\n<hr>\n<h2 id=\"8-erase-operation-full-reset\">8. Erase Operation (Full Reset)<a class=\"anchor\" href=\"#8-erase-operation-full-reset\" data-anchor=\"8-erase-operation-full-reset\" aria-label=\"Copy a link to 8. Erase Operation (Full Reset)\">#</a></h2>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">            ┌─ ISP Tool Error Detection ─┐\n            │ (e.g. wrong image)         │\n            └────────────┬────────────────┘\n                         │\n                         ▼\n            ┌──────────────────────────┐\n            │ ISP sends Modbus command │\n            │ Write 0x3F to UPDATE_    │\n            │ STATUS (Reg 16) [ERASE]  │\n            └────────────┬─────────────┘\n                         │\n                         ▼\n            ┌──────────────────────────┐\n            │ Device Actions:          │\n            │ • Abort any in-progress  │\n            │   esp_ota_abort()        │\n            │ • esp_partition_erase_   │\n            │   range() on full OTA    │\n            │ • Clear NVS resume data: │\n            │   rs485_resume_chunk=0   │\n            │ • Reset all buffers:     │\n            │   s_rs485_ota_chunk_len  │\n            │   = 0                    │\n            │ • com_update_firmware=0  │\n            │ • Ready for fresh update │\n            └──────────────────────────┘\n</code></pre></div>\n<hr>\n",
+			"headings": [
+				{
+					"id": "5-resumable-firmware-update-mechanism",
+					"text": "5. Resumable Firmware Update Mechanism",
+					"level": 2
+				},
+				{
+					"id": "packet-structure",
+					"text": "Packet Structure",
+					"level": 3
+				},
+				{
+					"id": "resume-state-tracking",
+					"text": "Resume State Tracking",
+					"level": 3
+				},
+				{
+					"id": "6-complete-firmware-update-flow-normal-path",
+					"text": "6. Complete Firmware Update Flow - Normal Path",
+					"level": 2
+				},
+				{
+					"id": "7-resumable-firmware-update-flow-recovery-path",
+					"text": "7. Resumable Firmware Update Flow - Recovery Path",
+					"level": 2
+				},
+				{
+					"id": "8-erase-operation-full-reset",
+					"text": "8. Erase Operation (Full Reset)",
+					"level": 2
+				}
+			]
+		},
+		"signing-firmware": {
+			"title": "Firmware signing guide",
+			"html": "<h2 id=\"requirements\">Requirements<a class=\"anchor\" href=\"#requirements\" data-anchor=\"requirements\" aria-label=\"Copy a link to Requirements\">#</a></h2>\n<ul>\n<li>Python 3.6 or later</li>\n<li><code>sign_firmware.py</code></li>\n</ul>\n<hr>\n<h2 id=\"steps\">Steps<a class=\"anchor\" href=\"#steps\" data-anchor=\"steps\" aria-label=\"Copy a link to Steps\">#</a></h2>\n<h3 id=\"1-build-firmware\">1. Build firmware<a class=\"anchor\" href=\"#1-build-firmware\" data-anchor=\"1-build-firmware\" aria-label=\"Copy a link to 1. Build firmware\">#</a></h3>\n<p>Build your firmware in ESP-IDF as usual:</p>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Shell</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">idf.py build\n</code></pre></div>\n<p>This produces <code>temco_app.bin</code> (unsigned raw binary).</p>\n<hr>\n<h3 id=\"2-sign-the-firmware\">2. Sign the firmware<a class=\"anchor\" href=\"#2-sign-the-firmware\" data-anchor=\"2-sign-the-firmware\" aria-label=\"Copy a link to 2. Sign the firmware\">#</a></h3>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Shell</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">python sign_firmware.py sign -i temco_app.bin -o temco_app_signed.bin\n</code></pre></div>\n<p>Expected output:</p>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">[INFO] Input file     : build/firmware.bin\n[INFO] Firmware size  : 524288 bytes (512.0 KB)\n[INFO] Footer size    : 40 bytes\n[INFO] Total size     : 524328 bytes (512.0 KB)\n\n[INFO] Computing HMAC-SHA256...\n[INFO] HMAC           : a3f1c2d4e5b6a7...\n\n[OK]  Signed firmware : build/firmware_signed.bin\n[OK]  Output size     : 524328 bytes (512.0 KB)\n\n      Ready to flash via ISP / RS485 OTA\n</code></pre></div>\n<hr>\n<h3 id=\"3-validate-the-firmware-optional\">3. Validate the firmware (optional)<a class=\"anchor\" href=\"#3-validate-the-firmware-optional\" data-anchor=\"3-validate-the-firmware-optional\" aria-label=\"Copy a link to 3. Validate the firmware (optional)\">#</a></h3>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Shell</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">python sign_firmware.py verify -i temco_app_signed.bin\n</code></pre></div>\n<p>Expected output:</p>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">\n[INFO] File           : temco_app_signed.bin\n[INFO] Total size     : 273480 bytes\n[INFO] Firmware size  : 273440 bytes\n[INFO] Footer magic   : 0x0000 (Secure)\n[INFO] Footer fw_size : 273440 bytes\n[INFO] Stored HMAC    : 5fdd3bca0fe05ae2..\n[INFO] Computed HMAC  : 5fdd3bca0fe05ae2..\n\n[OK]  Firmware signature is VALID\n\n</code></pre></div>\n<h3 id=\"4-send-via-isp-rs485-ota-tool\">4. Send via ISP / RS485 OTA tool<a class=\"anchor\" href=\"#4-send-via-isp-rs485-ota-tool\" data-anchor=\"4-send-via-isp-rs485-ota-tool\" aria-label=\"Copy a link to 4. Send via ISP / RS485 OTA tool\">#</a></h3>\n<p>Use <code>firmware_signed.bin</code> — NOT <code>firmware.bin</code>.</p>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">firmware.bin        ← DO NOT USE THIS\nfirmware_signed.bin ← USE THIS\n</code></pre></div>\n<hr>\n<h2 id=\"important\">Important<a class=\"anchor\" href=\"#important\" data-anchor=\"important\" aria-label=\"Copy a link to Important\">#</a></h2>\n<ul>\n<li>Always sign after every new build before sending</li>\n<li>Never send unsigned <code>firmware.bin</code> to device — it will be rejected</li>\n</ul>\n",
+			"headings": [
+				{
+					"id": "requirements",
+					"text": "Requirements",
+					"level": 2
+				},
+				{
+					"id": "steps",
+					"text": "Steps",
+					"level": 2
+				},
+				{
+					"id": "1-build-firmware",
+					"text": "1. Build firmware",
+					"level": 3
+				},
+				{
+					"id": "2-sign-the-firmware",
+					"text": "2. Sign the firmware",
+					"level": 3
+				},
+				{
+					"id": "3-validate-the-firmware-optional",
+					"text": "3. Validate the firmware (optional)",
+					"level": 3
+				},
+				{
+					"id": "4-send-via-isp-rs485-ota-tool",
+					"text": "4. Send via ISP / RS485 OTA tool",
+					"level": 3
+				},
+				{
+					"id": "important",
+					"text": "Important",
+					"level": 2
+				}
+			]
+		},
+		"skip-signature-validation": {
+			"title": "Skip firmware signature validation",
+			"html": "<h2 id=\"skip-firmware-signature-validation-via-modbus-register-1992\">Skip Firmware Signature Validation via Modbus Register 1992<a class=\"anchor\" href=\"#skip-firmware-signature-validation-via-modbus-register-1992\" data-anchor=\"skip-firmware-signature-validation-via-modbus-register-1992\" aria-label=\"Copy a link to Skip Firmware Signature Validation via Modbus Register 1992\">#</a></h2>\n<p>This firmware supports bypassing firmware HMAC validation when the Modbus secure key register is written with the special value <code>0x0BEE</code>.</p>\n<h2 id=\"what-happens\">What happens<a class=\"anchor\" href=\"#what-happens\" data-anchor=\"what-happens\" aria-label=\"Copy a link to What happens\">#</a></h2>\n<ul>\n<li>Modbus register <code>1992</code> is mapped to <code>MODBUS_SECURE_KEY</code>.</li>\n<li>When the stored value equals <code>0x0BEE</code>, firmware validation is skipped during update.</li>\n<li>The firmware logs: <code>Skip firmware HMAC validation, secure key found in modbus register</code>.</li>\n</ul>\n<h2 id=\"register-details\">Register details<a class=\"anchor\" href=\"#register-details\" data-anchor=\"register-details\" aria-label=\"Copy a link to Register details\">#</a></h2>\n<ul>\n<li>Register address: <code>1992</code></li>\n<li>Expected bypass value: <code>0x0BEE</code></li>\n<li>Data type: 16-bit register</li>\n</ul>\n<h2 id=\"how-to-write-the-bypass-key\">How to write the bypass key<a class=\"anchor\" href=\"#how-to-write-the-bypass-key\" data-anchor=\"how-to-write-the-bypass-key\" aria-label=\"Copy a link to How to write the bypass key\">#</a></h2>\n<p>Use your Modbus master / RS485 tool to write register <code>1992</code> with value <code>0x0BEE</code>.</p>\n<p>Example:</p>\n<ul>\n<li>Register: <code>1992</code></li>\n<li>Value: <code>30574</code> decimal or <code>0x0BEE</code> hexadecimal</li>\n<li>Byte order in the register: the firmware reads the 16-bit value directly and stores it in flash</li>\n</ul>\n<p>If your tool allows writing a register word, set it to <code>0x0BEE</code>.\nIf your tool writes high/low bytes separately, send <code>0x0B</code> as the high byte and <code>0xEE</code> as the low byte.</p>\n<h2 id=\"how-to-verify\">How to verify<a class=\"anchor\" href=\"#how-to-verify\" data-anchor=\"how-to-verify\" aria-label=\"Copy a link to How to verify\">#</a></h2>\n<p>After writing the register:</p>\n<ol>\n<li>Reboot or restart the update flow as needed.</li>\n<li>Start firmware upload/update.</li>\n<li>The device should skip HMAC validation and continue.</li>\n</ol>\n<h2 id=\"important-notes\">Important notes<a class=\"anchor\" href=\"#important-notes\" data-anchor=\"important-notes\" aria-label=\"Copy a link to Important notes\">#</a></h2>\n<ul>\n<li>This bypass is intended for testing, recovery, or controlled validation scenarios only.</li>\n<li>Do not leave the bypass key enabled in production.</li>\n<li>For normal signed firmware validation, clear the register value or restore it to <code>0</code>.</li>\n</ul>\n<h2 id=\"quick-reference\">Quick reference<a class=\"anchor\" href=\"#quick-reference\" data-anchor=\"quick-reference\" aria-label=\"Copy a link to Quick reference\">#</a></h2>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">Register   : 1992\nBypass key : 0x0BEE\nResult     : skip firmware HMAC validation\n</code></pre></div>\n",
+			"headings": [
+				{
+					"id": "skip-firmware-signature-validation-via-modbus-register-1992",
+					"text": "Skip Firmware Signature Validation via Modbus Register 1992",
+					"level": 2
+				},
+				{
+					"id": "what-happens",
+					"text": "What happens",
+					"level": 2
+				},
+				{
+					"id": "register-details",
+					"text": "Register details",
+					"level": 2
+				},
+				{
+					"id": "how-to-write-the-bypass-key",
+					"text": "How to write the bypass key",
+					"level": 2
+				},
+				{
+					"id": "how-to-verify",
+					"text": "How to verify",
+					"level": 2
+				},
+				{
+					"id": "important-notes",
+					"text": "Important notes",
+					"level": 2
+				},
+				{
+					"id": "quick-reference",
+					"text": "Quick reference",
+					"level": 2
+				}
+			]
+		},
+		"trying-the-commands": {
+			"title": "Trying the commands",
+			"html": "<p>The sequence to send by hand, in order, when you want to watch an update happen rather than trust it.</p>\n<h2 id=\"12-testing-modbus-commands\">12. Testing Modbus Commands<a class=\"anchor\" href=\"#12-testing-modbus-commands\" data-anchor=\"12-testing-modbus-commands\" aria-label=\"Copy a link to 12. Testing Modbus Commands\">#</a></h2>\n<h3 id=\"modbus-rtu-serial-example-commands\">Modbus RTU (Serial) Example Commands<a class=\"anchor\" href=\"#modbus-rtu-serial-example-commands\" data-anchor=\"modbus-rtu-serial-example-commands\" aria-label=\"Copy a link to Modbus RTU (Serial) Example Commands\">#</a></h3>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">Python pseudo-code using Modbus:\n\n# 1. Set expected MD5 checksum (registers 1995-1998)\nwrite_registers(1995, [0xABCD, 0xEF12, 0x3456, 0x7890])\n\n# 2. Initiate firmware update (START)\nwrite_register(16, 0x1F)  # UPDATE_STATUS = 0x1F\n\n# 3. Send firmware packets via protocol\n# (In serial/TCP stream, not Modbus)\n\n# 4. Check resume position if interrupted\nresult = read_registers(17, 2)  # READ UPDATE_PTR_HI/LO\n\n# 5. Resume from last position (if needed)\nwrite_register(16, 0x1F)  # UPDATE_STATUS = 0x1F (resume)\n\n# 6. Complete update\nwrite_register(16, 0x01)  # UPDATE_STATUS = 0x01\n\n# 7. Read completion status\nstatus = read_register(23)  # UPDATE_FLAG\nif status == 0x55:\n    print(&quot;Update successful!&quot;)\nelse:\n    print(&quot;Update failed!&quot;)\n\n# 8. Full erase if needed\nwrite_register(16, 0x3F)  # UPDATE_STATUS = 0x3F (erase all)\n</code></pre></div>\n<hr>\n",
+			"headings": [
+				{
+					"id": "12-testing-modbus-commands",
+					"text": "12. Testing Modbus Commands",
+					"level": 2
+				},
+				{
+					"id": "modbus-rtu-serial-example-commands",
+					"text": "Modbus RTU (Serial) Example Commands",
+					"level": 3
+				}
+			]
+		},
+		"update-flow": {
+			"title": "How a firmware update runs",
+			"html": "<p>An update is not a file transfer: the bootloader checks what it is about to write, keeps a position so an interrupted transfer can continue, and only then replaces the running image. This page follows the route from the partition layout to a completed update.</p>\n<h2 id=\"1-overview\">1. Overview<a class=\"anchor\" href=\"#1-overview\" data-anchor=\"1-overview\" aria-label=\"Copy a link to 1. Overview\">#</a></h2>\n<p>This document describes the complete firmware update flow with:</p>\n<ul>\n<li><strong>Modbus register mappings</strong> for update control and status</li>\n<li><strong>Resumable firmware update</strong> mechanism for reliability</li>\n<li><strong>OTA (Over-The-Air) partition switching</strong></li>\n</ul>\n<hr>\n<h2 id=\"2-partition-layout\">2. Partition Layout<a class=\"anchor\" href=\"#2-partition-layout\" data-anchor=\"2-partition-layout\" aria-label=\"Copy a link to 2. Partition Layout\">#</a></h2>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">ESP32-S3 Flash Memory Layout\n├─ Bootloader          0x00000   - 0x1EFFF (120 KB)\n├─ NVS                 0x09000   - 0x18FFF (64 KB)\n├─ OTA Data           0x19000   - 0x1AFFF (8 KB)   ← OTA select info\n├─ PHY Init           0x1B000   - 0x1BFFF (4 KB)\n├─ Factory App        0x20000   - 0x11FFFF (1 MB)  ← Primary app\n├─ OTA_0 App          0x120000  - 0x71FFFF (6 MB)  ← OTA update slot\n├─ Matter NVS         0x720000  - 0x75FFFF (256 KB)\n└─ Storage           0x760000  - 0x77FFFF (128 KB)\n</code></pre></div>\n<p><strong>OTA Packet Size:</strong> <code>128 bytes</code> (must match ISP.exe configuration)</p>\n<hr>\n",
+			"headings": [
+				{
+					"id": "1-overview",
+					"text": "1. Overview",
+					"level": 2
+				},
+				{
+					"id": "2-partition-layout",
+					"text": "2. Partition Layout",
+					"level": 2
+				}
+			]
+		},
+		"update-registers": {
+			"title": "The update registers",
+			"html": "<p>The host drives the whole update through a handful of Modbus registers: the control registers that start and stop it, the checksum registers that decide whether the image is the intended one, and the status register that says where the update has got to.</p>\n<h2 id=\"3-modbus-register-mapping-for-firmware-update\">3. Modbus Register Mapping for Firmware Update<a class=\"anchor\" href=\"#3-modbus-register-mapping-for-firmware-update\" data-anchor=\"3-modbus-register-mapping-for-firmware-update\" aria-label=\"Copy a link to 3. Modbus Register Mapping for Firmware Update\">#</a></h2>\n<h3 id=\"update-control-registers\">Update Control Registers<a class=\"anchor\" href=\"#update-control-registers\" data-anchor=\"update-control-registers\" aria-label=\"Copy a link to Update Control Registers\">#</a></h3>\n<table>\n<thead>\n<tr>\n<th>Register</th>\n<th>Address</th>\n<th>Type</th>\n<th>Purpose</th>\n<th>Values</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>UPDATE_STATUS</strong></td>\n<td>16</td>\n<td>W</td>\n<td>Firmware update trigger</td>\n<td>See below</td>\n</tr>\n<tr>\n<td><strong>UPDATE_PTR_HI</strong></td>\n<td>17</td>\n<td>R/W</td>\n<td>Resume position HIGH byte</td>\n<td>0x00-0xFF</td>\n</tr>\n<tr>\n<td><strong>UPDATE_PTR_LO</strong></td>\n<td>18</td>\n<td>R/W</td>\n<td>Resume position LOW byte</td>\n<td>0x00-0xFF</td>\n</tr>\n<tr>\n<td><strong>UPDATE_FLAG</strong></td>\n<td>23</td>\n<td>R/W</td>\n<td>Update completion status</td>\n<td>0x55 = success</td>\n</tr>\n<tr>\n<td><strong>ISP_RESUME_COUNT</strong></td>\n<td>1991</td>\n<td>R/W</td>\n<td>Packet count for resume</td>\n<td>0-65535</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"md5-checksum-registers\">MD5 Checksum Registers<a class=\"anchor\" href=\"#md5-checksum-registers\" data-anchor=\"md5-checksum-registers\" aria-label=\"Copy a link to MD5 Checksum Registers\">#</a></h3>\n<table>\n<thead>\n<tr>\n<th>Register</th>\n<th>Address</th>\n<th>Type</th>\n<th>Purpose</th>\n<th>Size</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>MD5[0]</strong></td>\n<td>1995</td>\n<td>R/W</td>\n<td>MD5 checksum word 0</td>\n<td>16-bit</td>\n</tr>\n<tr>\n<td><strong>MD5[1]</strong></td>\n<td>1996</td>\n<td>R/W</td>\n<td>MD5 checksum word 1</td>\n<td>16-bit</td>\n</tr>\n<tr>\n<td><strong>MD5[2]</strong></td>\n<td>1997</td>\n<td>R/W</td>\n<td>MD5 checksum word 2</td>\n<td>16-bit</td>\n</tr>\n<tr>\n<td><strong>MD5[3]</strong></td>\n<td>1998</td>\n<td>R/W</td>\n<td>MD5 checksum word 3</td>\n<td>16-bit</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"test-buffer-registers-diagnostic\">Test Buffer Registers (Diagnostic)<a class=\"anchor\" href=\"#test-buffer-registers-diagnostic\" data-anchor=\"test-buffer-registers-diagnostic\" aria-label=\"Copy a link to Test Buffer Registers (Diagnostic)\">#</a></h3>\n<table>\n<thead>\n<tr>\n<th>Register</th>\n<th>Address</th>\n<th>Range</th>\n<th>Purpose</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>TEST_BUF</strong></td>\n<td>100-150</td>\n<td>100-150</td>\n<td>Diagnostic counters</td>\n</tr>\n</tbody>\n</table>\n<hr>\n<h2 id=\"4-update-status-register-address-16-command-values\">4. UPDATE_STATUS Register (Address 16) - Command Values<a class=\"anchor\" href=\"#4-update-status-register-address-16-command-values\" data-anchor=\"4-update-status-register-address-16-command-values\" aria-label=\"Copy a link to 4. UPDATE_STATUS Register (Address 16) - Command Values\">#</a></h2>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">Text</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">UPDATE_STATUS write values trigger different firmware update modes:\n\n┌─────────────────────────────────────────────────────────────┐\n│ Write Value │ Command                  │ Action              │\n├─────────────────────────────────────────────────────────────┤\n│ 0x00        │ PROGRAM_FINISH           │ End OTA update      │\n│ 0x01        │ PROGRAM_FINISH           │ End OTA update      │\n│ 0x1F        │ PROGRAM_RESUME           │ Start/Resume update │\n│ 0x3F        │ ERASE_ALL_FLASH          │ Erase OTA partition │\n│ 0x7F        │ PROGRAM_START (unused)   │ Reserved            │\n└─────────────────────────────────────────────────────────────┘\n\nDetailed Command Descriptions:\n\n1. Write 0x1F to UPDATE_STATUS (Address 16):\n   ├─ Start new firmware update OR resume interrupted update\n   ├─ Retrieves resume position from flash (FLASH_RS_RES_PACKAGE)\n   ├─ Calls esp_ota_begin() to prepare OTA partition\n   ├─ Expects subsequent firmware data on UPDATE_PTR registers\n   └─ Updates com_flash_high/low for resume tracking\n\n2. Write 0x01 to UPDATE_STATUS (Address 16):\n   ├─ Complete firmware update process\n   ├─ Call esp_ota_end() to finalize image\n   ├─ Validate image checksum\n   ├─ Call esp_ota_set_boot_partition() to mark active\n   ├─ Set UPDATE_FLAG = 0x55 on success\n   ├─ Clear resume counter\n   └─ Device ready to restart\n\n3. Write 0x3F to UPDATE_STATUS (Address 16):\n   ├─ Full erase of OTA partition\n   ├─ Reset all resume tracking data\n   ├─ Clear flash resume counter\n   ├─ Abort any in-progress update\n   ├─ com_update_firmware = 0\n   └─ Ready for new update from packet 0\n</code></pre></div>\n<hr>\n",
+			"headings": [
+				{
+					"id": "3-modbus-register-mapping-for-firmware-update",
+					"text": "3. Modbus Register Mapping for Firmware Update",
+					"level": 2
+				},
+				{
+					"id": "update-control-registers",
+					"text": "Update Control Registers",
+					"level": 3
+				},
+				{
+					"id": "md5-checksum-registers",
+					"text": "MD5 Checksum Registers",
+					"level": 3
+				},
+				{
+					"id": "test-buffer-registers-diagnostic",
+					"text": "Test Buffer Registers (Diagnostic)",
+					"level": 3
+				},
+				{
+					"id": "4-update-status-register-address-16-command-values",
+					"text": "4. UPDATE_STATUS Register (Address 16) - Command Values",
+					"level": 2
+				}
+			]
+		},
+		"wifi-station-mode": {
+			"title": "Wi-Fi station mode",
+			"html": "<h2 id=\"wi-fi-sta-configuration-manual\">Wi-Fi STA Configuration Manual<a class=\"anchor\" href=\"#wi-fi-sta-configuration-manual\" data-anchor=\"wi-fi-sta-configuration-manual\" aria-label=\"Copy a link to Wi-Fi STA Configuration Manual\">#</a></h2>\n<p>This manual explains how to configure the controller to connect in STA mode (Station mode) to your existing Wi-Fi network.</p>\n<h2 id=\"1-what-is-sta-mode\">1. What is STA mode?<a class=\"anchor\" href=\"#1-what-is-sta-mode\" data-anchor=\"1-what-is-sta-mode\" aria-label=\"Copy a link to 1. What is STA mode?\">#</a></h2>\n<p>STA mode means the device acts as a client and connects to an existing Wi-Fi router or access point.</p>\n<ul>\n<li>The controller does not create its own network for normal operation in STA mode.</li>\n<li>It joins your home or office Wi-Fi network.</li>\n<li>After successful connection, you can access the device over the local network.</li>\n</ul>\n<h2 id=\"2-what-you-need-before-starting\">2. What you need before starting<a class=\"anchor\" href=\"#2-what-you-need-before-starting\" data-anchor=\"2-what-you-need-before-starting\" aria-label=\"Copy a link to 2. What you need before starting\">#</a></h2>\n<p>Make sure you have:</p>\n<ul>\n<li>The controller powered on.</li>\n<li>A phone, laptop, or tablet with Wi-Fi.</li>\n<li>The Wi-Fi network name (SSID).</li>\n<li>The Wi-Fi password.</li>\n<li>A web browser such as Chrome, Edge, or Safari.</li>\n</ul>\n<p>Important notes:</p>\n<ul>\n<li>Use a 2.4 GHz Wi-Fi network if possible.</li>\n<li>The password should be entered exactly as it is on the router.</li>\n<li>If your network uses WPA2/WPA3 security, the password is usually required.</li>\n</ul>\n<h2 id=\"3-how-the-device-enters-wi-fi-setup-mode\">3. How the device enters Wi-Fi setup mode<a class=\"anchor\" href=\"#3-how-the-device-enters-wi-fi-setup-mode\" data-anchor=\"3-how-the-device-enters-wi-fi-setup-mode\" aria-label=\"Copy a link to 3. How the device enters Wi-Fi setup mode\">#</a></h2>\n<p>If the controller does not have valid Wi-Fi credentials saved, or if it cannot connect to the saved network, it automatically starts a temporary setup access point.</p>\n<p>Default setup hotspot details:</p>\n<ul>\n<li>SSID: T3_Admin</li>\n<li>Password: T3_Admin</li>\n</ul>\n<p>This hotspot is used only for configuration.</p>\n<h2 id=\"4-how-to-connect-and-configure-wi-fi\">4. How to connect and configure Wi-Fi<a class=\"anchor\" href=\"#4-how-to-connect-and-configure-wi-fi\" data-anchor=\"4-how-to-connect-and-configure-wi-fi\" aria-label=\"Copy a link to 4. How to connect and configure Wi-Fi\">#</a></h2>\n<h3 id=\"step-1-connect-your-phone-or-laptop-to-the-controller-setup-hotspot\">Step 1: Connect your phone or laptop to the controller setup hotspot<a class=\"anchor\" href=\"#step-1-connect-your-phone-or-laptop-to-the-controller-setup-hotspot\" data-anchor=\"step-1-connect-your-phone-or-laptop-to-the-controller-setup-hotspot\" aria-label=\"Copy a link to Step 1: Connect your phone or laptop to the controller setup hotspot\">#</a></h3>\n<ol>\n<li>Open the Wi-Fi settings on your phone or laptop.</li>\n<li>Search for the network named T3_Admin.</li>\n<li>Connect to it using the password T3_Admin.</li>\n</ol>\n<p>You should now be connected to the controller's temporary setup network.</p>\n<h3 id=\"step-2-open-the-configuration-page\">Step 2: Open the configuration page<a class=\"anchor\" href=\"#step-2-open-the-configuration-page\" data-anchor=\"step-2-open-the-configuration-page\" aria-label=\"Copy a link to Step 2: Open the configuration page\">#</a></h3>\n<p>Open a browser and visit one of the following:</p>\n<ul>\n<li><a href=\"http://192.168.4.1\">http://192.168.4.1</a></li>\n<li><a href=\"http://tstat.local\">http://tstat.local</a></li>\n</ul>\n<p>If the page does not open immediately, wait a few seconds and try again.</p>\n<h3 id=\"step-3-select-your-home-wi-fi-network\">Step 3: Select your home Wi-Fi network<a class=\"anchor\" href=\"#step-3-select-your-home-wi-fi-network\" data-anchor=\"step-3-select-your-home-wi-fi-network\" aria-label=\"Copy a link to Step 3: Select your home Wi-Fi network\">#</a></h3>\n<p>On the configuration page:</p>\n<ol>\n<li>Click the Scan Wi-Fi button.</li>\n<li>Wait for the list of nearby networks to appear.</li>\n<li>Select your Wi-Fi network from the list.</li>\n<li>Enter the Wi-Fi password in the password field.</li>\n<li>Click Save &amp; Connect.</li>\n</ol>\n<h3 id=\"step-4-wait-for-the-device-to-connect\">Step 4: Wait for the device to connect<a class=\"anchor\" href=\"#step-4-wait-for-the-device-to-connect\" data-anchor=\"step-4-wait-for-the-device-to-connect\" aria-label=\"Copy a link to Step 4: Wait for the device to connect\">#</a></h3>\n<p>After saving:</p>\n<ul>\n<li>The controller will reboot.</li>\n<li>It will try to connect to the Wi-Fi network you selected.</li>\n<li>Wait about 30 to 60 seconds.</li>\n</ul>\n<h3 id=\"step-5-disconnect-from-the-setup-hotspot\">Step 5: Disconnect from the setup hotspot<a class=\"anchor\" href=\"#step-5-disconnect-from-the-setup-hotspot\" data-anchor=\"step-5-disconnect-from-the-setup-hotspot\" aria-label=\"Copy a link to Step 5: Disconnect from the setup hotspot\">#</a></h3>\n<p>Once the device connects successfully:</p>\n<ol>\n<li>Disconnect your phone or laptop from T3_Admin.</li>\n<li>Reconnect to your normal home or office Wi-Fi network.</li>\n<li>Open the controller using its IP address or hostname if available.</li>\n</ol>\n<h2 id=\"5-where-to-connect-from\">5. Where to connect from<a class=\"anchor\" href=\"#5-where-to-connect-from\" data-anchor=\"5-where-to-connect-from\" aria-label=\"Copy a link to 5. Where to connect from\">#</a></h2>\n<p>Use the following connection points depending on the situation:</p>\n<ul>\n<li>During initial setup: connect to the temporary hotspot T3_Admin.</li>\n<li>After successful STA connection: connect to your normal Wi-Fi network and access the controller from its local IP address.</li>\n<li>If your network supports mDNS, you may also try the hostname tstat.local.</li>\n</ul>\n<h2 id=\"6-recommended-wi-fi-setup-conditions\">6. Recommended Wi-Fi setup conditions<a class=\"anchor\" href=\"#6-recommended-wi-fi-setup-conditions\" data-anchor=\"6-recommended-wi-fi-setup-conditions\" aria-label=\"Copy a link to 6. Recommended Wi-Fi setup conditions\">#</a></h2>\n<p>For best results:</p>\n<ul>\n<li>Place the controller near the router during initial setup.</li>\n<li>Make sure the Wi-Fi signal is strong.</li>\n<li>Avoid using a hidden SSID unless you know the exact name.</li>\n<li>Use a simple password that does not contain unsupported characters.</li>\n</ul>\n<h2 id=\"7-troubleshooting\">7. Troubleshooting<a class=\"anchor\" href=\"#7-troubleshooting\" data-anchor=\"7-troubleshooting\" aria-label=\"Copy a link to 7. Troubleshooting\">#</a></h2>\n<h3 id=\"problem-i-cannot-see-the-t3-admin-network\">Problem: I cannot see the T3_Admin network<a class=\"anchor\" href=\"#problem-i-cannot-see-the-t3-admin-network\" data-anchor=\"problem-i-cannot-see-the-t3-admin-network\" aria-label=\"Copy a link to Problem: I cannot see the T3_Admin network\">#</a></h3>\n<p>Try the following:</p>\n<ul>\n<li>Make sure the controller is powered on.</li>\n<li>Wait a few seconds after startup.</li>\n<li>Restart the controller.</li>\n<li>Check whether the setup hotspot is active.</li>\n</ul>\n<h3 id=\"problem-the-configuration-page-does-not-open\">Problem: The configuration page does not open<a class=\"anchor\" href=\"#problem-the-configuration-page-does-not-open\" data-anchor=\"problem-the-configuration-page-does-not-open\" aria-label=\"Copy a link to Problem: The configuration page does not open\">#</a></h3>\n<p>Try the following:</p>\n<ul>\n<li>Connect again to T3_Admin.</li>\n<li>Use <a href=\"http://192.168.4.1\">http://192.168.4.1</a> directly.</li>\n<li>Ensure your device is connected to the controller hotspot and not your home Wi-Fi.</li>\n</ul>\n<h3 id=\"problem-the-device-cannot-connect-to-the-router\">Problem: The device cannot connect to the router<a class=\"anchor\" href=\"#problem-the-device-cannot-connect-to-the-router\" data-anchor=\"problem-the-device-cannot-connect-to-the-router\" aria-label=\"Copy a link to Problem: The device cannot connect to the router\">#</a></h3>\n<p>Try the following:</p>\n<ul>\n<li>Confirm the SSID name is correct.</li>\n<li>Confirm the password is correct.</li>\n<li>Use a 2.4 GHz Wi-Fi network.</li>\n<li>Move the controller closer to the router.</li>\n<li>Restart the controller and try again.</li>\n</ul>\n<h3 id=\"problem-the-device-connects-but-i-cannot-reach-it-later\">Problem: The device connects but I cannot reach it later<a class=\"anchor\" href=\"#problem-the-device-connects-but-i-cannot-reach-it-later\" data-anchor=\"problem-the-device-connects-but-i-cannot-reach-it-later\" aria-label=\"Copy a link to Problem: The device connects but I cannot reach it later\">#</a></h3>\n<p>Try the following:</p>\n<ul>\n<li>Check the router's DHCP client list.</li>\n<li>Confirm the device received an IP address.</li>\n<li>Try using the assigned IP address in the browser.</li>\n</ul>\n<h2 id=\"8-summary\">8. Summary<a class=\"anchor\" href=\"#8-summary\" data-anchor=\"8-summary\" aria-label=\"Copy a link to 8. Summary\">#</a></h2>\n<p>To configure Wi-Fi in STA mode:</p>\n<ol>\n<li>Connect to the temporary hotspot T3_Admin.</li>\n<li>Open <a href=\"http://192.168.4.1\">http://192.168.4.1</a> or <a href=\"http://tstat.local\">http://tstat.local</a>.</li>\n<li>Scan for your Wi-Fi network.</li>\n<li>Enter your SSID and password.</li>\n<li>Save and wait for the device to connect.</li>\n</ol>\n<p>Once connected, the controller will operate as a client on your Wi-Fi network.</p>\n",
+			"headings": [
+				{
+					"id": "wi-fi-sta-configuration-manual",
+					"text": "Wi-Fi STA Configuration Manual",
+					"level": 2
+				},
+				{
+					"id": "1-what-is-sta-mode",
+					"text": "1. What is STA mode?",
+					"level": 2
+				},
+				{
+					"id": "2-what-you-need-before-starting",
+					"text": "2. What you need before starting",
+					"level": 2
+				},
+				{
+					"id": "3-how-the-device-enters-wi-fi-setup-mode",
+					"text": "3. How the device enters Wi-Fi setup mode",
+					"level": 2
+				},
+				{
+					"id": "4-how-to-connect-and-configure-wi-fi",
+					"text": "4. How to connect and configure Wi-Fi",
+					"level": 2
+				},
+				{
+					"id": "step-1-connect-your-phone-or-laptop-to-the-controller-setup-hotspot",
+					"text": "Step 1: Connect your phone or laptop to the controller setup hotspot",
+					"level": 3
+				},
+				{
+					"id": "step-2-open-the-configuration-page",
+					"text": "Step 2: Open the configuration page",
+					"level": 3
+				},
+				{
+					"id": "step-3-select-your-home-wi-fi-network",
+					"text": "Step 3: Select your home Wi-Fi network",
+					"level": 3
+				},
+				{
+					"id": "step-4-wait-for-the-device-to-connect",
+					"text": "Step 4: Wait for the device to connect",
+					"level": 3
+				},
+				{
+					"id": "step-5-disconnect-from-the-setup-hotspot",
+					"text": "Step 5: Disconnect from the setup hotspot",
+					"level": 3
+				},
+				{
+					"id": "5-where-to-connect-from",
+					"text": "5. Where to connect from",
+					"level": 2
+				},
+				{
+					"id": "6-recommended-wi-fi-setup-conditions",
+					"text": "6. Recommended Wi-Fi setup conditions",
+					"level": 2
+				},
+				{
+					"id": "7-troubleshooting",
+					"text": "7. Troubleshooting",
+					"level": 2
+				},
+				{
+					"id": "problem-i-cannot-see-the-t3-admin-network",
+					"text": "Problem: I cannot see the T3_Admin network",
+					"level": 3
+				},
+				{
+					"id": "problem-the-configuration-page-does-not-open",
+					"text": "Problem: The configuration page does not open",
+					"level": 3
+				},
+				{
+					"id": "problem-the-device-cannot-connect-to-the-router",
+					"text": "Problem: The device cannot connect to the router",
+					"level": 3
+				},
+				{
+					"id": "problem-the-device-connects-but-i-cannot-reach-it-later",
+					"text": "Problem: The device connects but I cannot reach it later",
+					"level": 3
+				},
+				{
+					"id": "8-summary",
+					"text": "8. Summary",
+					"level": 2
+				}
+			]
+		}
+	}
+}
