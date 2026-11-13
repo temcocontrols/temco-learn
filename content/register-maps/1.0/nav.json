@@ -1,0 +1,45 @@
+{
+	"generated": "2026-11-13",
+	"pages": [
+		{
+			"href": "00-hub.md",
+			"title": "Reading a register map",
+			"order": 10
+		},
+		{
+			"href": "tstat-registers-1.md",
+			"title": "TStat registers, part 1",
+			"order": 20
+		},
+		{
+			"href": "tstat-registers-2.md",
+			"title": "TStat registers, part 2",
+			"order": 30
+		},
+		{
+			"href": "tstat-registers-3.md",
+			"title": "TStat registers, part 3",
+			"order": 40
+		},
+		{
+			"href": "tstat-registers-4.md",
+			"title": "TStat registers, part 4",
+			"order": 50
+		},
+		{
+			"href": "tstat-models.md",
+			"title": "Register notes and model tables",
+			"order": 60
+		},
+		{
+			"href": "bacnet-points.md",
+			"title": "BACnet points by controller",
+			"order": 70
+		},
+		{
+			"href": "wireguard-registers.md",
+			"title": "WireGuard Modbus Register Map",
+			"order": 80
+		}
+	]
+}

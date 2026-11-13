@@ -1,0 +1,5 @@
+{
+	"title": "Register maps",
+	"section": "topics",
+	"summary": "The address contract: the TStat Modbus register map, the BACnet points each T3 model publishes, and the registers that configure a WireGuard tunnel."
+}
