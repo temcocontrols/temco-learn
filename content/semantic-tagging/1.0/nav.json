@@ -1,0 +1,70 @@
+{
+	"generated": "2026-11-13",
+	"pages": [
+		{
+			"href": "00-hub.md",
+			"title": "Semantic tagging on Temco hardware",
+			"order": 10
+		},
+		{
+			"href": "v2-haystack-current-implementation.md",
+			"title": "Haystack v2 — Current Implementation",
+			"order": 20
+		},
+		{
+			"href": "v3-haystack-auto-tagging-mcp.md",
+			"title": "T3000 Haystack & Brick Auto-Tagging + MCP — Design Document",
+			"order": 30
+		},
+		{
+			"href": "v4-haystack-mcp-complete.md",
+			"title": "T3000 MCP Server — Design",
+			"order": 40
+		},
+		{
+			"href": "v1-haystack-legacy-single-table.md",
+			"title": "Haystack v1 — Legacy Single-Table Design",
+			"order": 50
+		},
+		{
+			"href": "mcp-claude-desktop.md",
+			"title": "mcp-claude-desktop",
+			"order": 60
+		},
+		{
+			"href": "mcp-vscode-copilot.md",
+			"title": "mcp-vscode-copilot",
+			"order": 70
+		},
+		{
+			"href": "mcp-api-examples.md",
+			"title": "MCP API Examples",
+			"order": 80
+		},
+		{
+			"href": "ai-local-llm-server.md",
+			"title": "AI Integration — Local LLM Server",
+			"order": 90
+		},
+		{
+			"href": "ai-llm-api-integration.md",
+			"title": "AI Integration — Cloud LLM APIs",
+			"order": 100
+		},
+		{
+			"href": "ai-chat-page-design.md",
+			"title": "AI Chat Page — Integration Design",
+			"order": 110
+		},
+		{
+			"href": "fdd-native-engine.md",
+			"title": "FDD — Native Fault Detection & Diagnostics for T3000",
+			"order": 120
+		},
+		{
+			"href": "openbim-plan.md",
+			"title": "The OpenBIM and Haystack plan",
+			"order": 130
+		}
+	]
+}
