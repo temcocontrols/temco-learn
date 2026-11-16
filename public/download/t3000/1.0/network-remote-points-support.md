@@ -1,6 +1,6 @@
 ---
 title: "Network&Remote points support"
-order: 1180
+order: 1210
 ---
 
 T3-serial controller (only new ARM) can support network points and remote points.

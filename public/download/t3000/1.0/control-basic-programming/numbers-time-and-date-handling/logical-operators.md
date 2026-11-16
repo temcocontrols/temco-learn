@@ -1,6 +1,6 @@
 ---
 title: "Logical Operators"
-order: 620
+order: 640
 ---
 
 ## 10.4.5 MATHEMATICAL OPERATORS

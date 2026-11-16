@@ -19,7 +19,7 @@ The controller then monitors these points locally and sends a notification to th
 
 ## 2. Subscription Tracking (`COV_Subscriptions[]`)
 
-Subscriptions are tracked in a static array defined in [h_cov.c](file://T3-programmable-controller-on-ESP32/temco_bacnet/src/h_cov.c):
+Subscriptions are tracked in a static array defined in h_cov.c:
 
 ```c
 #define MAX_COV_SUBCRIPTIONS 20

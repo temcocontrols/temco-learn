@@ -24,34 +24,34 @@ Select the device you want to update and click *Tools->Load firmware for a singl
 > <https://temcocontrols.com/ftp/file/UartAssist.zip>
 > #### 2.	Print Debugging Information
 > - Plug USB-to-TTL debug board to your PC , Download and install CH341 driver , you will find a new USB-SERIAL CH340(COMXX) under device manager->Ports .
-> ![image](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/assets/4134931/1c67dae8-bc83-470c-940e-e6e1dba100cd)
+> ![image](../media/flashing-01.png)
 > - Connect the USB-to-TTL debugging board and motherboard J4 through the male and female connector , pay attention to keep MARK point in the same position .
-> ![image](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/assets/4134931/7e101795-dc9a-4673-ab69-f3667590027c)
+> ![image](../media/flashing-02.jpg)
 > - Power on and open commUart  Assistant which print some messages about sensors.
-> ![image](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/assets/4134931/11cca132-0fdd-4670-80b8-12f559312a07)
+> ![image](../media/flashing-03.png)
 > #### 3.	ESP32 update firmware .
 > - Hardware connection
 > USB-to-TTL connect to J3 , Short J5 and J6 by a jumper until the end of the download firmware ,  turn on 24V power .
-> ![image](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/assets/4134931/a60356b1-6843-4d7d-aa69-0e7f4aacd3a7)
+> ![image](../media/flashing-04.jpg)
 > - Set ESP32 firmware download tool configurations.
 > Run flash_download_tool_3.8.5.exe , Tools -> Developer Mode -> ESP32 Download Tool,
 Set some options as shown .
-> ![image](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/assets/4134931/2aa8f1dc-f473-4498-927c-82357f223b45)<br>
-> ![image](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/assets/4134931/70dfe252-9187-4045-881f-ad3d6964674e)<br>
-> ![image](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/assets/4134931/2d929262-56f1-4480-ac61-6af4511a1dcc)<br>
+> ![image](../media/flashing-05.png)<br>
+> ![image](../media/flashing-06.png)<br>
+> ![image](../media/flashing-07.png)<br>
 > ***ESP32 firmware contains four parts***
-> ![image](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/assets/4134931/de20fa72-f5bd-45fb-a4f4-dc92149bb7c3)<br>
-> ![image](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/assets/4134931/0b1a1d3d-ad20-4f99-938c-8b1571960f26)<br>
+> ![image](../media/flashing-08.png)<br>
+> ![image](../media/flashing-09.jpg)<br>
 > - Click the Start button to download the latest firmware .
 When it show Finish , please remove jumper on J5 & J6 and power on again,
 If UartAssist.exe is running  , you can see debugging messages .
 
 ## Load the bootloader firmware to TSTAT10
 > #### 1.	Connect TSTAT10 J3 to USB with a USB to TTL debug board
-> ![image](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/assets/4134931/744a23a8-de2a-4e09-bdf4-6485398a0600)<br>
+> ![image](../media/flashing-10.jpg)<br>
 > Jumper J1, so that after restarting, it will enter flash download mode, momentarily jumper J2, and TSTAT10 will restart and prepare to download the bootloader.
 > USB to TTL dongle has a 3.3V power supply, and if power supply is insufficient, you can connect 24V power to the TSTAT10.
-> ![image](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/assets/4134931/44669f4a-0bf3-4905-bd3a-ad740fa5ec61)
+> ![image](../media/flashing-11.jpg)
 > #### 2. The steps to use the ESP32 flash downloader software are the same as the T3-nano.
 > #### 3. Keep in mind that the ESP32 flash downloader tool is only used to install the bootloaders and partition information.
 > #### 4. On a TSTAT10 with its RS485 port, a USB to RS485 adapter can be used by the flash download tool embedded within the T3000 software

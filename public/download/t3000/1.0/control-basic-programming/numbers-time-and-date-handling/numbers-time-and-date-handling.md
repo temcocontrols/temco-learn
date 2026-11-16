@@ -1,6 +1,6 @@
 ---
 title: "Numbers, Time and Date Handling"
-order: 610
+order: 630
 ---
 
 The following sections list the control basic programming language, it is suited for real time control applications with many advanced features built into the language directly which allows the programmer to create powerful programs with a small number of statements. Along with the description of the statements are some short examples for each.

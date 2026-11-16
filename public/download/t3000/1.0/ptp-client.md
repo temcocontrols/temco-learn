@@ -1,6 +1,6 @@
 ---
 title: "PTP remote connection"
-order: 1000
+order: 1220
 ---
 
 PTP is the connection T3000 makes to a panel that it cannot reach directly. Both ends are behind a router, so neither can open a socket to the other; instead, both talk to a meeting point — the Temco server — and the server tells the host where the panel can be found.

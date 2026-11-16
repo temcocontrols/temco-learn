@@ -1,0 +1,403 @@
+{
+	"pages": {
+		"00-hub": {
+			"title": "The boards this estate runs on",
+			"html": "<p>Temco builds controllers, thermostats, I/O modules, sensors and meters, and the firmware for each is a separate repository. This project is the map: which board is which, what it carries, how many points it can hold, and where its source lives.</p>\n<p>Most of these boards have no manual of their own — the documentation <em>is</em> the firmware repository and its commit history. What follows was taken from the repositories themselves: the IO ceilings in <code>product.h</code>, the README files, the revision logs, and the board headers. Where a number could not be confirmed from the source, it is not here.</p>\n<h2 id=\"start-here\">Start here<a class=\"anchor\" href=\"#start-here\" data-anchor=\"start-here\" aria-label=\"Copy a link to Start here\">#</a></h2>\n<ul>\n<li><a href=\"families.md\">The product families</a> — how the catalogue divides up, and which repositories belong to each part</li>\n<li><a href=\"controller-models.md\">The controller model table</a> — the model codes the firmware compiles against</li>\n<li><a href=\"io-ceilings.md\">How many points each model carries</a> — the input, output and variable ceilings per model</li>\n<li><a href=\"stm32-to-esp32.md\">The move from STM32 to ESP32</a> — why a whole generation of firmware was replaced</li>\n</ul>\n<h2 id=\"the-boards\">The boards<a class=\"anchor\" href=\"#the-boards\" data-anchor=\"the-boards\" aria-label=\"Copy a link to The boards\">#</a></h2>\n<ul>\n<li><a href=\"t3-4ao.md\">The T3-4AO analogue output board</a></li>\n<li><a href=\"t3-io-modules.md\">The Modbus and BACnet I/O modules</a></li>\n<li><a href=\"three-phase-meter.md\">The three-phase power meter</a></li>\n<li><a href=\"co2-sensor.md\">The CO2 sensor family</a></li>\n<li><a href=\"airlab.md\">The AIRLAB air-quality transmitter</a></li>\n<li><a href=\"tstat8-legacy.md\">The legacy Tstat8 thermostat</a></li>\n<li><a href=\"zigbee-modules.md\">The Zigbee coordinator and end devices</a></li>\n</ul>\n<h2 id=\"reference\">Reference<a class=\"anchor\" href=\"#reference\" data-anchor=\"reference\" aria-label=\"Copy a link to Reference\">#</a></h2>\n<ul>\n<li><a href=\"repo-map.md\">Where each board's source lives</a></li>\n</ul>\n<h2 id=\"a-note-on-what-is-not-documented\">A note on what is not documented<a class=\"anchor\" href=\"#a-note-on-what-is-not-documented\" data-anchor=\"a-note-on-what-is-not-documented\" aria-label=\"Copy a link to A note on what is not documented\">#</a></h2>\n<p>Two families have no source published here at all: the T3-BB and T3-Nano controller boards are covered by the legacy manuals project on this site and their schematics, and the sensors that are only sold as finished products appear only through their product pages. The Tstat11 has its own project on this site, because it has both source and a manual.</p>\n",
+			"headings": [
+				{
+					"id": "start-here",
+					"text": "Start here",
+					"level": 2
+				},
+				{
+					"id": "the-boards",
+					"text": "The boards",
+					"level": 2
+				},
+				{
+					"id": "reference",
+					"text": "Reference",
+					"level": 2
+				},
+				{
+					"id": "a-note-on-what-is-not-documented",
+					"text": "A note on what is not documented",
+					"level": 2
+				}
+			]
+		},
+		"index": {
+			"title": "T3 Devices",
+			"html": "<p>The boards Temco builds: the controller model table and point ceilings, the I/O modules, the CO2 and AIRLAB sensors, the three-phase meter, the legacy Tstat8 and the Zigbee modules.</p>\n<h2 id=\"contents\">Contents<a class=\"anchor\" href=\"#contents\" data-anchor=\"contents\" aria-label=\"Copy a link to Contents\">#</a></h2>\n<ul>\n<li><a href=\"00-hub.md\">The boards this estate runs on</a></li>\n<li><a href=\"families.md\">The product families</a></li>\n<li><a href=\"controller-models.md\">The controller model table</a></li>\n<li><a href=\"io-ceilings.md\">How many points each model carries</a></li>\n<li><a href=\"stm32-to-esp32.md\">The move from STM32 to ESP32</a></li>\n<li><a href=\"t3-4ao.md\">The T3-4AO analogue output board</a></li>\n<li><a href=\"t3-io-modules.md\">The Modbus and BACnet I/O modules</a></li>\n<li><a href=\"three-phase-meter.md\">The three-phase power meter</a></li>\n<li><a href=\"co2-sensor.md\">The CO2 sensor family</a></li>\n<li><a href=\"airlab.md\">The AIRLAB air-quality transmitter</a></li>\n<li><a href=\"tstat8-legacy.md\">The legacy Tstat8 thermostat</a></li>\n<li><a href=\"zigbee-modules.md\">The Zigbee coordinator and end devices</a></li>\n<li><a href=\"repo-map.md\">Where each board's source lives</a></li>\n</ul>\n",
+			"headings": [
+				{
+					"id": "contents",
+					"text": "Contents",
+					"level": 2
+				}
+			]
+		},
+		"airlab": {
+			"title": "The AIRLAB air-quality transmitter",
+			"html": "<p>An air-quality instrument that measures five things at once — CO2, particulate matter, pressure, temperature and humidity — in one enclosure, with a Modbus and BACnet interface and enough local logic to run a PID loop and log to a flash card.</p>\n<p>It is a much bigger project than the other sensor repository: 515 C and header files, and the folder names are the specification.</p>\n<h2 id=\"what-is-measured-and-with-what\">What is measured, and with what<a class=\"anchor\" href=\"#what-is-measured-and-with-what\" data-anchor=\"what-is-measured-and-with-what\" aria-label=\"Copy a link to What is measured, and with what\">#</a></h2>\n<table>\n<thead>\n<tr>\n<th>Quantity</th>\n<th>Where the code is</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>CO2</td>\n<td><code>co2/co2.c</code></td>\n</tr>\n<tr>\n<td>PM2.5 and an air-quality index</td>\n<td><code>PM25/pm25.c</code>, <code>PM25/aqi.c</code></td>\n</tr>\n<tr>\n<td>Differential pressure</td>\n<td><code>PRESSURE/pressure.c</code>, <code>PRESSURE/DLVR-L01D.c</code></td>\n</tr>\n<tr>\n<td>Temperature</td>\n<td><code>TEMPERATURE/temperature.c</code></td>\n</tr>\n<tr>\n<td>Humidity</td>\n<td><code>TEMPERATURE/Hum_Para.c</code>, <code>HARDWARE/HUMIDITY</code></td>\n</tr>\n</tbody>\n</table>\n<p>The pressure sensor is named in the source: <strong>DLVR-L01D</strong>, a differential pressure sensor. That matters — what it reports is a pressure <em>difference</em>, which is the right quantity for filter loading and duct static, and the wrong one if you were expecting barometric pressure.</p>\n<p>PM2.5 comes with an AQI calculation beside it (<code>aqi.c</code>), so the instrument reports a derived air-quality index as well as the raw particulate count.</p>\n<h2 id=\"what-else-it-does\">What else it does<a class=\"anchor\" href=\"#what-else-it-does\" data-anchor=\"what-else-it-does\" aria-label=\"Copy a link to What else it does\">#</a></h2>\n<p>Beyond measuring, the tree carries:</p>\n<ul>\n<li><code>PID/</code> — a PID loop, so the instrument can control something rather than only report</li>\n<li><code>STORE_DATA/</code> — data logging to the FATFS file system</li>\n<li><code>MENU/</code> — a local menu, with <code>menuCo2_Conf.c</code> and <code>menuCo2_Opt.c</code> for configuration and options</li>\n<li><code>KEY/</code> — the front-panel keys</li>\n<li><code>MODBUS/</code> and <code>baclib/</code> — both protocols</li>\n<li><code>FreeRTOS/</code>, <code>UCOSII/</code>, <code>TCPIP/</code>, <code>uIP-1.0/</code>, <code>USB/</code>, <code>FATFS/</code> — the same stack the controllers use</li>\n</ul>\n<p>The menu files are named for CO2 rather than for the air-quality unit, which is a fair sign that the menu predates the PM2.5 and pressure channels.</p>\n<h2 id=\"protocol\">Protocol<a class=\"anchor\" href=\"#protocol\" data-anchor=\"protocol\" aria-label=\"Copy a link to Protocol\">#</a></h2>\n<p>Modbus and BACnet, same as everything else in the estate. There is no register map in the repository; see the register maps project on this site for the sensor products covered there.</p>\n<h2 id=\"source\">Source<a class=\"anchor\" href=\"#source\" data-anchor=\"source\" aria-label=\"Copy a link to Source\">#</a></h2>\n<p><code>CO2_HUM_PRESSURE_AIRLAB</code> in the Temco controls organisation. The repository has no README — the folder structure above was read from the source tree, and it is the only description of the product that exists.</p>\n",
+			"headings": [
+				{
+					"id": "what-is-measured-and-with-what",
+					"text": "What is measured, and with what",
+					"level": 2
+				},
+				{
+					"id": "what-else-it-does",
+					"text": "What else it does",
+					"level": 2
+				},
+				{
+					"id": "protocol",
+					"text": "Protocol",
+					"level": 2
+				},
+				{
+					"id": "source",
+					"text": "Source",
+					"level": 2
+				}
+			]
+		},
+		"co2-sensor": {
+			"title": "The CO2 sensor family",
+			"html": "<p>CO2 transmitters with humidity and temperature sensing, for environmental monitoring in industrial, commercial and other buildings. They are standalone units with a Modbus interface — you wire one to a bus, set it up over Modbus, and a controller reads it as points.</p>\n<p>From the product description in the repository:</p>\n<blockquote>\n<p>CO2 sensor with Humidity &amp; Temp transmitters are designed for environment monitoring and controlling in industrial, commercial and other buildings. These transmitters can be used for indoor CO2, temperature and humidity monitoring. The modbus interface provides easy setup and integration into large systems.</p>\n</blockquote>\n<p><img src=\"/media/t3-devices/1.0/co2-series-portfolio.jpg\" alt=\"The CO2 series portfolio\"></p>\n<p><em>The CO2 series, showing the enclosures and options offered.</em></p>\n<h2 id=\"what-is-published\">What is published<a class=\"anchor\" href=\"#what-is-published\" data-anchor=\"what-is-published\" aria-label=\"Copy a link to What is published\">#</a></h2>\n<p>The repository is a product repository rather than a firmware one: it carries the images, the wiring diagrams and a link to the product page, not source code. That is why this page describes the product and not an API.</p>\n<ul>\n<li><code>CO2-Chart-PT_800.jpg</code> — the series portfolio chart, reproduced above</li>\n<li><code>CO2_image_800.jpg</code> — the unit itself</li>\n<li><code>CO2_D_Wiring_800.jpg</code> — the duct-mount wiring diagram, reproduced below</li>\n<li><code>node wiring_800.jpg</code> — the node wiring diagram</li>\n<li><code>co2_gif.gif</code> — a short animation of the unit</li>\n</ul>\n<p><img src=\"/media/t3-devices/1.0/co2-wiring.jpg\" alt=\"Duct-mount wiring diagram\"></p>\n<p><em>Wiring for the duct-mount version.</em></p>\n<h2 id=\"where-the-register-detail-is\">Where the register detail is<a class=\"anchor\" href=\"#where-the-register-detail-is\" data-anchor=\"where-the-register-detail-is\" aria-label=\"Copy a link to Where the register detail is\">#</a></h2>\n<p>Because there is no source in the repository, the Modbus register map for these transmitters is not here. Two places to look instead:</p>\n<ul>\n<li>The register maps project on this site, which is generated from Temco's Modbus register list and covers the sensor products that appear in it</li>\n<li>The product page at <a href=\"https://www.temcocontrols.com/products/sensors/c02-hum-aq/co2-sensors.htm\">temcocontrols.com</a>, which is where the repository points</li>\n</ul>\n<h2 id=\"a-note-on-the-family-name\">A note on the family name<a class=\"anchor\" href=\"#a-note-on-the-family-name\" data-anchor=\"a-note-on-the-family-name\" aria-label=\"Copy a link to A note on the family name\">#</a></h2>\n<p>The repository is called <code>CO2_Sensor</code> and the product line covers CO2 with humidity and temperature together. The separate <code>CO2_HUM_PRESSURE_AIRLAB</code> repository is a different, much larger instrument — see <a href=\"airlab.md\">The AIRLAB air-quality transmitter</a>.</p>\n<h2 id=\"source\">Source<a class=\"anchor\" href=\"#source\" data-anchor=\"source\" aria-label=\"Copy a link to Source\">#</a></h2>\n<p><code>CO2_Sensor</code> in the Temco controls organisation.</p>\n",
+			"headings": [
+				{
+					"id": "what-is-published",
+					"text": "What is published",
+					"level": 2
+				},
+				{
+					"id": "where-the-register-detail-is",
+					"text": "Where the register detail is",
+					"level": 2
+				},
+				{
+					"id": "a-note-on-the-family-name",
+					"text": "A note on the family name",
+					"level": 2
+				},
+				{
+					"id": "source",
+					"text": "Source",
+					"level": 2
+				}
+			]
+		},
+		"controller-models": {
+			"title": "The controller model table",
+			"html": "<p>The controller firmware is one source tree compiled many ways. Which board it is being built for is decided in <code>common/product.h</code>, by a small set of <code>MINI_</code> constants — the firmware calls each board profile a &quot;MINI&quot;, a name that goes back to the T3000 Mini-Panel.</p>\n<h2 id=\"the-model-codes\">The model codes<a class=\"anchor\" href=\"#the-model-codes\" data-anchor=\"the-model-codes\" aria-label=\"Copy a link to The model codes\">#</a></h2>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">C</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\"><span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_CM5           0</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_BIG           1</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_SMALL         2</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_TINY          3   <span class=\"hljs-comment\">// ASIX core</span></span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_NEW_TINY      4   <span class=\"hljs-comment\">// ARM core</span></span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_BIG_ARM       5</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_SMALL_ARM     6</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_TINY_ARM      7</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_NANO          8</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_TSTAT10       9</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_VAV          10   <span class=\"hljs-comment\">// no used</span></span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_T10P         11</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_TINY_11I     12</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MINI_T3OEM_12I    14</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> MAX_MINI_TYPE     14</span>\n</code></pre></div>\n<p>The numbering has gaps: 13 is not defined, and <code>MINI_VAV</code> is marked &quot;no used&quot; in the source. The comment on <code>MINI_TINY</code> reads &quot;ASIX CORE&quot; and on <code>MINI_NEW_TINY</code> &quot;ARM core&quot; — those two names describe the same form factor built around two different CPUs, which is why both exist.</p>\n<h2 id=\"what-the-codes-mean\">What the codes mean<a class=\"anchor\" href=\"#what-the-codes-mean\" data-anchor=\"what-the-codes-mean\" aria-label=\"Copy a link to What the codes mean\">#</a></h2>\n<p>The source only comments three of them, so most of what follows is read from the names themselves — treat it as a guide to the naming, not as a specification:</p>\n<table>\n<thead>\n<tr>\n<th>Code</th>\n<th>What the name says</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>MINI_CM5</code></td>\n<td>A board profile named CM5; the build switches below carry both an ARM and an ASIX form of it</td>\n</tr>\n<tr>\n<td><code>MINI_BIG</code> / <code>MINI_SMALL</code></td>\n<td>Large and small panel boards, on the ASIX core</td>\n</tr>\n<tr>\n<td><code>MINI_TINY</code></td>\n<td>Small board — the source comments this one &quot;ASIX CORE&quot;</td>\n</tr>\n<tr>\n<td><code>MINI_NEW_TINY</code></td>\n<td>The same board redesigned — the source comments this one &quot;ARM CORE&quot;</td>\n</tr>\n<tr>\n<td><code>MINI_BIG_ARM</code> / <code>MINI_SMALL_ARM</code> / <code>MINI_TINY_ARM</code></td>\n<td>The three boards above, built for ARM</td>\n</tr>\n<tr>\n<td><code>MINI_NANO</code></td>\n<td>The T3-Nano</td>\n</tr>\n<tr>\n<td><code>MINI_TSTAT10</code></td>\n<td>The Tstat10 thermostat</td>\n</tr>\n<tr>\n<td><code>MINI_T10P</code></td>\n<td>A Tstat10 variant; it carries more analogue inputs than <code>MINI_TSTAT10</code></td>\n</tr>\n<tr>\n<td><code>MINI_TINY_11I</code></td>\n<td>Small board with eleven inputs</td>\n</tr>\n<tr>\n<td><code>MINI_T3OEM_12I</code></td>\n<td>Twelve-input OEM board</td>\n</tr>\n</tbody>\n</table>\n<p>The only two CPU assignments stated in the header are the ASIX/ARM pair for <code>MINI_TINY</code> and <code>MINI_NEW_TINY</code>. The <code>_ARM</code> suffix on the other three does the rest of the work. Nothing in the tree assigns a CPU to <code>MINI_NANO</code>, <code>MINI_TSTAT10</code>, <code>MINI_T10P</code>, <code>MINI_TINY_11I</code> or <code>MINI_T3OEM_12I</code> by name — they are covered by the <code>ARM_MINI</code> build switch instead.</p>\n<h2 id=\"the-build-switches-above-them\">The build switches above them<a class=\"anchor\" href=\"#the-build-switches-above-them\" data-anchor=\"the-build-switches-above-them\" aria-label=\"Copy a link to The build switches above them\">#</a></h2>\n<p>Two sets of constants sit above the model list and select the build:</p>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">C</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\"><span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> ARM_MINI        1</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> ARM_CM5         0</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> ARM_TSTAT_WIFI  0</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> ASIX_MINI       0</span>\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">define</span> ASIX_CM5        0</span>\n</code></pre></div>\n<p>Exactly one of these is normally set to 1. The file also carries <code>SW_REV</code>, which is the firmware revision the build reports — <code>6808</code> in the current tree.</p>\n<h2 id=\"two-hardware-flags-you-will-meet-in-the-code\">Two hardware flags you will meet in the code<a class=\"anchor\" href=\"#two-hardware-flags-you-will-meet-in-the-code\" data-anchor=\"two-hardware-flags-you-will-meet-in-the-code\" aria-label=\"Copy a link to Two hardware flags you will meet in the code\">#</a></h2>\n<ul>\n<li><code>MSTP_UPDATE</code> — whether this build accepts firmware updates over MS/TP</li>\n<li><code>HANDLE_REBOOT_FLAG</code> — a special customer build that disables the boot-time program so a controller cannot get stuck rebooting on a bad program. The comment in the source is explicit that it must stay 0 normally, and it is only for PLC builds.</li>\n</ul>\n<p>The per-model point ceilings that go with each of these codes are in <a href=\"io-ceilings.md\">How many points each model carries</a>.</p>\n",
+			"headings": [
+				{
+					"id": "the-model-codes",
+					"text": "The model codes",
+					"level": 2
+				},
+				{
+					"id": "what-the-codes-mean",
+					"text": "What the codes mean",
+					"level": 2
+				},
+				{
+					"id": "the-build-switches-above-them",
+					"text": "The build switches above them",
+					"level": 2
+				},
+				{
+					"id": "two-hardware-flags-you-will-meet-in-the-code",
+					"text": "Two hardware flags you will meet in the code",
+					"level": 2
+				}
+			]
+		},
+		"families": {
+			"title": "The product families",
+			"html": "<p>Temco's catalogue divides along the line between <em>controllers</em> — programmable devices that run Control Basic — and <em>everything that hangs off them</em>: I/O modules, sensors, meters and radios. The repository layout follows that line only roughly, so this page sorts it out.</p>\n<h2 id=\"programmable-controllers\">Programmable controllers<a class=\"anchor\" href=\"#programmable-controllers\" data-anchor=\"programmable-controllers\" aria-label=\"Copy a link to Programmable controllers\">#</a></h2>\n<p>The T3 family. A controller is a panel with a CPU, a fixed set of I/O and a BACnet or Modbus connection, and it runs programs you write. The firmware for the whole generation lives in one repository — the STM32 build covers &quot;all T3 controllers and the Tstat10 programmable thermostat&quot; — and its replacement is the ESP32 build.</p>\n<p>The model table is in <a href=\"controller-models.md\">The controller model table</a>. The point ceilings are in <a href=\"io-ceilings.md\">How many points each model carries</a>.</p>\n<h2 id=\"thermostats\">Thermostats<a class=\"anchor\" href=\"#thermostats\" data-anchor=\"thermostats\" aria-label=\"Copy a link to Thermostats\">#</a></h2>\n<p>Two generations, and the difference matters:</p>\n<ul>\n<li><strong>Tstat8</strong> — the configurable thermostat. Legacy: its repository says so in the first line. It is configured through registers rather than programmed.</li>\n<li><strong>Tstat10 and Tstat11</strong> — programmable, with a graphical display. The Tstat10 shares a firmware image with the T3 controllers; the Tstat11 is a separate 480 × 320 device with its own project on this site.</li>\n</ul>\n<p>The Tstat8 repository points to the Tstat10E as its successor, and its source is the ESP32 repository.</p>\n<h2 id=\"i-o-modules\">I/O modules<a class=\"anchor\" href=\"#i-o-modules\" data-anchor=\"i-o-modules\" aria-label=\"Copy a link to I/O modules\">#</a></h2>\n<p>Boards that add points to a controller over Modbus or BACnet and have no program of their own:</p>\n<ul>\n<li><strong>T3-4AO</strong> — analogue outputs, digital outputs and analogue inputs on a C8051F120</li>\n<li><strong>The Modbus and BACnet I/O modules</strong> — the 6CTA and its siblings</li>\n</ul>\n<h2 id=\"sensors-and-transmitters\">Sensors and transmitters<a class=\"anchor\" href=\"#sensors-and-transmitters\" data-anchor=\"sensors-and-transmitters\" aria-label=\"Copy a link to Sensors and transmitters\">#</a></h2>\n<p>Devices that measure and report, with a Modbus interface and no control logic beyond optional PID:</p>\n<ul>\n<li><strong>CO2 sensor</strong> — CO2, temperature and humidity for commercial and industrial spaces</li>\n<li><strong>AIRLAB</strong> — CO2, PM2.5, pressure, temperature and humidity in one enclosure</li>\n</ul>\n<h2 id=\"meters\">Meters<a class=\"anchor\" href=\"#meters\" data-anchor=\"meters\" aria-label=\"Copy a link to Meters\">#</a></h2>\n<ul>\n<li><strong>Three-phase power meter</strong> — electrical measurement over Modbus and BACnet</li>\n</ul>\n<h2 id=\"radios\">Radios<a class=\"anchor\" href=\"#radios\" data-anchor=\"radios\" aria-label=\"Copy a link to Radios\">#</a></h2>\n<ul>\n<li><strong>Zigbee coordinator and end devices</strong> — a Modbus bridge to a Zigbee mesh, built on a TI chipset with a CC2591 front end</li>\n</ul>\n<h2 id=\"what-the-families-have-in-common\">What the families have in common<a class=\"anchor\" href=\"#what-the-families-have-in-common\" data-anchor=\"what-the-families-have-in-common\" aria-label=\"Copy a link to What the families have in common\">#</a></h2>\n<p>Every board here speaks Modbus, and most also speak BACnet. That is not a coincidence: it is what makes them interchangeable parts of one system, and it is why so much of the source is shared — the same <code>baclib</code>, the same <code>IO_control</code> library, the same FreeRTOS and FATFS trees appear repository after repository.</p>\n<p>Those shared trees are also why README files are thin. Most of these repositories were split out of one project, so each one describes only its own delta.</p>\n",
+			"headings": [
+				{
+					"id": "programmable-controllers",
+					"text": "Programmable controllers",
+					"level": 2
+				},
+				{
+					"id": "thermostats",
+					"text": "Thermostats",
+					"level": 2
+				},
+				{
+					"id": "i-o-modules",
+					"text": "I/O modules",
+					"level": 2
+				},
+				{
+					"id": "sensors-and-transmitters",
+					"text": "Sensors and transmitters",
+					"level": 2
+				},
+				{
+					"id": "meters",
+					"text": "Meters",
+					"level": 2
+				},
+				{
+					"id": "radios",
+					"text": "Radios",
+					"level": 2
+				},
+				{
+					"id": "what-the-families-have-in-common",
+					"text": "What the families have in common",
+					"level": 2
+				}
+			]
+		},
+		"io-ceilings": {
+			"title": "How many points each model carries",
+			"html": "<p>Each board profile in the firmware has a ceiling for every point type, and the ceilings are not proportional to anything — a big board carries fewer discrete inputs than a small one, and one small board carries more analogue outputs than a large one. These numbers are what the firmware will index; they are not necessarily what a given board is populated with.</p>\n<p>Taken from <code>common/product.h</code> in the T3 controller firmware.</p>\n<table>\n<thead>\n<tr>\n<th>Model</th>\n<th style=\"text-align:right\">AI</th>\n<th style=\"text-align:right\">DO</th>\n<th style=\"text-align:right\">AO</th>\n<th style=\"text-align:right\">AV</th>\n<th style=\"text-align:right\">DI</th>\n<th style=\"text-align:right\">SC</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>BIG</code></td>\n<td style=\"text-align:right\">32</td>\n<td style=\"text-align:right\">12</td>\n<td style=\"text-align:right\">12</td>\n<td style=\"text-align:right\">128</td>\n<td style=\"text-align:right\">0</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n<tr>\n<td><code>SMALL</code></td>\n<td style=\"text-align:right\">16</td>\n<td style=\"text-align:right\">6</td>\n<td style=\"text-align:right\">4</td>\n<td style=\"text-align:right\">128</td>\n<td style=\"text-align:right\">0</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n<tr>\n<td><code>TINY</code></td>\n<td style=\"text-align:right\">11</td>\n<td style=\"text-align:right\">6</td>\n<td style=\"text-align:right\">2</td>\n<td style=\"text-align:right\">128</td>\n<td style=\"text-align:right\">0</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n<tr>\n<td><code>NEW_TINY</code></td>\n<td style=\"text-align:right\">8</td>\n<td style=\"text-align:right\">8</td>\n<td style=\"text-align:right\">6</td>\n<td style=\"text-align:right\">128</td>\n<td style=\"text-align:right\">0</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n<tr>\n<td><code>TINY_11I</code></td>\n<td style=\"text-align:right\">11</td>\n<td style=\"text-align:right\">6</td>\n<td style=\"text-align:right\">5</td>\n<td style=\"text-align:right\">128</td>\n<td style=\"text-align:right\">0</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n<tr>\n<td><code>VAV</code></td>\n<td style=\"text-align:right\">6</td>\n<td style=\"text-align:right\">1</td>\n<td style=\"text-align:right\">2</td>\n<td style=\"text-align:right\">5</td>\n<td style=\"text-align:right\">0</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n<tr>\n<td><code>CM5</code></td>\n<td style=\"text-align:right\">24</td>\n<td style=\"text-align:right\">10</td>\n<td style=\"text-align:right\">0</td>\n<td style=\"text-align:right\">128</td>\n<td style=\"text-align:right\">8</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n<tr>\n<td><code>TSTAT10</code></td>\n<td style=\"text-align:right\">13</td>\n<td style=\"text-align:right\">5</td>\n<td style=\"text-align:right\">4</td>\n<td style=\"text-align:right\">128</td>\n<td style=\"text-align:right\">8</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n<tr>\n<td><code>T10P</code></td>\n<td style=\"text-align:right\">17</td>\n<td style=\"text-align:right\">5</td>\n<td style=\"text-align:right\">4</td>\n<td style=\"text-align:right\">128</td>\n<td style=\"text-align:right\">8</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n<tr>\n<td><code>T3OEM_12I</code></td>\n<td style=\"text-align:right\">21</td>\n<td style=\"text-align:right\">7</td>\n<td style=\"text-align:right\">4</td>\n<td style=\"text-align:right\">128</td>\n<td style=\"text-align:right\">8</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n</tbody>\n</table>\n<p>These are the STM32 firmware's ceilings. The ESP32 tree keeps most of them but not all — <code>TSTAT10</code> analogue outputs drop from 4 to 2, <code>T3OEM_12I</code> is gone, and <code>NG2</code>, <code>NEWNG2</code>, <code>NANO</code> and <code>LPWM</code> are new profiles with no STM32 equivalent. See <a href=\"stm32-to-esp32.md\">The move from STM32 to ESP32</a> for that comparison.</p>\n<h2 id=\"the-point-type-letters\">The point-type letters<a class=\"anchor\" href=\"#the-point-type-letters\" data-anchor=\"the-point-type-letters\" aria-label=\"Copy a link to The point-type letters\">#</a></h2>\n<p>The header does not expand its own abbreviations. AI, DO, AO, AV and DI are the standard analogue input, digital output, analogue output, analogue variable and digital input; SC is used identically across every profile at 8, and the source does not say what it stands for.</p>\n<h2 id=\"what-the-table-says\">What the table says<a class=\"anchor\" href=\"#what-the-table-says\" data-anchor=\"what-the-table-says\" aria-label=\"Copy a link to What the table says\">#</a></h2>\n<p><strong>Analogue variables are 128 almost everywhere.</strong> Only the VAV profile breaks the pattern, with 5 — and its whole ceiling is small: 6 inputs, one digital output, no digital inputs.</p>\n<p><strong>Digital inputs appear only on the four newest profiles.</strong> <code>CM5</code>, <code>TSTAT10</code>, <code>T10P</code> and <code>T3OEM_12I</code> all carry 8, and every older profile carries none. That is a hardware generation boundary in a single header, and it matches what the boards are: the older panels took discrete points through the analogue input cards, the newer ones have dedicated digital inputs.</p>\n<p><strong>The T10P is a Tstat10 with a bigger input count.</strong> 17 analogue inputs against 13, with every other ceiling identical. If you need to know whether a unit is the 13-input or the 17-input build, this is the difference.</p>\n<p><strong><code>NEW_TINY</code> is not a bigger <code>TINY</code>.</strong> It has fewer analogue inputs (8 against 11) and more of everything else — 8 digital outputs against 6, and 6 analogue outputs against 2. It is a different board, not a revision.</p>\n<h2 id=\"the-vav-profile\">The VAV profile<a class=\"anchor\" href=\"#the-vav-profile\" data-anchor=\"the-vav-profile\" aria-label=\"Copy a link to The VAV profile\">#</a></h2>\n<p><code>MINI_VAV</code> is marked &quot;no used&quot; in the model list, and its ceilings match that: 6 inputs, 1 output, 2 analogue outputs and 5 variables. Treat any code path that mentions VAV as dormant.</p>\n<h2 id=\"related-ceilings-elsewhere-in-the-tree\">Related ceilings elsewhere in the tree<a class=\"anchor\" href=\"#related-ceilings-elsewhere-in-the-tree\" data-anchor=\"related-ceilings-elsewhere-in-the-tree\" aria-label=\"Copy a link to Related ceilings elsewhere in the tree\">#</a></h2>\n<p><code>TSTAT10_MAX_*</code> is also used outside the controller firmware — the Tstat11 firmware in the T3-programmable-controller repository shares the TSTAT10 limits rather than defining its own, which is why the two thermostats look identical at the point-model level despite different hardware. See the Tstat11 project on this site for what it actually runs.</p>\n<p>The <code>BIG</code>, <code>SMALL</code> and <code>TINY</code> names should not be confused with the old T3000's panel sizes. The DOS-era manual advertises &quot;128 points per controller, expandable to 512&quot;, 48 PID controllers and 32 trend logs for a machine with a VGA monitor and a hard disk — a completely different generation, and none of those numbers come from this header.</p>\n",
+			"headings": [
+				{
+					"id": "the-point-type-letters",
+					"text": "The point-type letters",
+					"level": 2
+				},
+				{
+					"id": "what-the-table-says",
+					"text": "What the table says",
+					"level": 2
+				},
+				{
+					"id": "the-vav-profile",
+					"text": "The VAV profile",
+					"level": 2
+				},
+				{
+					"id": "related-ceilings-elsewhere-in-the-tree",
+					"text": "Related ceilings elsewhere in the tree",
+					"level": 2
+				}
+			]
+		},
+		"repo-map": {
+			"title": "Where each board's source lives",
+			"html": "<p>Every board in this project is a repository in the <a href=\"https://github.com/temcocontrols\">temcocontrols organisation</a>. This is the index: what each repository is, and what you build it with.</p>\n<h2 id=\"firmware\">Firmware<a class=\"anchor\" href=\"#firmware\" data-anchor=\"firmware\" aria-label=\"Copy a link to Firmware\">#</a></h2>\n<table>\n<thead>\n<tr>\n<th>Repository</th>\n<th>What it is</th>\n<th>Toolchain</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>T3_ProgrammableController_ST</code></td>\n<td>Every T3 controller and the Tstat10, on the STM32F103ZE — the annotated reference tree</td>\n<td>Keil (<code>CM5_arm.uvprojx</code>), with Makefiles</td>\n</tr>\n<tr>\n<td><code>T3-programmable-controller-on-ESP32</code></td>\n<td>The current firmware for the same products, plus the Tstat11 profile</td>\n<td>CMake</td>\n</tr>\n<tr>\n<td><code>T3_Bootloader</code></td>\n<td>The bootloader those firmware images are linked behind</td>\n<td>CMake, Eclipse (<code>.cproject</code>)</td>\n</tr>\n<tr>\n<td><code>BacnetThermostat</code></td>\n<td>The legacy Tstat8 configurable thermostat</td>\n<td>Keil, STM32F10x</td>\n</tr>\n<tr>\n<td><code>Tstat8-T3-controllers</code></td>\n<td>The Zigbee coordinator and end devices, one image for both</td>\n<td>IAR (<code>GenericApp.ewp</code>, <code>Boot.ewp</code>)</td>\n</tr>\n<tr>\n<td><code>T3_4AO</code></td>\n<td>The C8051F120 analogue output board</td>\n<td>Keil (<code>T3_4AO.uvproj</code>)</td>\n</tr>\n<tr>\n<td><code>T3_Modules</code></td>\n<td>The Modbus and BACnet I/O module family, including the 6CTA</td>\n<td>Keil (<code>test.uvprojx</code>), with Makefiles</td>\n</tr>\n<tr>\n<td><code>Three-PhasePower-Meter</code></td>\n<td>The three-phase meter, ADE7753 front end</td>\n<td>Keil (<code>test.uvprojx</code>)</td>\n</tr>\n<tr>\n<td><code>CO2_HUM_PRESSURE_AIRLAB</code></td>\n<td>The AIRLAB air-quality transmitter</td>\n<td>Keil (<code>test.uvprojx</code>)</td>\n</tr>\n<tr>\n<td><code>CO2_Sensor</code></td>\n<td>No source — product images, wiring diagrams and a product link</td>\n<td>—</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"documents-in-this-project\">Documents in this project<a class=\"anchor\" href=\"#documents-in-this-project\" data-anchor=\"documents-in-this-project\" aria-label=\"Copy a link to Documents in this project\">#</a></h2>\n<table>\n<thead>\n<tr>\n<th>Page</th>\n<th>Repository it came from</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><a href=\"controller-models.md\">The controller model table</a></td>\n<td><code>T3_ProgrammableController_ST</code>, <code>common/product.h</code></td>\n</tr>\n<tr>\n<td><a href=\"io-ceilings.md\">How many points each model carries</a></td>\n<td><code>T3_ProgrammableController_ST</code>, <code>common/product.h</code></td>\n</tr>\n<tr>\n<td><a href=\"stm32-to-esp32.md\">The move from STM32 to ESP32</a></td>\n<td>both controller repositories</td>\n</tr>\n<tr>\n<td><a href=\"t3-4ao.md\">The T3-4AO analogue output board</a></td>\n<td><code>T3_4AO</code></td>\n</tr>\n<tr>\n<td><a href=\"t3-io-modules.md\">The Modbus and BACnet I/O modules</a></td>\n<td><code>T3_Modules</code></td>\n</tr>\n<tr>\n<td><a href=\"three-phase-meter.md\">The three-phase power meter</a></td>\n<td><code>Three-PhasePower-Meter</code></td>\n</tr>\n<tr>\n<td><a href=\"co2-sensor.md\">The CO2 sensor family</a></td>\n<td><code>CO2_Sensor</code></td>\n</tr>\n<tr>\n<td><a href=\"airlab.md\">The AIRLAB air-quality transmitter</a></td>\n<td><code>CO2_HUM_PRESSURE_AIRLAB</code></td>\n</tr>\n<tr>\n<td><a href=\"tstat8-legacy.md\">The legacy Tstat8 thermostat</a></td>\n<td><code>BacnetThermostat</code>, <code>Docs/Revisions.txt</code></td>\n</tr>\n<tr>\n<td><a href=\"zigbee-modules.md\">The Zigbee coordinator and end devices</a></td>\n<td><code>Tstat8-T3-controllers</code>, <code>Revision.txt</code></td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"two-repositories-that-confuse-people\">Two repositories that confuse people<a class=\"anchor\" href=\"#two-repositories-that-confuse-people\" data-anchor=\"two-repositories-that-confuse-people\" aria-label=\"Copy a link to Two repositories that confuse people\">#</a></h2>\n<p><strong><code>Tstat8-T3-controllers</code> contains no Tstat8 controller.</strong> It is the Zigbee radio firmware. The Tstat8 thermostat itself is in <code>BacnetThermostat</code>. The name presumably records that the radio modules were built for Tstat8-era products.</p>\n<p><strong>The Tstat11 lives in two places.</strong> It is a profile in the ESP32 controller firmware (<code>MINI_TSTAT11 29</code> in <code>main/define.h</code>), and it has its own repository and its own project on this site. The ESP32 tree is where the model is defined; the separate repository is where its display and application work happened.</p>\n<h2 id=\"where-the-schematics-are\">Where the schematics are<a class=\"anchor\" href=\"#where-the-schematics-are\" data-anchor=\"where-the-schematics-are\" aria-label=\"Copy a link to Where the schematics are\">#</a></h2>\n<table>\n<thead>\n<tr>\n<th>Board</th>\n<th>Drawing</th>\n<th>Repository</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Tstat8</td>\n<td><code>Docs/SchematicTstat8rev4_3.pdf</code></td>\n<td><code>BacnetThermostat</code></td>\n</tr>\n<tr>\n<td>Three-phase meter</td>\n<td><code>Docs/Rev06_SCH.pdf</code></td>\n<td><code>Three-PhasePower-Meter</code></td>\n</tr>\n<tr>\n<td>Zigbee radio</td>\n<td><code>Schematic/SCHEMATIC1 _ Zigbee_TI_2591_SMA_rev1.pdf</code></td>\n<td><code>Tstat8-T3-controllers</code></td>\n</tr>\n<tr>\n<td>T3-Nano</td>\n<td><code>Hardware/T3-Nano_REV7_1_ALL.zip</code></td>\n<td><code>T3_ProgrammableController_ST</code></td>\n</tr>\n<tr>\n<td>T3-BB</td>\n<td><code>Schematics/T3BB_top_rev27.pdf</code>, <code>T3BB_bot_rev28_1.pdf</code></td>\n<td><code>T3_CrossPlatform</code> — described in the legacy manuals project on this site</td>\n</tr>\n</tbody>\n</table>\n",
+			"headings": [
+				{
+					"id": "firmware",
+					"text": "Firmware",
+					"level": 2
+				},
+				{
+					"id": "documents-in-this-project",
+					"text": "Documents in this project",
+					"level": 2
+				},
+				{
+					"id": "two-repositories-that-confuse-people",
+					"text": "Two repositories that confuse people",
+					"level": 2
+				},
+				{
+					"id": "where-the-schematics-are",
+					"text": "Where the schematics are",
+					"level": 2
+				}
+			]
+		},
+		"stm32-to-esp32": {
+			"title": "The move from STM32 to ESP32",
+			"html": "<p>Every T3 controller, and the Tstat10, once ran on an STM32F103ZE. Then it did not.</p>\n<p>The repository that holds that firmware says it plainly:</p>\n<blockquote>\n<p>This is the source code to our T3 series of programmable controllers including all T3 controllers and the Tstat10 programmable thermostat. The CPU is the Arm STMF103ZE which has reached end of life for most products around Temco. Most products have been switched to the ESP32 cpu which provides an 8X increase in rom and ram.</p>\n</blockquote>\n<p>So the split is not a rewrite for its own sake: a part reached end of life, and the replacement brings eight times the ROM and RAM.</p>\n<h2 id=\"what-this-means-when-you-are-looking-for-code\">What this means when you are looking for code<a class=\"anchor\" href=\"#what-this-means-when-you-are-looking-for-code\" data-anchor=\"what-this-means-when-you-are-looking-for-code\" aria-label=\"Copy a link to What this means when you are looking for code\">#</a></h2>\n<table>\n<thead>\n<tr>\n<th>You want</th>\n<th>Look in</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Firmware for a controller still in the field on STM32</td>\n<td><code>T3_ProgrammableController_ST</code></td>\n</tr>\n<tr>\n<td>Firmware for current product</td>\n<td><code>T3-programmable-controller-on-ESP32</code></td>\n</tr>\n<tr>\n<td>The annotated model table</td>\n<td>either, but the ST tree's comments are fuller</td>\n</tr>\n<tr>\n<td>The Tstat11</td>\n<td>the ESP32 tree's <code>main/</code> — it is a profile there, and it also has its own repository</td>\n</tr>\n</tbody>\n</table>\n<p>The ST tree is the better reference for <em>why</em> the firmware is shaped the way it is — the &quot;ASIX CORE&quot; and &quot;ARM CORE&quot; annotations and the customer-build switches are all there, and the ASIX-era boards only exist there. Read it for structure, and the ESP32 tree for what ships.</p>\n<h2 id=\"the-model-codes-survived-the-change\">The model codes survived the change<a class=\"anchor\" href=\"#the-model-codes-survived-the-change\" data-anchor=\"the-model-codes-survived-the-change\" aria-label=\"Copy a link to The model codes survived the change\">#</a></h2>\n<p>This is the useful part: the numbering is stable. The ESP32 tree keeps <code>MINI_BIG_ARM 5</code>, <code>MINI_SMALL_ARM 6</code>, <code>MINI_TINY_ARM 7</code>, <code>MINI_NANO 8</code>, <code>MINI_TSTAT10 9</code>, <code>MINI_VAV 10</code>, <code>MINI_T10P 11</code> and <code>MINI_TINY_11I 12</code> exactly where the ST tree put them.</p>\n<p>What changed at the margins:</p>\n<ul>\n<li>The five ASIX-era profiles — <code>CM5</code>, <code>BIG</code>, <code>SMALL</code>, <code>TINY</code>, <code>NEW_TINY</code> (codes 0 to 4) — are <strong>commented out</strong> in the ESP32 <code>main/define.h</code>. The numbers are still reserved; the boards are no longer built.</li>\n<li><code>MINI_T3OEM_12I</code> (14) is <strong>gone entirely</strong>: the name does not appear in the ESP32 tree at all. The OEM board's role was taken by two new profiles, <code>NG2</code> and <code>NEWNG2</code>.</li>\n<li><code>MINI_TSTAT11</code> is <strong>new at 29</strong>, and <code>MAX_MINI_TYPE</code> moves from 14 to 30 to make room. The Tstat11 is a profile of the ESP32 controller firmware as well as its own repository.</li>\n</ul>\n<h2 id=\"the-ceilings-did-change\">The ceilings did change<a class=\"anchor\" href=\"#the-ceilings-did-change\" data-anchor=\"the-ceilings-did-change\" aria-label=\"Copy a link to The ceilings did change\">#</a></h2>\n<p>The point model is <em>not</em> identical, and the difference matters when you are porting:</p>\n<table>\n<thead>\n<tr>\n<th>Profile</th>\n<th>ST tree</th>\n<th>ESP32 tree</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>TSTAT10</code> analogue outputs</td>\n<td>4</td>\n<td><strong>2</strong></td>\n</tr>\n<tr>\n<td><code>T3OEM_12I</code></td>\n<td>21 AI / 7 DO / 4 AO</td>\n<td>removed, replaced by <code>NG2</code> and <code>NEWNG2</code></td>\n</tr>\n</tbody>\n</table>\n<p><code>NG2</code> allows <code>16 + 6</code> analogue inputs, 7 digital outputs and no analogue outputs; <code>NEWNG2</code> allows <code>24 + 4</code> analogue inputs, 8 digital outputs and 4 analogue outputs. The <code>+</code> is part of the macro, so <code>NG2_MAX_AIS</code> is the expression <code>16 + 6</code> rather than a resolved 22 — anything that uses it has to survive that.</p>\n<p>The ESP32 tree also adds <code>NANO_MAX_*</code> and <code>LPWM_MAX_*</code>, neither of which exists in the ST tree.</p>\n<p>The full per-profile tables are in <a href=\"io-ceilings.md\">How many points each model carries</a>.</p>\n<h2 id=\"one-conflict-worth-knowing-about\">One conflict worth knowing about<a class=\"anchor\" href=\"#one-conflict-worth-knowing-about\" data-anchor=\"one-conflict-worth-knowing-about\" aria-label=\"Copy a link to One conflict worth knowing about\">#</a></h2>\n<p>Inside the ESP32 tree, the two headers disagree about code 8. <code>main/define.h</code> defines <code>MINI_NANO 8</code>; <code>main/product.h</code> defines <code>MINI_ROUTER 8</code>. Both are live definitions, not commented out. If you are working in that tree and code 8 matters, check which header the file you are editing includes before trusting either name.</p>\n<h2 id=\"the-display-layer-moved-too\">The display layer moved too<a class=\"anchor\" href=\"#the-display-layer-moved-too\" data-anchor=\"the-display-layer-moved-too\" aria-label=\"Copy a link to The display layer moved too\">#</a></h2>\n<p>The ST tree drives its display directly through <code>display/LCD.c</code>, <code>font.c</code> and a driver for an ER-TFT024-3 4-wire SPI panel — a fixed panel driven from C.</p>\n<p>The ESP32 generation, and the Tstat11 after it, use two render paths in parallel: SquareLine-generated C screens, and a JSON-driven dynamic display built on LVGL. If you are porting a screen, the panel driver in the ST tree is not the code you carry across — the layout and the widget tree are.</p>\n",
+			"headings": [
+				{
+					"id": "what-this-means-when-you-are-looking-for-code",
+					"text": "What this means when you are looking for code",
+					"level": 2
+				},
+				{
+					"id": "the-model-codes-survived-the-change",
+					"text": "The model codes survived the change",
+					"level": 2
+				},
+				{
+					"id": "the-ceilings-did-change",
+					"text": "The ceilings did change",
+					"level": 2
+				},
+				{
+					"id": "one-conflict-worth-knowing-about",
+					"text": "One conflict worth knowing about",
+					"level": 2
+				},
+				{
+					"id": "the-display-layer-moved-too",
+					"text": "The display layer moved too",
+					"level": 2
+				}
+			]
+		},
+		"t3-4ao": {
+			"title": "The T3-4AO analogue output board",
+			"html": "<p>An I/O module with analogue outputs, digital outputs and analogue inputs, built on a Silicon Labs C8051F120 and talking Modbus. It has no program of its own — a controller drives it.</p>\n<p>The whole repository is flat: a handful of C files in the root, with <code>define.h</code> holding the configuration and <code>T3IOmodbus.h</code> the protocol layer.</p>\n<h2 id=\"what-it-carries\">What it carries<a class=\"anchor\" href=\"#what-it-carries\" data-anchor=\"what-it-carries\" aria-label=\"Copy a link to What it carries\">#</a></h2>\n<table>\n<thead>\n<tr>\n<th></th>\n<th style=\"text-align:right\">Count</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Analogue outputs</td>\n<td style=\"text-align:right\">4</td>\n</tr>\n<tr>\n<td>Digital outputs</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n<tr>\n<td>Analogue inputs</td>\n<td style=\"text-align:right\">14</td>\n</tr>\n</tbody>\n</table>\n<p>The board's own README gives the numbers and the reason for the CPU choice: the C8051F120 includes a 12-bit ADC, which is what the 14 analogue inputs are read through. Modbus is the only field protocol listed.</p>\n<h2 id=\"what-is-in-the-code\">What is in the code<a class=\"anchor\" href=\"#what-is-in-the-code\" data-anchor=\"what-is-in-the-code\" aria-label=\"Copy a link to What is in the code\">#</a></h2>\n<ul>\n<li><code>define.h</code> — the configuration: <code>MAX_OUTPUT_CHANNELS 8</code>, the Modbus function codes, the resistor-divider constants for the analogue inputs, and the calibration layout</li>\n<li><code>T3IOmodbus.h</code>, <code>serial.c</code> — the Modbus layer and the serial port</li>\n<li><code>Range.c</code> — input ranging, so an analogue input can be scaled rather than read raw</li>\n<li><code>goalflash.c</code>, <code>flash_info.c</code>, <code>goal_flash.h</code> — the flash driver and the firmware/ISP split</li>\n<li><code>LibIO_T3IO.h</code> — the I/O library interface</li>\n<li><code>pic.c</code> — the C8051 target-specific code</li>\n<li><code>c8051F120.h</code> — the register definitions for the part</li>\n</ul>\n<h2 id=\"two-details-worth-knowing-before-you-flash-one\">Two details worth knowing before you flash one<a class=\"anchor\" href=\"#two-details-worth-knowing-before-you-flash-one\" data-anchor=\"two-details-worth-knowing-before-you-flash-one\" aria-label=\"Copy a link to Two details worth knowing before you flash one\">#</a></h2>\n<p><strong>The flash is split between ISP and firmware.</strong> <code>DATA_TO_ISP</code> is <code>0xEE00</code> (60928) and <code>DATA_TO_FIRMWARE</code> is <code>104448</code> — the bootloader and the application do not share a region, and the comment for the firmware address is present with the ISP address above it, so a build has to be told which side it is going to.</p>\n<p><strong>Calibration is stored as a byte.</strong> <code>CALIBRATION_OFFSET 128</code> exists so that <code>FLASH_CALIBRATION</code> fits in an unsigned char, and <code>CALIBRATION_PRECISION_POINTS 10</code> sets the resolution. If you are writing calibration from scratch rather than through the tool, that offset is why your values look shifted.</p>\n<h2 id=\"input-filtering\">Input filtering<a class=\"anchor\" href=\"#input-filtering\" data-anchor=\"input-filtering\" aria-label=\"Copy a link to Input filtering\">#</a></h2>\n<p>The analogue inputs are filtered in firmware, and <code>define.h</code> defines the thresholds more than once — the later definitions are the ones the compiler keeps, and earlier ones were left in place rather than deleted. Line 70 sets a noise threshold of 1 and a filter of 1; lines 76 and 84 set them to 100 and 10; a commented-out pair at line 73 would have used 200 and 10, with the comment &quot;threshold 200/1024 = 1V&quot;. A value of 100 against a 1024-count ADC is therefore roughly a 0.1 V band, and the filter of 10 means ten samples. If you are debugging a slow or restless analogue reading, this is the block that decides it.</p>\n<h2 id=\"source\">Source<a class=\"anchor\" href=\"#source\" data-anchor=\"source\" aria-label=\"Copy a link to Source\">#</a></h2>\n<p><code>T3_4AO</code> in the Temco controls organisation. The repository has no schematic and no manual; <code>define.h</code> and the board's README are the whole of its documentation.</p>\n",
+			"headings": [
+				{
+					"id": "what-it-carries",
+					"text": "What it carries",
+					"level": 2
+				},
+				{
+					"id": "what-is-in-the-code",
+					"text": "What is in the code",
+					"level": 2
+				},
+				{
+					"id": "two-details-worth-knowing-before-you-flash-one",
+					"text": "Two details worth knowing before you flash one",
+					"level": 2
+				},
+				{
+					"id": "input-filtering",
+					"text": "Input filtering",
+					"level": 2
+				},
+				{
+					"id": "source",
+					"text": "Source",
+					"level": 2
+				}
+			]
+		},
+		"t3-io-modules": {
+			"title": "The Modbus and BACnet I/O modules",
+			"html": "<p>The <code>T3_Modules</code> repository holds the firmware for Temco's I/O modules — boards that add inputs and outputs to a controller and speak Modbus or BACnet over the field bus. Unlike the T3-4AO, these are not one board: the repository carries a family, and the README is really a build note for one member of it.</p>\n<h2 id=\"the-6cta-and-how-its-firmware-is-built\">The 6CTA, and how its firmware is built<a class=\"anchor\" href=\"#the-6cta-and-how-its-firmware-is-built\" data-anchor=\"the-6cta-and-how-its-firmware-is-built\" aria-label=\"Copy a link to The 6CTA, and how its firmware is built\">#</a></h2>\n<p>The README describes generating a hex file for the T3 6CTA, and every step is about placing the application correctly:</p>\n<ol>\n<li>Make sure the application address is <code>0x8008000</code>.</li>\n<li>Create a hex file of the firmware.</li>\n<li>Set the vector table to <code>0x8008000</code>.</li>\n<li>Write the character string <code>TemcoT36CTA</code> to address <code>0x08008200</code> — the ISP tool uses this to confirm it is the right firmware for the device.</li>\n</ol>\n<p>Four steps, three of which are about the same address. That is the shape of a module firmware build: the application starts at a fixed offset into flash rather than at address zero, the vector table has to be relocated to match, and a magic string at a known address tells the programming tool whether the image belongs on the board it is talking to.</p>\n<p>If a module refuses a firmware file that is otherwise correct, the magic string is the first thing to check. It is not a version number — it identifies the board, not the release — and the README is explicit that the ISP tool is what reads it.</p>\n<h2 id=\"where-the-modules-fit\">Where the modules fit<a class=\"anchor\" href=\"#where-the-modules-fit\" data-anchor=\"where-the-modules-fit\" aria-label=\"Copy a link to Where the modules fit\">#</a></h2>\n<p>An I/O module has no program of its own. It exposes points to whichever controller is on the bus, and the controller's point limits — not the module's — decide how many can be used. See <a href=\"io-ceilings.md\">How many points each model carries</a>.</p>\n<h2 id=\"related-boards\">Related boards<a class=\"anchor\" href=\"#related-boards\" data-anchor=\"related-boards\" aria-label=\"Copy a link to Related boards\">#</a></h2>\n<ul>\n<li><a href=\"t3-4ao.md\">The T3-4AO analogue output board</a> — a separate repository, separate CPU, same idea</li>\n<li><a href=\"zigbee-modules.md\">The Zigbee coordinator and end devices</a> — modules that carry Modbus over a radio rather than a wire</li>\n</ul>\n<h2 id=\"source\">Source<a class=\"anchor\" href=\"#source\" data-anchor=\"source\" aria-label=\"Copy a link to Source\">#</a></h2>\n<p><code>T3_Modules</code> in the Temco controls organisation. There is no schematic, no register map and no manual in the repository; the README is four lines long and is reproduced above in full.</p>\n",
+			"headings": [
+				{
+					"id": "the-6cta-and-how-its-firmware-is-built",
+					"text": "The 6CTA, and how its firmware is built",
+					"level": 2
+				},
+				{
+					"id": "where-the-modules-fit",
+					"text": "Where the modules fit",
+					"level": 2
+				},
+				{
+					"id": "related-boards",
+					"text": "Related boards",
+					"level": 2
+				},
+				{
+					"id": "source",
+					"text": "Source",
+					"level": 2
+				}
+			]
+		},
+		"three-phase-meter": {
+			"title": "The three-phase power meter",
+			"html": "<p>A power meter for three-phase electrical service, reporting over Modbus and BACnet. The repository's README is one line — &quot;Three phase power meter with modbus and bacnet protocol&quot; — so everything below comes from the code and from the schematic in <code>Docs/Rev06_SCH.pdf</code>.</p>\n<h2 id=\"how-it-is-put-together\">How it is put together<a class=\"anchor\" href=\"#how-it-is-put-together\" data-anchor=\"how-it-is-put-together\" aria-label=\"Copy a link to How it is put together\">#</a></h2>\n<p>An STM32F10x running FreeRTOS, with an <strong>ADE7753</strong> energy metering front end. <code>main()</code> starts seven tasks:</p>\n<table>\n<thead>\n<tr>\n<th>Task</th>\n<th>What it does</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>PowerMeter</code></td>\n<td>Reads the metering chip and maintains voltage, current and watt-hour measurements</td>\n</tr>\n<tr>\n<td><code>COMM</code></td>\n<td>Modbus</td>\n</tr>\n<tr>\n<td><code>NET</code></td>\n<td>The network stack</td>\n</tr>\n<tr>\n<td><code>MSTP</code></td>\n<td>BACnet MS/TP</td>\n</tr>\n<tr>\n<td><code>AnalogInput</code></td>\n<td>The analogue input points a controller sees</td>\n</tr>\n<tr>\n<td><code>AnalogOutput</code></td>\n<td>The analogue output points</td>\n</tr>\n<tr>\n<td><code>LED0</code></td>\n<td>The status LED</td>\n</tr>\n</tbody>\n</table>\n<p>The application is linked at <code>0x8008000</code> — <code>main()</code> sets the vector table there explicitly, the same offset the I/O modules use, so the same bootloader arrangement applies across the family.</p>\n<h2 id=\"what-it-measures\">What it measures<a class=\"anchor\" href=\"#what-it-measures\" data-anchor=\"what-it-measures\" aria-label=\"Copy a link to What it measures\">#</a></h2>\n<p><code>vPowerMeterTask</code> initialises the ADE7753 and then loops thirty times at 100 ms, reading:</p>\n<ul>\n<li>frequency</li>\n<li>voltage peak and current peak</li>\n<li>RMS voltage and RMS current (<code>get_vrms</code>, <code>get_irms</code>)</li>\n<li>watt-hour calibration through the chip's CF output, when <code>cf_calibration_enable</code> is set</li>\n</ul>\n<p>So the meter is measuring real electrical quantities from a dedicated metering IC, not inferring them from an ADC.</p>\n<h2 id=\"one-thing-to-know-before-trusting-a-three-phase-reading\">One thing to know before trusting a three-phase reading<a class=\"anchor\" href=\"#one-thing-to-know-before-trusting-a-three-phase-reading\" data-anchor=\"one-thing-to-know-before-trusting-a-three-phase-reading\" aria-label=\"Copy a link to One thing to know before trusting a three-phase reading\">#</a></h2>\n<p>The phase counter is hard-coded to one phase:</p>\n<div class=\"code\"><div class=\"code__bar\"><span class=\"code__lang\">C</span><button class=\"code__copy\" type=\"button\" data-copy>Copy</button></div><pre class=\"code__pre\"><code class=\"hljs\">int8 PHASE_TEMP = <span class=\"hljs-number\">0</span>;\n...\n<span class=\"hljs-comment\">//\t\tif(PHASE_TEMP &gt; 2) PHASE_TEMP = 0;</span>\n<span class=\"hljs-comment\">//\t\telse</span>\n<span class=\"hljs-comment\">//\t\t\tPHASE_TEMP++;</span>\n\t\tPHASE_TEMP = <span class=\"hljs-number\">1</span>;\n</code></pre></div>\n<p>The block that would step through phases 0, 1 and 2 is commented out, and <code>PHASE_TEMP</code> is set to 1 on every pass. As the code stands, the metering task reads and calibrates a single phase — <code>wh_calibration[PHASE_TEMP]</code> is indexed with that same constant, so the other two entries in the array are never touched.</p>\n<p>Whether that reflects the shipping firmware or a work-in-progress tree is not recorded in the repository. If you are commissioning a unit, check which binary it is running before you assume three phases of measurement.</p>\n<h2 id=\"what-else-is-in-the-tree\">What else is in the tree<a class=\"anchor\" href=\"#what-else-is-in-the-tree\" data-anchor=\"what-else-is-in-the-tree\" aria-label=\"Copy a link to What else is in the tree\">#</a></h2>\n<table>\n<thead>\n<tr>\n<th>Folder</th>\n<th>What it carries</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>HARDWARE</code>, <code>STM32F10x_FWLib</code>, <code>CORE</code>, <code>SYSTEM</code></td>\n<td>The STM32F10x target and its libraries</td>\n</tr>\n<tr>\n<td><code>baclib</code></td>\n<td>The BACnet stack, including <code>baclib/object/ms-input.h</code></td>\n</tr>\n<tr>\n<td><code>MODBUS</code></td>\n<td>The Modbus stack</td>\n</tr>\n<tr>\n<td><code>IO_control</code>, <code>INPUT</code>, <code>OUTPUT</code>, <code>INPUT_LIB</code></td>\n<td>The I/O layer — <code>analog_input.c</code>, <code>analog_output.c</code>, <code>outputs.c</code></td>\n</tr>\n<tr>\n<td><code>FreeRTOS</code>, <code>UCOSII</code></td>\n<td>Two RTOS trees are present; the code above uses FreeRTOS</td>\n</tr>\n<tr>\n<td><code>TCPIP</code>, <code>uIP-1.0</code>, <code>uIP-APP</code></td>\n<td>TCP/IP stacks</td>\n</tr>\n<tr>\n<td><code>FATFS</code>, <code>FLASH</code>, <code>USB</code></td>\n<td>File system, flash driver and USB</td>\n</tr>\n<tr>\n<td><code>KEY</code>, <code>FILTER</code>, <code>VMALLOC</code>, <code>USMART</code>, <code>INFO</code>, <code>OBJ</code>, <code>USER</code></td>\n<td>Key handling, filtering, allocation, the debug shell, build output</td>\n</tr>\n</tbody>\n</table>\n<p>Two RTOS trees and two TCP/IP trees in one repository says this board was built by lifting a working controller project and adding metering to it. If you are building it, find out which pair the Keil project actually compiles — <code>test.uvprojx</code> in the root decides.</p>\n<h2 id=\"documents\">Documents<a class=\"anchor\" href=\"#documents\" data-anchor=\"documents\" aria-label=\"Copy a link to Documents\">#</a></h2>\n<p><code>Docs/Rev06_SCH.pdf</code> is the board schematic for revision 06, and the only drawing in the repository.</p>\n<h2 id=\"source\">Source<a class=\"anchor\" href=\"#source\" data-anchor=\"source\" aria-label=\"Copy a link to Source\">#</a></h2>\n<p><code>Three-PhasePower-Meter</code> in the Temco controls organisation.</p>\n",
+			"headings": [
+				{
+					"id": "how-it-is-put-together",
+					"text": "How it is put together",
+					"level": 2
+				},
+				{
+					"id": "what-it-measures",
+					"text": "What it measures",
+					"level": 2
+				},
+				{
+					"id": "one-thing-to-know-before-trusting-a-three-phase-reading",
+					"text": "One thing to know before trusting a three-phase reading",
+					"level": 2
+				},
+				{
+					"id": "what-else-is-in-the-tree",
+					"text": "What else is in the tree",
+					"level": 2
+				},
+				{
+					"id": "documents",
+					"text": "Documents",
+					"level": 2
+				},
+				{
+					"id": "source",
+					"text": "Source",
+					"level": 2
+				}
+			]
+		},
+		"tstat8-legacy": {
+			"title": "The legacy Tstat8 thermostat",
+			"html": "<p>The Tstat8 is Temco's configurable BACnet thermostat. It is <strong>legacy</strong> — the repository says so in its first line, and points to the Tstat10E as the current programmable thermostat. This page exists because the Tstat8 is still installed, still has full source published, and its revision log is unusually detailed.</p>\n<p><img src=\"/media/t3-devices/1.0/tstat8-board.png\" alt=\"The Tstat8 board\"></p>\n<p><em>The Tstat8, from <code>Docs/Tstat8.png</code>.</em></p>\n<h2 id=\"configurable-not-programmable\">Configurable, not programmable<a class=\"anchor\" href=\"#configurable-not-programmable\" data-anchor=\"configurable-not-programmable\" aria-label=\"Copy a link to Configurable, not programmable\">#</a></h2>\n<p>That is the difference from the Tstat10 and Tstat11. A Tstat8 is set up by writing registers: which input is which, what the setpoints are, which icons show. There is no Control Basic program to write and no screen editor. Configuration lives in EEPROM and flash, and the modbus ID and serial number are held in flash rather than EEPROM since revision 6.1.</p>\n<p>The repository's own summary: &quot;Bacnet Thermostat, full featured device controls most any HVAC application. Complete source code.&quot;</p>\n<h2 id=\"what-is-in-the-tree\">What is in the tree<a class=\"anchor\" href=\"#what-is-in-the-tree\" data-anchor=\"what-is-in-the-tree\" aria-label=\"Copy a link to What is in the tree\">#</a></h2>\n<table>\n<thead>\n<tr>\n<th>Folder</th>\n<th>What it carries</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>bacnet</code></td>\n<td>The BACnet stack</td>\n</tr>\n<tr>\n<td><code>MODBUS</code></td>\n<td>The Modbus stack</td>\n</tr>\n<tr>\n<td><code>EEP-MAP</code>, <code>RTE</code></td>\n<td>The EEPROM map and the runtime environment</td>\n</tr>\n<tr>\n<td><code>STM32F10x_FWLib</code>, <code>CORE</code>, <code>HARDWARE</code></td>\n<td>The STM32F10x target and board code</td>\n</tr>\n<tr>\n<td><code>FreeRTOS</code>, <code>FATFS</code>, <code>FLASH</code>, <code>FILTER</code></td>\n<td>RTOS, file system, flash and filtering</td>\n</tr>\n<tr>\n<td><code>include</code>, <code>USER</code></td>\n<td>Headers and the application</td>\n</tr>\n<tr>\n<td><code>Docs</code></td>\n<td><code>Revisions.txt</code>, <code>SchematicTstat8rev4_3.pdf</code>, <code>Tstat8.png</code></td>\n</tr>\n</tbody>\n</table>\n<p>Two documents matter: the revision log in <code>Docs/Revisions.txt</code>, which is the closest thing to a manual this product has, and the revision 4.3 schematic.</p>\n<h2 id=\"what-the-revision-log-tells-you\">What the revision log tells you<a class=\"anchor\" href=\"#what-the-revision-log-tells-you\" data-anchor=\"what-the-revision-log-tells-you\" aria-label=\"Copy a link to What the revision log tells you\">#</a></h2>\n<p><code>Revisions.txt</code> runs from revision 5.1 to revision 6.2, covering 2017 and 2018, and it is worth reading in full before servicing a unit. The entries that change behaviour:</p>\n<ul>\n<li><strong>6.2</strong> (2018-03-19) — changing the serial number caused a CRC error, because the backup copy of the serial number overlapped the CRC table</li>\n<li><strong>6.1</strong> — the Modbus ID and serial number moved from EEPROM to flash</li>\n<li><strong>6.0</strong> — icon output control initialisation added, plus PID sampling-time and derivative-term initialisation; a PID bug where coasting mode stayed in heat was fixed by moving the optimisation to level 1</li>\n<li><strong>5.7</strong> — negative temperatures displayed wrongly</li>\n<li><strong>5.6</strong> (2017-11-22) — icon output control added at <strong>registers 783 to 791</strong>, for nine icons: day, night, occupied, unoccupied, heat, cool, fan speed 1, fan speed 2, fan speed 3</li>\n<li><strong>5.5</strong> — RTC single-write bug; analogue input function 2 (occupancy sensor) did not work</li>\n<li><strong>5.4</strong> — the clock time multiple-write was not a standard Modbus command; writing a year of 2017 had to be written as 17 to be compatible with the Tstat6</li>\n<li><strong>5.3</strong> (2017-09-11) — cooling mode sometimes jumped to heating; the PID task was merged into the control logic so the PID value could not be changed by the wrong task</li>\n<li><strong>5.2</strong> (2017-07-20) — new BACnet library, revision 10, fixing an abort message when writing from Yabe: <code>BACNET_MAX_PRIORITY</code> must be 16</li>\n</ul>\n<p>Two hardware notes are in there as well: revision 5.3 added a single hex file that works with both hardware revision 3 and revision 4, and it mentions an ION board variant (<code>TSTAT8_HUNTER</code>) whose analogue output was inverted.</p>\n<h2 id=\"if-you-are-servicing-one\">If you are servicing one<a class=\"anchor\" href=\"#if-you-are-servicing-one\" data-anchor=\"if-you-are-servicing-one\" aria-label=\"Copy a link to If you are servicing one\">#</a></h2>\n<p>Read <code>Docs/Revisions.txt</code> first and find the firmware revision on the unit. Several of the fixes above are cases where a symptom that looks like a hardware fault — a wrong display, a mode that flips, a write that fails from a BACnet tool — was a known firmware bug with a known revision that fixed it. The log is more useful than the schematic for that.</p>\n<h2 id=\"source\">Source<a class=\"anchor\" href=\"#source\" data-anchor=\"source\" aria-label=\"Copy a link to Source\">#</a></h2>\n<p><code>BacnetThermostat</code> in the Temco controls organisation. For the current thermostat, see the Tstat11 project on this site and the ESP32 controller repository.</p>\n",
+			"headings": [
+				{
+					"id": "configurable-not-programmable",
+					"text": "Configurable, not programmable",
+					"level": 2
+				},
+				{
+					"id": "what-is-in-the-tree",
+					"text": "What is in the tree",
+					"level": 2
+				},
+				{
+					"id": "what-the-revision-log-tells-you",
+					"text": "What the revision log tells you",
+					"level": 2
+				},
+				{
+					"id": "if-you-are-servicing-one",
+					"text": "If you are servicing one",
+					"level": 2
+				},
+				{
+					"id": "source",
+					"text": "Source",
+					"level": 2
+				}
+			]
+		},
+		"zigbee-modules": {
+			"title": "The Zigbee coordinator and end devices",
+			"html": "<p>A Modbus bridge across a Zigbee mesh: a coordinator that connects to a controller, and end devices that carry the far end of the link. Built on a TI chipset, with a CC2591 front end for range.</p>\n<p>The repository has one source tree that produces <strong>both</strong> device types, decided at run time — and the revision log explains how and why, step by step, over 2012 to 2014.</p>\n<h2 id=\"one-image-two-devices\">One image, two devices<a class=\"anchor\" href=\"#one-image-two-devices\" data-anchor=\"one-image-two-devices\" aria-label=\"Copy a link to One image, two devices\">#</a></h2>\n<p>From revision 10 of <code>Revision.txt</code>:</p>\n<blockquote>\n<p>Make two type device in one hex file, first time start up it checks which product it connected in one minute, then will remember.</p>\n</blockquote>\n<p>So a single firmware image is flashed to every board, and on first boot it spends up to a minute working out whether it is a coordinator or an end device, then stores the answer. There is no separate coordinator build to keep track of.</p>\n<h2 id=\"what-it-exposes-over-modbus\">What it exposes over Modbus<a class=\"anchor\" href=\"#what-it-exposes-over-modbus\" data-anchor=\"what-it-exposes-over-modbus\" aria-label=\"Copy a link to What it exposes over Modbus\">#</a></h2>\n<p>The same revision entry lists the register surface:</p>\n<ul>\n<li>read and write the <strong>PAN ID</strong>, the <strong>channel</strong> and the <strong>device type</strong></li>\n<li>read the <strong>MAC address</strong></li>\n<li>read the <strong>signal strength of every node</strong> it is connected to</li>\n</ul>\n<p>Earlier revisions added pieces of this: revision 05 (December 2012) added register 21 of the Tstat6 returning the PAN ID.</p>\n<h2 id=\"how-the-mesh-behaves-when-the-coordinator-dies\">How the mesh behaves when the coordinator dies<a class=\"anchor\" href=\"#how-the-mesh-behaves-when-the-coordinator-dies\" data-anchor=\"how-the-mesh-behaves-when-the-coordinator-dies\" aria-label=\"Copy a link to How the mesh behaves when the coordinator dies\">#</a></h2>\n<p>Revision 09 (April 2013) added dead-master support: an end device sends an acknowledgement request to the coordinator, and if there is no response it restores its factory settings. That is the recovery path when the coordinator has been replaced or re-addressed and the end device is holding stale network parameters.</p>\n<h2 id=\"radio\">Radio<a class=\"anchor\" href=\"#radio\" data-anchor=\"radio\" aria-label=\"Copy a link to Radio\">#</a></h2>\n<ul>\n<li>TI chipset, per the repository README</li>\n<li>The board schematic in <code>Schematic/</code> is named <code>SCHEMATIC1 _ Zigbee_TI_2591_SMA_rev1.pdf</code>, so the design carries a <strong>CC2591</strong> front end and an SMA antenna connector</li>\n<li>Revision 04 (September 2012) added support for the CC2591 power amplifier and low-noise amplifier</li>\n</ul>\n<p>Revision 07 (March 2013) dealt with the UART: Modbus messages longer than 85 bytes are sent in two packets. If you are writing a Modbus master that talks to these, that is why a long response can arrive in pieces.</p>\n<h2 id=\"building-and-flashing\">Building and flashing<a class=\"anchor\" href=\"#building-and-flashing\" data-anchor=\"building-and-flashing\" aria-label=\"Copy a link to Building and flashing\">#</a></h2>\n<p>Revision 08 (March 2013) added a bootloader for ISP upgrade and changed the application layout to fit behind it. As with the I/O modules, an application image built against the older layout will not run on a bootloader-equipped board.</p>\n<h2 id=\"source\">Source<a class=\"anchor\" href=\"#source\" data-anchor=\"source\" aria-label=\"Copy a link to Source\">#</a></h2>\n<p><code>Tstat8-T3-controllers</code> in the Temco controls organisation — the name is misleading; there is no thermostat in this repository, only the radio modules. The tree has <code>Components</code>, <code>Projects</code> and <code>Schematic</code>, plus the revision log.</p>\n",
+			"headings": [
+				{
+					"id": "one-image-two-devices",
+					"text": "One image, two devices",
+					"level": 2
+				},
+				{
+					"id": "what-it-exposes-over-modbus",
+					"text": "What it exposes over Modbus",
+					"level": 2
+				},
+				{
+					"id": "how-the-mesh-behaves-when-the-coordinator-dies",
+					"text": "How the mesh behaves when the coordinator dies",
+					"level": 2
+				},
+				{
+					"id": "radio",
+					"text": "Radio",
+					"level": 2
+				},
+				{
+					"id": "building-and-flashing",
+					"text": "Building and flashing",
+					"level": 2
+				},
+				{
+					"id": "source",
+					"text": "Source",
+					"level": 2
+				}
+			]
+		}
+	}
+}

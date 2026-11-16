@@ -1,6 +1,6 @@
 ---
 title: "Glossary"
-order: 1340
+order: 1350
 ---
 
 The words this manual uses in a particular way. Where a term also has an everyday meaning, the entry gives the meaning T3000 gives it.

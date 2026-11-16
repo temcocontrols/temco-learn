@@ -1,6 +1,6 @@
 ---
 title: "USER[X]"
-order: 1130
+order: 1160
 ---
 
 Purpose: Provides information about which user is logged on and through which port.

@@ -1,6 +1,6 @@
 ---
 title: "IP SETTINGS"
-order: 1270
+order: 1330
 ---
 
 ![IP SETTINGS](media/images-drex_module_24_screen.png)

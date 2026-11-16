@@ -1,6 +1,6 @@
 ---
 title: "FIRMWARE UPDATES: BATCH LOADING"
-order: 1220
+order: 1280
 ---
 
 1.You must find your devices by T3000 , using "Scan"

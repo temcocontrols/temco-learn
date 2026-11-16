@@ -1,6 +1,6 @@
 ---
 title: "License Agreement"
-order: 1250
+order: 1310
 ---
 
 All T3000 software is free and can be downloaded here

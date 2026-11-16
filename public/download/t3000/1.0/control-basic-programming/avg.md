@@ -1,6 +1,6 @@
 ---
 title: "AVG"
-order: 680
+order: 710
 ---
 
 AVG

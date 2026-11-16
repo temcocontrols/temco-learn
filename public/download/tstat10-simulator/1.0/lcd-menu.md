@@ -1,0 +1,85 @@
+---
+title: "Tstat10 LCD Menu System"
+order: 70
+---
+
+This document describes the structure, navigation, and behavior of the LCD menu system for the Tstat10 Digital Twin Simulator.
+
+## Overview
+The LCD menu system provides user interaction for temperature control, setpoint adjustment, and access to additional settings. All menu logic, display text, and user feedback are managed independently from the enclosure and hardware simulation.
+
+## Main Display
+- **Temperature Display:** Shows the current room temperature.
+- **Setpoint Display:** Shows the current setpoint temperature.
+- **Mode Icons:** Displays icons for occupied, heat/cool, fan, and day/night modes.
+- **Navigation Buttons:**
+  - UP/DOWN: Adjust setpoint or navigate menu items
+  - LEFT/RIGHT: Change menu context or return to previous/next screen
+
+## Menu Structure
+- **Home Screen (Main Menu)**
+  - Shows temperature, setpoint, and modes.
+  - Button actions: UP/DOWN to adjust setpoint
+- **Setup Menu**
+  - Accessed by long-pressing the LEFT and RIGHT keypad buttons at the same time, or by pressing the 'S' key on the keypad.
+  - Contains about 5 items, leading to various configuration pages:
+    - WiFi Setup
+    - Clock
+    - Outside Air Temp
+    - RS485 Settings
+    - To Be Done
+- **Submenus**
+  - Each menu item leads to a dedicated screen for configuration or information
+  - Use the BACK button to navigate backwards through these submenus to the main Setup Menu.
+
+## Navigation Logic
+- Use arrow keys to move between menu items
+- Press RIGHT to select, LEFT to go back
+- Long-press actions for advanced options
+
+## Display Feedback
+- Highlighted menu item is visually distinct
+- Error and confirmation messages are shown as overlays
+
+## Layout editor: LCD size and Apply layout
+In **layout edit** mode, **Inspector → Screen** controls the logical canvas (`canvasProfile`). Choosing a different **LCD & driver** preset or changing width, height, or orientation **immediately** resizes the rendered LCD to match the new hardware dimensions. Widget positions in JSON are unchanged until the user clicks **Apply layout**, which runs a remap from the stored baseline size to the current canvas (layout columns, paddings, row pitch, and pixel widget geometry). After large changes, some widgets may sit off-screen and need manual nudging. Details: `AGENTS.md` item **14**, implementation in `lcd-editor-core.js`.
+
+## Extensibility
+- All menu logic and display text should be managed in lcd-content.js and styled in lcd-content.css
+- Enclosure and hardware styles must not be affected by menu changes
+
+## Tstat10 Mockup Plan: LVGL-JSON Architecture
+
+1. **Phase 1 Goal: The Data-Driven Mockup**
+   - The immediate objective is to build a web-based simulator where the UI is not hardcoded in HTML. Instead, the simulator will "listen" for a JSON payload that describes the UI using LVGL-style structures and render it dynamically on a **240×320** canvas (ILI9341 / Tstat ESP32 firmware default).
+
+### The Component Hierarchy
+- The JSON will define the UI as an array of objects. Each object maps directly to an LVGL widget type:
+
+| LVGL Type | Mockup Implementation | Properties |
+|-----------|----------------------|------------|
+| lv_obj    | <div> (Container)    | x, y, width, height, bg_color |
+| lv_label  | <span> (Text)        | x, y, text, font_size, color |
+| lv_btn    | <button> (Interactive)| x, y, width, height, label_text |
+| lv_line   | <svg line> (Separator)| x1, y1, x2, y2, color |
+
+2. **Technical Implementation (The "Renderer")**
+   - The other agent needs to build a small JavaScript "Engine" inside simulator.js to handle the transition.
+   - **Clear Screen:** Every time a new "menu description" is received, the **240×320** viewport is cleared.
+   - **Iterate & Create:** The engine loops through the JSON array and creates DOM elements with position: absolute.
+   - **Coordinate Mapping:** The x and y values in the JSON are used directly as left and top CSS pixels to ensure 1:1 hardware parity.
+
+3. **Phase 2 Preview: Modbus/BACnet Integration**
+   - Once Phase 1 is stable, we will implement the communication layer:
+   - **The "Payload":** User-defined menu systems will be converted into these JSON strings (or a compressed byte-version).
+   - **The Transport:** These strings will be chunked and sent to the Tstat10 via Modbus Register Writes or BACnet CharacterString Objects.
+   - **The Result:** The Tstat10 firmware will receive the text, parse the LVGL instructions, and rebuild the local screen menu without a firmware flash.
+
+4. **Immediate Tasks for the Developer Agent**
+   - To get Phase 1 running, tell the agent:
+   - "Create a renderer.js that takes a JSON object. The object must define the Settings Screen (Tstat10_2) using lv_label and lv_btn types."
+   - **Constraint:** Do not write any HTML for the menu items. The only HTML should be the empty #tstat-lcd container. Everything else must be generated by JavaScript from the JSON description."
+
+---
+
+*Update this document as the menu system evolves or new features are added.*

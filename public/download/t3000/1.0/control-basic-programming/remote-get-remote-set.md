@@ -1,6 +1,6 @@
 ---
 title: "REMOTE-GET, REMOTE-SET"
-order: 1010
+order: 1040
 ---
 
 <table>

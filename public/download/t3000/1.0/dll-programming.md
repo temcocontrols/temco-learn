@@ -1,6 +1,6 @@
 ---
 title: "The programming DLL"
-order: 1110
+order: 610
 ---
 
 T3000 can hand a Control Basic program to another program — to encode it for storage, and to decode it back — through a small DLL that ships beside `T3000.exe`. The same DLL is referred to in Temco's sources as the *programming DLL* and as the *interpreter DLL*; it is one library, and this page covers both names.

@@ -1,6 +1,6 @@
 ---
 title: "TIME"
-order: 1110
+order: 1140
 ---
 
 Purpose: The TIME statement enables programs to use time in the calculations in an easy to read format. TIME returns the time as a number with hours as the thousands and hundreds digits, minutes are the ones and tens digits. Seconds are stored after the decimal place in the first and second decimals.

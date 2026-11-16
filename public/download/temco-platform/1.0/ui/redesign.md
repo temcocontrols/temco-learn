@@ -218,7 +218,7 @@ F2 moves the file, the repository's own generator writes the new registry entry,
 │ first-project.md        [ side-by-side Preview ]              │ ASSIST           │
 │ # First project                                               │ [Draft][Ask][Props]
 │ Points carry a scale factor.                                  │ Draft from…      │
-│ ![Trend log](media/02-trend.png)  ◄─ Ctrl+Alt+S inserts this  │  ◉ source file   │
+│ Trend log                         ◄─ Ctrl+Alt+S inserts this  │  ◉ source file   │
 │                                                               │  ○ another page  │
 │                                                               │ RESULT (diff)    │
 │                                                               │ [Apply][Reject]  │

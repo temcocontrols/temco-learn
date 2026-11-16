@@ -1,5 +1,5 @@
 {
-	"generated": "2026-11-16T03:56:26.763Z",
+	"generated": "2026-11-16T07:36:44.787Z",
 	"projects": {
 		"ph-chart": {
 			"1.0": {
@@ -7,6 +7,11 @@
 			}
 		},
 		"psychrometric": {
+			"1.0": {
+				"chm": true
+			}
+		},
+		"radar": {
 			"1.0": {
 				"chm": true
 			}
@@ -21,6 +26,11 @@
 				"chm": true
 			}
 		},
+		"t3-devices": {
+			"1.0": {
+				"chm": true
+			}
+		},
 		"t3-firmware": {
 			"1.0": {
 				"chm": true
@@ -31,22 +41,32 @@
 				"chm": true
 			}
 		},
-		"t3000-api": {
+		"t3000-build": {
 			"1.0": {
 				"chm": true
 			}
 		},
-		"t3000-engineering": {
+		"t3000-classic": {
 			"1.0": {
 				"chm": true
 			}
 		},
-		"t3000-new-ui": {
+		"t3000-cloud": {
 			"1.0": {
 				"chm": true
 			}
 		},
-		"temco-platform": {
+		"t3000-webapi": {
+			"1.0": {
+				"chm": true
+			}
+		},
+		"t3000-webui": {
+			"1.0": {
+				"chm": true
+			}
+		},
+		"tstat10-simulator": {
 			"1.0": {
 				"chm": true
 			}

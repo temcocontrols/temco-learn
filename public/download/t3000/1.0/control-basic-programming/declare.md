@@ -1,6 +1,6 @@
 ---
 title: "Declare"
-order: 730
+order: 760
 ---
 
 [TBD] This statement not implemented yet

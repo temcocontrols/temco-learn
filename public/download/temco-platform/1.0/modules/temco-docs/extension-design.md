@@ -473,7 +473,7 @@ so it looks like the product instead of like an editor that happens to be inside
 │                       │  4 │                                               │               │
 │                       │  5 │ Terminate the RS-485 pair at both ends.       │               │
 │                       │  6 │                                               │               │
-│                       │  7 │ ![The device list after a reset](media/01.png)│               │
+│                       │  7 │ The device list after a reset    │               │
 │                       └───────────────────────────────────────────────────┘               │
 ├──────────────────────────────────────────────────────────────────────────────────────────────┤
 │ 23 words  8 lines  1 headings  [ saved in the document ]        −  100%  +  [Editor│Split│Page] │
