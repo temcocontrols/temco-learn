@@ -457,9 +457,3 @@ const criticalAlarms = await logger.queryEvents({
   limit: 50
 });
 ```
-
-## Next Steps
-
-- [REST API](./rest-api)
-- [WebSocket API](./websocket-api)
-- [Modbus Protocol](./modbus-protocol)

@@ -78,7 +78,7 @@ GET /api/develop/files/list?path=/Database HTTP/1.1
 }
 ```
 
-**Used By**: [FileBrowser.tsx](src/t3-react/features/developer/components/FileBrowser.tsx)
+**Used By**: FileBrowser.tsx
 
 **Handler**: `api/src/t3_develop/file_browser/routes.rs::list_files`
 
@@ -102,7 +102,7 @@ GET /api/develop/files/read?path=/logs/app.log HTTP/1.1
 2026-01-09 08:00:05 INFO Device 1 connected
 ```
 
-**Used By**: [FileViewer.tsx](src/t3-react/features/developer/components/FileViewer.tsx)
+**Used By**: FileViewer.tsx
 
 ---
 
@@ -129,7 +129,7 @@ GET /api/develop/database/list HTTP/1.1
 ]
 ```
 
-**Used By**: [DatabaseViewer.tsx](src/t3-react/features/developer/components/DatabaseViewer.tsx)
+**Used By**: DatabaseViewer.tsx
 
 **Handler**: `api/src/t3_develop/database_viewer/routes.rs::list_databases`
 
@@ -163,7 +163,7 @@ Content-Type: application/json
 }
 ```
 
-**Used By**: [QueryEditor.tsx](src/t3-react/features/developer/components/QueryEditor.tsx)
+**Used By**: QueryEditor.tsx
 
 **Handler**: `api/src/t3_develop/database_viewer/routes.rs::execute_query`
 
@@ -201,7 +201,7 @@ GET /api/develop/database/schema?database=t3000.db HTTP/1.1
 }
 ```
 
-**Used By**: [SchemaViewer.tsx](src/t3-react/features/developer/components/SchemaViewer.tsx)
+**Used By**: SchemaViewer.tsx
 
 ---
 
@@ -234,7 +234,7 @@ GET /api/develop/logs/get?lines=50&level=ERROR HTTP/1.1
 }
 ```
 
-**Used By**: [LogViewer.tsx](src/t3-react/features/developer/components/LogViewer.tsx)
+**Used By**: LogViewer.tsx
 
 **Handler**: `api/src/t3_develop/system_logs/routes.rs::get_logs`
 

@@ -1,6 +1,6 @@
 ---
 title: "Data Structures Reference"
-order: 150
+order: 180
 ---
 
 Data structures define the format and fields of each BACnet point type. Understanding these structures helps you work with device data effectively.

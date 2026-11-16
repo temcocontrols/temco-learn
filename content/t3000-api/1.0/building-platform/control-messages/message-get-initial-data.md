@@ -1,6 +1,6 @@
 ---
-title: "Graphics Messages: GET_INITIAL_DATA & LOAD_GRAPHIC_ENTRY"
-order: 190
+title: "Graphics Messages: GET_Initial_Data & Load_Graphic_Entry"
+order: 220
 ---
 
 Graphics messages load graphic screen configurations and element data. These messages work together to display HMI screens with interactive elements like text boxes, buttons, and live data displays.
@@ -21,7 +21,7 @@ Graphics functionality uses two related messages to load HMI screens:
 
 Both messages share similar implementation in BacnetWebView.cpp.
 
-## Message: GET_INITIAL_DATA
+## Message: GET_Initial_Data
 
 ### Request Format
 
@@ -157,7 +157,7 @@ case LOAD_GRAPHIC_ENTRY:
 }
 ```
 
-## Message: LOAD_GRAPHIC_ENTRY
+## Message: Load_Graphic_Entry
 
 **Purpose:** Identical to GET_INITIAL_DATA - loads complete screen
 
@@ -369,7 +369,7 @@ const switchScreen = async (newScreenNum: number) => {
 
 ## Related Messages
 
-### SAVE_GRAPHIC_DATA
+### Save_Graphic_Data
 
 After loading and modifying a screen, use SAVE_GRAPHIC_DATA to persist changes.
 

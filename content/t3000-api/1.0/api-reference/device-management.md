@@ -206,8 +206,8 @@ Accept: application/json
 ```
 
 **Used By**:
-- [DeviceTree.tsx](src/t3-react/features/devices/components/DeviceTree.tsx)
-- [DeviceList.tsx](src/t3-react/features/devices/components/DeviceList.tsx)
+- DeviceTree.tsx
+- DeviceList.tsx
 
 **Handler**: `api/src/t3_device/routes.rs::get_devices_with_stats`
 
@@ -241,7 +241,7 @@ GET /api/t3_device/devices/1 HTTP/1.1
 ```
 
 **Used By**:
-- [DeviceDetail.tsx](src/t3-react/features/devices/pages/DeviceDetail.tsx)
+- DeviceDetail.tsx
 
 **Errors**:
 - `404` - Device not found
@@ -288,7 +288,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [AddDeviceDialog.tsx](src/t3-react/features/devices/components/AddDeviceDialog.tsx)
+- AddDeviceDialog.tsx
 
 **Errors**:
 - `400` - Invalid request body
@@ -327,7 +327,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [EditDeviceDialog.tsx](src/t3-react/features/devices/components/EditDeviceDialog.tsx)
+- EditDeviceDialog.tsx
 
 **Errors**:
 - `404` - Device not found
@@ -355,7 +355,7 @@ HTTP/1.1 204 No Content
 **Warning**: This cascades and deletes all inputs, outputs, variables, programs, schedules, and trendlogs associated with the device.
 
 **Used By**:
-- [DeleteDeviceDialog.tsx](src/t3-react/features/devices/components/DeleteDeviceDialog.tsx)
+- DeleteDeviceDialog.tsx
 
 **Errors**:
 - `404` - Device not found
@@ -415,7 +415,7 @@ GET /api/t3_device/devices/1/capabilities HTTP/1.1
 ```
 
 **Used By**:
-- [DeviceCapabilities.tsx](src/t3-react/features/devices/components/DeviceCapabilities.tsx)
+- DeviceCapabilities.tsx
 
 **Errors**:
 - `404` - Device not found
@@ -439,7 +439,7 @@ GET /api/t3_device/devices/count HTTP/1.1
 ```
 
 **Used By**:
-- [Dashboard.tsx](src/t3-react/features/dashboard/pages/Dashboard.tsx)
+- Dashboard.tsx
 
 ---
 
@@ -466,7 +466,7 @@ POST /api/t3_device/devices/1/refresh HTTP/1.1
 ```
 
 **Used By**:
-- [RefreshDeviceButton.tsx](src/t3-react/features/devices/components/RefreshDeviceButton.tsx)
+- RefreshDeviceButton.tsx
 
 **Errors**:
 - `404` - Device not found
@@ -498,7 +498,7 @@ GET /api/t3_device/devices/1/connection-status HTTP/1.1
 ```
 
 **Used By**:
-- [DeviceStatusIndicator.tsx](src/t3-react/features/devices/components/DeviceStatusIndicator.tsx)
+- DeviceStatusIndicator.tsx
 
 **Errors**:
 - `404` - Device not found

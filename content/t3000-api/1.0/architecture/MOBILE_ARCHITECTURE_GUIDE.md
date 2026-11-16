@@ -1,16 +1,13 @@
 ---
 title: "T3000 Mobile Architecture Guide"
-order: 680
+order: 710
 ---
 
-**Version:** 1.0
-**Date:** January 29, 2026
-**Status:** ⏸️ Planning Phase - Not Started
-**Last Updated:** January 29, 2026
+**Status:** Planning Phase - Not Started
 
 ---
 
-## 🚀 Quick Start (Resume After Break)
+## Quick Start (Resume After Break)
 
 **Haven't worked on this in a while? Start here:**
 
@@ -22,15 +19,15 @@ order: 680
 6. **Test** → Section 8 has testing checklist
 
 **Critical Rules (Don't Skip):**
-- ✅ ALWAYS test desktop after any change
-- ✅ NEVER move files until mobile is working
-- ✅ READ Common Pitfalls (Section 9) before coding
+- ALWAYS test desktop after any change
+- NEVER move files until mobile is working
+- READ Common Pitfalls (Section 9) before coding
 
 ---
 
-## 📊 Project Status
+## Project Status
 
-### Current Phase: ⏸️ Phase 1 - Proof of Concept (NOT STARTED)
+### Current Phase: Phase 1 - Proof of Concept (NOT STARTED)
 
 **Completed Tasks:**
 - [x] Architecture planning
@@ -51,7 +48,7 @@ order: 680
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Current Architecture](#current-architecture)
@@ -74,10 +71,10 @@ Add mobile-responsive UI to T3000 WebView while keeping desktop version working 
 **Incremental Migration** - Build mobile UI separately, gradually extract shared business logic, leave desktop unchanged.
 
 ### Principles
-- ✅ **Zero Risk to Desktop** - Desktop code stays working throughout
-- ✅ **Shared Business Logic** - One source of truth for data/API calls
-- ✅ **Separate UI Layers** - Desktop table vs Mobile card views
-- ✅ **Gradual Migration** - One feature at a time, test thoroughly
+- **Zero Risk to Desktop** - Desktop code stays working throughout
+- **Shared Business Logic** - One source of truth for data/API calls
+- **Separate UI Layers** - Desktop table vs Mobile card views
+- **Gradual Migration** - One feature at a time, test thoroughly
 
 ---
 
@@ -342,10 +339,10 @@ src/shared/core/router/ViewRouter.tsx
 ```
 
 #### Step 1.5: Test
-- ✅ Desktop InputsPage still works (unchanged)
-- ✅ Mobile InputsPageMobile renders on small viewport
-- ✅ Both use same data (shared hook)
-- ✅ Both can fetch/save data
+- Desktop InputsPage still works (unchanged)
+- Mobile InputsPageMobile renders on small viewport
+- Both use same data (shared hook)
+- Both can fetch/save data
 
 ### Phase 2: Expand Mobile Pages (Week 2-3)
 
@@ -679,7 +676,7 @@ export const InputsRoute = () => {
 
 ### Step-by-Step Checklist
 
-#### ✅ Step 1: Create Shared Folder Structure
+#### Step 1: Create Shared Folder Structure
 ```bash
 mkdir -p src/shared/features/inputs/hooks
 mkdir -p src/shared/features/inputs/services
@@ -688,7 +685,7 @@ mkdir -p src/shared/features/inputs/data
 mkdir -p src/shared/core/hooks
 ```
 
-#### ✅ Step 2: Create Mobile Folder Structure
+#### Step 2: Create Mobile Folder Structure
 ```bash
 mkdir -p src/t3-mobile/features/inputs/components
 mkdir -p src/t3-mobile/features/inputs/pages
@@ -697,13 +694,13 @@ mkdir -p src/t3-mobile/layout
 mkdir -p src/t3-mobile/app
 ```
 
-#### ✅ Step 3: Extract Types
+#### Step 3: Extract Types
 ```bash
 ## Create src/shared/features/inputs/types/input.types.ts
 ## Copy InputPoint interface from InputsPage.tsx
 ```
 
-#### ✅ Step 4: Extract Business Logic
+#### Step 4: Extract Business Logic
 ```bash
 ## Create src/shared/features/inputs/hooks/useInputsPage.ts
 ## Extract from InputsPage.tsx:
@@ -714,39 +711,39 @@ mkdir -p src/t3-mobile/app
 5. Return object with state + methods
 ```
 
-#### ✅ Step 5: Create Device Detection
+#### Step 5: Create Device Detection
 ```bash
 ## Create src/shared/core/hooks/useDeviceType.ts
 ## Implement viewport-based detection
 ```
 
-#### ✅ Step 6: Create Mobile Components
+#### Step 6: Create Mobile Components
 ```bash
 ## Create src/t3-mobile/components/MobileCard/MobileCard.tsx
 ## Create src/t3-mobile/layout/MobileLayout.tsx
 ## Create src/t3-mobile/layout/MobileAppBar.tsx
 ```
 
-#### ✅ Step 7: Create Mobile Page
+#### Step 7: Create Mobile Page
 ```bash
 ## Create src/t3-mobile/features/inputs/pages/InputsPageMobile.tsx
 ## Import useInputsPage hook
 ## Render card list view
 ```
 
-#### ✅ Step 8: Create View Router
+#### Step 8: Create View Router
 ```bash
 ## Create src/shared/core/router/ViewRouter.tsx
 ## Detect device and route to desktop or mobile
 ```
 
-#### ✅ Step 9: Update App Router
+#### Step 9: Update App Router
 ```bash
 ## Update src/t3-react/app/router/routes.ts
 ## Use ViewRouter for /inputs route
 ```
 
-#### ✅ Step 10: Test
+#### Step 10: Test
 ```bash
 ## Desktop: Resize browser to > 1024px → Should show desktop table
 ## Mobile: Resize browser to < 768px → Should show mobile cards
@@ -799,7 +796,7 @@ mkdir -p src/t3-mobile/app
 
 ## 9. Common Pitfalls
 
-### ❌ Pitfall 1: Breaking Desktop Imports
+### Pitfall 1: Breaking Desktop Imports
 
 **Problem:**
 ```typescript
@@ -815,7 +812,7 @@ mv src/t3-react/config/constants.ts → src/shared/core/config/constants.ts
 ## Keep old files until all imports updated
 ```
 
-### ❌ Pitfall 2: Duplicate Logic
+### Pitfall 2: Duplicate Logic
 
 **Problem:**
 ```typescript
@@ -853,7 +850,7 @@ const InputsPageMobile = () => {
 };
 ```
 
-### ❌ Pitfall 3: Hardcoded Viewport Sizes
+### Pitfall 3: Hardcoded Viewport Sizes
 
 **Problem:**
 ```typescript
@@ -867,7 +864,7 @@ const isMobile = window.innerWidth < 768;
 const deviceType = useDeviceType();
 ```
 
-### ❌ Pitfall 4: Forgetting TypeScript Types
+### Pitfall 4: Forgetting TypeScript Types
 
 **Problem:**
 ```typescript
@@ -883,7 +880,7 @@ import { useInputsPage } from '../../../../shared/features/inputs/hooks/useInput
 import { InputPoint } from '../../../../shared/features/inputs/types/input.types'; // ✅ Correct
 ```
 
-### ❌ Pitfall 5: Not Testing Desktop After Changes
+### Pitfall 5: Not Testing Desktop After Changes
 
 **Problem:**
 ```bash
@@ -995,7 +992,7 @@ import { InputPoint } from '../types/input.types';
 
 ## 13. How to Resume After a Break
 
-### If You Haven't Worked on This in Weeks/Months:
+### If You Haven't Worked on This in Weeks/Months
 
 #### Step 1: Check Project Status
 ```bash
@@ -1047,7 +1044,7 @@ npm run build
 ## Follow the instructions
 ```
 
-### If Implementation Was Interrupted:
+### If Implementation Was Interrupted
 
 **Desktop broke?**
 ```bash
@@ -1080,7 +1077,7 @@ git diff
 ## Read commit messages to understand progress
 ```
 
-### Common "Resume After Break" Scenarios:
+### Common "Resume After Break" Scenarios
 
 **Scenario 1: Forgot what the architecture is**
 → Re-read Sections 2, 3, 4
@@ -1101,7 +1098,7 @@ git diff
 
 ## 14. Maintenance & Updates
 
-### When to Update This Document:
+### When to Update This Document
 
 1. **After completing a major milestone**
    - Update "Project Status" section
@@ -1119,17 +1116,3 @@ git diff
 4. **When folder structure changes**
    - Update Section 5 (Folder Structure)
    - Update Section 10 (Quick Reference)
-
-### Version History:
-
-| Version | Date | Changes | Author |
-|---------|------|---------|--------|
-| 1.0 | Jan 29, 2026 | Initial creation, planning phase | AI + Team |
-
----
-
-**Last Updated:** January 29, 2026
-**Version:** 1.0
-**Status:** ✅ Ready to Start Phase 1
-
-**Remember:** Update the "Project Status" section at the top when you complete tasks!

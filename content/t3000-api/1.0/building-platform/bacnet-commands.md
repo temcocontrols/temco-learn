@@ -1,6 +1,6 @@
 ---
 title: "BACnet Commands Reference"
-order: 140
+order: 170
 ---
 
 BACnet commands are the low-level protocol operations used to communicate with field devices. T3000 implements the BACnet protocol to read and write data from controllers.

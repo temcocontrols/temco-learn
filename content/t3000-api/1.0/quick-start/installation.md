@@ -1,6 +1,6 @@
 ---
 title: "Installation Guide"
-order: 360
+order: 400
 ---
 
 This guide walks you through installing T3000 Building Automation System on your Windows computer.
@@ -54,10 +54,10 @@ Select the appropriate version for your system architecture (x64).
 - Click **Next**
 
 **Select Components**
-- ✓ T3000 Application (Required)
-- ✓ USB Drivers (Recommended)
-- ✓ Documentation (Optional)
-- ✓ Sample Projects (Optional)
+- T3000 Application (Required)
+- USB Drivers (Recommended)
+- Documentation (Optional)
+- Sample Projects (Optional)
 - Click **Next**
 
 **Start Menu Folder**
@@ -65,8 +65,8 @@ Select the appropriate version for your system architecture (x64).
 - Click **Next**
 
 **Additional Tasks**
-- ✓ Create desktop shortcut
-- ✓ Create Quick Launch icon
+- Create desktop shortcut
+- Create Quick Launch icon
 - Click **Next**
 
 **Ready to Install**
@@ -175,12 +175,6 @@ To remove T3000:
 - Right-click and **Run as Administrator**
 - Check Windows Event Viewer for errors
 - Verify .NET Framework is installed
-
-## Next Steps
-
-- [Configuration Guide](configuration) - Set up your system
-- [Connecting Devices](../device-management/connecting-devices) - Add your first device
-- [SQL Server Express Setup for T3000](sql-server-express-setup) - Detailed Step 1 to Step 23 setup with screenshot slots
 
 ## Support
 
@@ -441,12 +435,6 @@ function Test-T3000Installation {
 Test-T3000Installation
 ```
 
-## Next Steps
-
-- [Configuration API](configuration) - Programmatic configuration
-- [REST API](../api-reference/rest-api) - API integration
-- [WebSocket API](../api-reference/websocket-api) - Real-time communication
-
 ## System Requirements
 
 ### Minimum Requirements
@@ -496,10 +484,10 @@ Select the appropriate version for your system architecture (x64).
 - Click **Next**
 
 **Select Components**
-- ✓ T3000 Application (Required)
-- ✓ USB Drivers (Recommended)
-- ✓ Documentation (Optional)
-- ✓ Sample Projects (Optional)
+- T3000 Application (Required)
+- USB Drivers (Recommended)
+- Documentation (Optional)
+- Sample Projects (Optional)
 - Click **Next**
 
 **Start Menu Folder**
@@ -507,8 +495,8 @@ Select the appropriate version for your system architecture (x64).
 - Click **Next**
 
 **Additional Tasks**
-- ✓ Create desktop shortcut
-- ✓ Create Quick Launch icon
+- Create desktop shortcut
+- Create Quick Launch icon
 - Click **Next**
 
 **Ready to Install**
@@ -617,11 +605,6 @@ To remove T3000:
 - Right-click and **Run as Administrator**
 - Check Windows Event Viewer for errors
 - Verify .NET Framework is installed
-
-## Next Steps
-
-- [Configuration Guide](configuration) - Set up your system
-- [Connecting Devices](../device-management/connecting-devices) - Add your first device
 
 ## Support
 

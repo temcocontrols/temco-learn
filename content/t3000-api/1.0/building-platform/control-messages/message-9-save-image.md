@@ -1,6 +1,6 @@
 ---
 title: "Message 9: SAVE_IMAGE"
-order: 250
+order: 280
 ---
 
 The SAVE_IMAGE message uploads graphic image files from the web interface to the T3000 server for use in HMI graphics screens.

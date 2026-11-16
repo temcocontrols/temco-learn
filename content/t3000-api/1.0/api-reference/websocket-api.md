@@ -289,9 +289,3 @@ class WebSocketServer {
   }
 }
 ```
-
-## Next Steps
-
-- [REST API](./rest-api)
-- [Events](./events)
-- [Modbus Protocol](./modbus-protocol)

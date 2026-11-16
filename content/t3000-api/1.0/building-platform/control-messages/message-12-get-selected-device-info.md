@@ -1,6 +1,6 @@
 ---
-title: "Message 12: GET_SELECTED_DEVICE_INFO"
-order: 280
+title: "Message 12: GET_Selected_Device_Info"
+order: 310
 ---
 
 The GET_SELECTED_DEVICE_INFO message retrieves information about the currently selected device in T3000.

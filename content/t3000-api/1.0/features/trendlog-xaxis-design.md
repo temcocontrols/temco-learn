@@ -1,6 +1,6 @@
 ---
 title: "TrendLog Chart X-Axis Design"
-order: 570
+order: 600
 ---
 
 ## Overview

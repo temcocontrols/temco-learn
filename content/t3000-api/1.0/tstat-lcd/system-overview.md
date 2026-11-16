@@ -1,6 +1,6 @@
 ---
 title: "System Overview"
-order: 860
+order: 830
 ---
 
 ## End-to-End Architecture
@@ -107,7 +107,7 @@ The phone app ships with built-in knowledge of all Temco device UIs. It only nee
 | Font | Bold monospace |
 | Background | #003366 (Temco Blue) |
 | Highlight | #008080 (Teal) |
-| Buttons | 4 physical: ◄ ▼ ▲ ► |
+| Buttons | 4 physical:    |
 | BLE Support | 32M devices only (high ROM/RAM usage) |
 
 ## Data Flow Summary

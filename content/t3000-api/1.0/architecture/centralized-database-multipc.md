@@ -1,6 +1,6 @@
 ---
 title: "Centralized Database: Multi-PC Architecture (v4 Final)"
-order: 640
+order: 670
 ---
 
 > **Status:** Approved design — ready for implementation

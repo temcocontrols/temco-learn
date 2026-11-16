@@ -1,6 +1,6 @@
 ---
 title: "Message 15: LOGGING_DATA"
-order: 310
+order: 340
 ---
 
 The LOGGING_DATA message (Action 15) triggers comprehensive data collection from all panel points. It reads inputs, outputs, and variables for logging purposes, similar to GET_WEBVIEW_LIST but for bulk data capture.
@@ -15,7 +15,7 @@ The LOGGING_DATA message (Action 15) triggers comprehensive data collection from
 **Direction:** Frontend → Backend
 **Location:** BacnetWebView.cpp line 3040
 **Purpose:** Bulk data collection for all panel points
-**Status:** ⚠️ Disabled by default in release builds
+**Status:** Disabled by default in release builds
 
 ## Request Format
 

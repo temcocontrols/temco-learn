@@ -1,6 +1,6 @@
 ---
 title: "Best Practices"
-order: 590
+order: 620
 ---
 
 Recommended practices for optimal T3000 system operation.
@@ -495,9 +495,3 @@ async function readPoint(
   // Implementation
 }
 ```
-
-## Next Steps
-
-- [FAQ](./faq)
-- [Troubleshooting](./troubleshooting)
-- [Performance Tuning](./performance-tuning)

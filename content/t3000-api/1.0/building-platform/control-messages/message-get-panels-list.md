@@ -1,6 +1,6 @@
 ---
-title: "Message: GET_PANELS_LIST"
-order: 200
+title: "Message: GET_Panels_List"
+order: 230
 ---
 
 GET_PANELS_LIST retrieves all online panels (devices) in the network. Use this to discover available devices and their basic information.
@@ -32,8 +32,8 @@ GET_PANELS_LIST retrieves all online panels (devices) in the network. Use this t
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `action` | String | ✅ | Must be "GET_PANELS_LIST" |
-| `source` | Integer | ✅ | Message source: 0=T3000, 1=WebUI |
+| `action` | String | Yes | Must be "GET_PANELS_LIST" |
+| `source` | Integer | Yes | Message source: 0=T3000, 1=WebUI |
 
 ## Response Format
 

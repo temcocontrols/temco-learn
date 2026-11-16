@@ -1,6 +1,6 @@
 ---
 title: "Centralized Logging Design"
-order: 650
+order: 680
 ---
 
 > Final architecture doc for the policy-driven logging rollout.

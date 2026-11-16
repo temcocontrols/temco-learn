@@ -1,6 +1,6 @@
 ---
 title: "Alarms"
-order: 500
+order: 530
 ---
 
 Alarm monitoring, configuration, and notification system.
@@ -30,10 +30,10 @@ The alarm system monitors critical conditions and notifies operators when values
 
 ## Alarm Priorities
 
-- 🔴 **High**: Critical safety/equipment issues
-- 🟠 **Medium**: Important but not critical
-- 🟡 **Low**: Information/warnings
-- ⚪ **Info**: Status changes
+- **High**: Critical safety/equipment issues
+- **Medium**: Important but not critical
+- **Low**: Information/warnings
+- **Info**: Status changes
 
 ## Alarm Page
 
@@ -77,14 +77,6 @@ Configure alarm notifications:
 - Respond promptly
 - Review alarm history
 - Tune to reduce false alarms
-
-## Next Steps
-
-- [Inputs](../data-points/inputs) - Input alarms
-- [Monitoring](../device-management/device-monitoring) - Real-time monitoring
-- [Troubleshooting](../device-management/device-troubleshooting) - Resolve issues
-
-
 
 ## Alarms
 
@@ -236,9 +228,3 @@ class EmailNotifier {
   }
 }
 ```
-
-## Next Steps
-
-- [REST API](../api-reference/rest-api)
-- [WebSocket API](../api-reference/websocket-api)
-- [Device Monitoring](../device-management/device-monitoring)

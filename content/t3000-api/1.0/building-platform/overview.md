@@ -1,6 +1,6 @@
 ---
 title: "Building Platform Overview"
-order: 170
+order: 200
 ---
 
 The T3000 Building Platform is the core engine that powers the building automation system. It handles communication between the web interface and physical devices, manages data flow, and executes control commands.
@@ -221,10 +221,3 @@ Common error scenarios:
 - **Invalid range** - Index out of bounds
 - **Cache miss** - No cached data available
 - **Permission denied** - Device access restricted
-
-## Next Steps
-
-- [Control Messages Reference →](control-messages/message-index.md)
-- [Message 17: GET_WEBVIEW_LIST →](control-messages/message-17.md)
-- [BACnet Commands →](bacnet-commands.md)
-- [Data Structures →](data-structures.md)
