@@ -1,5 +1,5 @@
 {
-	"generated": "2026-11-16T03:48:22.303Z",
+	"generated": "2026-11-16T04:36:05.167Z",
 	"sections": [
 		{
 			"id": "documentation",
@@ -3951,7 +3951,7 @@
 		{
 			"id": "tstat8",
 			"title": "TStat8",
-			"section": "documentation",
+			"section": "products",
 			"summary": "The TStat8 thermostat: its specifications, the TStat8 software screen by screen, its hardware, and how to install and update it.",
 			"latest": "1.0",
 			"versions": [
