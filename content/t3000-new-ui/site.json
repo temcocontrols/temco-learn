@@ -1,0 +1,5 @@
+{
+	"title": "T3000 New UI",
+	"section": "documentation",
+	"summary": "The browser front end that replaces the MFC screens, and the unified Designer behind it: one editor for HVAC schematics, LVGL screens, LVGL flows and the LCD simulator."
+}
