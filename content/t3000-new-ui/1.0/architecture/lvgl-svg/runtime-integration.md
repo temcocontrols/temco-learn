@@ -1,6 +1,6 @@
 ---
 title: "LVGL SVG Renderer — Runtime Integration"
-order: 280
+order: 290
 ---
 
 How the SVG surface attaches to the existing page runtime: the proxy-context seam, the runtime

@@ -7,8 +7,6 @@ The GET_PANEL_RANGE_INFO message retrieves panel capability and range informatio
 
 **Note:** This message is currently not implemented in the C++ backend.
 
-
-
 ## Overview
 
 **Action:** `GET_PANEL_RANGE_INFO` (5)

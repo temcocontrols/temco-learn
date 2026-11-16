@@ -1,6 +1,6 @@
 ---
 title: "P4 — route consolidation"
-order: 190
+order: 200
 ---
 
 Goal: `/t3000/designer/:kind/:id?` becomes the only designer route; the old URLs become redirects that

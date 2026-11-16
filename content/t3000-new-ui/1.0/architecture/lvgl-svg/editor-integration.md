@@ -1,6 +1,6 @@
 ---
 title: "LVGL SVG Renderer — Editor Integration"
-order: 230
+order: 240
 ---
 
 The surface component, its feature flag, the single pre-existing edit site, and the editing behaviour the

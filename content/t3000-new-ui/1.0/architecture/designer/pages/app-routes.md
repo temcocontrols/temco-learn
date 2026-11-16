@@ -1,6 +1,6 @@
 ---
 title: "Every route in the app, and how the Designer touches it"
-order: 100
+order: 110
 ---
 
 Source of truth: `src/t3-react/app/App.tsx` — `HashRouter` at `:224`, `<Routes>` `:225-622`.

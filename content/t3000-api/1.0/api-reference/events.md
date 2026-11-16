@@ -38,8 +38,6 @@ Event system for alarms, state changes, and notifications.
 ## Subscribing to Events
 Use WebSocket API to receive real-time events.
 
-
-
 ## Event System Architecture
 
 ## Event Bus Implementation

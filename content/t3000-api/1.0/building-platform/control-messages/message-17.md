@@ -12,8 +12,6 @@ GET_WEBVIEW_LIST retrieves specific data from BACnet devices. Use this message t
 - Getting PID controller setpoints
 - Retrieving trendlog configurations
 
-
-
 ## Overview
 
 **Message Type:** 17

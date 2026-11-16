@@ -1,6 +1,6 @@
 ---
 title: "P1 — `DesignerShell` + the HVAC document on it"
-order: 160
+order: 170
 ---
 
 Goal: a real shell component and the existing HVAC editor running inside it, **on a new route**, with the

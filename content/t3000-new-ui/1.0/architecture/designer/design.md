@@ -1,6 +1,6 @@
 ---
 title: "Unified Designer — one editor, per-document-type content"
-order: 30
+order: 40
 ---
 
 This is the **architecture** document: the decisions and their rationale. The rest of the design set is indexed in

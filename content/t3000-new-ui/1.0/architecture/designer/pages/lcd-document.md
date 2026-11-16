@@ -1,6 +1,6 @@
 ---
 title: "The LCD/simulator document, area by area (P5)"
-order: 140
+order: 150
 ---
 
 > `documents/lcd/LcdDocument.tsx` hosts the existing `Tstat10SimulatorPage` in the shell's canvas slot and gives

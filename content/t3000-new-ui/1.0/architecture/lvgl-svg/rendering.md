@@ -1,6 +1,6 @@
 ---
 title: "LVGL SVG Renderer — Rendering"
-order: 270
+order: 280
 ---
 
 The `svg/` modules, the DOM contract, draw order, and the rules that map LVGL style properties to SVG.

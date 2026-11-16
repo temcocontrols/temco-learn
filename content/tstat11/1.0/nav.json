@@ -1,0 +1,205 @@
+{
+	"generated": "2026-11-16",
+	"pages": [
+		{
+			"href": "00-hub.md",
+			"title": "The Tstat11",
+			"order": 10
+		},
+		{
+			"href": "hardware/model-matrix.md",
+			"title": "The Tstat11 IO envelope",
+			"order": 20
+		},
+		{
+			"href": "hardware/flash-layout.md",
+			"title": "How flash is divided",
+			"order": 30
+		},
+		{
+			"href": "display/shipped-screens.md",
+			"title": "The screens that ship on the device",
+			"order": 40
+		},
+		{
+			"href": "t3-eez-studio/manual/01-overview.md",
+			"title": "Design Studio: overview",
+			"order": 50
+		},
+		{
+			"href": "t3-eez-studio/manual/02-creating-projects.md",
+			"title": "Design Studio: creating a project",
+			"order": 60
+		},
+		{
+			"href": "t3-eez-studio/manual/03-editing-screens.md",
+			"title": "Design Studio: designing screens",
+			"order": 70
+		},
+		{
+			"href": "t3-eez-studio/manual/04-eez-flow.md",
+			"title": "Design Studio: adding logic with EEZ Flow",
+			"order": 80
+		},
+		{
+			"href": "t3-eez-studio/manual/05-preview-and-deploy.md",
+			"title": "Design Studio: preview, bind and deploy",
+			"order": 90
+		},
+		{
+			"href": "t3-eez-studio/manual/06-reference-and-faq.md",
+			"title": "Design Studio: reference and FAQ",
+			"order": 100
+		},
+		{
+			"href": "t3-eez-studio/README.md",
+			"title": "Design Studio: how it is built",
+			"order": 110
+		},
+		{
+			"href": "bacnet-api/README.md",
+			"title": "Design Studio API: overview",
+			"order": 120
+		},
+		{
+			"href": "bacnet-api/screen-json.md",
+			"title": "Screen JSON: the format",
+			"order": 130
+		},
+		{
+			"href": "bacnet-api/commands.md",
+			"title": "Design Studio API: endpoints",
+			"order": 140
+		},
+		{
+			"href": "display-api/overview.md",
+			"title": "The device display API",
+			"order": 150
+		},
+		{
+			"href": "display-api/endpoints.md",
+			"title": "Display API: endpoints",
+			"order": 160
+		},
+		{
+			"href": "display-api/payloads.md",
+			"title": "Display API: payloads and patching",
+			"order": 170
+		},
+		{
+			"href": "display-api/examples.md",
+			"title": "Display API: examples",
+			"order": 180
+		},
+		{
+			"href": "t3-eez-studio/import-from-device-design.md",
+			"title": "Importing screens from a device",
+			"order": 190
+		},
+		{
+			"href": "t3-eez-studio/device-interface-deployment-via-bacnet-design.md",
+			"title": "Deploying to a device",
+			"order": 200
+		},
+		{
+			"href": "t3-eez-studio/lvgl-eez-project-json-format.md",
+			"title": "The .EEZ-Project JSON format",
+			"order": 210
+		},
+		{
+			"href": "t3-eez-studio/static-resource-copy-build.md",
+			"title": "The static-resource asset pipeline",
+			"order": 220
+		},
+		{
+			"href": "t3-eez-studio/wasm-browser-build-migration.md",
+			"title": "The LVGL WASM browser build",
+			"order": 230
+		},
+		{
+			"href": "firmware/what-the-firmware-runs.md",
+			"title": "What the firmware runs",
+			"order": 240
+		},
+		{
+			"href": "firmware/building.md",
+			"title": "Building the firmware",
+			"order": 250
+		},
+		{
+			"href": "firmware/flashing.md",
+			"title": "Loading firmware onto a device",
+			"order": 260
+		},
+		{
+			"href": "firmware/mqtt-guide.md",
+			"title": "MQTT publishing",
+			"order": 270
+		},
+		{
+			"href": "firmware/mqtt-implementation.md",
+			"title": "How the MQTT task works",
+			"order": 280
+		},
+		{
+			"href": "bootloader/update-flow.md",
+			"title": "How a firmware update runs",
+			"order": 290
+		},
+		{
+			"href": "bootloader/update-registers.md",
+			"title": "The update registers",
+			"order": 300
+		},
+		{
+			"href": "bootloader/resuming-an-update.md",
+			"title": "Resuming an interrupted update",
+			"order": 310
+		},
+		{
+			"href": "bootloader/inside-the-bootloader.md",
+			"title": "Inside the bootloader",
+			"order": 320
+		},
+		{
+			"href": "bootloader/trying-the-commands.md",
+			"title": "Trying the update commands",
+			"order": 330
+		},
+		{
+			"href": "bootloader/signing-firmware.md",
+			"title": "Signing firmware",
+			"order": 340
+		},
+		{
+			"href": "bootloader/skip-signature-validation.md",
+			"title": "Skipping signature validation",
+			"order": 350
+		},
+		{
+			"href": "bootloader/bacnet-cov.md",
+			"title": "BACnet change of value",
+			"order": 360
+		},
+		{
+			"href": "bootloader/bacnet-stack.md",
+			"title": "The BACnet protocol stack",
+			"order": 370
+		},
+		{
+			"href": "bootloader/wifi-station-mode.md",
+			"title": "Wi-Fi station mode",
+			"order": 380
+		},
+		{
+			"href": "testing/host-unit-tests.md",
+			"title": "Testing the firmware without hardware",
+			"order": 390
+		},
+		{
+			"href": "testing/verified-apis.md",
+			"title": "The 729 verified APIs",
+			"order": 400
+		}
+	]
+}

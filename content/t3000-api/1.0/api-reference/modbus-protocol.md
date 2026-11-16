@@ -42,8 +42,6 @@ Modbus TCP/IP and RTU protocol support for legacy devices.
 - 0x03: Illegal Data Value
 - 0x04: Slave Device Failure
 
-
-
 ## Modbus Protocol Implementation
 
 ## Protocol Specifications

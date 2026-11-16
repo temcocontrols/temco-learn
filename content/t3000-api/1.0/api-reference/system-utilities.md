@@ -50,8 +50,6 @@ await fetch('http://localhost:9103/api/upload', {
 
 ---
 
-
-
 #### Health & Status Endpoints
 
 ##### GET /api/health

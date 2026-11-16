@@ -165,8 +165,6 @@ export function OutputControl({ output }: { output: Output }) {
 
 ---
 
-
-
 #### Input Point Endpoints
 
 ##### GET /api/t3_device/devices/:id/input-points

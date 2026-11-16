@@ -10,8 +10,6 @@ The SAVE_LIBRARY_DATA message saves HVAC equipment library data to a JSON file o
 - Persisting equipment configurations
 - Backing up library data
 
-
-
 ## Overview
 
 **Action:** `SAVE_LIBRARY_DATA` (10)

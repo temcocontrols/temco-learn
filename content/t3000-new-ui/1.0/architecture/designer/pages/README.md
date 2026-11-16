@@ -1,6 +1,6 @@
 ---
 title: "Designer — page-by-page design"
-order: 90
+order: 100
 ---
 
 The main design set says **how** the unified editor is built ([`../design.md`](../design.md),

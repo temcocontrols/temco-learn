@@ -398,8 +398,6 @@ CorsLayer::new()
 
 ---
 
-
-
 ### Complete Endpoint Reference
 
 #### Quick Reference Table

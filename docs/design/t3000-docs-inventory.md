@@ -728,5 +728,31 @@ The line between them is the one a reader would draw: **how to talk to T3000** v
 
 Two source pages are hidden rather than published: `t3-eez-studio/device-firmware-lvgl-architecture.md` (its title is the string `main/idf_component.yml` and its ASCII diagrams are mojibake box art) and `t3-eez-studio/manual/images/README.md` (a README for a folder of screenshots). Links that pointed at either now keep their words and lose the link.
 
+---
+
+# Part VIII — Tstat11, and a bug this manual found (2026-11-16)
+
+The Tstat11 is a product, not a subject: `MINI_TSTAT11 = 29` in `main/define.h`, sharing the TSTAT10 IO envelope because `main/commsub.c:73` maps both ids onto the `TSTAT10_*` limits. Its manual is the first project in the `products` section, and deliberately **standalone** rather than a hub: 41 pages, including 26 that also exist in `t3000-new-ui`, `t3000-api` and `t3-firmware`.
+
+## The bug: every image was lost
+
+Parts VI and VII imported markdown with a pass that rewrote page links. That pass matched `[text](href)` — **and an image is `![alt](src)`**, so every screenshot was treated as a link to a page that did not exist and replaced with its alt text. Silently, because a dropped link is not an error.
+
+| Project | Image references in the source | Published before | Published now |
+|---|---|---|---|
+| `t3000-new-ui` | 46 | **0** | 46 |
+| `t3000-api` | 51 | **0** | 51 |
+| Tstat11 | 26 | — | 26 |
+
+The fix is one lookbehind — `/(?<!!)\[(?<text>[^\]]+)\]\((?<href>[^)\s]+)\)/u` — and a separate pass that copies each referenced image to the same relative path and leaves the `![]()` alone. All three projects were rebuilt from source with it; `0` broken page links and `0` missing images in each.
+
+**Lesson worth keeping:** an import that drops what it does not understand looks exactly like an import that worked. The check that finds this is "count the image references in the source and in the build, and compare" — not "does the build pass".
+
+## Two more things worth recording
+
+1. **A hidden page must not be linked.** `ship: false` stops the page being published, but any page linking to it becomes a dead end. Those links now keep their words and lose the link, which is why three pages still *name* `device-firmware-lvgl-architecture.md` without linking to it.
+2. **`Unit_Test/verified_apis.md` is 83 KB of table.** It publishes as [the 729 verified APIs](https://temcocontrols.github.io/temco-learn/tstat11/1.0/testing/verified-apis), one row per production API with the file it lives in and whether a test calls it directly or reaches it through a caller.
+
+
 
 

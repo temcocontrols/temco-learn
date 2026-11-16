@@ -11,8 +11,6 @@ GET_PANELS_LIST retrieves all online panels (devices) in the network. Use this t
 - Checking device online status
 - Building device selection menus
 
-
-
 ## Overview
 
 **Message Type:** GET_PANELS_LIST

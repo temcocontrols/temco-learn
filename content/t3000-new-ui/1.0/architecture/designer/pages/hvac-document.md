@@ -1,6 +1,6 @@
 ---
 title: "The HVAC document, panel by panel"
-order: 130
+order: 140
 ---
 
 Document kind `hvac-schematic`, engine `hvac` (`src/lib/t3-hvac`). Hosted by

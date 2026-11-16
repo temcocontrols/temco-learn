@@ -1982,7 +1982,7 @@ Three entrances, one path. The author never picks a format, a folder, or a filen
   └── drag & drop ────┘        └──────────────┘   └───────────────┘   └──────┬───────┘
                                                                              │
                                                         insert at the caret  │
-                                          ![Terminal after reset](att:IMG-7) ▼
+                                          `![Terminal after reset](att:IMG-7)` ▼
 ```
 
 Rules that make this worth building:

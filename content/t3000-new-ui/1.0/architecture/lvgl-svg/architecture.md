@@ -1,6 +1,6 @@
 ---
 title: "LVGL SVG Renderer — Architecture"
-order: 220
+order: 230
 ---
 
 Where rendering happens, which code the SVG surface occupies, and how it attaches to the existing

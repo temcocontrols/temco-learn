@@ -1,6 +1,6 @@
 ---
 title: "04 — Adding Logic with EEZ Flow"
-order: 410
+order: 420
 ---
 
 **EEZ Flow** is the visual logic editor. It lets a screen *do* something when the user
@@ -46,7 +46,7 @@ editor:
 - **Components Palette** — the building blocks you drag onto the flow canvas.
 - **Breakpoints** — for debugging flows.
 
-!The Flow editor
+![The Flow editor](../../media/16-flow-editor.png)
 
 *Figure 4.1 — A small flow: an event starts it, components run in order.*
 
@@ -59,7 +59,7 @@ follows the connections from a starting point (an event) to the end.
 
 Drag components from the palette and wire them together.
 
-!The Flow components palette
+![The Flow components palette](../../media/17-flow-palette.png)
 
 *Figure 4.2 — The components palette.*
 
@@ -90,7 +90,7 @@ The usual pattern is *widget event → action*.
      by itself.
 4. Choose **flow** as the handler type, and create or select the flow it should run.
 
-!A widget event bound to a flow
+![A widget event bound to a flow](../../media/18-flow-widget-event.png)
 
 *Figure 4.3 — A widget event handler pointing at a flow.*
 

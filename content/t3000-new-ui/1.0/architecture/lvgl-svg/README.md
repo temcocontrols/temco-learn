@@ -1,6 +1,6 @@
 ---
 title: "LVGL SVG Renderer"
-order: 210
+order: 220
 ---
 
 Architecture and reference documentation for the SVG rendering surface of the LVGL 9.5 page editor.

@@ -11,8 +11,6 @@ GET_ENTRIES retrieves multiple specific entries by their exact indices. Unlike G
 - Updating specific dashboard widgets
 - Custom point monitoring
 
-
-
 ## Overview
 
 **Message Type:** GET_ENTRIES

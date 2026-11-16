@@ -1,6 +1,6 @@
 ---
 title: "02 — Creating a Project"
-order: 390
+order: 400
 ---
 
 There are three ways to get an LVGL project. All three end with the project open in the
@@ -31,7 +31,7 @@ editor.
    **New Drawing** in the top bar, which opens the same dialog.
 2. The **New …** dialog opens on the **Create New** tab.
 
-!The Create New tab
+![The Create New tab](../../media/08-lvgl-create-new.png)
 
 *Figure 2.1 — The Create New tab of the New LVGL project dialog.*
 
@@ -63,7 +63,7 @@ The examples are real LVGL projects published by EEZ, filtered to the LVGL types
 1. In the Design Hub, click **LVGL Examples** (next to the *Create by Type* tiles).
 2. The **LVGL Examples** drawer opens.
 
-!The LVGL Examples drawer
+![The LVGL Examples drawer](../../media/06-lvgl-examples-drawer.png)
 
 *Figure 2.2 — The LVGL Examples drawer.*
 
@@ -81,7 +81,7 @@ The examples are real LVGL projects published by EEZ, filtered to the LVGL types
 4. Click **Create & Open**, then fill in **Name**, **Location** and **Create directory**, and
    confirm.
 
-!The create-from-example dialog
+![The create-from-example dialog](../../media/11-lvgl-example-create.png)
 
 *Figure 2.3 — Naming the project created from an example.*
 
@@ -103,7 +103,7 @@ what the device already shows.
 
 1. Click an LVGL tile, then switch to the **Load from Device** tab.
 
-!The Load from Device tab
+![The Load from Device tab](../../media/09-lvgl-load-from-device.png)
 
 *Figure 2.4 — Choosing the device to read screens from.*
 
@@ -113,7 +113,7 @@ what the device already shows.
 
 The dialog reports progress and keeps a collapsible **details log**:
 
-!Import progress and log
+![Import progress and log](../../media/10-lvgl-import-step-log.png)
 
 *Figure 2.5 — Import progress with the detail log expanded.*
 
@@ -144,7 +144,7 @@ kept in the project's `device-import/` folder.
 Whichever way you used, the project now appears in **Project History** on the Design Hub,
 under the tab for its type, with the status **Unbound** until you bind a device.
 
-!The new project in Project History
+![The new project in Project History](../../media/05-hub-project-card.png)
 
 *Figure 2.6 — The project you created, in Project History.*
 

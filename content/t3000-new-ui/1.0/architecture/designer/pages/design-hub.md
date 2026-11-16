@@ -1,6 +1,6 @@
 ---
 title: "The Design Hub, page by page — the entry point into every designer document"
-order: 110
+order: 120
 ---
 
 `features/design-hub/**`. Two pages, eleven dialogs/panels, two services, one registry. This is where

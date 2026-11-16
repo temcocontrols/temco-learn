@@ -11,8 +11,6 @@ UPDATE_ENTRY updates a single field of a specific entry. This is the fastest way
 - Single setpoint adjustments
 - Manual/auto mode switches
 
-
-
 ## Overview
 
 **Message Type:** UPDATE_ENTRY

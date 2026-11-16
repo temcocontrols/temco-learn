@@ -44,8 +44,6 @@ await fetch('http://localhost:9103/api/t3_device/trendlogs/1', {
 
 ---
 
-
-
 #### Trendlog Endpoints
 
 ##### GET /api/t3_device/devices/:id/trendlogs

@@ -10,8 +10,6 @@ The SAVE_IMAGE message uploads graphic image files from the web interface to the
 - Adding icon graphics
 - Importing custom images for HMI screens
 
-
-
 ## Overview
 
 **Action:** `SAVE_IMAGE` (9)

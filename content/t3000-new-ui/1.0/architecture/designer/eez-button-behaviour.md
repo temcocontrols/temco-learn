@@ -1,6 +1,6 @@
 ---
 title: "EEZ editor — button-by-button: origin vs the unified shell"
-order: 70
+order: 80
 ---
 
 What every control *does*, what it changes, and what is drawn as a result — **origin** (`T3000Webview-eez-origin`,

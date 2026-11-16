@@ -1,6 +1,6 @@
 ---
 title: "P2 — the LVGL document on the shell"
-order: 170
+order: 180
 ---
 
 Goal: the EEZ/LVGL project editor appears as a **document of the Designer**, with its panels in the shell's

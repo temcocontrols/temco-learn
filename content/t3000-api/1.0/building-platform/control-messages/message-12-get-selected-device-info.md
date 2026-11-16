@@ -10,8 +10,6 @@ The GET_SELECTED_DEVICE_INFO message retrieves information about the currently s
 - Determining active panel details
 - Synchronizing frontend with backend device selection
 
-
-
 ## Overview
 
 **Action:** `GET_SELECTED_DEVICE_INFO` (12)

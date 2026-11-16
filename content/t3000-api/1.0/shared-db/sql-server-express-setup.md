@@ -42,7 +42,7 @@ Estimated time: 25 to 40 minutes.
 Expected file name:
 - `SQL2022-SSEI-Expr.exe` (small web installer, ~5 MB, downloads installation files during setup)
 
-!Step 1 - Download SQL Server Express
+![Step 1 - Download SQL Server Express](../media/00.png)
 
 ## Step 2: Run SQL Server Express Installer
 
@@ -53,7 +53,7 @@ Expected file name:
 > If Windows shows a security warning ("publisher can't be verified"), click **Run** to continue.
 > This is expected for the Microsoft installer.
 
-!Step 2 - Run installer as administrator
+![Step 2 - Run installer as administrator](../media/01.png)
 
 ## Step 3: Prepare SQL Server Installer Media (Pre-Install)
 
@@ -67,10 +67,10 @@ Expected result:
 - The full installer file is available in the selected folder.
 - Continue by running that installer in the next step.
 
-!Step 3 - Select Download Media
-!Step 3 - Choose download options
-!Step 3 - Download progress
-!Step 3 - Download complete, open folder
+![Step 3 - Select Download Media](../media/02.png)
+![Step 3 - Choose download options](../media/03.png)
+![Step 3 - Download progress](../media/04.png)
+![Step 3 - Download complete, open folder](../media/05.png)
 
 ## Step 4: Start the Full SQL Server Installation
 
@@ -85,11 +85,11 @@ Notes:
 - A Windows Firewall warning on Install Rules can appear and does not block installation.
 - Network and firewall settings will be configured in later steps.
 
-!Step 4 - Open downloaded installer
-!Step 4 - UAC confirmation
-!Step 4 - SQL Server Installation Center
-!Step 4 - Product Updates
-!Step 4 - Install Rules
+![Step 4 - Open downloaded installer](../media/06.png)
+![Step 4 - UAC confirmation](../media/07.png)
+![Step 4 - SQL Server Installation Center](../media/08.png)
+![Step 4 - Product Updates](../media/09.png)
+![Step 4 - Install Rules](../media/10.png)
 
 ## Step 5: Select Installation Type and Accept Terms
 
@@ -104,9 +104,9 @@ Notes:
 - If an existing SQL instance is listed, keep **Perform a new installation** selected for SQL Express.
 - The Azure Extension option is not required for this setup.
 
-!Step 5 - Installation Type
-!Step 5 - License Terms
-!Step 5 - Azure Extension
+![Step 5 - Installation Type](../media/11.png)
+![Step 5 - License Terms](../media/12.png)
+![Step 5 - Azure Extension](../media/13.png)
 
 ## Step 6: Select Features, Instance, and Server Configuration
 
@@ -122,9 +122,9 @@ Notes:
 - Use the same instance naming shown in the screenshots to match later connection steps.
 - SQL Server Browser may appear as **Disabled** at this stage and can be configured later.
 
-!Step 6 - Feature Selection
-!Step 6 - Instance Configuration
-!Step 6 - Server Configuration
+![Step 6 - Feature Selection](../media/14.png)
+![Step 6 - Instance Configuration](../media/15.png)
+![Step 6 - Server Configuration](../media/16.png)
 
 ## Step 7: Configure Database Engine and Data Directories
 
@@ -145,8 +145,8 @@ Recommended practice:
 - Keep SQL Server program files and database data files on separate drives when possible.
 - This reduces C: drive growth and improves long-term system stability.
 
-!Step 7 - Database Engine Configuration (Server Configuration)
-!Step 7 - Database Engine Configuration (Data Directories)
+![Step 7 - Database Engine Configuration (Server Configuration)](../media/17.png)
+![Step 7 - Database Engine Configuration (Data Directories)](../media/18.png)
 
 ## Step 8: Run Installation and Confirm Completion
 
@@ -162,9 +162,9 @@ Verification checklist:
 - Setup summary shows installation completed successfully.
 - In **Windows Services**, **SQL Server (SQLEXPRESS)** shows **Running**.
 
-!Step 8 - Installation Progress
-!Step 8 - Installation Complete
-!Step 8 - SQL Server (SQLEXPRESS) running in Services
+![Step 8 - Installation Progress](../media/19.png)
+![Step 8 - Installation Complete](../media/20.png)
+![Step 8 - SQL Server (SQLEXPRESS) running in Services](../media/22.png)
 
 ## Step 9 (Optional): Open SQL Server Management Tools Download Page
 
@@ -179,7 +179,7 @@ Notes:
 - This step is optional for core SQL Server Engine installation.
 - It is recommended for troubleshooting, query testing, and manual database setup.
 
-!Step 9 - Install SQL Server Management Tools (Optional)
+![Step 9 - Install SQL Server Management Tools (Optional)](../media/21.png)
 
 ## Step 10: Configure TCP/IP in SQL Server Configuration Manager
 
@@ -199,11 +199,11 @@ Verification checklist:
 - **TCP/IP** shows **Enabled** under Protocols for SQLEXPRESS.
 - **SQL Server (SQLEXPRESS)** is **Running** after restart.
 
-!Step 10 - Open SQL Server Configuration Manager
-!Step 10 - Protocols for SQLEXPRESS
-!Step 10 - Enable Named Pipes (if required)
-!Step 10 - Enable TCP/IP
-!Step 10 - Restart SQL Server (SQLEXPRESS)
+![Step 10 - Open SQL Server Configuration Manager](../media/23.png)
+![Step 10 - Protocols for SQLEXPRESS](../media/24.png)
+![Step 10 - Enable Named Pipes (if required)](../media/25.png)
+![Step 10 - Enable TCP/IP](../media/26.png)
+![Step 10 - Restart SQL Server (SQLEXPRESS)](../media/27.PNG)
 
 ## Step 11: Enable Remote Access for TCP 1433 (Windows Firewall)
 
@@ -225,14 +225,14 @@ Verification checklist:
 - New inbound rule for TCP 1433 appears in Firewall Inbound Rules.
 - Remote clients can reach the SQL host on port 1433.
 
-!Step 11 - Open Windows Defender Firewall with Advanced Security
-!Step 11 - Select Inbound Rules
-!Step 11 - Create New Rule
-!Step 11 - Rule Type Port
-!Step 11 - Protocol and Port TCP 1433
-!Step 11 - Allow the connection
-!Step 11 - Select profiles
-!Step 11 - Name the firewall rule
+![Step 11 - Open Windows Defender Firewall with Advanced Security](../media/28.png)
+![Step 11 - Select Inbound Rules](../media/29.png)
+![Step 11 - Create New Rule](../media/30.png)
+![Step 11 - Rule Type Port](../media/31.png)
+![Step 11 - Protocol and Port TCP 1433](../media/32.png)
+![Step 11 - Allow the connection](../media/33.png)
+![Step 11 - Select profiles](../media/34.png)
+![Step 11 - Name the firewall rule](../media/35.png)
 
 ## Step 12 (Optional): Verify Connection via mssql Tool
 
@@ -247,8 +247,8 @@ Use the **mssql** extension in VS Code to confirm SQL Server is reachable before
 
 > If the connection fails, verify TCP/IP is enabled (Step 10), mixed mode is set (Step 7), and the SQL Server service is running (Step 8).
 
-!Step 12 - mssql extension connect
-!Step 12 - Connection verified
+![Step 12 - mssql extension connect](../media/36.png)
+![Step 12 - Connection verified](../media/37.png)
 
 ---
 

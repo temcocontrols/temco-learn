@@ -45,8 +45,6 @@ console.log(stats);
 
 ---
 
-
-
 #### Settings Endpoints
 
 ##### GET /api/db_management/settings

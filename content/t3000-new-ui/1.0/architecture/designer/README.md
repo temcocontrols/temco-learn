@@ -1,6 +1,6 @@
 ---
 title: "Unified Designer — design set"
-order: 20
+order: 30
 ---
 
 The designer is one editor at `/t3000/designer/...` serving four document kinds — HVAC schematic, LVGL 9-5,

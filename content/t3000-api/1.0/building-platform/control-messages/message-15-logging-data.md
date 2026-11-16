@@ -7,8 +7,6 @@ The LOGGING_DATA message (Action 15) triggers comprehensive data collection from
 
 **Important:** This feature has a 1-minute cooldown and is disabled by default in release builds.
 
-
-
 ## Overview
 
 **Action:** `LOGGING_DATA` (15)
