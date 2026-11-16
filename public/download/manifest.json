@@ -1,5 +1,5 @@
 {
-	"generated": "2026-11-13T07:12:40.486Z",
+	"generated": "2026-11-13T14:48:49.510Z",
 	"projects": {
 		"ph-chart": {
 			"1.0": {
@@ -37,6 +37,11 @@
 			}
 		},
 		"t3000-engineering": {
+			"1.0": {
+				"chm": true
+			}
+		},
+		"t3000-new-ui": {
 			"1.0": {
 				"chm": true
 			}

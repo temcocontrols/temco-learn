@@ -1,6 +1,6 @@
 ---
 title: "T3000 Center DB Configuration"
-order: 800
+order: 770
 ---
 
 Use this guide to configure a shared central SQL Server database in T3000. This allows multiple T3000 PCs on the same network to share trend logs and device data through one central Microsoft SQL Server instance.
@@ -15,7 +15,7 @@ Open the T3000 Building Automation System desktop application.
 
 Before configuring the shared database, make sure T3000 is up to date. Click **Help — Check for Updates** in the menu bar and install any available update. The Shared DB feature requires the latest version to work correctly.
 
-![Step 1 — T3000 desktop application](images/t3000/01.png)
+!Step 1 — T3000 desktop application
 
 ---
 
@@ -33,7 +33,7 @@ You will see two mode cards:
 
 The **Shared DB** card shows *Not configured. Click to connect to a shared SQL Server database.* Click anywhere on the Shared DB card to begin setup.
 
-![Step 2 — Dashboard showing Standalone active and Shared DB not configured](images/t3000/02.png)
+!Step 2 — Dashboard showing Standalone active and Shared DB not configured
 
 ---
 
@@ -41,7 +41,7 @@ The **Shared DB** card shows *Not configured. Click to connect to a shared SQL S
 
 After clicking the Shared DB card, a **Connect to Shared DB** button appears. Click it to open the Database Configuration page.
 
-![Step 3 — Connect to Shared DB button](images/t3000/03.png)
+!Step 3 — Connect to Shared DB button
 
 ---
 
@@ -53,7 +53,7 @@ The **Database Configuration** page opens, showing:
 - **Database Status** — currently shows *Standalone · Online*
 - **Server / Client Configuration** — toggle is currently **Server Database: Disabled**
 
-![Step 4 — Database Configuration page, standalone mode, server database disabled](images/t3000/04.png)
+!Step 4 — Database Configuration page, standalone mode, server database disabled
 
 ---
 
@@ -70,7 +70,7 @@ Select **Server** for the PC hosting the SQL Server instance. Select **Client** 
 
 Under **Backend Type**, select **Microsoft SQL Server**.
 
-![Step 5 — Server Database enabled, Server role selected, Microsoft SQL Server backend](images/t3000/05.png)
+!Step 5 — Server Database enabled, Server role selected, Microsoft SQL Server backend
 
 ---
 
@@ -91,7 +91,7 @@ Optionally use the **Connection URL** field to override all fields above with a 
 
 To discover SQL Server instances automatically, click **Scan LAN**. The scanner probes ports 1432, 1433, and 1434 on your local subnet and returns all instances found. Click **Use** next to any result to fill in the connection fields automatically.
 
-![Step 6 — Connection Settings fields and Scan LAN section](images/t3000/06.png)
+!Step 6 — Connection Settings fields and Scan LAN section
 
 ---
 
@@ -105,7 +105,7 @@ Once the fields are set, click **Save Configuration**. A success banner confirms
 
 > **Note:** If SQL Server Browser service is not running on the target machine, instances may appear as *TCP port check only* without an instance name. In this case, enter the instance name manually.
 
-![Step 7 — Scan results with 192.168.1.22:1432 selected, save success banner](images/t3000/07.png)
+!Step 7 — Scan results with 192.168.1.22:1432 selected, save success banner
 
 ---
 
@@ -125,7 +125,7 @@ If connection fails, check:
 - Windows Firewall allows the configured port (1433 or 1432)
 - Username and password are correct
 
-![Step 8 — Test Connection clicked, authentication OK, database not yet created](images/t3000/08.png)
+!Step 8 — Test Connection clicked, authentication OK, database not yet created
 
 ---
 
@@ -135,7 +135,7 @@ Click **Init Schema** to create all required T3000 tables (inputs, outputs, vari
 
 > Init Schema is safe to run multiple times. It will not delete existing data.
 
-![Step 9 — Init Schema button with tooltip](images/t3000/09.png)
+!Step 9 — Init Schema button with tooltip
 
 ---
 
@@ -147,7 +147,7 @@ A success banner confirms:
 
 All T3000 tables have been created on the SQL Server database. The server is now ready to receive data.
 
-![Step 10 — Schema initialized successfully, 179 statements executed](images/t3000/10.png)
+!Step 10 — Schema initialized successfully, 179 statements executed
 
 ---
 
@@ -160,7 +160,7 @@ Return to the Dashboard. The **Shared DB** card now shows:
 
 Close and reopen T3000 to apply the new configuration.
 
-![Step 11 — Dashboard showing Shared DB saved, restart required](images/t3000/11.png)
+!Step 11 — Dashboard showing Shared DB saved, restart required
 
 ---
 
@@ -179,7 +179,7 @@ The **Network Overview** section shows:
 
 T3000 Field Devices shows all devices in the building.
 
-![Step 12 — Dashboard after restart, Shared DB Active, Server Online, Network Overview](images/t3000/12.png)
+!Step 12 — Dashboard after restart, Shared DB Active, Server Online, Network Overview
 
 ---
 
@@ -203,7 +203,7 @@ Scroll down on the Dashboard to see:
 - **Records (24h)** — total records written in the last 24 hours
 - **Last Sample** — timestamp of the most recent data point
 
-![Step 13 — Dashboard System Overview Connected, Sync & Database Health, Trend Logs data](images/t3000/13.png)
+!Step 13 — Dashboard System Overview Connected, Sync & Database Health, Trend Logs data
 
 ---
 

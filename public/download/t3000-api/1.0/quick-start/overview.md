@@ -1,6 +1,6 @@
 ---
 title: "Quick Start Overview"
-order: 380
+order: 410
 ---
 
 This guide will help you get started with T3000 Building Automation System quickly and efficiently.
@@ -67,17 +67,11 @@ Familiarize yourself with the main sections:
 
 **Scheduling**: Automate building operations based on occupancy and time of day.
 
-## Next Steps
-
-- [Installation Guide](installation) - Detailed installation instructions
-- [Configuration](configuration) - Configure your system settings
-- [Device Management](../device-management/connecting-devices) - Connect your first device
-
 ## Getting Help
 
 If you encounter any issues:
-- Check the [FAQ](../guides/faq)
-- Review [Troubleshooting Guide](../guides/troubleshooting)
+- Check the [FAQ](../guides/faq.md)
+- Review [Troubleshooting Guide](../guides/troubleshooting.md)
 - Contact support@temcocontrols.com
 
 
@@ -281,9 +275,3 @@ impl ProtocolHandler for CustomProtocol {
 // Register handler
 system.register_protocol("custom", CustomProtocol);
 ```
-
-## Next Steps
-
-- [REST API Reference](../api-reference/rest-api)
-- [WebSocket API](../api-reference/websocket-api)
-- [Modbus Protocol](../api-reference/modbus-protocol)

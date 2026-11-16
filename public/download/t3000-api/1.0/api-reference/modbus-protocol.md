@@ -422,9 +422,3 @@ class ModbusConnectionPool {
   }
 }
 ```
-
-## Next Steps
-
-- [REST API](./rest-api)
-- [WebSocket API](./websocket-api)
-- [Events](./events)

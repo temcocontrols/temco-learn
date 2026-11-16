@@ -1,6 +1,6 @@
 ---
 title: "Performance Tuning"
-order: 610
+order: 640
 ---
 
 Optimize T3000 system performance and responsiveness.
@@ -512,9 +512,3 @@ await metrics.measureAsync('fetch-device-data', () =>
   fetch('/api/devices/389001').then(r => r.json())
 );
 ```
-
-## Next Steps
-
-- [Best Practices](./best-practices)
-- [Troubleshooting](./troubleshooting)
-- [FAQ](./faq)

@@ -1,6 +1,6 @@
 ---
-title: "Message 5: GET_PANEL_RANGE_INFO"
-order: 230
+title: "Message 5: GET_Panel_Range_Info"
+order: 260
 ---
 
 The GET_PANEL_RANGE_INFO message retrieves panel capability and range information. This message helps determine what features a panel supports.
@@ -15,7 +15,7 @@ The GET_PANEL_RANGE_INFO message retrieves panel capability and range informatio
 **Direction:** Frontend → Backend
 **Location:** Not implemented
 **Purpose:** Query panel capabilities and supported ranges
-**Status:** ⚠️ Not implemented
+**Status:** Not implemented
 
 ## Expected Request Format
 

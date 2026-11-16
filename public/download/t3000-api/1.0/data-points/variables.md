@@ -1,6 +1,6 @@
 ---
 title: "Variables"
-order: 440
+order: 470
 ---
 
 Calculated variables, setpoints, and derived values.
@@ -44,13 +44,6 @@ Variables can be:
 - Document calculations
 - Set appropriate limits
 - Use consistent units
-
-## Next Steps
-
-- [Programs](./programs) - Control logic
-- [PID Loops](./pid-loops) - PID control
-
-
 
 ## Variables
 
@@ -253,9 +246,3 @@ class VariableCache {
   }
 }
 ```
-
-## Next Steps
-
-- [REST API Reference](../api-reference/rest-api)
-- [Programs](./programs)
-- [Inputs](./inputs)

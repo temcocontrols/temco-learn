@@ -205,8 +205,8 @@ GET /api/t3_device/devices/1/input-points HTTP/1.1
 ```
 
 **Used By**:
-- [InputTable.tsx](src/t3-react/features/points/components/InputTable.tsx)
-- [PointGrid.tsx](src/t3-react/features/points/components/PointGrid.tsx)
+- InputTable.tsx
+- PointGrid.tsx
 
 **Handler**: `api/src/t3_device/routes.rs::get_input_points`
 
@@ -241,7 +241,7 @@ GET /api/t3_device/inputs/3000001 HTTP/1.1
 ```
 
 **Used By**:
-- [PointDetail.tsx](src/t3-react/features/points/pages/PointDetail.tsx)
+- PointDetail.tsx
 
 **Errors**:
 - `404` - Input not found
@@ -282,7 +282,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [EditInputDialog.tsx](src/t3-react/features/points/components/EditInputDialog.tsx)
+- EditInputDialog.tsx
 
 ---
 
@@ -309,7 +309,7 @@ POST /api/t3_device/devices/1/inputs/refresh HTTP/1.1
 ```
 
 **Used By**:
-- [RefreshPointsButton.tsx](src/t3-react/features/points/components/RefreshPointsButton.tsx)
+- RefreshPointsButton.tsx
 
 **Errors**:
 - `503` - Device offline
@@ -352,7 +352,7 @@ GET /api/t3_device/devices/1/output-points HTTP/1.1
 ```
 
 **Used By**:
-- [OutputTable.tsx](src/t3-react/features/points/components/OutputTable.tsx)
+- OutputTable.tsx
 
 ---
 
@@ -383,7 +383,7 @@ GET /api/t3_device/outputs/5000000 HTTP/1.1
 ```
 
 **Used By**:
-- [OutputControl.tsx](src/t3-react/features/points/components/OutputControl.tsx)
+- OutputControl.tsx
 
 ---
 
@@ -421,8 +421,8 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [OutputControl.tsx](src/t3-react/features/points/components/OutputControl.tsx)
-- [ManualOverride.tsx](src/t3-react/features/points/components/ManualOverride.tsx)
+- OutputControl.tsx
+- ManualOverride.tsx
 
 **Errors**:
 - `400` - Invalid value or mode
@@ -464,7 +464,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [BatchControl.tsx](src/t3-react/features/points/components/BatchControl.tsx)
+- BatchControl.tsx
 
 ---
 
@@ -491,7 +491,7 @@ POST /api/t3_device/devices/1/outputs/refresh HTTP/1.1
 ```
 
 **Used By**:
-- [RefreshPointsButton.tsx](src/t3-react/features/points/components/RefreshPointsButton.tsx)
+- RefreshPointsButton.tsx
 
 ---
 
@@ -528,7 +528,7 @@ GET /api/t3_device/devices/1/variable-points HTTP/1.1
 ```
 
 **Used By**:
-- [VariableTable.tsx](src/t3-react/features/points/components/VariableTable.tsx)
+- VariableTable.tsx
 
 ---
 
@@ -587,7 +587,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [VariableControl.tsx](src/t3-react/features/points/components/VariableControl.tsx)
+- VariableControl.tsx
 
 ---
 
@@ -618,7 +618,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [BatchControl.tsx](src/t3-react/features/points/components/BatchControl.tsx)
+- BatchControl.tsx
 
 ---
 

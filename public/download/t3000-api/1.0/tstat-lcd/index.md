@@ -1,6 +1,6 @@
 ---
 title: "Tstat LCD System — Documentation Index"
-order: 820
+order: 790
 ---
 
 This folder contains the complete technical documentation for the Tstat10/Tstat11 LCD UI system: a visual drag-and-drop screen designer that outputs JSON, rendered identically on browser, device, and phone.
@@ -17,7 +17,7 @@ This folder contains the complete technical documentation for the Tstat10/Tstat1
 | [LCD Screen Designer](edit-mode.md) | **Core document** — blank canvas, widget toolbox, grid snap, properties panel, drag-and-drop design flow |
 | [Widget Types](widget-types.md) | LVGL-style widget type reference (label, text, input, dropdown, icon, etc.) |
 | [JSON Schema](json-schema.md) | The `screenDefinition.json` format specification |
-| [Implementation Status](implementation-status.md) | What's built, what's pending, build order |
+| Implementation Status | What's built, what's pending, build order |
 
 ## Key Specs
 

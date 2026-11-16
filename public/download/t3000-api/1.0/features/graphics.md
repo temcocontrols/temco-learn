@@ -1,6 +1,6 @@
 ---
 title: "Graphics"
-order: 510
+order: 540
 ---
 
 Visual interface for monitoring and controlling building systems.
@@ -38,13 +38,6 @@ Graphics provide intuitive visual representations of equipment, floor plans, and
 - Use consistent colors and symbols
 - Label all elements clearly
 - Test on different screen sizes
-
-## Next Steps
-
-- [Dashboard](../../quick-start/overview) - Main dashboard
-- [Monitoring](../device-management/device-monitoring) - Data monitoring
-
-
 
 ## Graphics
 
@@ -126,8 +119,3 @@ class GraphicsDataBinder {
   }
 }
 ```
-
-## Next Steps
-
-- [REST API](../api-reference/rest-api)
-- [WebSocket API](../api-reference/websocket-api)

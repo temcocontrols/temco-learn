@@ -1,10 +1,9 @@
 ---
 title: "Flow Logging Architecture — Design Document"
-order: 670
+order: 700
 ---
 
 **Status:** Design only. No code changes made yet.
-**Date:** 2026-05-21
 **Scope:** New flow-based tracing layer. Existing `T3_APP_LOG`, `ActivityLogTab`, and all current
 logging code are untouched.
 
@@ -343,7 +342,7 @@ CREATE TABLE IF NOT EXISTS T3_FLOW_PAYLOAD (
 
 ## 4. Flow types and their steps
 
-### DLL_INIT
+### DLL_Init
 Triggered once at service startup. Source: Rust.
 
 | seq | step_name | source | what it records |
@@ -358,7 +357,7 @@ Triggered once at service startup. Source: Rust.
 | 8 | schema_migration | server | migration check result |
 | 9 | init_done | server | total duration, any errors |
 
-### SYNC_CYCLE
+### Sync_Cycle
 Triggered by background scheduler. Source: Rust. One flow per cycle.
 
 | seq | step_name | source | what it records |
@@ -373,7 +372,7 @@ Triggered by background scheduler. Source: Rust. One flow per cycle.
 
 Note: step 5 repeats once per device. `meta` on the flow carries `{"total_devices": N}`.
 
-### INPUTS_LOAD (and OUTPUTS_LOAD, VARIABLES_LOAD)
+### Inputs_Load (And Outputs_Load, Variables_Load)
 Triggered by user page load or refresh button. Spans React + Rust.
 
 | seq | step_name | source | what it records |
@@ -397,7 +396,7 @@ flow type applies.
 | 3 | ffi_response | t3_ffi_api | bytes, status (payload offloaded if large) |
 | 4 | db_write | t3_ffi_api | optional: if response triggers a save |
 
-### CONFIG_CHANGE
+### Config_Change
 Triggered when user saves any setting.
 
 | seq | step_name | source | what it records |
@@ -409,7 +408,7 @@ Triggered when user saves any setting.
 | 5 | history_write | config_api | APPLICATION_CONFIG_HISTORY row |
 | 6 | service_notify | server | which runtime service acknowledged |
 
-### USER_AUTH
+### User_Auth
 Triggered on login/logout.
 
 | seq | step_name | source |

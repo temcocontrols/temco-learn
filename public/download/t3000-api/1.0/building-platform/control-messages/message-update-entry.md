@@ -1,6 +1,6 @@
 ---
 title: "Message: UPDATE_ENTRY"
-order: 340
+order: 370
 ---
 
 UPDATE_ENTRY updates a single field of a specific entry. This is the fastest way to change one value without sending a full entry update.
@@ -39,15 +39,15 @@ UPDATE_ENTRY updates a single field of a specific entry. This is the fastest way
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `action` | String | ✅ | Must be "UPDATE_ENTRY" |
-| `source` | Integer | ✅ | Message source: 0=T3000, 1=WebUI |
-| `panelId` | Integer | ✅ | Panel number (0-254) |
-| `serialNumber` | Integer | ✅ | Device serial number |
-| `entryType` | Integer | ✅ | Type of entry |
-| `index` | Integer | ✅ | Entry index |
-| `field` | String | ✅ | Field name to update |
-| `value` | Any | ✅ | New value |
-| `objectinstance` | Integer | ✅ | BACnet object instance |
+| `action` | String | Yes | Must be "UPDATE_ENTRY" |
+| `source` | Integer | Yes | Message source: 0=T3000, 1=WebUI |
+| `panelId` | Integer | Yes | Panel number (0-254) |
+| `serialNumber` | Integer | Yes | Device serial number |
+| `entryType` | Integer | Yes | Type of entry |
+| `index` | Integer | Yes | Entry index |
+| `field` | String | Yes | Field name to update |
+| `value` | Any | Yes | New value |
+| `objectinstance` | Integer | Yes | BACnet object instance |
 
 ## Response Format
 

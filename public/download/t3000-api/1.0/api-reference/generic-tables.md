@@ -71,7 +71,7 @@ GET /api/t3_device/arrays?device_id=1 HTTP/1.1
 ]
 ```
 
-**Used By**: [GenericTableView.tsx](src/t3-react/features/tables/components/GenericTableView.tsx)
+**Used By**: GenericTableView.tsx
 
 ---
 

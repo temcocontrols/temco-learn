@@ -1,6 +1,6 @@
 ---
 title: "Device Monitoring"
-order: 470
+order: 500
 ---
 
 Monitor real-time device status, data points, and system health.
@@ -37,9 +37,9 @@ Monitor all input points:
 
 | Point | Description | Value | Units | Status | Last Update |
 |-------|-------------|-------|-------|--------|-------------|
-| IN1 | Zone Temperature | 72.5 | °F | ✅ Valid | 2s ago |
-| IN2 | Supply Pressure | 45.2 | PSI | ✅ Valid | 2s ago |
-| IN3 | CO2 Level | 650 | PPM | ✅ Valid | 2s ago |
+| IN1 | Zone Temperature | 72.5 | °F | Yes Valid | 2s ago |
+| IN2 | Supply Pressure | 45.2 | PSI | Yes Valid | 2s ago |
+| IN3 | CO2 Level | 650 | PPM | Yes Valid | 2s ago |
 
 **Features:**
 - Real-time value updates (2-5 second refresh)
@@ -101,8 +101,8 @@ View current alarm conditions:
 
 | Priority | Point | Message | Time | Acknowledge |
 |----------|-------|---------|------|-------------|
-| High | IN1 | High Temperature | 10:23 AM | ☐ |
-| Medium | OUT2 | Fan Feedback Error | 10:15 AM | ☑️ |
+| High | IN1 | High Temperature | 10:23 AM | No |
+| Medium | OUT2 | Fan Feedback Error | 10:15 AM | Yes |
 
 **Alarm Actions:**
 - Acknowledge individual alarms
@@ -152,7 +152,7 @@ Data automatically refreshes at configurable intervals:
 - **Alarms**: 3 seconds (high priority)
 
 **Manual Refresh:**
-Click the 🔄 **Refresh from Device** button to force immediate update.
+Click the **Refresh from Device** button to force immediate update.
 
 ## Filters and Search
 
@@ -202,14 +202,6 @@ Export monitored data:
 - Archive old trend data regularly
 - Close unused browser tabs
 - Use modern browsers (Chrome, Edge, Firefox)
-
-## Next Steps
-
-- [Trend Logs](../features/trendlogs) - Detailed trend analysis
-- [Alarms](../features/alarms) - Alarm configuration
-- [Troubleshooting](./device-troubleshooting) - Resolve monitoring issues
-
-
 
 ## Device Monitoring
 
@@ -638,10 +630,3 @@ class AlarmDetector {
   }
 }
 ```
-
-## Next Steps
-
-- [REST API Reference](../api-reference/rest-api)
-- [WebSocket API](../api-reference/websocket-api)
-- [Performance Tuning](../guides/performance-tuning)
-- [Troubleshooting](./device-troubleshooting) - Resolve monitoring issues

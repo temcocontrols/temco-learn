@@ -78,7 +78,7 @@ GET /api/t3_device/devices/1/trendlogs HTTP/1.1
 ]
 ```
 
-**Used By**: [TrendlogTable.tsx](src/t3-react/features/trends/components/TrendlogTable.tsx)
+**Used By**: TrendlogTable.tsx
 
 ---
 
@@ -120,7 +120,7 @@ GET /api/t3_device/trendlogs/1/data?start=2026-01-01T00:00:00Z&end=2026-01-09T23
 }
 ```
 
-**Used By**: [TrendChart.tsx](src/t3-react/features/trends/components/TrendChart.tsx)
+**Used By**: TrendChart.tsx
 
 **Errors**:
 - `404` - Trendlog not found
@@ -155,7 +155,7 @@ Content-Type: application/json
 }
 ```
 
-**Used By**: [EditTrendlogDialog.tsx](src/t3-react/features/trends/components/EditTrendlogDialog.tsx)
+**Used By**: EditTrendlogDialog.tsx
 
 ---
 
@@ -179,7 +179,7 @@ POST /api/t3_device/trendlogs/1/clear HTTP/1.1
 }
 ```
 
-**Used By**: [ClearTrendlogButton.tsx](src/t3-react/features/trends/components/ClearTrendlogButton.tsx)
+**Used By**: ClearTrendlogButton.tsx
 
 ---
 
@@ -204,7 +204,7 @@ timestamp,value,quality
 2026-01-09T08:05:00Z,72.3,GOOD
 ```
 
-**Used By**: [ExportTrendlogButton.tsx](src/t3-react/features/trends/components/ExportTrendlogButton.tsx)
+**Used By**: ExportTrendlogButton.tsx
 
 ---
 

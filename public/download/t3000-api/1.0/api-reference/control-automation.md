@@ -135,8 +135,8 @@ GET /api/t3_device/devices/1/schedules HTTP/1.1
 ```
 
 **Used By**:
-- [ScheduleTable.tsx](src/t3-react/features/control/components/ScheduleTable.tsx)
-- [ScheduleCalendar.tsx](src/t3-react/features/control/components/ScheduleCalendar.tsx)
+- ScheduleTable.tsx
+- ScheduleCalendar.tsx
 
 **Handler**: `api/src/t3_device/routes.rs::get_schedules_by_device`
 
@@ -174,7 +174,7 @@ GET /api/t3_device/schedules/1 HTTP/1.1
 ```
 
 **Used By**:
-- [ScheduleDetail.tsx](src/t3-react/features/control/pages/ScheduleDetail.tsx)
+- ScheduleDetail.tsx
 
 **Errors**:
 - `404` - Schedule not found
@@ -218,7 +218,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [EditScheduleDialog.tsx](src/t3-react/features/control/components/EditScheduleDialog.tsx)
+- EditScheduleDialog.tsx
 
 ---
 
@@ -254,7 +254,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [AddScheduleDialog.tsx](src/t3-react/features/control/components/AddScheduleDialog.tsx)
+- AddScheduleDialog.tsx
 
 ---
 
@@ -276,7 +276,7 @@ HTTP/1.1 204 No Content
 ```
 
 **Used By**:
-- [DeleteScheduleDialog.tsx](src/t3-react/features/control/components/DeleteScheduleDialog.tsx)
+- DeleteScheduleDialog.tsx
 
 ---
 
@@ -314,7 +314,7 @@ GET /api/t3_device/devices/1/programs HTTP/1.1
 ```
 
 **Used By**:
-- [ProgramTable.tsx](src/t3-react/features/control/components/ProgramTable.tsx)
+- ProgramTable.tsx
 
 ---
 
@@ -345,7 +345,7 @@ GET /api/t3_device/programs/1 HTTP/1.1
 ```
 
 **Used By**:
-- [ProgramEditor.tsx](src/t3-react/features/control/pages/ProgramEditor.tsx)
+- ProgramEditor.tsx
 
 ---
 
@@ -383,7 +383,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [ProgramEditor.tsx](src/t3-react/features/control/pages/ProgramEditor.tsx)
+- ProgramEditor.tsx
 
 **Errors**:
 - `400` - Syntax error in program code
@@ -420,7 +420,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [AddProgramDialog.tsx](src/t3-react/features/control/components/AddProgramDialog.tsx)
+- AddProgramDialog.tsx
 
 ---
 
@@ -480,7 +480,7 @@ GET /api/t3_device/devices/1/pids HTTP/1.1
 ```
 
 **Used By**:
-- [PIDTable.tsx](src/t3-react/features/control/components/PIDTable.tsx)
+- PIDTable.tsx
 
 ---
 
@@ -511,7 +511,7 @@ GET /api/t3_device/pids/1 HTTP/1.1
 ```
 
 **Used By**:
-- [PIDTuning.tsx](src/t3-react/features/control/pages/PIDTuning.tsx)
+- PIDTuning.tsx
 
 ---
 
@@ -549,7 +549,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [PIDTuning.tsx](src/t3-react/features/control/pages/PIDTuning.tsx)
+- PIDTuning.tsx
 
 ---
 
@@ -584,7 +584,7 @@ GET /api/t3_device/devices/1/holidays HTTP/1.1
 ```
 
 **Used By**:
-- [HolidayCalendar.tsx](src/t3-react/features/control/components/HolidayCalendar.tsx)
+- HolidayCalendar.tsx
 
 ---
 
@@ -617,7 +617,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [EditHolidayDialog.tsx](src/t3-react/features/control/components/EditHolidayDialog.tsx)
+- EditHolidayDialog.tsx
 
 ---
 
@@ -653,7 +653,7 @@ GET /api/t3_device/devices/1/annual-routines HTTP/1.1
 ```
 
 **Used By**:
-- [AnnualRoutineTable.tsx](src/t3-react/features/control/components/AnnualRoutineTable.tsx)
+- AnnualRoutineTable.tsx
 
 ---
 
@@ -686,7 +686,7 @@ Content-Type: application/json
 ```
 
 **Used By**:
-- [EditAnnualRoutineDialog.tsx](src/t3-react/features/control/components/EditAnnualRoutineDialog.tsx)
+- EditAnnualRoutineDialog.tsx
 
 ---
 

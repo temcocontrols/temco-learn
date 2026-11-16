@@ -1,6 +1,6 @@
 ---
 title: "Message 11: DELETE_IMAGE"
-order: 270
+order: 300
 ---
 
 The DELETE_IMAGE message removes previously uploaded graphic image files from the server.

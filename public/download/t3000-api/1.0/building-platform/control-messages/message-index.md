@@ -1,6 +1,6 @@
 ---
 title: "Control Messages Index"
-order: 180
+order: 210
 ---
 
 Control messages are how the web interface communicates with the T3000 platform. Each message performs a specific operation like reading device data, updating values, or managing graphics.
@@ -15,7 +15,7 @@ Control messages are how the web interface communicates with the T3000 platform.
 |---------|------|---------|------------|
 | [GET_PANEL_DATA](message-get-panel-data.md) | Data Retrieval | Load all cached data for a panel | Initial panel view load |
 | [GET_INITIAL_DATA](message-get-initial-data.md) | Graphics | Load graphics screen data | Opening graphics editor |
-| [LOAD_GRAPHIC_ENTRY](message-load-graphic-entry.md) | Graphics | Load specific graphic entry | Graphics screen display |
+| [LOAD_GRAPHIC_ENTRY](message-get-initial-data.md) | Graphics | Load specific graphic entry | Graphics screen display |
 | [SAVE_GRAPHIC_DATA](message-save-graphic-data.md) | Graphics | Save graphics screen changes | Saving graphics edits |
 | [GET_WEBVIEW_LIST](message-17.md) | Data Retrieval | Read specific entry type with range | Loading inputs, outputs, programs, etc. |
 | [UPDATE_WEBVIEW_LIST](message-update-webview-list.md) | Data Update | Write values to device entries | Updating setpoints, outputs, variables |
@@ -58,7 +58,7 @@ Control messages are how the web interface communicates with the T3000 platform.
 **Purpose:** Managing graphics screens
 
 - **[GET_INITIAL_DATA](message-get-initial-data.md)** - Initial graphics screen load
-- **[LOAD_GRAPHIC_ENTRY](message-load-graphic-entry.md)** - Load specific graphics entry
+- **[LOAD_GRAPHIC_ENTRY](message-get-initial-data.md)** - Load specific graphics entry
 - **[SAVE_GRAPHIC_DATA](message-save-graphic-data.md)** - Save graphics changes
 
 **Graphics Storage:**

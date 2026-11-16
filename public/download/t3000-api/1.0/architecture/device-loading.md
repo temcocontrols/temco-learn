@@ -1,6 +1,6 @@
 ---
 title: "Device Panel Loading"
-order: 660
+order: 690
 ---
 
 ## Overview
@@ -112,9 +112,9 @@ Total Time: 2-5 seconds for typical device
 
 
 
-#### Complete Technical Data Flow
+### Complete Technical Data Flow
 
-##### Full System Sequence Diagram
+#### Full System Sequence Diagram
 
 ```
 ┌───────────────┐  ┌──────────────┐  ┌──────────────┐  ┌────────────┐  ┌─────────────┐

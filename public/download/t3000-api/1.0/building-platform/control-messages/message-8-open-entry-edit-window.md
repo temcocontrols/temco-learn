@@ -1,6 +1,6 @@
 ---
-title: "Message 8: OPEN_ENTRY_EDIT_WINDOW"
-order: 240
+title: "Message 8: Open_Entry_Edit_Window"
+order: 270
 ---
 
 The OPEN_ENTRY_EDIT_WINDOW message opens edit dialogs for schedules, holidays, and programs in the T3000 desktop application. This bridges the web interface with native T3000 editing windows.

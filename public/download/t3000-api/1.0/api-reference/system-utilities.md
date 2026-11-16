@@ -74,7 +74,7 @@ GET /api/health HTTP/1.1
 }
 ```
 
-**Used By**: [SystemStatus.tsx](src/t3-react/features/system/components/SystemStatus.tsx)
+**Used By**: SystemStatus.tsx
 
 **Handler**: `api/src/server.rs::health_check`
 
@@ -130,7 +130,7 @@ Content-Type: application/json
 }
 ```
 
-**Used By**: [LoginPage.tsx](src/t3-react/features/auth/pages/LoginPage.tsx)
+**Used By**: LoginPage.tsx
 
 **Handler**: `api/src/auth.rs::login`
 
@@ -155,7 +155,7 @@ POST /api/logout HTTP/1.1
 }
 ```
 
-**Used By**: [LogoutButton.tsx](src/t3-react/features/auth/components/LogoutButton.tsx)
+**Used By**: LogoutButton.tsx
 
 ---
 
@@ -179,7 +179,7 @@ GET /api/session HTTP/1.1
 }
 ```
 
-**Used By**: [AuthProvider.tsx](src/t3-react/features/auth/components/AuthProvider.tsx)
+**Used By**: AuthProvider.tsx
 
 ---
 
@@ -211,7 +211,7 @@ Content-Disposition: form-data; name="file"; filename="config.json"
 }
 ```
 
-**Used By**: [FileUpload.tsx](src/t3-react/features/files/components/FileUpload.tsx)
+**Used By**: FileUpload.tsx
 
 **Handler**: `api/src/file/routes.rs::upload_file`
 
@@ -235,7 +235,7 @@ GET /api/uploads/config.json HTTP/1.1
 
 **Response**: File contents with appropriate Content-Type
 
-**Used By**: [FileList.tsx](src/t3-react/features/files/components/FileList.tsx)
+**Used By**: FileList.tsx
 
 ---
 
@@ -283,7 +283,7 @@ GET /api/modbus/registers?device_id=1&start=1000&count=10 HTTP/1.1
 }
 ```
 
-**Used By**: [ModbusDebugger.tsx](src/t3-react/features/developer/components/ModbusDebugger.tsx)
+**Used By**: ModbusDebugger.tsx
 
 **Handler**: `api/src/modbus_register/routes.rs::read_registers`
 
@@ -345,7 +345,7 @@ Content-Type: application/json
 }
 ```
 
-**Used By**: [BACnetDebugger.tsx](src/t3-react/features/developer/components/BACnetDebugger.tsx)
+**Used By**: BACnetDebugger.tsx
 
 **Handler**: `api/src/t3_shell/routes.rs::call_ffi_function`
 
@@ -385,8 +385,8 @@ ws.send(JSON.stringify({
 - `4` - REFRESH_COMPLETE: Refresh operation done
 
 **Used By**:
-- [WebSocketProvider.tsx](src/t3-react/features/websocket/components/WebSocketProvider.tsx)
-- [useWebSocket.ts](src/t3-react/features/websocket/hooks/useWebSocket.ts)
+- WebSocketProvider.tsx
+- useWebSocket.ts
 
 **Handler**: `api/src/t3_socket/handler.rs::handle_websocket`
 

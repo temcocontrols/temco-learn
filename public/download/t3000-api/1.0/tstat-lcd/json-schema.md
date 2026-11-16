@@ -1,6 +1,6 @@
 ---
 title: "JSON Schema — screenDefinition.json"
-order: 850
+order: 820
 ---
 
 The complete specification for the multi-page LCD screen definition file.

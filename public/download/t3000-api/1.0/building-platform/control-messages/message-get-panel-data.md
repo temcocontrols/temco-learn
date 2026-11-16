@@ -1,6 +1,6 @@
 ---
-title: "Message: GET_PANEL_DATA"
-order: 210
+title: "Message: GET_Panel_Data"
+order: 240
 ---
 
 GET_PANEL_DATA loads all cached data for a specific panel. This is the fastest way to get a complete snapshot of a device's current state without querying the device directly.
@@ -32,9 +32,9 @@ GET_PANEL_DATA loads all cached data for a specific panel. This is the fastest w
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `action` | String | ✅ | Must be "GET_PANEL_DATA" |
-| `source` | Integer | ✅ | Message source: 0=T3000, 1=WebUI |
-| `panelId` | Integer | ✅ | Panel number (0-254) |
+| `action` | String | Yes | Must be "GET_PANEL_DATA" |
+| `source` | Integer | Yes | Message source: 0=T3000, 1=WebUI |
+| `panelId` | Integer | Yes | Panel number (0-254) |
 
 ## Response Format
 

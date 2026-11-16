@@ -1,6 +1,6 @@
 ---
 title: "Widget Types"
-order: 870
+order: 840
 ---
 
 All widget types available for LCD page definitions. Each maps to an LVGL equivalent on the device firmware.
@@ -68,7 +68,7 @@ The most common widget. Shows a label on the left and a value in a rounded box o
 | `register` | number | No | Modbus register number for sync |
 | `row` | number | Yes | Grid row |
 | `editable` | boolean | No | Can user change this value? Default false |
-| `options` | array | No | Allowed values (cycle through with ▲/▼) |
+| `options` | array | No | Allowed values (cycle through with /) |
 | `maxValue` | number | No | Max for numeric increment |
 | `minValue` | number | No | Min for numeric increment |
 | `suffix` | string | No | Unit suffix |

@@ -1,6 +1,6 @@
 ---
 title: "Device Troubleshooting"
-order: 480
+order: 510
 ---
 
 Common issues and solutions for T3000 device connectivity and operation.
@@ -107,7 +107,7 @@ Common issues and solutions for T3000 device connectivity and operation.
 2. **Verify Auto-Refresh**
    - Ensure auto-refresh is enabled
    - Check refresh interval setting
-   - Try manual refresh (🔄 button)
+   - Try manual refresh ( button)
 
 3. **Clear Cache**
    ```javascript
@@ -283,14 +283,14 @@ Common issues and solutions for T3000 device connectivity and operation.
 ### UI Elements Not Working
 
 **Supported Browsers:**
-- ✅ Chrome 90+
-- ✅ Edge 90+
-- ✅ Firefox 88+
-- ✅ Safari 14+
+- Chrome 90+
+- Edge 90+
+- Firefox 88+
+- Safari 14+
 
 **Not Supported:**
-- ❌ Internet Explorer
-- ❌ Old browser versions
+- Internet Explorer
+- Old browser versions
 
 **Solutions:**
 1. Update to latest browser version
@@ -346,14 +346,6 @@ If issues persist:
    - Include all collected information
    - Attach relevant logs
    - Provide screenshots
-
-## Next Steps
-
-- [Best Practices](../guides/best-practices) - Preventive measures
-- [Performance Tuning](../guides/performance-tuning) - Optimization tips
-- [FAQ](../guides/faq) - Frequently asked questions
-
-
 
 ## Device Troubleshooting
 
@@ -789,10 +781,3 @@ logger.debug('Reading point', {
   protocol: 'bacnet'
 });
 ```
-
-## Next Steps
-
-- [Performance Tuning](../guides/performance-tuning)
-- [REST API Debugging](../api-reference/rest-api)
-- [System Monitoring](./device-monitoring)
-- [FAQ](../guides/faq) - Frequently asked questions

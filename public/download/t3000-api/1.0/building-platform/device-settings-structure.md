@@ -1,6 +1,6 @@
 ---
 title: "Device Settings (READ_SETTING_COMMAND)"
-order: 160
+order: 190
 ---
 
 ## What Are Device Settings?
@@ -692,8 +692,6 @@ console.log(`Module: ${moduleName}`); // "Module: T3-BB"
 
 **Note:** Values 1-4 are legacy Asix-based controllers. Modern ARM-based controllers use values 5-8 and above.
 
-
-
 ### Rust API Endpoint
 
 ```rust
@@ -832,6 +830,6 @@ data[270] = 5;  // Save to flash every 5 minutes
 ## See Also
 
 - [Device Configuration Guide](../device-management/device-configuration.md)
-- [Control Messages](../building-platform/control-messages/message-index.md)
-- [BACnet Protocol](./modbus-protocol.md)
-- [REST API Reference](./rest-api.md)
+- [Control Messages](control-messages/message-index.md)
+- [BACnet Protocol](../api-reference/modbus-protocol.md)
+- [REST API Reference](../api-reference/rest-api.md)

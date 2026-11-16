@@ -1,6 +1,6 @@
 ---
 title: "PID Loops"
-order: 420
+order: 450
 ---
 
 Proportional-Integral-Derivative control loops for precise automatic control.
@@ -218,9 +218,9 @@ Manage all PID loops:
 
 | # | Label | Input | Setpoint | Output | Status | Mode |
 |---|-------|-------|----------|--------|--------|------|
-| 1 | Zone_Temp_Loop | 71.8°F | 72.0°F | 45% | ✅ Normal | Auto |
-| 2 | SA_Temp_Loop | 55.2°F | 55.0°F | 62% | ✅ Normal | Auto |
-| 3 | SP_Control | 1.48" | 1.50" | 58% | ✅ Normal | Auto |
+| 1 | Zone_Temp_Loop | 71.8°F | 72.0°F | 45% | Yes Normal | Auto |
+| 2 | SA_Temp_Loop | 55.2°F | 55.0°F | 62% | Yes Normal | Auto |
+| 3 | SP_Control | 1.48" | 1.50" | 58% | Yes Normal | Auto |
 
 ### Features
 
@@ -316,14 +316,6 @@ Manage all PID loops:
 2. Check for mechanical binding
 3. Verify adequate output range
 4. Ensure sensor accuracy
-
-## Next Steps
-
-- [Programs](./programs) - Control programs
-- [Outputs](./outputs) - Output control
-- [Schedules](../features/schedules) - Setpoint scheduling
-
-
 
 ## PID Loops
 
@@ -541,10 +533,3 @@ class PIDMonitor {
   }
 }
 ```
-
-## Next Steps
-
-- [Outputs](./outputs)
-- [REST API](../api-reference/rest-api)
-- [Performance Tuning](../guides/performance-tuning)
-- [Performance Tuning](../guides/performance-tuning) - Optimization

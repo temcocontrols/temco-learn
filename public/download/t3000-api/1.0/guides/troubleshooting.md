@@ -1,6 +1,6 @@
 ---
 title: "Troubleshooting Guide"
-order: 620
+order: 650
 ---
 
 Quick reference for common issues and solutions.
@@ -41,7 +41,7 @@ Quick reference for common issues and solutions.
 
 ## Getting Help
 
-See [Device Troubleshooting](../device-management/device-troubleshooting) for detailed solutions.
+See [Device Troubleshooting](../device-management/device-troubleshooting.md) for detailed solutions.
 
 
 
@@ -504,9 +504,3 @@ healingSystem.registerHealthCheck({
   autoHeal: false  // Require manual intervention
 });
 ```
-
-## Next Steps
-
-- [Performance Tuning](./performance-tuning)
-- [Best Practices](./best-practices)
-- [FAQ](./faq)

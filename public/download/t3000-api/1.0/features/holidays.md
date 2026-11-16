@@ -1,6 +1,6 @@
 ---
 title: "Holidays"
-order: 520
+order: 550
 ---
 
 Annual holiday and exception day scheduling.
@@ -32,13 +32,6 @@ Define holidays and special days:
 1. Holidays (highest priority)
 2. Exception schedules
 3. Weekly schedules (lowest priority)
-
-## Next Steps
-
-- [Schedules](./schedules) - Weekly schedules
-- [Programs](../data-points/programs) - Control programs
-
-
 
 ## Holidays
 
@@ -102,8 +95,3 @@ class HolidayChecker {
   }
 }
 ```
-
-## Next Steps
-
-- [Schedules API](./schedules)
-- [REST API](../api-reference/rest-api)

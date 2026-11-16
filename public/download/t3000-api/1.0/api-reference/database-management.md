@@ -71,7 +71,7 @@ GET /api/db_management/settings HTTP/1.1
 ]
 ```
 
-**Used By**: [SettingsPage.tsx](src/t3-react/features/settings/pages/SettingsPage.tsx)
+**Used By**: SettingsPage.tsx
 
 ---
 
@@ -142,7 +142,7 @@ GET /api/database/stats HTTP/1.1
 }
 ```
 
-**Used By**: [DatabaseStats.tsx](src/t3-react/features/settings/components/DatabaseStats.tsx)
+**Used By**: DatabaseStats.tsx
 
 ---
 
@@ -165,7 +165,7 @@ POST /api/db_management/tools/vacuum HTTP/1.1
 }
 ```
 
-**Used By**: [DatabaseMaintenance.tsx](src/t3-react/features/settings/components/DatabaseMaintenance.tsx)
+**Used By**: DatabaseMaintenance.tsx
 
 ---
 

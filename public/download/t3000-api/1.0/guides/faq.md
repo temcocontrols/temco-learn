@@ -1,6 +1,6 @@
 ---
 title: "Frequently Asked Questions"
-order: 600
+order: 630
 ---
 
 ## General
@@ -347,9 +347,3 @@ server {
     }
 }
 ```
-
-## Next Steps
-
-- [Best Practices](./best-practices)
-- [Troubleshooting](./troubleshooting)
-- [Performance Tuning](./performance-tuning)

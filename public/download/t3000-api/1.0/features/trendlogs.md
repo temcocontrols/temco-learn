@@ -1,6 +1,6 @@
 ---
 title: "Trend Logs"
-order: 580
+order: 610
 ---
 
 Historical data collection, analysis, and visualization.
@@ -61,15 +61,6 @@ Trend logs automatically collect and store historical data from inputs, outputs,
 - Archive old data
 - Review trends regularly
 - Export data before archiving
-
-## Next Steps
-
-- [Trend Center Unified Design](./trend-center-unified-design.md) - Single-page trend workflow and phased migration plan
-- [Inputs](../data-points/inputs) - Input monitoring
-- [Alarms](./alarms) - Alarm analysis
-- [Monitoring](../device-management/device-monitoring) - Real-time monitoring
-
-
 
 ## Trend Logs
 
@@ -190,9 +181,3 @@ function aggregateTrends(
   }));
 }
 ```
-
-## Next Steps
-
-- [REST API](../api-reference/rest-api)
-- [WebSocket API](../api-reference/websocket-api)
-- [Performance Tuning](../guides/performance-tuning)
