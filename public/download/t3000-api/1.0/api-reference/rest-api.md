@@ -74,10 +74,6 @@ Replace `YOUR_DEVICE_ID` with your actual device number.
 - **Getting errors?** Check that the device ID is correct
 - **Want to do more?** Switch to the "Technical" tab for code examples
 
-
-
-
-
 ## REST API Technical Reference
 
 HTTP REST API for T3000 device data access and control.

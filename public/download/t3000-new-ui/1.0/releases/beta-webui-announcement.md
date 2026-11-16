@@ -1,6 +1,6 @@
 ---
 title: "Try the new T3000 UI (beta) — Inputs, Trend Logs, Haystack, AI Assistant and the new Designer"
-order: 460
+order: 470
 ---
 
 Hi everyone,
@@ -28,9 +28,9 @@ Please do **not** use it as your sole tool for live buildings yet. Try it first 
 - **Nothing to install:** copy the beta folder from the network drive and run `T3000.exe` from there.
 - **Your current T3000 and its data stay as they are** — the beta is a separate copy.
 
-!the Chrome button in the T3000 toolbar
+![the Chrome button in the T3000 toolbar](../media/01-t3000-toolbar-chrome-button.png)
 
-!the new interface open in your browser
+![the new interface open in your browser](../media/02-new-interface-in-browser.png)
 
 ### Your first five minutes
 
@@ -63,7 +63,7 @@ the T3000 window and closes the browser window that T3000 opened.
 - Nothing from the internet: the beta serves everything from your own PC (port `9103`).
 - Your T3000 installation keeps running as it does today — the beta is a separate copy.
 
-!the web address typed into the browser's address bar
+![the web address typed into the browser's address bar](../media/03-address-bar-url.png)
 
 ## 2. Where to get the beta
 
@@ -96,10 +96,10 @@ Each section has a short summary, where to find it, and the detailed document.
 The everyday point lists, as fast sortable tables with search. Sort by a column, search for a
 point, edit a value and commit it — the same works for outputs and variables.
 
-!Inputs page
-!Outputs page
-!Variables page
-!one point being edited / committed
+![Inputs page](../media/05-inputs-page.png)
+![Outputs page](../media/051-outputs-page.png)
+![Variables page](../media/052-variables-page.png)
+![one point being edited / committed](../media/06-edit-and-commit-point.png)
 Docs: <a href="https://github.com/temcocontrols/T3000Webview/blob/feature/lvgl-svg-renderer/docs/t3000/data-points/inputs.md" target="_blank" rel="noopener">Inputs</a>. In the beta: **Documentation Data Points**.
 
 ### 3.2 Trend Logs (new)
@@ -107,8 +107,8 @@ Docs: <a href="https://github.com/temcocontrols/T3000Webview/blob/feature/lvgl-s
 The new trend logging: a trend centre, trend policies (what gets logged and how often) and the new chart. Start a
 trend on an input, set the interval and samples, watch it collect, then open it in the chart and change the range.
 
-!Trend Logs list
-!trend chart
+![Trend Logs list](../media/07-trend-logs-list.png)
+![trend chart](../media/08-trend-chart.png)
 Docs: <a href="https://github.com/temcocontrols/T3000Webview/blob/feature/lvgl-svg-renderer/docs/t3000/features/trendlogs.md" target="_blank" rel="noopener">Trend Logs</a>. In the beta: **Documentation Features Trend Logs**.
 
 ### 3.3 Haystack tags
@@ -116,8 +116,8 @@ Docs: <a href="https://github.com/temcocontrols/T3000Webview/blob/feature/lvgl-s
 Haystack tagging for devices and points, plus auto-tagging that proposes the tags for you. Tag a device, review
 the suggestions, then search or filter by a tag.
 
-!Haystack Tags
-!Auto-Tagging suggestions
+![Haystack Tags](../media/09-haystack-tags.png)
+![Auto-Tagging suggestions](../media/10-auto-tagging.png)
 Docs: <a href="https://github.com/temcocontrols/T3000Webview/blob/feature/lvgl-svg-renderer/docs/t3000/haystack/README.md" target="_blank" rel="noopener">Haystack tags</a>. In the beta: **Documentation Haystack & MCP**.
 
 ### 3.4 MCP tools and the AI Assistant
@@ -126,9 +126,9 @@ The MCP (Model Context Protocol) tools expose your T3000 system to an AI assista
 about points, trends and devices and help you configure them. Ask it about a device (for example "what is the
 supply air temperature on SN …"), and check the tool list and settings on the MCP page.
 
-!AI Assistant answering a question
-!AI Assistant answering a question
-!MCP tools page
+![AI Assistant answering a question](../media/11-ai-assistant-0.png)
+![AI Assistant answering a question](../media/11-ai-assistant-1.png)
+![MCP tools page](../media/12-mcp-tools.png)
 Docs: <a href="https://github.com/temcocontrols/T3000Webview/blob/feature/lvgl-svg-renderer/docs/t3000/haystack/mcp-vscode-copilot.md" target="_blank" rel="noopener">MCP — VS Code Copilot</a>. In the beta:
 **Documentation Haystack & MCP**.
 
@@ -141,9 +141,9 @@ device's graphic slot (1–8); LVGL 9.5 projects (or LVGL with Flow 9.5) open in
 A drawing belongs to **one device + one graphic slot** — the hub tells you when a slot is already taken, so you can
 open the existing drawing instead of overwriting it.
 
-!Design Hub dashboard
-!HVAC schematic being edited
-!LVGL / EEZ Studio editor
+![Design Hub dashboard](../media/13-design-hub-dashboard.png)
+![HVAC schematic being edited](../media/14-hvac-schematic.png)
+![LVGL / EEZ Studio editor](../media/15-lvgl-eez-studio.png)
 Docs: <a href="https://github.com/temcocontrols/T3000Webview/tree/feature/lvgl-svg-renderer/docs/t3000/design-hub/" target="_blank" rel="noopener">Design Hub</a> (HVAC),
 <a href="https://github.com/temcocontrols/T3000Webview/blob/feature/lvgl-svg-renderer/docs/t3000/t3-eez-studio/manual/01-overview.md" target="_blank" rel="noopener">EEZ Studio manual</a> (LVGL / EEZ Studio). In the beta:
 **Documentation Design Studio (Tstat11)**.
@@ -159,8 +159,8 @@ write into the central database.
 **Note:** SQL Server Express allows up to **10 GB per database** — if you expect more, use SQL Server Standard
 or higher.
 
-!Database Database Configuration with the central server filled in
-!the same trend read from a second PC
+![Database Database Configuration with the central server filled in](../media/16-center-db-configuration-0.png)
+![the same trend read from a second PC](../media/16-center-db-configuration-1.png)
 
 Docs: <a href="https://github.com/temcocontrols/T3000Webview/blob/feature/lvgl-svg-renderer/docs/t3000/shared-db/shared-center-db-summary.md" target="_blank" rel="noopener">Shared Center DB</a> — install:
 <a href="https://github.com/temcocontrols/T3000Webview/blob/feature/lvgl-svg-renderer/docs/t3000/shared-db/sql-server-express-setup.md" target="_blank" rel="noopener">SQL Server Express setup</a>, configure:
@@ -173,7 +173,7 @@ They are built into the beta itself — open `http://localhost:9103/#/t3000/docu
 GitHub repository:
 <a href="https://github.com/temcocontrols/T3000Webview/tree/feature/lvgl-svg-renderer/docs/t3000/" target="_blank" rel="noopener">the T3000 documentation folder</a>.
 
-!the documentation page inside the beta
+![the documentation page inside the beta](../media/17-documentation-page.png)
 
 ## 5. What we would like you to look at
 

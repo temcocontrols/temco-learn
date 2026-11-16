@@ -39,8 +39,6 @@ await fetch('http://localhost:9103/api/t3_device/users/1', {
 
 ---
 
-
-
 #### Generic Table Endpoints
 
 ##### GET /api/t3_device/:table

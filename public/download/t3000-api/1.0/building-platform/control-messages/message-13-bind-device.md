@@ -7,8 +7,6 @@ The BIND_DEVICE message associates a device with a panel. This message is curren
 
 **Note:** This message is defined but not yet implemented.
 
-
-
 ## Overview
 
 **Action:** `BIND_DEVICE` (13)

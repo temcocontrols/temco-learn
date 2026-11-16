@@ -1,6 +1,6 @@
 ---
 title: "Designer — theme and CSS"
-order: 60
+order: 70
 ---
 
 Decision D5: **T3000 Fluent tokens own the theme.** Fluent UI (`@fluentui/react-components@^9.47.0`) is the

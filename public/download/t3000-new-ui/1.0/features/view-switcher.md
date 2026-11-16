@@ -1,6 +1,6 @@
 ---
 title: "Switching between Classic View and New View"
-order: 450
+order: 460
 ---
 
 > ## PARKED 2026-09-30 — nothing on this page runs today

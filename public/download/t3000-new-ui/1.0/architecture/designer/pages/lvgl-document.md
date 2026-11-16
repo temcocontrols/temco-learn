@@ -1,6 +1,6 @@
 ---
 title: "The LVGL document, panel by panel"
-order: 150
+order: 160
 ---
 
 Document kinds `lvgl-9-5` / `lvgl-flow-9-5`, engine `eez` (`src/lib/t3-eez-studio`, ~280k lines).

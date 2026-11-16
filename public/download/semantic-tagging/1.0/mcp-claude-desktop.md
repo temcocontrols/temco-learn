@@ -27,7 +27,7 @@ Open Claude Desktop → **Settings** → **Developer** → **Edit Config**
 
 | | |
 |---|---|
-| ![Settings](images/claude1.png) | ![Config](images/claude2.png) |
+| ![Settings](media/claude1.png) | ![Config](media/claude2.png) |
 
 ---
 
@@ -70,7 +70,7 @@ Example for local:
 
 | | |
 |---|---|
-| ![Settings](images/claude3.png) | ![Config](images/claude4.png) |
+| ![Settings](media/claude3.png) | ![Config](media/claude4.png) |
 
 ---
 
@@ -138,4 +138,4 @@ See the full [MCP API examples](mcp-api-examples.md) for all 44 tools with promp
 
 | | |
 |---|---|
-| ![Settings](images/claude5.png) | ![Config](images/claude6.png) |
+| ![Settings](media/claude5.png) | ![Config](media/claude6.png) |

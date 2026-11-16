@@ -1,6 +1,6 @@
 ---
 title: "LVGL SVG Renderer — Scope & Invariants"
-order: 250
+order: 260
 ---
 
 Normative rules for the SVG surface: what it covers, how it may touch existing code, and what the rest

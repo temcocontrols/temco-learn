@@ -1,6 +1,6 @@
 ---
 title: "LVGL SVG Renderer — WASM Bridge"
-order: 300
+order: 310
 ---
 
 The C entry points that dump the LVGL object tree, the encoding rules, the JavaScript binding, and how the

@@ -157,8 +157,6 @@ export const useDeviceStore = create<DeviceStore>((set) => ({
 
 ---
 
-
-
 #### Device Management Endpoints
 
 ##### GET /api/t3_device/devices

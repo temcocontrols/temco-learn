@@ -100,10 +100,6 @@ Check these boxes to turn features on:
 
 Need assistance with configuration? Switch to the **Technical** tab for advanced options and code examples.
 
-
-
-
-
 ## Device Configuration API
 
 Programmatically configure T3000 device settings via API.

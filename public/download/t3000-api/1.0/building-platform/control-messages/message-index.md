@@ -7,8 +7,6 @@ Control messages are how the web interface communicates with the T3000 platform.
 
 **Quick Reference:** Jump to any message documentation below.
 
-
-
 ## All Control Messages
 
 | Message | Type | Purpose | Common Use |

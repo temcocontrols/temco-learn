@@ -1,6 +1,6 @@
 ---
 title: "Design Hub — Developer & User Guide"
-order: 10
+order: 20
 ---
 
 The **Design Hub** (`/t3000/design`) is the unified center for all T3000 HVAC drawing

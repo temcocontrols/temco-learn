@@ -43,8 +43,6 @@ const logs = await fetch('http://localhost:9103/api/develop/logs/get?lines=100')
 
 ---
 
-
-
 #### File Browser Endpoints
 
 ##### GET /api/develop/files/list

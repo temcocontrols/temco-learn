@@ -1,6 +1,6 @@
 ---
 title: ".EEZ-Project JSON Format — Design Document"
-order: 350
+order: 360
 ---
 
 ## Overview
@@ -1360,7 +1360,6 @@ if (bmp->lvglBinaryOutputFormat == 6)  // RGB565
 
 // 5. Register image for use in styles/widgets
 register_image(bmp->name, img);
-
 
 // Font loading (raw base64 → LVGL binary font)
 const char *font_b64 = cJSON_GetObjectItem(font, "lvglBinFile")->valuestring;

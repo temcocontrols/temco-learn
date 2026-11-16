@@ -1,6 +1,6 @@
 ---
 title: "05 — Preview, Bind & Deploy"
-order: 420
+order: 430
 ---
 
 This chapter covers the last part of the workflow: checking the UI in the browser, telling
@@ -34,11 +34,11 @@ exactly as a user would.
 | **Full Sim (F7)** | Runs the full simulator, when it is enabled in settings. |
 | **Edit mode (Shift+F5)** | Stops running and returns to design mode. |
 
-!Running the project in the editor
+![Running the project in the editor](../../media/19-preview-run.png)
 
 *Figure 5.1 — Previewing the design with Run mode.*
 
-!The full simulator
+![The full simulator](../../media/20-simulator.png)
 
 *Figure 5.2 — The full simulator (F7), when enabled.*
 
@@ -56,7 +56,7 @@ project, so the next deploy already knows the target.
    (or open the project detail page and bind from there).
 2. Choose the device.
 
-!The Bind device dialog
+![The Bind device dialog](../../media/21-bind-device.png)
 
 *Figure 5.3 — Choosing the controller for the project.*
 
@@ -85,7 +85,7 @@ The project status changes from **Unbound** to **Bound**.
 
 Either entry point runs the **same** deploy pipeline.
 
-!The Deploy drawer
+![The Deploy drawer](../../media/22-deploy-drawer.png)
 
 *Figure 5.4 — Deploying: the step list and progress.*
 
@@ -126,7 +126,7 @@ The drawer shows each step with a status (running, done, skipped, or error) and,
 expand it, a per-step detail line. After a deploy completes, the project's **deploy history**
 keeps the log — device, time, screens and images sent, and any error.
 
-!A finished deploy with its log
+![A finished deploy with its log](../../media/23-deploy-log.png)
 
 *Figure 5.5 — Deploy history on the project detail page.*
 
@@ -136,7 +136,7 @@ keeps the log — device, time, screens and images sent, and any error.
 
 **More (details & manage)** on a project card opens the detail page:
 
-!The project detail page
+![The project detail page](../../media/24-project-detail.png)
 
 *Figure 5.6 — Project detail: preview, statistics and management.*
 

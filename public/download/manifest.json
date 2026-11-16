@@ -1,5 +1,5 @@
 {
-	"generated": "2026-11-13T14:48:49.510Z",
+	"generated": "2026-11-16T03:56:26.763Z",
 	"projects": {
 		"ph-chart": {
 			"1.0": {
@@ -47,6 +47,11 @@
 			}
 		},
 		"temco-platform": {
+			"1.0": {
+				"chm": true
+			}
+		},
+		"tstat11": {
 			"1.0": {
 				"chm": true
 			}

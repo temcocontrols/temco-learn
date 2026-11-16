@@ -1,6 +1,6 @@
 ---
 title: "P3 — HVAC host mode: the container comes from the shell"
-order: 180
+order: 190
 ---
 
 Goal: the HVAC engine takes **all five containers from the shell** instead of four hard-coded ids, with no

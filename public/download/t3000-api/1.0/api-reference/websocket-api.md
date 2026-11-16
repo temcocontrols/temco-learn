@@ -36,8 +36,6 @@ const ws = new WebSocket('ws://localhost:9103/ws');
 - Limit subscriptions
 - Handle backpressure
 
-
-
 ## WebSocket API
 
 ## Protocol Specification

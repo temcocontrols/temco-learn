@@ -1,6 +1,6 @@
 ---
 title: "LVGL WASM Browser Build Migration"
-order: 370
+order: 380
 ---
 
 **Project:** T3000 Webview — EEZ Studio Migration (Electron → Browser)

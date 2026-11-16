@@ -24,7 +24,7 @@ Displays a text message describing the current operation or result. The message 
 | **Yellow** | Warning | `No devices in database` |
 | **Red** | Error | `Failed to sync: Network error` |
 
-If a message is longer than 100 characters, an **info icon** () appears next to the message. Hover over it to see the full text in a tooltip.
+If a message is longer than 100 characters, an **info icon** (![info](data:image/svg+xml,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%226%22%20stroke%3D%22%23666%22%20stroke-width%3D%221.5%22%2F%3E%3Ctext%20x%3D%228%22%20y%3D%2212%22%20text-anchor%3D%22middle%22%20font-size%3D%2212%22%20fill%3D%22%23666%22%20font-weight%3D%22bold%22%3Ei%3C%2Ftext%3E%3C%2Fsvg%3E)) appears next to the message. Hover over it to see the full text in a tooltip.
 
 ## Where Messages Come From
 
@@ -38,8 +38,6 @@ Messages appear automatically when the system performs actions. Here are common 
 You do not need to interact with the Status Bar — it updates automatically as you use the application.
 
 ---
-
-
 
 ## Component Architecture
 

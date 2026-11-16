@@ -53,8 +53,6 @@ Recommended practices for optimal T3000 system operation.
 - Keep software updated
 - Monitor access logs
 
-
-
 ## Best Practices for T3000 Development
 
 ## Code Architecture

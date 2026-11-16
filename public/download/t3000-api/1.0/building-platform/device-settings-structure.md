@@ -64,10 +64,6 @@ Gateway: 192.168.0.1
  ...]
 ```
 
-
-
-
-
 ## Binary Data Structure
 
 The device settings are stored as a C/C++ union structure with 400 bytes total. The data can be accessed either as raw bytes (`all[400]`) or as a structured format (`reg`).

@@ -74,8 +74,6 @@ If you encounter any issues:
 - Review [Troubleshooting Guide](../guides/troubleshooting.md)
 - Contact support@temcocontrols.com
 
-
-
 ## Quick Start Overview
 
 ## System Architecture

@@ -11,8 +11,6 @@ UPDATE_WEBVIEW_LIST writes values to device entries in bulk. Use this to update 
 - Batch configuration changes
 - Program control (start/stop)
 
-
-
 ## Overview
 
 **Message Type:** UPDATE_WEBVIEW_LIST

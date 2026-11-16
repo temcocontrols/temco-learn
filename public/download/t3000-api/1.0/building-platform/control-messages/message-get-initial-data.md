@@ -10,8 +10,6 @@ Graphics messages load graphic screen configurations and element data. These mes
 - Initializing the HMI editor
 - Fetching element configurations
 
-
-
 ## Overview
 
 Graphics functionality uses two related messages to load HMI screens:

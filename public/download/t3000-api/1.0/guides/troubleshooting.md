@@ -43,8 +43,6 @@ Quick reference for common issues and solutions.
 
 See [Device Troubleshooting](../device-management/device-troubleshooting.md) for detailed solutions.
 
-
-
 ## Advanced Troubleshooting
 
 ## Diagnostic Tools

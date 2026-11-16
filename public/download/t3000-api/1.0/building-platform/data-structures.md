@@ -10,8 +10,6 @@ Data structures define the format and fields of each BACnet point type. Understa
 - Fields are packed for network transmission
 - Values often use fixed-point representation (e.g., 720 = 72.0°F)
 
-
-
 ## Overview
 
 T3000 uses C++ structures to represent BACnet point data. These structures mirror the device's memory layout for efficient reading/writing.

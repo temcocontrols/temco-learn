@@ -1,6 +1,6 @@
 ---
 title: "P5 — optional unification"
-order: 200
+order: 210
 ---
 
 Everything here is optional. P1–P4 already deliver "one editor, same structure, per-type content".

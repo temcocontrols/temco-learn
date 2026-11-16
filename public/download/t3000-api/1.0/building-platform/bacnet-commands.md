@@ -10,8 +10,6 @@ BACnet commands are the low-level protocol operations used to communicate with f
 - Data is read/written in chunks (groups)
 - Blocking operations ensure synchronous communication
 
-
-
 ## Overview
 
 T3000's C++ core implements BACnet MS/TP and BACnet/IP protocols for device communication. Each data type has specific read and write commands.

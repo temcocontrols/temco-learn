@@ -1,6 +1,6 @@
 ---
 title: "LVGL 9.5 — SVG Renderer: measured primitive inventory"
-order: 260
+order: 270
 ---
 
 Companion to [architecture.md](architecture.md).

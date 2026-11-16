@@ -10,8 +10,6 @@ GET_PANEL_DATA loads all cached data for a specific panel. This is the fastest w
 - Refreshing entire panel data
 - Offline data access
 
-
-
 ## Overview
 
 **Message Type:** GET_PANEL_DATA

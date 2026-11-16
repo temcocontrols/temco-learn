@@ -183,8 +183,6 @@ For installation support:
 - Phone: 1-800-TEMCO-00
 - Online: https://support.temcocontrols.com
 
-
-
 ## Installation Guide
 
 ## Automated Installation

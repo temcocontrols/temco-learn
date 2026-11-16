@@ -110,8 +110,6 @@ Total Time: 2-5 seconds for typical device
 
 ---
 
-
-
 ### Complete Technical Data Flow
 
 #### Full System Sequence Diagram

@@ -1,6 +1,6 @@
 ---
 title: "Deploy to Device — as built (REST)"
-order: 330
+order: 340
 ---
 
 The REST implementation below is the current deployment path. The BACnet-based design this file

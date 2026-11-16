@@ -59,8 +59,6 @@ Current configuration:
 - Archive old data
 - Monitor file size
 
-
-
 ## Advanced Performance Tuning
 
 ## Database Optimization

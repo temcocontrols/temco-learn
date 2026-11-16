@@ -1,6 +1,6 @@
 ---
 title: "LVGL SVG Renderer — Fidelity Harness"
-order: 240
+order: 250
 ---
 
 How the SVG surface is compared against the canvas surface: the method, the metrics, the thresholds, the

@@ -1,6 +1,6 @@
 ---
 title: "Designer — interfaces and contracts"
-order: 40
+order: 50
 ---
 
 Companion to [`design.md`](design.md) (architecture).

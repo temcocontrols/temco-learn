@@ -60,8 +60,6 @@ A: Clear browser cache, restart API server, reload page.
 **Q: Who to contact for help?**
 A: Check documentation first, then contact support with error details.
 
-
-
 ## Developer FAQ
 
 ## Architecture

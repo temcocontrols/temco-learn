@@ -91,8 +91,6 @@ const pids = await fetch('http://localhost:9103/api/t3_device/devices/1/pids')
 
 ---
 
-
-
 #### Schedule Endpoints
 
 ##### GET /api/t3_device/devices/:id/schedules

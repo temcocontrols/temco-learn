@@ -1,5 +1,5 @@
 {
-	"generated": "2026-11-13T14:41:50.263Z",
+	"generated": "2026-11-16T03:48:22.303Z",
 	"sections": [
 		{
 			"id": "documentation",
@@ -781,14 +781,14 @@
 			"versions": [
 				{
 					"version": "1.0",
-					"builtAt": "2026-11-13T07:00:58.240Z",
+					"builtAt": "2026-11-16T03:47:50.756Z",
 					"pages": [
 						{
 							"href": "index",
 							"title": "Semantic tagging",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/00-index.md",
-							"updated": "2026-11-13T07:00:58.240Z",
+							"updated": "2026-11-16T03:47:50.756Z",
 							"minutes": 1
 						},
 						{
@@ -796,7 +796,7 @@
 							"title": "Semantic tagging on Temco hardware",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/00-hub.md",
-							"updated": "2026-11-13T07:00:58.219Z",
+							"updated": "2026-11-16T03:47:50.724Z",
 							"minutes": 1
 						},
 						{
@@ -804,7 +804,7 @@
 							"title": "Haystack v2 — Current Implementation",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/v2-haystack-current-implementation.md",
-							"updated": "2026-11-13T07:00:58.221Z",
+							"updated": "2026-11-16T03:47:50.726Z",
 							"minutes": 6
 						},
 						{
@@ -812,7 +812,7 @@
 							"title": "T3000 Haystack & Brick Auto-Tagging + MCP — Design Document",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/v3-haystack-auto-tagging-mcp.md",
-							"updated": "2026-11-13T07:00:58.222Z",
+							"updated": "2026-11-16T03:47:50.729Z",
 							"minutes": 9
 						},
 						{
@@ -820,7 +820,7 @@
 							"title": "T3000 MCP Server — Design",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/v4-haystack-mcp-complete.md",
-							"updated": "2026-11-13T07:00:58.224Z",
+							"updated": "2026-11-16T03:47:50.732Z",
 							"minutes": 9
 						},
 						{
@@ -828,7 +828,7 @@
 							"title": "Haystack v1 — Legacy Single-Table Design",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/v1-haystack-legacy-single-table.md",
-							"updated": "2026-11-13T07:00:58.225Z",
+							"updated": "2026-11-16T03:47:50.736Z",
 							"minutes": 5
 						},
 						{
@@ -836,7 +836,7 @@
 							"title": "mcp-claude-desktop",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/mcp-claude-desktop.md",
-							"updated": "2026-11-13T07:00:58.226Z",
+							"updated": "2026-11-16T03:47:50.737Z",
 							"minutes": 2
 						},
 						{
@@ -844,7 +844,7 @@
 							"title": "mcp-vscode-copilot",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/mcp-vscode-copilot.md",
-							"updated": "2026-11-13T07:00:58.229Z",
+							"updated": "2026-11-16T03:47:50.740Z",
 							"minutes": 2
 						},
 						{
@@ -852,7 +852,7 @@
 							"title": "MCP API Examples",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/mcp-api-examples.md",
-							"updated": "2026-11-13T07:00:58.231Z",
+							"updated": "2026-11-16T03:47:50.743Z",
 							"minutes": 18
 						},
 						{
@@ -860,7 +860,7 @@
 							"title": "AI Integration — Local LLM Server",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/ai-local-llm-server.md",
-							"updated": "2026-11-13T07:00:58.233Z",
+							"updated": "2026-11-16T03:47:50.745Z",
 							"minutes": 6
 						},
 						{
@@ -868,7 +868,7 @@
 							"title": "AI Integration — Cloud LLM APIs",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/ai-llm-api-integration.md",
-							"updated": "2026-11-13T07:00:58.234Z",
+							"updated": "2026-11-16T03:47:50.746Z",
 							"minutes": 7
 						},
 						{
@@ -876,7 +876,7 @@
 							"title": "AI Chat Page — Integration Design",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/ai-chat-page-design.md",
-							"updated": "2026-11-13T07:00:58.236Z",
+							"updated": "2026-11-16T03:47:50.750Z",
 							"minutes": 17
 						},
 						{
@@ -884,7 +884,7 @@
 							"title": "FDD — Native Fault Detection & Diagnostics for T3000",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/fdd-native-engine.md",
-							"updated": "2026-11-13T07:00:58.237Z",
+							"updated": "2026-11-16T03:47:50.752Z",
 							"minutes": 9
 						},
 						{
@@ -892,7 +892,7 @@
 							"title": "The OpenBIM and Haystack plan",
 							"kind": "md",
 							"source": "content/semantic-tagging/1.0/openbim-plan.md",
-							"updated": "2026-11-13T07:00:58.239Z",
+							"updated": "2026-11-16T03:47:50.755Z",
 							"minutes": 5
 						}
 					]
@@ -910,14 +910,14 @@
 			"versions": [
 				{
 					"version": "1.0",
-					"builtAt": "2026-11-13T07:00:56.343Z",
+					"builtAt": "2026-11-16T03:47:51.044Z",
 					"pages": [
 						{
 							"href": "index",
 							"title": "T3 Firmware & Bootloader",
 							"kind": "md",
 							"source": "content/t3-firmware/1.0/00-index.md",
-							"updated": "2026-11-13T07:00:56.343Z",
+							"updated": "2026-11-16T03:47:51.044Z",
 							"minutes": 1
 						},
 						{
@@ -925,7 +925,7 @@
 							"title": "T3 firmware and bootloader",
 							"kind": "md",
 							"source": "content/t3-firmware/1.0/00-hub.md",
-							"updated": "2026-11-13T07:00:56.327Z",
+							"updated": "2026-11-16T03:47:51.028Z",
 							"minutes": 1
 						},
 						{
@@ -933,7 +933,7 @@
 							"title": "How a firmware update runs",
 							"kind": "md",
 							"source": "content/t3-firmware/1.0/update-flow.md",
-							"updated": "2026-11-13T07:00:56.330Z",
+							"updated": "2026-11-16T03:47:51.029Z",
 							"minutes": 1
 						},
 						{
@@ -941,7 +941,7 @@
 							"title": "The update registers",
 							"kind": "md",
 							"source": "content/t3-firmware/1.0/update-registers.md",
-							"updated": "2026-11-13T07:00:56.332Z",
+							"updated": "2026-11-16T03:47:51.031Z",
 							"minutes": 2
 						},
 						{
@@ -949,7 +949,7 @@
 							"title": "Resuming an interrupted update",
 							"kind": "md",
 							"source": "content/t3-firmware/1.0/resuming-an-update.md",
-							"updated": "2026-11-13T07:00:56.334Z",
+							"updated": "2026-11-16T03:47:51.033Z",
 							"minutes": 5
 						},
 						{
@@ -957,7 +957,7 @@
 							"title": "Inside the bootloader",
 							"kind": "md",
 							"source": "content/t3-firmware/1.0/inside-the-bootloader.md",
-							"updated": "2026-11-13T07:00:56.335Z",
+							"updated": "2026-11-16T03:47:51.034Z",
 							"minutes": 4
 						},
 						{
@@ -965,7 +965,7 @@
 							"title": "Trying the commands",
 							"kind": "md",
 							"source": "content/t3-firmware/1.0/trying-the-commands.md",
-							"updated": "2026-11-13T07:00:56.336Z",
+							"updated": "2026-11-16T03:47:51.035Z",
 							"minutes": 1
 						},
 						{
@@ -973,7 +973,7 @@
 							"title": "Firmware signing guide",
 							"kind": "md",
 							"source": "content/t3-firmware/1.0/signing-firmware.md",
-							"updated": "2026-11-13T07:00:56.338Z",
+							"updated": "2026-11-16T03:47:51.037Z",
 							"minutes": 1
 						},
 						{
@@ -981,7 +981,7 @@
 							"title": "Skip firmware signature validation",
 							"kind": "md",
 							"source": "content/t3-firmware/1.0/skip-signature-validation.md",
-							"updated": "2026-11-13T07:00:56.339Z",
+							"updated": "2026-11-16T03:47:51.038Z",
 							"minutes": 1
 						},
 						{
@@ -989,7 +989,7 @@
 							"title": "BACnet change of value",
 							"kind": "md",
 							"source": "content/t3-firmware/1.0/bacnet-cov.md",
-							"updated": "2026-11-13T07:00:56.340Z",
+							"updated": "2026-11-16T03:47:51.039Z",
 							"minutes": 4
 						},
 						{
@@ -997,7 +997,7 @@
 							"title": "BACnet protocol stack and flow",
 							"kind": "md",
 							"source": "content/t3-firmware/1.0/bacnet-stack.md",
-							"updated": "2026-11-13T07:00:56.341Z",
+							"updated": "2026-11-16T03:47:51.041Z",
 							"minutes": 2
 						},
 						{
@@ -1005,7 +1005,7 @@
 							"title": "Wi-Fi station mode",
 							"kind": "md",
 							"source": "content/t3-firmware/1.0/wifi-station-mode.md",
-							"updated": "2026-11-13T07:00:56.342Z",
+							"updated": "2026-11-16T03:47:51.043Z",
 							"minutes": 4
 						}
 					]
@@ -2120,14 +2120,14 @@
 			"versions": [
 				{
 					"version": "1.0",
-					"builtAt": "2026-11-13T14:41:04.205Z",
+					"builtAt": "2026-11-16T03:47:49.821Z",
 					"pages": [
 						{
 							"href": "index",
 							"title": "T3000 API & Protocol",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/00-index.md",
-							"updated": "2026-11-13T14:41:04.205Z",
+							"updated": "2026-11-16T03:47:49.821Z",
 							"minutes": 1
 						},
 						{
@@ -2135,7 +2135,7 @@
 							"title": "API Reference Overview",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/overview.md",
-							"updated": "2026-11-13T14:41:04.072Z",
+							"updated": "2026-11-16T03:47:49.601Z",
 							"minutes": 15
 						},
 						{
@@ -2143,7 +2143,7 @@
 							"title": "REST API",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/rest-api.md",
-							"updated": "2026-11-13T14:41:04.074Z",
+							"updated": "2026-11-16T03:47:49.603Z",
 							"minutes": 5
 						},
 						{
@@ -2151,7 +2151,7 @@
 							"title": "WebSocket API",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/websocket-api.md",
-							"updated": "2026-11-13T14:41:04.075Z",
+							"updated": "2026-11-16T03:47:49.606Z",
 							"minutes": 5
 						},
 						{
@@ -2159,7 +2159,7 @@
 							"title": "Modbus Protocol",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/modbus-protocol.md",
-							"updated": "2026-11-13T14:41:04.078Z",
+							"updated": "2026-11-16T03:47:49.610Z",
 							"minutes": 8
 						},
 						{
@@ -2167,7 +2167,7 @@
 							"title": "Data Points API",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/data-points.md",
-							"updated": "2026-11-13T14:41:04.079Z",
+							"updated": "2026-11-16T03:47:49.615Z",
 							"minutes": 11
 						},
 						{
@@ -2175,7 +2175,7 @@
 							"title": "Device Management API",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/device-management.md",
-							"updated": "2026-11-13T14:41:04.081Z",
+							"updated": "2026-11-16T03:47:49.620Z",
 							"minutes": 8
 						},
 						{
@@ -2183,7 +2183,7 @@
 							"title": "Control & Automation API",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/control-automation.md",
-							"updated": "2026-11-13T14:41:04.082Z",
+							"updated": "2026-11-16T03:47:49.626Z",
 							"minutes": 11
 						},
 						{
@@ -2191,7 +2191,7 @@
 							"title": "Trend Logging API",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/trendlogs.md",
-							"updated": "2026-11-13T14:41:04.084Z",
+							"updated": "2026-11-16T03:47:49.631Z",
 							"minutes": 3
 						},
 						{
@@ -2199,7 +2199,7 @@
 							"title": "Events",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/events.md",
-							"updated": "2026-11-13T14:41:04.086Z",
+							"updated": "2026-11-16T03:47:49.634Z",
 							"minutes": 8
 						},
 						{
@@ -2207,7 +2207,7 @@
 							"title": "Generic Tables API",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/generic-tables.md",
-							"updated": "2026-11-13T14:41:04.087Z",
+							"updated": "2026-11-16T03:47:49.637Z",
 							"minutes": 2
 						},
 						{
@@ -2215,7 +2215,7 @@
 							"title": "Database Management API",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/database-management.md",
-							"updated": "2026-11-13T14:41:04.088Z",
+							"updated": "2026-11-16T03:47:49.640Z",
 							"minutes": 2
 						},
 						{
@@ -2223,7 +2223,7 @@
 							"title": "System & Utilities API",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/system-utilities.md",
-							"updated": "2026-11-13T14:41:04.090Z",
+							"updated": "2026-11-16T03:47:49.643Z",
 							"minutes": 5
 						},
 						{
@@ -2231,7 +2231,7 @@
 							"title": "Developer Tools API",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/api-reference/developer-tools.md",
-							"updated": "2026-11-13T14:41:04.091Z",
+							"updated": "2026-11-16T03:47:49.646Z",
 							"minutes": 3
 						},
 						{
@@ -2239,7 +2239,7 @@
 							"title": "Design Studio (Tstat11) API — Overview",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/bacnet-api/README.md",
-							"updated": "2026-11-13T14:41:04.092Z",
+							"updated": "2026-11-16T03:47:49.648Z",
 							"minutes": 3
 						},
 						{
@@ -2247,7 +2247,7 @@
 							"title": "Design Studio (Tstat11) API — Endpoints",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/bacnet-api/commands.md",
-							"updated": "2026-11-13T14:41:04.094Z",
+							"updated": "2026-11-16T03:47:49.651Z",
 							"minutes": 4
 						},
 						{
@@ -2255,7 +2255,7 @@
 							"title": "Screen JSON — Format Reference",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/bacnet-api/screen-json.md",
-							"updated": "2026-11-13T14:41:04.096Z",
+							"updated": "2026-11-16T03:47:49.652Z",
 							"minutes": 6
 						},
 						{
@@ -2263,7 +2263,7 @@
 							"title": "BACnet Commands Reference",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/bacnet-commands.md",
-							"updated": "2026-11-13T14:41:04.098Z",
+							"updated": "2026-11-16T03:47:49.655Z",
 							"minutes": 4
 						},
 						{
@@ -2271,7 +2271,7 @@
 							"title": "Data Structures Reference",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/data-structures.md",
-							"updated": "2026-11-13T14:41:04.101Z",
+							"updated": "2026-11-16T03:47:49.657Z",
 							"minutes": 5
 						},
 						{
@@ -2279,7 +2279,7 @@
 							"title": "Device Settings (READ_SETTING_COMMAND)",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/device-settings-structure.md",
-							"updated": "2026-11-13T14:41:04.104Z",
+							"updated": "2026-11-16T03:47:49.661Z",
 							"minutes": 18
 						},
 						{
@@ -2287,7 +2287,7 @@
 							"title": "Building Platform Overview",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/overview.md",
-							"updated": "2026-11-13T14:41:04.105Z",
+							"updated": "2026-11-16T03:47:49.663Z",
 							"minutes": 4
 						},
 						{
@@ -2295,7 +2295,7 @@
 							"title": "Control Messages Index",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-index.md",
-							"updated": "2026-11-13T14:41:04.107Z",
+							"updated": "2026-11-16T03:47:49.665Z",
 							"minutes": 3
 						},
 						{
@@ -2303,7 +2303,7 @@
 							"title": "Graphics Messages: GET_Initial_Data & Load_Graphic_Entry",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-get-initial-data.md",
-							"updated": "2026-11-13T14:41:04.108Z",
+							"updated": "2026-11-16T03:47:49.667Z",
 							"minutes": 7
 						},
 						{
@@ -2311,7 +2311,7 @@
 							"title": "Message: GET_Panels_List",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-get-panels-list.md",
-							"updated": "2026-11-13T14:41:04.110Z",
+							"updated": "2026-11-16T03:47:49.670Z",
 							"minutes": 3
 						},
 						{
@@ -2319,7 +2319,7 @@
 							"title": "Message: GET_Panel_Data",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-get-panel-data.md",
-							"updated": "2026-11-13T14:41:04.111Z",
+							"updated": "2026-11-16T03:47:49.673Z",
 							"minutes": 2
 						},
 						{
@@ -2327,7 +2327,7 @@
 							"title": "Message: GET_ENTRIES",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-get-entries.md",
-							"updated": "2026-11-13T14:41:04.114Z",
+							"updated": "2026-11-16T03:47:49.676Z",
 							"minutes": 4
 						},
 						{
@@ -2335,7 +2335,7 @@
 							"title": "Message 5: GET_Panel_Range_Info",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-5-get-panel-range-info.md",
-							"updated": "2026-11-13T14:41:04.115Z",
+							"updated": "2026-11-16T03:47:49.679Z",
 							"minutes": 1
 						},
 						{
@@ -2343,7 +2343,7 @@
 							"title": "Message 8: Open_Entry_Edit_Window",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-8-open-entry-edit-window.md",
-							"updated": "2026-11-13T14:41:04.117Z",
+							"updated": "2026-11-16T03:47:49.681Z",
 							"minutes": 5
 						},
 						{
@@ -2351,7 +2351,7 @@
 							"title": "Message 9: SAVE_IMAGE",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-9-save-image.md",
-							"updated": "2026-11-13T14:41:04.118Z",
+							"updated": "2026-11-16T03:47:49.683Z",
 							"minutes": 7
 						},
 						{
@@ -2359,7 +2359,7 @@
 							"title": "Message 10: Save_Library_Data",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-10-save-library-data.md",
-							"updated": "2026-11-13T14:41:04.120Z",
+							"updated": "2026-11-16T03:47:49.685Z",
 							"minutes": 2
 						},
 						{
@@ -2367,7 +2367,7 @@
 							"title": "Message 11: DELETE_IMAGE",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-11-delete-image.md",
-							"updated": "2026-11-13T14:41:04.121Z",
+							"updated": "2026-11-16T03:47:49.689Z",
 							"minutes": 3
 						},
 						{
@@ -2375,7 +2375,7 @@
 							"title": "Message 12: GET_Selected_Device_Info",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-12-get-selected-device-info.md",
-							"updated": "2026-11-13T14:41:04.123Z",
+							"updated": "2026-11-16T03:47:49.692Z",
 							"minutes": 4
 						},
 						{
@@ -2383,7 +2383,7 @@
 							"title": "Message 13: BIND_DEVICE",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-13-bind-device.md",
-							"updated": "2026-11-13T14:41:04.124Z",
+							"updated": "2026-11-16T03:47:49.694Z",
 							"minutes": 1
 						},
 						{
@@ -2391,7 +2391,7 @@
 							"title": "Message 14: Save_NEW_Library_Data",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-14-save-new-library-data.md",
-							"updated": "2026-11-13T14:41:04.126Z",
+							"updated": "2026-11-16T03:47:49.697Z",
 							"minutes": 2
 						},
 						{
@@ -2399,7 +2399,7 @@
 							"title": "Message 15: LOGGING_DATA",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-15-logging-data.md",
-							"updated": "2026-11-13T14:41:04.127Z",
+							"updated": "2026-11-16T03:47:49.699Z",
 							"minutes": 5
 						},
 						{
@@ -2407,7 +2407,7 @@
 							"title": "Message 17: GET_Webview_List",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-17.md",
-							"updated": "2026-11-13T14:41:04.130Z",
+							"updated": "2026-11-16T03:47:49.701Z",
 							"minutes": 8
 						},
 						{
@@ -2415,7 +2415,7 @@
 							"title": "Message: Save_Graphic_Data",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-save-graphic-data.md",
-							"updated": "2026-11-13T14:41:04.132Z",
+							"updated": "2026-11-16T03:47:49.703Z",
 							"minutes": 9
 						},
 						{
@@ -2423,7 +2423,7 @@
 							"title": "Message: UPDATE_ENTRY",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-update-entry.md",
-							"updated": "2026-11-13T14:41:04.134Z",
+							"updated": "2026-11-16T03:47:49.713Z",
 							"minutes": 3
 						},
 						{
@@ -2431,7 +2431,7 @@
 							"title": "Message: Update_Webview_List",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/building-platform/control-messages/message-update-webview-list.md",
-							"updated": "2026-11-13T14:41:04.135Z",
+							"updated": "2026-11-16T03:47:49.715Z",
 							"minutes": 3
 						},
 						{
@@ -2439,7 +2439,7 @@
 							"title": "Configuration Guide",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/quick-start/configuration.md",
-							"updated": "2026-11-13T14:41:04.137Z",
+							"updated": "2026-11-16T03:47:49.718Z",
 							"minutes": 11
 						},
 						{
@@ -2447,7 +2447,7 @@
 							"title": "Installation Guide",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/quick-start/installation.md",
-							"updated": "2026-11-13T14:41:04.138Z",
+							"updated": "2026-11-16T03:47:49.723Z",
 							"minutes": 9
 						},
 						{
@@ -2455,7 +2455,7 @@
 							"title": "Quick Start Overview",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/quick-start/overview.md",
-							"updated": "2026-11-13T14:41:04.139Z",
+							"updated": "2026-11-16T03:47:49.728Z",
 							"minutes": 4
 						},
 						{
@@ -2463,7 +2463,7 @@
 							"title": "Inputs",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/data-points/inputs.md",
-							"updated": "2026-11-13T14:41:04.141Z",
+							"updated": "2026-11-16T03:47:49.732Z",
 							"minutes": 10
 						},
 						{
@@ -2471,7 +2471,7 @@
 							"title": "Outputs",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/data-points/outputs.md",
-							"updated": "2026-11-13T14:41:04.143Z",
+							"updated": "2026-11-16T03:47:49.736Z",
 							"minutes": 12
 						},
 						{
@@ -2479,7 +2479,7 @@
 							"title": "PID Loops",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/data-points/pid-loops.md",
-							"updated": "2026-11-13T14:41:04.144Z",
+							"updated": "2026-11-16T03:47:49.739Z",
 							"minutes": 9
 						},
 						{
@@ -2487,7 +2487,7 @@
 							"title": "Programs",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/data-points/programs.md",
-							"updated": "2026-11-13T14:41:04.145Z",
+							"updated": "2026-11-16T03:47:49.742Z",
 							"minutes": 6
 						},
 						{
@@ -2495,7 +2495,7 @@
 							"title": "Variables",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/data-points/variables.md",
-							"updated": "2026-11-13T14:41:04.148Z",
+							"updated": "2026-11-16T03:47:49.745Z",
 							"minutes": 5
 						},
 						{
@@ -2503,7 +2503,7 @@
 							"title": "Connecting Devices",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/device-management/connecting-devices.md",
-							"updated": "2026-11-13T14:41:04.150Z",
+							"updated": "2026-11-16T03:47:49.747Z",
 							"minutes": 10
 						},
 						{
@@ -2511,7 +2511,7 @@
 							"title": "Device Configuration",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/device-management/device-configuration.md",
-							"updated": "2026-11-13T14:41:04.151Z",
+							"updated": "2026-11-16T03:47:49.750Z",
 							"minutes": 7
 						},
 						{
@@ -2519,7 +2519,7 @@
 							"title": "Device Monitoring",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/device-management/device-monitoring.md",
-							"updated": "2026-11-13T14:41:04.153Z",
+							"updated": "2026-11-16T03:47:49.752Z",
 							"minutes": 12
 						},
 						{
@@ -2527,7 +2527,7 @@
 							"title": "Device Troubleshooting",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/device-management/device-troubleshooting.md",
-							"updated": "2026-11-13T14:41:04.154Z",
+							"updated": "2026-11-16T03:47:49.755Z",
 							"minutes": 13
 						},
 						{
@@ -2535,7 +2535,7 @@
 							"title": "LAN Scanner — UDP Device Discovery",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/device-management/lan-scanner.md",
-							"updated": "2026-11-13T14:41:04.155Z",
+							"updated": "2026-11-16T03:47:49.758Z",
 							"minutes": 3
 						},
 						{
@@ -2543,7 +2543,7 @@
 							"title": "Alarms",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/features/alarms.md",
-							"updated": "2026-11-13T14:41:04.156Z",
+							"updated": "2026-11-16T03:47:49.761Z",
 							"minutes": 4
 						},
 						{
@@ -2551,7 +2551,7 @@
 							"title": "Graphics",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/features/graphics.md",
-							"updated": "2026-11-13T14:41:04.158Z",
+							"updated": "2026-11-16T03:47:49.762Z",
 							"minutes": 2
 						},
 						{
@@ -2559,7 +2559,7 @@
 							"title": "Holidays",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/features/holidays.md",
-							"updated": "2026-11-13T14:41:04.159Z",
+							"updated": "2026-11-16T03:47:49.764Z",
 							"minutes": 1
 						},
 						{
@@ -2567,7 +2567,7 @@
 							"title": "Schedules",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/features/schedules.md",
-							"updated": "2026-11-13T14:41:04.160Z",
+							"updated": "2026-11-16T03:47:49.766Z",
 							"minutes": 3
 						},
 						{
@@ -2575,7 +2575,7 @@
 							"title": "Settings Field Mapping: C++ ↔ Frontend",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/features/SETTINGS_FIELD_MAPPING.md",
-							"updated": "2026-11-13T14:41:04.162Z",
+							"updated": "2026-11-16T03:47:49.769Z",
 							"minutes": 9
 						},
 						{
@@ -2583,7 +2583,7 @@
 							"title": "Trend Center Unified Design",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/features/trend-center-unified-design.md",
-							"updated": "2026-11-13T14:41:04.164Z",
+							"updated": "2026-11-16T03:47:49.771Z",
 							"minutes": 4
 						},
 						{
@@ -2591,7 +2591,7 @@
 							"title": "TrendLog Chart X-Axis Design",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/features/trendlog-xaxis-design.md",
-							"updated": "2026-11-13T14:41:04.166Z",
+							"updated": "2026-11-16T03:47:49.773Z",
 							"minutes": 3
 						},
 						{
@@ -2599,7 +2599,7 @@
 							"title": "Trend Logs",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/features/trendlogs.md",
-							"updated": "2026-11-13T14:41:04.167Z",
+							"updated": "2026-11-16T03:47:49.776Z",
 							"minutes": 3
 						},
 						{
@@ -2607,7 +2607,7 @@
 							"title": "Best Practices",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/guides/best-practices.md",
-							"updated": "2026-11-13T14:41:04.169Z",
+							"updated": "2026-11-16T03:47:49.778Z",
 							"minutes": 9
 						},
 						{
@@ -2615,7 +2615,7 @@
 							"title": "Frequently Asked Questions",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/guides/faq.md",
-							"updated": "2026-11-13T14:41:04.171Z",
+							"updated": "2026-11-16T03:47:49.780Z",
 							"minutes": 6
 						},
 						{
@@ -2623,7 +2623,7 @@
 							"title": "Performance Tuning",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/guides/performance-tuning.md",
-							"updated": "2026-11-13T14:41:04.173Z",
+							"updated": "2026-11-16T03:47:49.782Z",
 							"minutes": 10
 						},
 						{
@@ -2631,7 +2631,7 @@
 							"title": "Troubleshooting Guide",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/guides/troubleshooting.md",
-							"updated": "2026-11-13T14:41:04.174Z",
+							"updated": "2026-11-16T03:47:49.784Z",
 							"minutes": 9
 						},
 						{
@@ -2639,7 +2639,7 @@
 							"title": "Centralized Database Design",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/architecture/centralized-database-design.md",
-							"updated": "2026-11-13T14:41:04.176Z",
+							"updated": "2026-11-16T03:47:49.786Z",
 							"minutes": 5
 						},
 						{
@@ -2647,7 +2647,7 @@
 							"title": "Centralized Database: Multi-PC Architecture (v4 Final)",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/architecture/centralized-database-multipc.md",
-							"updated": "2026-11-13T14:41:04.177Z",
+							"updated": "2026-11-16T03:47:49.788Z",
 							"minutes": 9
 						},
 						{
@@ -2655,7 +2655,7 @@
 							"title": "Centralized Logging Design",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/architecture/centralized-logging-design.md",
-							"updated": "2026-11-13T14:41:04.178Z",
+							"updated": "2026-11-16T03:47:49.790Z",
 							"minutes": 2
 						},
 						{
@@ -2663,7 +2663,7 @@
 							"title": "Device Panel Loading",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/architecture/device-loading.md",
-							"updated": "2026-11-13T14:41:04.182Z",
+							"updated": "2026-11-16T03:47:49.794Z",
 							"minutes": 14
 						},
 						{
@@ -2671,7 +2671,7 @@
 							"title": "Flow Logging Architecture — Design Document",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/architecture/flow-logging-design.md",
-							"updated": "2026-11-13T14:41:04.183Z",
+							"updated": "2026-11-16T03:47:49.796Z",
 							"minutes": 16
 						},
 						{
@@ -2679,7 +2679,7 @@
 							"title": "T3000 Mobile Architecture Guide",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/architecture/MOBILE_ARCHITECTURE_GUIDE.md",
-							"updated": "2026-11-13T14:41:04.185Z",
+							"updated": "2026-11-16T03:47:49.798Z",
 							"minutes": 19
 						},
 						{
@@ -2687,7 +2687,7 @@
 							"title": "Multi-PC Data Flow Details",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/architecture/multipc-data-flow-details.md",
-							"updated": "2026-11-13T14:41:04.187Z",
+							"updated": "2026-11-16T03:47:49.800Z",
 							"minutes": 6
 						},
 						{
@@ -2695,7 +2695,7 @@
 							"title": "T3000 WebView System Architecture",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/architecture/system-overview.md",
-							"updated": "2026-11-13T14:41:04.188Z",
+							"updated": "2026-11-16T03:47:49.801Z",
 							"minutes": 8
 						},
 						{
@@ -2703,7 +2703,7 @@
 							"title": "Status Bar Component",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/components/status-bar.md",
-							"updated": "2026-11-13T14:41:04.189Z",
+							"updated": "2026-11-16T03:47:49.803Z",
 							"minutes": 5
 						},
 						{
@@ -2711,7 +2711,7 @@
 							"title": "Shared Center DB — Overview",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/shared-db/shared-center-db-summary.md",
-							"updated": "2026-11-13T14:41:04.191Z",
+							"updated": "2026-11-16T03:47:49.805Z",
 							"minutes": 6
 						},
 						{
@@ -2719,15 +2719,15 @@
 							"title": "SQL Server Express 2022 Setup for T3000 (Detailed Step-by-Step)",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/shared-db/sql-server-express-setup.md",
-							"updated": "2026-11-13T14:41:04.192Z",
-							"minutes": 8
+							"updated": "2026-11-16T03:47:49.806Z",
+							"minutes": 7
 						},
 						{
 							"href": "shared-db/t3000-center-db-config",
 							"title": "T3000 Center DB Configuration",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/shared-db/t3000-center-db-config.md",
-							"updated": "2026-11-13T14:41:04.193Z",
+							"updated": "2026-11-16T03:47:49.809Z",
 							"minutes": 8
 						},
 						{
@@ -2735,7 +2735,7 @@
 							"title": "SQL Server Setup Screenshots",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/shared-db/images/sql-server-express/README.md",
-							"updated": "2026-11-13T14:41:04.195Z",
+							"updated": "2026-11-16T03:47:49.811Z",
 							"minutes": 1
 						},
 						{
@@ -2743,7 +2743,7 @@
 							"title": "Tstat LCD System — Documentation Index",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/tstat-lcd/index.md",
-							"updated": "2026-11-13T14:41:04.197Z",
+							"updated": "2026-11-16T03:47:49.813Z",
 							"minutes": 1
 						},
 						{
@@ -2751,7 +2751,7 @@
 							"title": "LCD Screen Designer",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/tstat-lcd/edit-mode.md",
-							"updated": "2026-11-13T14:41:04.199Z",
+							"updated": "2026-11-16T03:47:49.815Z",
 							"minutes": 9
 						},
 						{
@@ -2759,7 +2759,7 @@
 							"title": "JSON Schema — screenDefinition.json",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/tstat-lcd/json-schema.md",
-							"updated": "2026-11-13T14:41:04.201Z",
+							"updated": "2026-11-16T03:47:49.816Z",
 							"minutes": 8
 						},
 						{
@@ -2767,7 +2767,7 @@
 							"title": "System Overview",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/tstat-lcd/system-overview.md",
-							"updated": "2026-11-13T14:41:04.203Z",
+							"updated": "2026-11-16T03:47:49.818Z",
 							"minutes": 4
 						},
 						{
@@ -2775,7 +2775,7 @@
 							"title": "Widget Types",
 							"kind": "md",
 							"source": "content/t3000-api/1.0/tstat-lcd/widget-types.md",
-							"updated": "2026-11-13T14:41:04.204Z",
+							"updated": "2026-11-16T03:47:49.820Z",
 							"minutes": 6
 						}
 					]
@@ -2938,14 +2938,14 @@
 			"versions": [
 				{
 					"version": "1.0",
-					"builtAt": "2026-11-13T14:41:04.756Z",
+					"builtAt": "2026-11-16T03:47:48.869Z",
 					"pages": [
 						{
 							"href": "index",
 							"title": "T3000 New UI",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/00-index.md",
-							"updated": "2026-11-13T14:41:04.756Z",
+							"updated": "2026-11-16T03:47:48.869Z",
 							"minutes": 2
 						},
 						{
@@ -2953,7 +2953,7 @@
 							"title": "What the new UI is",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/00-hub.md",
-							"updated": "2026-11-13T14:41:04.683Z",
+							"updated": "2026-11-16T03:47:48.793Z",
 							"minutes": 2
 						},
 						{
@@ -2961,7 +2961,7 @@
 							"title": "Design Hub — Developer & User Guide",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/design-hub/README.md",
-							"updated": "2026-11-13T14:41:04.685Z",
+							"updated": "2026-11-16T03:47:48.795Z",
 							"minutes": 5
 						},
 						{
@@ -2969,7 +2969,7 @@
 							"title": "Unified Designer — design set",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/README.md",
-							"updated": "2026-11-13T14:41:04.687Z",
+							"updated": "2026-11-16T03:47:48.797Z",
 							"minutes": 5
 						},
 						{
@@ -2977,7 +2977,7 @@
 							"title": "Unified Designer — one editor, per-document-type content",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/design.md",
-							"updated": "2026-11-13T14:41:04.688Z",
+							"updated": "2026-11-16T03:47:48.799Z",
 							"minutes": 17
 						},
 						{
@@ -2985,7 +2985,7 @@
 							"title": "Designer — interfaces and contracts",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/interfaces.md",
-							"updated": "2026-11-13T14:41:04.691Z",
+							"updated": "2026-11-16T03:47:48.802Z",
 							"minutes": 13
 						},
 						{
@@ -2993,7 +2993,7 @@
 							"title": "Designer — full change map",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/change-map.md",
-							"updated": "2026-11-13T14:41:04.692Z",
+							"updated": "2026-11-16T03:47:48.805Z",
 							"minutes": 17
 						},
 						{
@@ -3001,7 +3001,7 @@
 							"title": "Designer — theme and CSS",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/theme-and-css.md",
-							"updated": "2026-11-13T14:41:04.694Z",
+							"updated": "2026-11-16T03:47:48.807Z",
 							"minutes": 10
 						},
 						{
@@ -3009,7 +3009,7 @@
 							"title": "EEZ editor — button-by-button: origin vs the unified shell",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/eez-button-behaviour.md",
-							"updated": "2026-11-13T14:41:04.695Z",
+							"updated": "2026-11-16T03:47:48.809Z",
 							"minutes": 7
 						},
 						{
@@ -3017,7 +3017,7 @@
 							"title": "Designer — risks, open questions, rollback",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/risks.md",
-							"updated": "2026-11-13T14:41:04.698Z",
+							"updated": "2026-11-16T03:47:48.811Z",
 							"minutes": 9
 						},
 						{
@@ -3025,7 +3025,7 @@
 							"title": "Designer — page-by-page design",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/pages/README.md",
-							"updated": "2026-11-13T14:41:04.700Z",
+							"updated": "2026-11-16T03:47:48.813Z",
 							"minutes": 2
 						},
 						{
@@ -3033,7 +3033,7 @@
 							"title": "Every route in the app, and how the Designer touches it",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/pages/app-routes.md",
-							"updated": "2026-11-13T14:41:04.702Z",
+							"updated": "2026-11-16T03:47:48.814Z",
 							"minutes": 8
 						},
 						{
@@ -3041,7 +3041,7 @@
 							"title": "The Design Hub, page by page — the entry point into every designer document",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/pages/design-hub.md",
-							"updated": "2026-11-13T14:41:04.703Z",
+							"updated": "2026-11-16T03:47:48.815Z",
 							"minutes": 5
 						},
 						{
@@ -3049,7 +3049,7 @@
 							"title": "The Designer shell — area-by-area design",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/pages/designer-shell-areas.md",
-							"updated": "2026-11-13T14:41:04.704Z",
+							"updated": "2026-11-16T03:47:48.817Z",
 							"minutes": 7
 						},
 						{
@@ -3057,7 +3057,7 @@
 							"title": "The HVAC document, panel by panel",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/pages/hvac-document.md",
-							"updated": "2026-11-13T14:41:04.706Z",
+							"updated": "2026-11-16T03:47:48.819Z",
 							"minutes": 29
 						},
 						{
@@ -3065,7 +3065,7 @@
 							"title": "The LCD/simulator document, area by area (P5)",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/pages/lcd-document.md",
-							"updated": "2026-11-13T14:41:04.707Z",
+							"updated": "2026-11-16T03:47:48.820Z",
 							"minutes": 4
 						},
 						{
@@ -3073,7 +3073,7 @@
 							"title": "The LVGL document, panel by panel",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/pages/lvgl-document.md",
-							"updated": "2026-11-13T14:41:04.709Z",
+							"updated": "2026-11-16T03:47:48.823Z",
 							"minutes": 15
 						},
 						{
@@ -3081,7 +3081,7 @@
 							"title": "P1 — `DesignerShell` + the HVAC document on it",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/phases/p1-shell-hvac.md",
-							"updated": "2026-11-13T14:41:04.710Z",
+							"updated": "2026-11-16T03:47:48.826Z",
 							"minutes": 11
 						},
 						{
@@ -3089,7 +3089,7 @@
 							"title": "P2 — the LVGL document on the shell",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/phases/p2-lvgl-document.md",
-							"updated": "2026-11-13T14:41:04.712Z",
+							"updated": "2026-11-16T03:47:48.827Z",
 							"minutes": 17
 						},
 						{
@@ -3097,7 +3097,7 @@
 							"title": "P3 — HVAC host mode: the container comes from the shell",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/phases/p3-hvac-host-mode.md",
-							"updated": "2026-11-13T14:41:04.714Z",
+							"updated": "2026-11-16T03:47:48.829Z",
 							"minutes": 4
 						},
 						{
@@ -3105,7 +3105,7 @@
 							"title": "P4 — route consolidation",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/phases/p4-route-consolidation.md",
-							"updated": "2026-11-13T14:41:04.716Z",
+							"updated": "2026-11-16T03:47:48.830Z",
 							"minutes": 5
 						},
 						{
@@ -3113,7 +3113,7 @@
 							"title": "P5 — optional unification",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/designer/phases/p5-unification.md",
-							"updated": "2026-11-13T14:41:04.717Z",
+							"updated": "2026-11-16T03:47:48.831Z",
 							"minutes": 5
 						},
 						{
@@ -3121,7 +3121,7 @@
 							"title": "LVGL SVG Renderer",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/lvgl-svg/README.md",
-							"updated": "2026-11-13T14:41:04.719Z",
+							"updated": "2026-11-16T03:47:48.832Z",
 							"minutes": 3
 						},
 						{
@@ -3129,7 +3129,7 @@
 							"title": "LVGL SVG Renderer — Architecture",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/lvgl-svg/architecture.md",
-							"updated": "2026-11-13T14:41:04.719Z",
+							"updated": "2026-11-16T03:47:48.834Z",
 							"minutes": 6
 						},
 						{
@@ -3137,7 +3137,7 @@
 							"title": "LVGL SVG Renderer — Editor Integration",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/lvgl-svg/editor-integration.md",
-							"updated": "2026-11-13T14:41:04.722Z",
+							"updated": "2026-11-16T03:47:48.835Z",
 							"minutes": 13
 						},
 						{
@@ -3145,7 +3145,7 @@
 							"title": "LVGL SVG Renderer — Fidelity Harness",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/lvgl-svg/fidelity-harness.md",
-							"updated": "2026-11-13T14:41:04.723Z",
+							"updated": "2026-11-16T03:47:48.836Z",
 							"minutes": 26
 						},
 						{
@@ -3153,7 +3153,7 @@
 							"title": "LVGL SVG Renderer — Scope & Invariants",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/lvgl-svg/invariants.md",
-							"updated": "2026-11-13T14:41:04.724Z",
+							"updated": "2026-11-16T03:47:48.838Z",
 							"minutes": 4
 						},
 						{
@@ -3161,7 +3161,7 @@
 							"title": "LVGL 9.5 — SVG Renderer: measured primitive inventory",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/lvgl-svg/primitives.md",
-							"updated": "2026-11-13T14:41:04.725Z",
+							"updated": "2026-11-16T03:47:48.840Z",
 							"minutes": 8
 						},
 						{
@@ -3169,7 +3169,7 @@
 							"title": "LVGL SVG Renderer — Rendering",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/lvgl-svg/rendering.md",
-							"updated": "2026-11-13T14:41:04.728Z",
+							"updated": "2026-11-16T03:47:48.842Z",
 							"minutes": 12
 						},
 						{
@@ -3177,7 +3177,7 @@
 							"title": "LVGL SVG Renderer — Runtime Integration",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/lvgl-svg/runtime-integration.md",
-							"updated": "2026-11-13T14:41:04.729Z",
+							"updated": "2026-11-16T03:47:48.843Z",
 							"minutes": 11
 						},
 						{
@@ -3185,7 +3185,7 @@
 							"title": "LVGL SVG Renderer — Scene Contract",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/lvgl-svg/scene-contract.md",
-							"updated": "2026-11-13T14:41:04.731Z",
+							"updated": "2026-11-16T03:47:48.845Z",
 							"minutes": 8
 						},
 						{
@@ -3193,7 +3193,7 @@
 							"title": "LVGL SVG Renderer — WASM Bridge",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/architecture/lvgl-svg/wasm-bridge.md",
-							"updated": "2026-11-13T14:41:04.733Z",
+							"updated": "2026-11-16T03:47:48.846Z",
 							"minutes": 12
 						},
 						{
@@ -3201,7 +3201,7 @@
 							"title": "Design Studio (Tstat11)",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/t3-eez-studio/README.md",
-							"updated": "2026-11-13T14:41:04.734Z",
+							"updated": "2026-11-16T03:47:48.847Z",
 							"minutes": 3
 						},
 						{
@@ -3209,7 +3209,7 @@
 							"title": "Deploy to Device — as built (REST)",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/t3-eez-studio/device-interface-deployment-via-bacnet-design.md",
-							"updated": "2026-11-13T14:41:04.736Z",
+							"updated": "2026-11-16T03:47:48.850Z",
 							"minutes": 24
 						},
 						{
@@ -3217,7 +3217,7 @@
 							"title": "Import from Device — as built",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/t3-eez-studio/import-from-device-design.md",
-							"updated": "2026-11-13T14:41:04.737Z",
+							"updated": "2026-11-16T03:47:48.851Z",
 							"minutes": 10
 						},
 						{
@@ -3225,7 +3225,7 @@
 							"title": ".EEZ-Project JSON Format — Design Document",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/t3-eez-studio/lvgl-eez-project-json-format.md",
-							"updated": "2026-11-13T14:41:04.740Z",
+							"updated": "2026-11-16T03:47:48.853Z",
 							"minutes": 39
 						},
 						{
@@ -3233,7 +3233,7 @@
 							"title": "Static Resource Copy — Build-Time Asset Pipeline",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/t3-eez-studio/static-resource-copy-build.md",
-							"updated": "2026-11-13T14:41:04.741Z",
+							"updated": "2026-11-16T03:47:48.854Z",
 							"minutes": 5
 						},
 						{
@@ -3241,7 +3241,7 @@
 							"title": "LVGL WASM Browser Build Migration",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/t3-eez-studio/wasm-browser-build-migration.md",
-							"updated": "2026-11-13T14:41:04.742Z",
+							"updated": "2026-11-16T03:47:48.856Z",
 							"minutes": 5
 						},
 						{
@@ -3249,7 +3249,7 @@
 							"title": "01 — Overview",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/t3-eez-studio/manual/01-overview.md",
-							"updated": "2026-11-13T14:41:04.745Z",
+							"updated": "2026-11-16T03:47:48.858Z",
 							"minutes": 6
 						},
 						{
@@ -3257,7 +3257,7 @@
 							"title": "02 — Creating a Project",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/t3-eez-studio/manual/02-creating-projects.md",
-							"updated": "2026-11-13T14:41:04.746Z",
+							"updated": "2026-11-16T03:47:48.859Z",
 							"minutes": 6
 						},
 						{
@@ -3265,7 +3265,7 @@
 							"title": "03 — Designing Screens",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/t3-eez-studio/manual/03-editing-screens.md",
-							"updated": "2026-11-13T14:41:04.748Z",
+							"updated": "2026-11-16T03:47:48.861Z",
 							"minutes": 6
 						},
 						{
@@ -3273,7 +3273,7 @@
 							"title": "04 — Adding Logic with EEZ Flow",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/t3-eez-studio/manual/04-eez-flow.md",
-							"updated": "2026-11-13T14:41:04.749Z",
+							"updated": "2026-11-16T03:47:48.862Z",
 							"minutes": 5
 						},
 						{
@@ -3281,7 +3281,7 @@
 							"title": "05 — Preview, Bind & Deploy",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/t3-eez-studio/manual/05-preview-and-deploy.md",
-							"updated": "2026-11-13T14:41:04.750Z",
+							"updated": "2026-11-16T03:47:48.863Z",
 							"minutes": 5
 						},
 						{
@@ -3289,7 +3289,7 @@
 							"title": "06 — Reference & FAQ",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/t3-eez-studio/manual/06-reference-and-faq.md",
-							"updated": "2026-11-13T14:41:04.752Z",
+							"updated": "2026-11-16T03:47:48.864Z",
 							"minutes": 6
 						},
 						{
@@ -3297,7 +3297,7 @@
 							"title": "Switching between Classic View and New View",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/features/view-switcher.md",
-							"updated": "2026-11-13T14:41:04.753Z",
+							"updated": "2026-11-16T03:47:48.866Z",
 							"minutes": 5
 						},
 						{
@@ -3305,15 +3305,15 @@
 							"title": "Try the new T3000 UI (beta) — Inputs, Trend Logs, Haystack, AI Assistant and the new Designer",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/releases/beta-webui-announcement.md",
-							"updated": "2026-11-13T14:41:04.754Z",
-							"minutes": 8
+							"updated": "2026-11-16T03:47:48.867Z",
+							"minutes": 7
 						},
 						{
 							"href": "releases/changelog/2026-10-11",
 							"title": "Changelog - 2026-10-11",
 							"kind": "md",
 							"source": "content/t3000-new-ui/1.0/releases/changelog/2026-10-11.md",
-							"updated": "2026-11-13T14:41:04.755Z",
+							"updated": "2026-11-16T03:47:48.869Z",
 							"minutes": 1
 						}
 					]
@@ -3331,14 +3331,14 @@
 			"versions": [
 				{
 					"version": "1.0",
-					"builtAt": "2026-11-12T05:21:04.444Z",
+					"builtAt": "2026-11-16T03:48:08.717Z",
 					"pages": [
 						{
 							"href": "index",
 							"title": "Temco Platform",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/00-index.md",
-							"updated": "2026-11-12T05:21:04.444Z",
+							"updated": "2026-11-16T03:48:08.717Z",
 							"minutes": 1
 						},
 						{
@@ -3346,7 +3346,7 @@
 							"title": "`temco-ai`",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/temco-ai/README.md",
-							"updated": "2026-11-12T05:21:04.299Z",
+							"updated": "2026-11-16T03:48:08.662Z",
 							"minutes": 4
 						},
 						{
@@ -3354,7 +3354,7 @@
 							"title": "`temco-projects`",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/temco-projects/README.md",
-							"updated": "2026-11-12T05:21:04.302Z",
+							"updated": "2026-11-16T03:48:08.668Z",
 							"minutes": 3
 						},
 						{
@@ -3362,7 +3362,7 @@
 							"title": "`temco-repositories`",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/temco-repositories/README.md",
-							"updated": "2026-11-12T05:21:04.304Z",
+							"updated": "2026-11-16T03:48:08.670Z",
 							"minutes": 3
 						},
 						{
@@ -3370,7 +3370,7 @@
 							"title": "`temco-store`",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/temco-store/README.md",
-							"updated": "2026-11-12T05:21:04.305Z",
+							"updated": "2026-11-16T03:48:08.673Z",
 							"minutes": 3
 						},
 						{
@@ -3378,7 +3378,7 @@
 							"title": "`temco-tools`",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/temco-tools/README.md",
-							"updated": "2026-11-12T05:21:04.309Z",
+							"updated": "2026-11-16T03:48:08.676Z",
 							"minutes": 2
 						},
 						{
@@ -3386,7 +3386,7 @@
 							"title": "`temco-ui`",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/temco-ui/README.md",
-							"updated": "2026-11-12T05:21:04.312Z",
+							"updated": "2026-11-16T03:48:08.677Z",
 							"minutes": 3
 						},
 						{
@@ -3394,7 +3394,7 @@
 							"title": "`temco-workbench`",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/temco-workbench/README.md",
-							"updated": "2026-11-12T05:21:04.313Z",
+							"updated": "2026-11-16T03:48:08.679Z",
 							"minutes": 6
 						},
 						{
@@ -3402,7 +3402,7 @@
 							"title": "Entry points",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/entry-points.md",
-							"updated": "2026-11-12T05:21:04.292Z",
+							"updated": "2026-11-16T03:48:08.657Z",
 							"minutes": 3
 						},
 						{
@@ -3410,7 +3410,7 @@
 							"title": "Modules",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/README.md",
-							"updated": "2026-11-12T05:21:04.297Z",
+							"updated": "2026-11-16T03:48:08.661Z",
 							"minutes": 8
 						},
 						{
@@ -3418,7 +3418,7 @@
 							"title": "Naming",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/naming.md",
-							"updated": "2026-11-12T05:21:04.315Z",
+							"updated": "2026-11-16T03:48:08.680Z",
 							"minutes": 2
 						},
 						{
@@ -3426,7 +3426,7 @@
 							"title": "Platform introduction",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/introduction.md",
-							"updated": "2026-11-12T05:21:04.295Z",
+							"updated": "2026-11-16T03:48:08.659Z",
 							"minutes": 40
 						},
 						{
@@ -3434,7 +3434,7 @@
 							"title": "Temco Docs — documentation",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/temco-docs/README.md",
-							"updated": "2026-11-12T05:21:04.300Z",
+							"updated": "2026-11-16T03:48:08.665Z",
 							"minutes": 7
 						},
 						{
@@ -3442,7 +3442,7 @@
 							"title": "Temco Platform — architecture",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/README.md",
-							"updated": "2026-11-12T05:21:04.320Z",
+							"updated": "2026-11-16T03:48:08.685Z",
 							"minutes": 13
 						},
 						{
@@ -3450,7 +3450,7 @@
 							"title": "TEMCO Platform — Engineering Design (Revision 2)",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/platform-design.md",
-							"updated": "2026-11-12T05:21:04.319Z",
+							"updated": "2026-11-16T03:48:08.683Z",
 							"minutes": 87
 						},
 						{
@@ -3458,7 +3458,7 @@
 							"title": "temco-editor",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/temco-editor/README.md",
-							"updated": "2026-11-12T05:21:04.301Z",
+							"updated": "2026-11-16T03:48:08.667Z",
 							"minutes": 4
 						},
 						{
@@ -3466,7 +3466,7 @@
 							"title": "The application flow",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/ui/app-flow.md",
-							"updated": "2026-11-12T05:21:04.322Z",
+							"updated": "2026-11-16T03:48:08.687Z",
 							"minutes": 7
 						},
 						{
@@ -3474,7 +3474,7 @@
 							"title": "The catalog",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/catalog.md",
-							"updated": "2026-11-12T05:21:04.287Z",
+							"updated": "2026-11-16T03:48:08.651Z",
 							"minutes": 3
 						},
 						{
@@ -3482,7 +3482,7 @@
 							"title": "The local assistant and its MCP server",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/design/ai-assistant-and-mcp-server.md",
-							"updated": "2026-11-12T05:21:04.290Z",
+							"updated": "2026-11-16T03:48:08.654Z",
 							"minutes": 53
 						},
 						{
@@ -3490,7 +3490,7 @@
 							"title": "Architecture",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/temco-docs/architecture.md",
-							"updated": "2026-11-12T05:21:04.327Z",
+							"updated": "2026-11-16T03:48:08.692Z",
 							"minutes": 4
 						},
 						{
@@ -3498,7 +3498,7 @@
 							"title": "Authoring parity with Dr.Explain, publishing parity with MSDN",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/design/authoring-and-msdn-output.md",
-							"updated": "2026-11-12T05:21:04.324Z",
+							"updated": "2026-11-16T03:48:08.690Z",
 							"minutes": 10
 						},
 						{
@@ -3506,7 +3506,7 @@
 							"title": "The application window",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/ui/app-layout.md",
-							"updated": "2026-11-12T05:21:04.330Z",
+							"updated": "2026-11-16T03:48:08.694Z",
 							"minutes": 6
 						},
 						{
@@ -3514,7 +3514,7 @@
 							"title": "Extension design",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/temco-docs/extension-design.md",
-							"updated": "2026-11-12T05:21:04.342Z",
+							"updated": "2026-11-16T03:48:08.698Z",
 							"minutes": 64
 						},
 						{
@@ -3522,7 +3522,7 @@
 							"title": "Support intake — engineering",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/design/t3000-support-engineering.md",
-							"updated": "2026-11-12T05:21:04.338Z",
+							"updated": "2026-11-16T03:48:08.696Z",
 							"minutes": 20
 						},
 						{
@@ -3530,7 +3530,7 @@
 							"title": "The application: shell, screens and flow",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/ui/application-design.md",
-							"updated": "2026-11-12T05:21:04.345Z",
+							"updated": "2026-11-16T03:48:08.701Z",
 							"minutes": 34
 						},
 						{
@@ -3538,7 +3538,7 @@
 							"title": "Support intake from T3000",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/design/t3000-support-intake.md",
-							"updated": "2026-11-12T05:21:04.348Z",
+							"updated": "2026-11-16T03:48:08.703Z",
 							"minutes": 34
 						},
 						{
@@ -3546,7 +3546,7 @@
 							"title": "The authoring flow",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/ui/authoring-flow.md",
-							"updated": "2026-11-12T05:21:04.402Z",
+							"updated": "2026-11-16T03:48:08.707Z",
 							"minutes": 5
 						},
 						{
@@ -3554,7 +3554,7 @@
 							"title": "The registry the module reads",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/modules/temco-docs/registry-schema.md",
-							"updated": "2026-11-12T05:21:04.358Z",
+							"updated": "2026-11-16T03:48:08.706Z",
 							"minutes": 5
 						},
 						{
@@ -3562,7 +3562,7 @@
 							"title": "The editor",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/ui/editor-design.md",
-							"updated": "2026-11-12T05:21:04.403Z",
+							"updated": "2026-11-16T03:48:08.707Z",
 							"minutes": 14
 						},
 						{
@@ -3570,7 +3570,7 @@
 							"title": "The platform",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/ui/platform-design.md",
-							"updated": "2026-11-12T05:21:04.406Z",
+							"updated": "2026-11-16T03:48:08.711Z",
 							"minutes": 39
 						},
 						{
@@ -3578,7 +3578,7 @@
 							"title": "Docs center: the redesign",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/ui/redesign.md",
-							"updated": "2026-11-12T05:21:04.437Z",
+							"updated": "2026-11-16T03:48:08.713Z",
 							"minutes": 13
 						},
 						{
@@ -3586,7 +3586,7 @@
 							"title": "Shell and pages, v2 — the full layout, drawn",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/ui/shell-v2.md",
-							"updated": "2026-11-12T05:21:04.440Z",
+							"updated": "2026-11-16T03:48:08.715Z",
 							"minutes": 42
 						},
 						{
@@ -3594,8 +3594,353 @@
 							"title": "The front page — the Azure portal's palette and scale",
 							"kind": "md",
 							"source": "content/temco-platform/1.0/ui/welcome-v3-design.md",
-							"updated": "2026-11-12T05:21:04.443Z",
+							"updated": "2026-11-16T03:48:08.717Z",
 							"minutes": 12
+						}
+					]
+				}
+			],
+			"repository": "https://github.com/temcocontrols/temco-learn",
+			"editBranch": "main"
+		},
+		{
+			"id": "tstat11",
+			"title": "Tstat11",
+			"section": "products",
+			"summary": "The T3-family controller with a 480 x 320 touchscreen: its IO envelope, the screens it ships with, the Design Studio that edits them, the display API, the firmware and the update path.",
+			"latest": "1.0",
+			"versions": [
+				{
+					"version": "1.0",
+					"builtAt": "2026-11-16T03:47:48.362Z",
+					"pages": [
+						{
+							"href": "index",
+							"title": "Tstat11",
+							"kind": "md",
+							"source": "content/tstat11/1.0/00-index.md",
+							"updated": "2026-11-16T03:47:48.362Z",
+							"minutes": 1
+						},
+						{
+							"href": "00-hub",
+							"title": "The Tstat11",
+							"kind": "md",
+							"source": "content/tstat11/1.0/00-hub.md",
+							"updated": "2026-11-16T03:47:48.303Z",
+							"minutes": 3
+						},
+						{
+							"href": "hardware/model-matrix",
+							"title": "The Tstat11 IO envelope",
+							"kind": "md",
+							"source": "content/tstat11/1.0/hardware/model-matrix.md",
+							"updated": "2026-11-16T03:47:48.304Z",
+							"minutes": 1
+						},
+						{
+							"href": "hardware/flash-layout",
+							"title": "How flash is divided",
+							"kind": "md",
+							"source": "content/tstat11/1.0/hardware/flash-layout.md",
+							"updated": "2026-11-16T03:47:48.306Z",
+							"minutes": 1
+						},
+						{
+							"href": "display/shipped-screens",
+							"title": "The screens that ship on the device",
+							"kind": "md",
+							"source": "content/tstat11/1.0/display/shipped-screens.md",
+							"updated": "2026-11-16T03:47:48.308Z",
+							"minutes": 1
+						},
+						{
+							"href": "t3-eez-studio/manual/01-overview",
+							"title": "Design Studio: overview",
+							"kind": "md",
+							"source": "content/tstat11/1.0/t3-eez-studio/manual/01-overview.md",
+							"updated": "2026-11-16T03:47:48.309Z",
+							"minutes": 6
+						},
+						{
+							"href": "t3-eez-studio/manual/02-creating-projects",
+							"title": "Design Studio: creating a project",
+							"kind": "md",
+							"source": "content/tstat11/1.0/t3-eez-studio/manual/02-creating-projects.md",
+							"updated": "2026-11-16T03:47:48.310Z",
+							"minutes": 6
+						},
+						{
+							"href": "t3-eez-studio/manual/03-editing-screens",
+							"title": "Design Studio: designing screens",
+							"kind": "md",
+							"source": "content/tstat11/1.0/t3-eez-studio/manual/03-editing-screens.md",
+							"updated": "2026-11-16T03:47:48.311Z",
+							"minutes": 6
+						},
+						{
+							"href": "t3-eez-studio/manual/04-eez-flow",
+							"title": "Design Studio: adding logic with EEZ Flow",
+							"kind": "md",
+							"source": "content/tstat11/1.0/t3-eez-studio/manual/04-eez-flow.md",
+							"updated": "2026-11-16T03:47:48.314Z",
+							"minutes": 5
+						},
+						{
+							"href": "t3-eez-studio/manual/05-preview-and-deploy",
+							"title": "Design Studio: preview, bind and deploy",
+							"kind": "md",
+							"source": "content/tstat11/1.0/t3-eez-studio/manual/05-preview-and-deploy.md",
+							"updated": "2026-11-16T03:47:48.315Z",
+							"minutes": 5
+						},
+						{
+							"href": "t3-eez-studio/manual/06-reference-and-faq",
+							"title": "Design Studio: reference and FAQ",
+							"kind": "md",
+							"source": "content/tstat11/1.0/t3-eez-studio/manual/06-reference-and-faq.md",
+							"updated": "2026-11-16T03:47:48.317Z",
+							"minutes": 6
+						},
+						{
+							"href": "t3-eez-studio/readme",
+							"title": "Design Studio: how it is built",
+							"kind": "md",
+							"source": "content/tstat11/1.0/t3-eez-studio/README.md",
+							"updated": "2026-11-16T03:47:48.318Z",
+							"minutes": 3
+						},
+						{
+							"href": "bacnet-api/readme",
+							"title": "Design Studio API: overview",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bacnet-api/README.md",
+							"updated": "2026-11-16T03:47:48.320Z",
+							"minutes": 4
+						},
+						{
+							"href": "bacnet-api/screen-json",
+							"title": "Screen JSON: the format",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bacnet-api/screen-json.md",
+							"updated": "2026-11-16T03:47:48.321Z",
+							"minutes": 6
+						},
+						{
+							"href": "bacnet-api/commands",
+							"title": "Design Studio API: endpoints",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bacnet-api/commands.md",
+							"updated": "2026-11-16T03:47:48.323Z",
+							"minutes": 5
+						},
+						{
+							"href": "display-api/overview",
+							"title": "The device display API",
+							"kind": "md",
+							"source": "content/tstat11/1.0/display-api/overview.md",
+							"updated": "2026-11-16T03:47:48.325Z",
+							"minutes": 3
+						},
+						{
+							"href": "display-api/endpoints",
+							"title": "Display API: endpoints",
+							"kind": "md",
+							"source": "content/tstat11/1.0/display-api/endpoints.md",
+							"updated": "2026-11-16T03:47:48.326Z",
+							"minutes": 4
+						},
+						{
+							"href": "display-api/payloads",
+							"title": "Display API: payloads and patching",
+							"kind": "md",
+							"source": "content/tstat11/1.0/display-api/payloads.md",
+							"updated": "2026-11-16T03:47:48.327Z",
+							"minutes": 6
+						},
+						{
+							"href": "display-api/examples",
+							"title": "Display API: examples",
+							"kind": "md",
+							"source": "content/tstat11/1.0/display-api/examples.md",
+							"updated": "2026-11-16T03:47:48.329Z",
+							"minutes": 4
+						},
+						{
+							"href": "t3-eez-studio/import-from-device-design",
+							"title": "Importing screens from a device",
+							"kind": "md",
+							"source": "content/tstat11/1.0/t3-eez-studio/import-from-device-design.md",
+							"updated": "2026-11-16T03:47:48.330Z",
+							"minutes": 10
+						},
+						{
+							"href": "t3-eez-studio/device-interface-deployment-via-bacnet-design",
+							"title": "Deploying to a device",
+							"kind": "md",
+							"source": "content/tstat11/1.0/t3-eez-studio/device-interface-deployment-via-bacnet-design.md",
+							"updated": "2026-11-16T03:47:48.333Z",
+							"minutes": 24
+						},
+						{
+							"href": "t3-eez-studio/lvgl-eez-project-json-format",
+							"title": "The .EEZ-Project JSON format",
+							"kind": "md",
+							"source": "content/tstat11/1.0/t3-eez-studio/lvgl-eez-project-json-format.md",
+							"updated": "2026-11-16T03:47:48.335Z",
+							"minutes": 39
+						},
+						{
+							"href": "t3-eez-studio/static-resource-copy-build",
+							"title": "The static-resource asset pipeline",
+							"kind": "md",
+							"source": "content/tstat11/1.0/t3-eez-studio/static-resource-copy-build.md",
+							"updated": "2026-11-16T03:47:48.336Z",
+							"minutes": 5
+						},
+						{
+							"href": "t3-eez-studio/wasm-browser-build-migration",
+							"title": "The LVGL WASM browser build",
+							"kind": "md",
+							"source": "content/tstat11/1.0/t3-eez-studio/wasm-browser-build-migration.md",
+							"updated": "2026-11-16T03:47:48.337Z",
+							"minutes": 5
+						},
+						{
+							"href": "firmware/what-the-firmware-runs",
+							"title": "What the firmware runs",
+							"kind": "md",
+							"source": "content/tstat11/1.0/firmware/what-the-firmware-runs.md",
+							"updated": "2026-11-16T03:47:48.339Z",
+							"minutes": 2
+						},
+						{
+							"href": "firmware/building",
+							"title": "Building the firmware",
+							"kind": "md",
+							"source": "content/tstat11/1.0/firmware/building.md",
+							"updated": "2026-11-16T03:47:48.341Z",
+							"minutes": 1
+						},
+						{
+							"href": "firmware/flashing",
+							"title": "Loading firmware onto a device",
+							"kind": "md",
+							"source": "content/tstat11/1.0/firmware/flashing.md",
+							"updated": "2026-11-16T03:47:48.343Z",
+							"minutes": 3
+						},
+						{
+							"href": "firmware/mqtt-guide",
+							"title": "MQTT publishing",
+							"kind": "md",
+							"source": "content/tstat11/1.0/firmware/mqtt-guide.md",
+							"updated": "2026-11-16T03:47:48.344Z",
+							"minutes": 7
+						},
+						{
+							"href": "firmware/mqtt-implementation",
+							"title": "How the MQTT task works",
+							"kind": "md",
+							"source": "content/tstat11/1.0/firmware/mqtt-implementation.md",
+							"updated": "2026-11-16T03:47:48.345Z",
+							"minutes": 6
+						},
+						{
+							"href": "bootloader/update-flow",
+							"title": "How a firmware update runs",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bootloader/update-flow.md",
+							"updated": "2026-11-16T03:47:48.346Z",
+							"minutes": 1
+						},
+						{
+							"href": "bootloader/update-registers",
+							"title": "The update registers",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bootloader/update-registers.md",
+							"updated": "2026-11-16T03:47:48.347Z",
+							"minutes": 2
+						},
+						{
+							"href": "bootloader/resuming-an-update",
+							"title": "Resuming an interrupted update",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bootloader/resuming-an-update.md",
+							"updated": "2026-11-16T03:47:48.349Z",
+							"minutes": 5
+						},
+						{
+							"href": "bootloader/inside-the-bootloader",
+							"title": "Inside the bootloader",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bootloader/inside-the-bootloader.md",
+							"updated": "2026-11-16T03:47:48.350Z",
+							"minutes": 4
+						},
+						{
+							"href": "bootloader/trying-the-commands",
+							"title": "Trying the update commands",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bootloader/trying-the-commands.md",
+							"updated": "2026-11-16T03:47:48.351Z",
+							"minutes": 1
+						},
+						{
+							"href": "bootloader/signing-firmware",
+							"title": "Signing firmware",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bootloader/signing-firmware.md",
+							"updated": "2026-11-16T03:47:48.352Z",
+							"minutes": 1
+						},
+						{
+							"href": "bootloader/skip-signature-validation",
+							"title": "Skipping signature validation",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bootloader/skip-signature-validation.md",
+							"updated": "2026-11-16T03:47:48.353Z",
+							"minutes": 1
+						},
+						{
+							"href": "bootloader/bacnet-cov",
+							"title": "BACnet change of value",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bootloader/bacnet-cov.md",
+							"updated": "2026-11-16T03:47:48.354Z",
+							"minutes": 4
+						},
+						{
+							"href": "bootloader/bacnet-stack",
+							"title": "The BACnet protocol stack",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bootloader/bacnet-stack.md",
+							"updated": "2026-11-16T03:47:48.355Z",
+							"minutes": 2
+						},
+						{
+							"href": "bootloader/wifi-station-mode",
+							"title": "Wi-Fi station mode",
+							"kind": "md",
+							"source": "content/tstat11/1.0/bootloader/wifi-station-mode.md",
+							"updated": "2026-11-16T03:47:48.358Z",
+							"minutes": 4
+						},
+						{
+							"href": "testing/host-unit-tests",
+							"title": "Testing the firmware without hardware",
+							"kind": "md",
+							"source": "content/tstat11/1.0/testing/host-unit-tests.md",
+							"updated": "2026-11-16T03:47:48.360Z",
+							"minutes": 3
+						},
+						{
+							"href": "testing/verified-apis",
+							"title": "The 729 verified APIs",
+							"kind": "md",
+							"source": "content/tstat11/1.0/testing/verified-apis.md",
+							"updated": "2026-11-16T03:47:48.361Z",
+							"minutes": 11
 						}
 					]
 				}

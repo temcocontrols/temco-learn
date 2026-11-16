@@ -10,8 +10,6 @@ The OPEN_ENTRY_EDIT_WINDOW message opens edit dialogs for schedules, holidays, a
 - Double-clicking a holiday entry
 - Opening program editor from web interface
 
-
-
 ## Overview
 
 **Action:** `OPEN_ENTRY_EDIT_WINDOW` (8)

@@ -10,8 +10,6 @@ The SAVE_GRAPHIC_DATA message saves modified graphic screen configurations back 
 - When user clicks "Save" in HMI editor
 - To persist graphic element changes
 
-
-
 ## Overview
 
 **Action:** `SAVE_GRAPHIC_DATA`

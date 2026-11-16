@@ -1,6 +1,6 @@
 ---
 title: "01 — Overview"
-order: 380
+order: 390
 ---
 
 This chapter explains what Design Studio (Tstat11) is, which of the two project types to
@@ -29,7 +29,7 @@ Design Studio (Tstat11) is the embedded-touchscreen designer inside T3000. With 
 You do not need to write C or firmware code, and you do not need the device connected while
 you design — you can build the whole UI first and deploy it later.
 
-!The Design Hub dashboard
+![The Design Hub dashboard](../../media/01-hub-overview.png)
 
 *Figure 1.1 — The Design Hub, the entry point for all LVGL work.*
 
@@ -107,13 +107,13 @@ the **device bar**, and your work under **Create by Type** and **Project History
 A short reminder strip: **Choose a type → Pick a device → Design & edit → Deploy**. It is
 guidance only — you can work in any order.
 
-!The 4-step guide strip
+![The 4-step guide strip](../../media/02-hub-guide-steps.png)
 
 *Figure 1.2 — The 4-step guide strip.*
 
 #### Device bar
 
-!The Design Hub device bar
+![The Design Hub device bar](../../media/07-hub-device-bar.png)
 
 *Figure 1.3 — The device bar.*
 
@@ -132,7 +132,7 @@ The tiles are the entry points to the design engines:
 | **LVGL 9.5** | A new LVGL project (no Flow) |
 | **LVGL with Flow 9.5** | A new LVGL project with Flow enabled |
 
-!Create by Type tiles
+![Create by Type tiles](../../media/03-hub-create-by-type.png)
 
 *Figure 1.4 — The Create by Type tiles.*
 
@@ -142,7 +142,7 @@ ready-made LVGL starter projects (see
 
 #### Project History
 
-!Project History tabs
+![Project History tabs](../../media/04-hub-project-history.png)
 
 *Figure 1.5 — Project History: sorting, view mode, search and type tabs.*
 
@@ -156,7 +156,7 @@ ready-made LVGL starter projects (see
 Each project card shows the type badge, the project name, its status
 (**Unbound / Bound / Deployed**) and when it was last changed.
 
-!A project card
+![A project card](../../media/05-hub-project-card.png)
 
 *Figure 1.6 — A project card and its actions.*
 
@@ -188,7 +188,7 @@ The main areas are:
   **Build**, and the run controls: **Edit mode (Shift+F5)**, **Run (F5)**,
   **Debug (Ctrl+F5)**, **Full Sim (F7)**, and **Deploy to Device**.
 
-!The project editor
+![The project editor](../../media/12-editor-overview.png)
 
 *Figure 1.7 — The LVGL project editor.*
 

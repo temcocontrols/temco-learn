@@ -1,6 +1,6 @@
 ---
 title: "Static Resource Copy — Build-Time Asset Pipeline"
-order: 360
+order: 370
 ---
 
 **Project:** T3000 Webview — EEZ Studio Migration (Electron → Browser)

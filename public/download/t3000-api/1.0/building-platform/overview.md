@@ -11,8 +11,6 @@ The T3000 Building Platform is the core engine that powers the building automati
 - BACnet protocol integration
 - Data structures and models
 
-
-
 ## Architecture
 
 T3000 uses a three-layer architecture:

@@ -1,6 +1,6 @@
 ---
 title: "03 — Designing Screens"
-order: 400
+order: 410
 ---
 
 This chapter walks through the LVGL editor and the everyday tasks: creating pages, placing
@@ -22,7 +22,7 @@ widgets, and managing styles, fonts and images.
 
 ## 1. The editor at a glance
 
-!The project editor
+![The project editor](../../media/12-editor-overview.png)
 
 *Figure 3.1 — The LVGL project editor.*
 
@@ -74,7 +74,7 @@ page is set as the start page.
 
 Open the **Components Palette** on the right, then drag a widget onto the canvas.
 
-!The components palette
+![The components palette](../../media/13-editor-widgets-palette.png)
 
 *Figure 3.2 — The Components Palette.*
 
@@ -114,7 +114,7 @@ Common actions:
 With a widget selected, use the **Properties** tab to set its position, size, text, style and
 behaviour.
 
-!The Properties panel
+![The Properties panel](../../media/14-editor-properties.png)
 
 *Figure 3.3 — Properties for the selected widget.*
 
@@ -141,7 +141,7 @@ Fields you will use most:
 - **Colours** — define named colours once and reuse them, instead of typing hex values
   everywhere.
 
-!Styles, fonts and bitmaps tabs
+![Styles, fonts and bitmaps tabs](../../media/15-editor-styles-fonts.png)
 
 *Figure 3.4 — The Styles / Fonts / Bitmaps tabs.*
 

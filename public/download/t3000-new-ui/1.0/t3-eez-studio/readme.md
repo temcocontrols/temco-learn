@@ -1,6 +1,6 @@
 ---
 title: "Design Studio (Tstat11)"
-order: 310
+order: 320
 ---
 
 **Design Studio (Tstat11)** is T3000's designer for embedded touchscreen UIs. You draw

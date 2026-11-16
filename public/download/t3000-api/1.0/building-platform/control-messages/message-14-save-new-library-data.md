@@ -10,8 +10,6 @@ The SAVE_NEW_LIBRARY_DATA message saves the new T3 HVAC equipment library data t
 - Persisting updated equipment configurations
 - Backing up library changes
 
-
-
 ## Overview
 
 **Action:** `SAVE_NEW_LIBRARY_DATA` (14)

@@ -10,8 +10,6 @@ The DELETE_IMAGE message removes previously uploaded graphic image files from th
 - Removing old graphics assets
 - Managing storage space
 
-
-
 ## Overview
 
 **Action:** `DELETE_IMAGE` (11)
