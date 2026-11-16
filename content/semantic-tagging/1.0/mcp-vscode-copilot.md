@@ -39,7 +39,7 @@ Replace `<host>` with `localhost` (local) or the machine's LAN IP (remote).
 
 | | |
 |---|---|
-| ![Settings](images/vscode1.png) | ![Config](images/vscode2.png) |
+| ![Settings](media/vscode1.png) | ![Config](media/vscode2.png) |
 
 ---
 
@@ -59,7 +59,7 @@ Confirm the `T3000` server shows as **connected**. If it shows an error or "disc
 
 | | |
 |---|---|
-| ![Settings](images/vscode3.png) | ![Config](images/vscode4.png) |
+| ![Settings](media/vscode3.png) | ![Config](media/vscode4.png) |
 
 ---
 
