@@ -713,4 +713,20 @@ Two structural notes for whoever reads this next:
 1. **The reading tree is still flat, and it is now 135 pages for `t3000` and 83 for `t3000-api`.** §V predicted this at ~40. The `group:` field it proposed is still unimplemented; the version page numbers every page `01…N` in one grid.
 2. **`semantic-tagging` was carved out of `t3000-api` deliberately** — the tagging layer is read by the C++ shell, the web front end and the firmware alike, which is what the `topics` section is for. Publishing the same twelve pages in both projects would have been the easier and worse choice.
 
+---
+
+# Part VII — The web front end splits into two projects (2026-11-13)
+
+`T3000Webview-EEZ-Studio` is a **newer, larger** copy of the same engineering docs `t3000-api` was imported from: 144 markdown pages where the older `T3000Webview` had 100, and **74 of the 100 shared pages differ**. So the earlier import was out of date, and the extra 44 pages are about something else — the browser front end and its designer.
+
+| Project | id | Section | Pages | Contents |
+|---|---|---|---|---|
+| T3000 API & Protocol | `t3000-api` | documentation | 82 | `api-reference`, `bacnet-api`, `building-platform` (control messages), `architecture`, `data-points`, `device-management`, `features`, `guides`, `quick-start`, `shared-db`, `tstat-lcd` |
+| T3000 New UI | `t3000-new-ui` | documentation | 47 | the Design Hub, the unified Designer (19 pages across design, interfaces, change map, theme, pages, phases P1–P5), the LVGL SVG renderer (11), the EEZ Studio manual (14), the beta announcement and changelog |
+
+The line between them is the one a reader would draw: **how to talk to T3000** versus **what the new screens are and how they are designed**. Nothing is published twice.
+
+Two source pages are hidden rather than published: `t3-eez-studio/device-firmware-lvgl-architecture.md` (its title is the string `main/idf_component.yml` and its ASCII diagrams are mojibake box art) and `t3-eez-studio/manual/images/README.md` (a README for a folder of screenshots). Links that pointed at either now keep their words and lose the link.
+
+
 
