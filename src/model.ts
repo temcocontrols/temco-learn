@@ -7,6 +7,8 @@ export interface Section {
 	id: string;
 	title: string;
 	description: string;
+	/** What the section calls the things it lists — `guide` for Documentation, `product` for Products. Defaults to `guide`. */
+	noun?: string;
 }
 
 export interface PageEntry {

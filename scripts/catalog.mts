@@ -31,12 +31,19 @@ interface Section {
 	id: string;
 	title: string;
 	description: string;
+	/** A section that exists for its own sake but is not published: internal runbooks, and shelves not yet filled. */
+	hidden?: boolean;
 }
 
 interface SiteFile {
 	title: string;
 	section?: string;
 	summary?: string;
+	/**
+	 * Where the project sits in its section. Lower first; a project without one sorts after every project that has one,
+	 * alphabetically — which is why only the projects that must lead carry a number.
+	 */
+	order?: number;
 	/** A project that lives in another repository says so, and the pencil follows it. */
 	repository?: string;
 	editBranch?: string;
@@ -75,6 +82,8 @@ interface Project {
 	summary: string;
 	latest: string;
 	versions: Version[];
+	/** Set only on the projects that must lead their section; the rest sort after them by title. */
+	order?: number;
 	repository?: string;
 	editBranch?: string;
 }
@@ -543,18 +552,31 @@ for (const project of await folders(content)) {
 		summary: site.summary ?? '',
 		latest: versions[0]?.version ?? '',
 		versions,
+		...(site.order === undefined ? {} : { order: Number(site.order) }),
 		...(site.repository ?? config.repository) === undefined ? {} : { repository: site.repository ?? config.repository },
 		...(site.editBranch ?? config.editBranch) === undefined ? {} : { editBranch: site.editBranch ?? config.editBranch }
 	});
 	void written;
 }
 
-projects.sort((one, other) => one.title.localeCompare(other.title));
+// A project that asked to lead its section leads it; everything else follows in title order.
+projects.sort(
+	(one, other) => (one.order ?? Number.MAX_SAFE_INTEGER) - (other.order ?? Number.MAX_SAFE_INTEGER) || one.title.localeCompare(other.title)
+);
+
+// A shelf with nothing on it is not a shelf: only sections that hold at least one project are published, and a section
+// a person cannot see takes its projects with it (`internal` is built, and never linked or searched).
+const visibleSections = sections.filter((section) => section.hidden !== true);
+const visibleProjects = projects.filter((project) => visibleSections.some((section) => section.id === project.section));
+const publishedSections = visibleSections.filter((section) =>
+	visibleProjects.some((project) => project.section === section.id)
+);
+
 await mkdir(outDir, { recursive: true });
 const catalog: Catalog = {
 	generated: new Date().toISOString(),
-	sections,
-	projects,
+	sections: publishedSections,
+	projects: visibleProjects,
 	...(config.repository === undefined ? {} : { repository: config.repository }),
 	...(config.editBranch === undefined ? {} : { editBranch: config.editBranch }),
 	...(config.siteUrl === undefined ? {} : { siteUrl: config.siteUrl }),
@@ -562,5 +584,6 @@ const catalog: Catalog = {
 };
 await writeFile(join(publicDir, 'catalog.json'), `${JSON.stringify(catalog, null, '\t')}\n`, 'utf8');
 
-const pages = projects.reduce((total, project) => total + project.versions.reduce((count, version) => count + version.pages.length, 0), 0);
-console.log(`catalog.json: ${projects.length} projects, ${pages} pages`);
+const pages = visibleProjects.reduce((total, project) => total + project.versions.reduce((count, version) => count + version.pages.length, 0), 0);
+const internal = projects.length - visibleProjects.length;
+console.log(`catalog.json: ${visibleProjects.length} projects, ${pages} pages${internal === 0 ? '' : ` (+${internal} internal, not published)`}`);

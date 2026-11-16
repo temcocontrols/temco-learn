@@ -57,8 +57,8 @@ export function NotFound({ what }: { what?: string }) {
 				<p className="eyebrow">Temco Learn</p>
 				<h1>Not on this site</h1>
 				<p className="lede">
-					{what === undefined ? 'That address does not name a page.' : `Nothing here is called “${what}”.`} A page appears once one
-					of a project's versions is published.
+					{what === undefined ? 'That address does not name a page.' : `Nothing here is called “${what}”.`} A page appears once the
+					version it belongs to is published.
 				</p>
 				<form
 					className="bigsearch"

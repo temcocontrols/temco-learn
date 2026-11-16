@@ -1007,6 +1007,94 @@ h3 {
 	text-transform: uppercase;
 }
 
+/* The way out of a section, laid out across the page: one door to each of the other sections, side by side. No box and
+   no fill — the mark, the name, a line saying what is behind it, and an arrow. What separates them from the tiles above
+   is the size of the text and the fact that they carry one line where the tiles carry three; what makes them pressable
+   is that the whole block is a link that answers on hover. */
+.jumps {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 8px 32px;
+	margin-top: 4px;
+}
+
+.jump {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	align-items: start;
+	column-gap: 11px;
+	color: inherit;
+}
+
+.jump__mark {
+	display: grid;
+	place-items: center;
+	width: 26px;
+	height: 26px;
+	margin-top: 1px;
+	border-radius: 7px;
+	background: var(--brand-soft);
+	color: var(--brand-strong);
+	font-size: var(--fs-ui);
+	font-weight: 700;
+}
+
+/* The block is one link, so the browser underlines all of it on hover; only the name should take the underline. */
+.jump:hover {
+	text-decoration: none;
+}
+
+.jump__text {
+	display: grid;
+	gap: 2px;
+	min-width: 0;
+}
+
+.jump__name {
+	color: var(--ink);
+	font-size: var(--fs-ui);
+	font-weight: 600;
+	line-height: 1.35;
+}
+
+.jump:hover .jump__name {
+	color: var(--brand);
+	text-decoration: underline;
+}
+
+.jump__desc {
+	overflow: hidden;
+	color: var(--ink-2);
+	font-size: var(--fs-ui);
+	line-height: 1.5;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.jump__meta {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 1px;
+	color: var(--ink-3);
+	font-size: var(--fs-micro);
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+}
+
+.jump__chev {
+	color: var(--ink-3);
+	transition:
+		transform 120ms ease,
+		color 120ms ease;
+}
+
+.jump:hover .jump__chev {
+	transform: translateX(3px);
+	color: var(--brand);
+}
+
 /* -- the contents of a version: the chapters as tabs, the chosen chapter's pages in columns --------- */
 /* A manual is read by chapter, so the folders the build wrote are what the page is divided by. The chapters are a tab strip
    — every chapter stays in reach without printing forty rows to arrive at the last one — and the chosen chapter's pages run
@@ -2341,6 +2429,30 @@ mark {
 	letter-spacing: 0.07em;
 	text-transform: uppercase;
 	column-span: all;
+}
+
+/* The guides list, cut short. One column and not two: a guide's name is longer than this column is wide, so two
+   columns wrapped "T3000 Web API & Messages" across three lines and made the list look broken. */
+.foot__lists {
+	display: grid;
+	gap: 1px;
+}
+
+.foot__more {
+	margin-top: 5px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--brand-strong);
+	font: inherit;
+	font-size: var(--fs-ui);
+	text-align: left;
+	cursor: pointer;
+}
+
+.foot__more:hover {
+	color: var(--foot-ink-strong);
+	text-decoration: underline;
 }
 
 .foot__base {

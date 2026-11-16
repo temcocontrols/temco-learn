@@ -7,7 +7,7 @@ import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SearchRegular } from '@fluentui/react-icons';
 import { useCatalog } from '../catalog';
-import { plural, since, siteBase } from '../data';
+import { plural, sectionNoun, since, siteBase } from '../data';
 
 /** The searches this site actually gets, from `content/config.json` — an empty list hides the row. */
 const hintsOf = (catalog: { hints?: string[] }): string[] => catalog.hints ?? [];
@@ -104,7 +104,7 @@ export function Home() {
 							</span>
 							<span className="tile__title">{section.title}</span>
 							<span className="tile__desc">{section.description}</span>
-							<span className="tile__meta">{plural(bySection(section.id).length, 'project')}</span>
+							<span className="tile__meta">{plural(bySection(section.id).length, sectionNoun(section))}</span>
 						</Link>
 					))}
 				</div>

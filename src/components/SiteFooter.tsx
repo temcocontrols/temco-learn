@@ -3,14 +3,24 @@
 // The catalogue's own shape, laid out as a sitemap — brand, then Sections, Products and Resources — but compressed: the two
 // long lists run in two columns so the whole footer is about three rows tall, and it sits on its own dark surface so it
 // reads as an edge rather than as more page.
+//
+// The guides list is cut after the first few and finished with a Show-all control. Sixteen links in one column made the
+// footer five hundred pixels tall, which is a page of its own at the bottom of every page; the control is what keeps the
+// footer an edge while leaving every guide one click away.
 
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCatalog } from '../catalog';
 import { formatDate, plural, repoFor } from '../data';
 
+/** How many guides the footer shows before the control — one column, so the list stays level with the brand block. */
+const FOOTER_GUIDES = 5;
+
 export function SiteFooter() {
 	const catalog = useCatalog();
 	const repo = repoFor(catalog);
+	const [allGuides, setAllGuides] = useState(false);
+	const guides = allGuides ? catalog.projects : catalog.projects.slice(0, FOOTER_GUIDES);
 	const pages = catalog.projects.reduce(
 		(total, project) => total + project.versions.reduce((count, version) => count + version.pages.length, 0),
 		0
@@ -38,14 +48,25 @@ export function SiteFooter() {
 					))}
 				</nav>
 
-				<nav className="foot__col" aria-label="Products">
-					<p className="foot__head">Products</p>
-					{catalog.projects.map((project) => (
-						<Link key={project.id} to={`/${project.id}/`}>
-							{project.title}
-						</Link>
-					))}
-				</nav>
+				<div className="foot__col">
+					<p className="foot__head">Guides</p>
+					<div className="foot__lists" id="foot-guides">
+						{guides.map((project) => (
+							<Link key={project.id} to={`/${project.id}/`}>
+								{project.title}
+							</Link>
+						))}
+					</div>
+					<button
+						type="button"
+						className="foot__more"
+						aria-expanded={allGuides}
+						aria-controls="foot-guides"
+						onClick={() => setAllGuides(!allGuides)}
+					>
+						{allGuides ? 'Show fewer' : `Show all ${plural(catalog.projects.length, 'guide')}`}
+					</button>
+				</div>
 
 				<nav className="foot__col foot__col--split" aria-label="Resources">
 					<p className="foot__head">Resources</p>
@@ -77,7 +98,7 @@ export function SiteFooter() {
 					·
 				</span>
 				<span>
-					{plural(catalog.projects.length, 'product')} · {plural(pages, 'page')} · {plural(catalog.sections.length, 'section')}
+					{plural(catalog.projects.length, 'guide')} · {plural(pages, 'page')} · {plural(catalog.sections.length, 'section')}
 				</span>
 				<span className="foot__spacer" />
 				<span>Index built {formatDate(catalog.generated)}</span>

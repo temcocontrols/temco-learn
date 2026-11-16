@@ -5,7 +5,7 @@
 // prefix the build was made for. A missing file is an empty site rather than a broken one: a clone that has not run
 // `npm run catalog` yet opens on an honest "nothing here" instead of an exception.
 
-import type { BodyFile, Catalog, SearchIndex, SearchRecord, Project, Version, PageEntry } from './model';
+import type { BodyFile, Catalog, SearchIndex, SearchRecord, Project, Section, Version, PageEntry } from './model';
 
 /** `/`, `/temco-learn/`, `/learn/` — the prefix this build was compiled for, always with a trailing slash. */
 export const siteBase = import.meta.env.BASE_URL;
@@ -113,6 +113,18 @@ export function versionOf(project: Project, version: string | undefined): Versio
 }
 
 export const plural = (count: number, one: string): string => `${count} ${count === 1 ? one : `${one}s`}`;
+
+/**
+ * What a section calls the things in it. Documentation lists guides, Products lists products, Tools lists tools — a
+ * section that lists a psychrometric chart should not call it a project. A section without a noun says `guide`.
+ */
+export const sectionNoun = (section: Section | undefined): string => section?.noun ?? 'guide';
+
+/** The same word as the heading above those things: `Guides`, `Products`, `Tools`. */
+export const sectionNounTitle = (section: Section | undefined): string => {
+	const one = sectionNoun(section);
+	return one.charAt(0).toUpperCase() + one.slice(1) + 's';
+};
 
 /** `1 min`, `27 min`, `1 hr 9 min` — reading time in the shape a reader scans rather than reads. */
 export function readingTime(minutes: number): string {
