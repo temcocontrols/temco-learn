@@ -1,0 +1,65 @@
+{
+	"generated": "2026-11-16",
+	"pages": [
+		{
+			"href": "00-hub.md",
+			"title": "Running a TSTAT10 in the browser",
+			"order": 10
+		},
+		{
+			"href": "Readme.md",
+			"title": "Tstat10 UI Prototype",
+			"order": 20
+		},
+		{
+			"href": "GETTING_STARTED.md",
+			"title": "Getting started (new contributors & casual users)",
+			"order": 30
+		},
+		{
+			"href": "Architecture.md",
+			"title": "Architecture",
+			"order": 40
+		},
+		{
+			"href": "existing_system.md",
+			"title": "Existing HVAC Draw System",
+			"order": 50
+		},
+		{
+			"href": "Menu_System.md",
+			"title": "Tstat10 Menu System (Text Description)",
+			"order": 60
+		},
+		{
+			"href": "lcd-menu.md",
+			"title": "Tstat10 LCD Menu System",
+			"order": 70
+		},
+		{
+			"href": "screen_inventory.md",
+			"title": "Tstat10 Screen Inventory",
+			"order": 80
+		},
+		{
+			"href": "provisioning.md",
+			"title": "Tstat11 Provisioning (SoftAP + Captive Portal)",
+			"order": 90
+		},
+		{
+			"href": "network_settings.md",
+			"title": "Tstat10 Network Settings",
+			"order": 100
+		},
+		{
+			"href": "revisions.md",
+			"title": "Revisions Log",
+			"order": 110
+		},
+		{
+			"href": "CHANGELOG.md",
+			"title": "Changelog",
+			"order": 120
+		}
+	]
+}

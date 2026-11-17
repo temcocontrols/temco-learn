@@ -25,7 +25,7 @@ This project provides its core communication, networking, and protocol handling,
 - Expandable I/O architecture for scalable systems
 - Discovered, configured, and maintained using T3000 software
 - No licenses or recurring cloud fees
-<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/02d0c008-cab8-4b8d-affa-06749dae8a4f" />
+![A product running this firmware](../media/firmware-runs-01.jpg)
 
 ### TSTAT10 Fully Programmable Thermostat
 TSTAT10 is a programmable thermostat and room controller with a local color LCD display and universal I/O.
@@ -40,4 +40,4 @@ This project enables its ESP32 networking stack, RS485 communication, and protoc
 - Local color LCD display with real-time data visualization
 - Well-documented register map for esay integration
 - Seamless integration with T3000 software
-<img width="251" height="302" alt="image" src="https://github.com/user-attachments/assets/71783a7f-a768-449a-9d47-e842e204bb5c" />
+![A product running this firmware](../media/firmware-runs-02.png)

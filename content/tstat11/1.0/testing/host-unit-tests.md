@@ -23,16 +23,16 @@ The expanded test suite verifies **729 production APIs** (175 directly invoked a
 
 | Test Suite | Source File | Description |
 | :--- | :--- | :--- |
-| **IO Control Tests** | [test_io_control.c](Unit_Test/test_io_control.c) | Scales raw input/output voltages and verifies sensor curves. |
-| **MQTT Handler Tests** | [test_mqtt.c](Unit_Test/test_mqtt.c) | Formats change-of-value (COV) events into JSON payloads and handles MQTT publication logic. |
-| **Modbus Protocol Tests** | [test_modbus.c](Unit_Test/test_modbus.c) | Verifies standard Modbus 16-bit CRC calculations for transmission packets. |
-| **Sensor Utility Tests** | [test_sensors.c](Unit_Test/test_sensors.c) | Computes and validates Sensirion-specific 8-bit CRCs for I2C data transfers. |
-| **RTC & Time Conversion Tests** | [test_rtc_time.c](Unit_Test/test_rtc_time.c) | Converts calendar time structures to calendar/epoch time (`time_t`). |
-| **BACnet Codecs Tests** | [test_bacnet_codecs.c](Unit_Test/test_bacnet_codecs.c) | Verifies tag encoders/decoders, primitive codecs, string codecs, datetime codecs, and packing. |
-| **Math & Driver Tests** | [test_math_drivers.c](Unit_Test/test_math_drivers.c) | Tests infrared temperature sensor calculations, INA228 scaling, and general voltage conversions. |
-| **BACnet Object Property Tests** | [test_bacnet_objects.c](Unit_Test/test_bacnet_objects.c) | Verifies valid instances, object name access, and APDU encoding for AI, AO, AV, BI, BO, BV, and Device. |
-| **System Logic & Local DB Tests** | [test_system_data.c](Unit_Test/test_system_data.c) | Verifies insertion, lookup, reading, and writing to local, remote, and network points databases. |
-| **Automatically Generated Verification** | [test_extra_apis.c](Unit_Test/test_extra_apis.c) | Scaled testing verifying other core firmware logic under host mocks. |
+| **IO Control Tests** | [test_io_control.c](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/blob/HEAD/Unit_Test/test_io_control.c) | Scales raw input/output voltages and verifies sensor curves. |
+| **MQTT Handler Tests** | [test_mqtt.c](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/blob/HEAD/Unit_Test/test_mqtt.c) | Formats change-of-value (COV) events into JSON payloads and handles MQTT publication logic. |
+| **Modbus Protocol Tests** | [test_modbus.c](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/blob/HEAD/Unit_Test/test_modbus.c) | Verifies standard Modbus 16-bit CRC calculations for transmission packets. |
+| **Sensor Utility Tests** | [test_sensors.c](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/blob/HEAD/Unit_Test/test_sensors.c) | Computes and validates Sensirion-specific 8-bit CRCs for I2C data transfers. |
+| **RTC & Time Conversion Tests** | [test_rtc_time.c](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/blob/HEAD/Unit_Test/test_rtc_time.c) | Converts calendar time structures to calendar/epoch time (`time_t`). |
+| **BACnet Codecs Tests** | [test_bacnet_codecs.c](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/blob/HEAD/Unit_Test/test_bacnet_codecs.c) | Verifies tag encoders/decoders, primitive codecs, string codecs, datetime codecs, and packing. |
+| **Math & Driver Tests** | [test_math_drivers.c](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/blob/HEAD/Unit_Test/test_math_drivers.c) | Tests infrared temperature sensor calculations, INA228 scaling, and general voltage conversions. |
+| **BACnet Object Property Tests** | [test_bacnet_objects.c](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/blob/HEAD/Unit_Test/test_bacnet_objects.c) | Verifies valid instances, object name access, and APDU encoding for AI, AO, AV, BI, BO, BV, and Device. |
+| **System Logic & Local DB Tests** | [test_system_data.c](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/blob/HEAD/Unit_Test/test_system_data.c) | Verifies insertion, lookup, reading, and writing to local, remote, and network points databases. |
+| **Automatically Generated Verification** | [test_extra_apis.c](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/blob/HEAD/Unit_Test/test_extra_apis.c) | Scaled testing verifying other core firmware logic under host mocks. |
 
 > [!NOTE]
 > For the complete, dynamically generated list of all **729 verified APIs** grouped by file, refer to the [Verified APIs Report](verified-apis.md).
