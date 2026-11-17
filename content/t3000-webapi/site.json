@@ -1,0 +1,6 @@
+{
+    "title":  "T3000 Web API \u0026 Messages",
+    "section":  "documentation",
+    "summary":  "The developer reference for T3000: the REST and WebSocket API, the Modbus and BACnet command pages, the control messages the browser and the T3000 host exchange, the data structures behind every point, and the semantic tagging layer.",
+    "order":  30
+}

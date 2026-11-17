@@ -1,0 +1,235 @@
+{
+	"generated": "2026-11-16",
+	"pages": [
+		{
+			"href": "00-hub.md",
+			"title": "What the new UI is",
+			"order": 5
+		},
+		{
+			"href": "design-hub/README.md",
+			"title": "Design Hub — Developer & User Guide",
+			"order": 20
+		},
+		{
+			"href": "architecture/designer/README.md",
+			"title": "Unified Designer — design set",
+			"order": 30
+		},
+		{
+			"href": "architecture/designer/design.md",
+			"title": "Unified Designer — one editor, per-document-type content",
+			"order": 40
+		},
+		{
+			"href": "architecture/designer/interfaces.md",
+			"title": "Designer — interfaces and contracts",
+			"order": 50
+		},
+		{
+			"href": "architecture/designer/change-map.md",
+			"title": "Designer — full change map",
+			"order": 60
+		},
+		{
+			"href": "architecture/designer/theme-and-css.md",
+			"title": "Designer — theme and CSS",
+			"order": 70
+		},
+		{
+			"href": "architecture/designer/eez-button-behaviour.md",
+			"title": "EEZ editor — button-by-button: origin vs the unified shell",
+			"order": 80
+		},
+		{
+			"href": "architecture/designer/risks.md",
+			"title": "Designer — risks, open questions, rollback",
+			"order": 90
+		},
+		{
+			"href": "architecture/designer/pages/README.md",
+			"title": "Designer — page-by-page design",
+			"order": 100
+		},
+		{
+			"href": "architecture/designer/pages/app-routes.md",
+			"title": "Every route in the app, and how the Designer touches it",
+			"order": 110
+		},
+		{
+			"href": "architecture/designer/pages/design-hub.md",
+			"title": "The Design Hub, page by page — the entry point into every designer document",
+			"order": 120
+		},
+		{
+			"href": "architecture/designer/pages/designer-shell-areas.md",
+			"title": "The Designer shell — area-by-area design",
+			"order": 130
+		},
+		{
+			"href": "architecture/designer/pages/hvac-document.md",
+			"title": "The HVAC document, panel by panel",
+			"order": 140
+		},
+		{
+			"href": "architecture/designer/pages/lcd-document.md",
+			"title": "The LCD/simulator document, area by area (P5)",
+			"order": 150
+		},
+		{
+			"href": "architecture/designer/pages/lvgl-document.md",
+			"title": "The LVGL document, panel by panel",
+			"order": 160
+		},
+		{
+			"href": "architecture/designer/phases/p1-shell-hvac.md",
+			"title": "P1 — `DesignerShell` + the HVAC document on it",
+			"order": 170
+		},
+		{
+			"href": "architecture/designer/phases/p2-lvgl-document.md",
+			"title": "P2 — the LVGL document on the shell",
+			"order": 180
+		},
+		{
+			"href": "architecture/designer/phases/p3-hvac-host-mode.md",
+			"title": "P3 — HVAC host mode: the container comes from the shell",
+			"order": 190
+		},
+		{
+			"href": "architecture/designer/phases/p4-route-consolidation.md",
+			"title": "P4 — route consolidation",
+			"order": 200
+		},
+		{
+			"href": "architecture/designer/phases/p5-unification.md",
+			"title": "P5 — optional unification",
+			"order": 210
+		},
+		{
+			"href": "architecture/lvgl-svg/README.md",
+			"title": "LVGL SVG Renderer",
+			"order": 220
+		},
+		{
+			"href": "architecture/lvgl-svg/architecture.md",
+			"title": "LVGL SVG Renderer — Architecture",
+			"order": 230
+		},
+		{
+			"href": "architecture/lvgl-svg/editor-integration.md",
+			"title": "LVGL SVG Renderer — Editor Integration",
+			"order": 240
+		},
+		{
+			"href": "architecture/lvgl-svg/fidelity-harness.md",
+			"title": "LVGL SVG Renderer — Fidelity Harness",
+			"order": 250
+		},
+		{
+			"href": "architecture/lvgl-svg/invariants.md",
+			"title": "LVGL SVG Renderer — Scope & Invariants",
+			"order": 260
+		},
+		{
+			"href": "architecture/lvgl-svg/primitives.md",
+			"title": "LVGL 9.5 — SVG Renderer: measured primitive inventory",
+			"order": 270
+		},
+		{
+			"href": "architecture/lvgl-svg/rendering.md",
+			"title": "LVGL SVG Renderer — Rendering",
+			"order": 280
+		},
+		{
+			"href": "architecture/lvgl-svg/runtime-integration.md",
+			"title": "LVGL SVG Renderer — Runtime Integration",
+			"order": 290
+		},
+		{
+			"href": "architecture/lvgl-svg/scene-contract.md",
+			"title": "LVGL SVG Renderer — Scene Contract",
+			"order": 300
+		},
+		{
+			"href": "architecture/lvgl-svg/wasm-bridge.md",
+			"title": "LVGL SVG Renderer — WASM Bridge",
+			"order": 310
+		},
+		{
+			"href": "t3-eez-studio/README.md",
+			"title": "Design Studio (Tstat11)",
+			"order": 320
+		},
+		{
+			"href": "t3-eez-studio/device-interface-deployment-via-bacnet-design.md",
+			"title": "Deploy to Device — as built (REST)",
+			"order": 340
+		},
+		{
+			"href": "t3-eez-studio/import-from-device-design.md",
+			"title": "Import from Device — as built",
+			"order": 350
+		},
+		{
+			"href": "t3-eez-studio/lvgl-eez-project-json-format.md",
+			"title": ".EEZ-Project JSON Format — Design Document",
+			"order": 360
+		},
+		{
+			"href": "t3-eez-studio/static-resource-copy-build.md",
+			"title": "Static Resource Copy — Build-Time Asset Pipeline",
+			"order": 370
+		},
+		{
+			"href": "t3-eez-studio/wasm-browser-build-migration.md",
+			"title": "LVGL WASM Browser Build Migration",
+			"order": 380
+		},
+		{
+			"href": "t3-eez-studio/manual/01-overview.md",
+			"title": "01 — Overview",
+			"order": 390
+		},
+		{
+			"href": "t3-eez-studio/manual/02-creating-projects.md",
+			"title": "02 — Creating a Project",
+			"order": 400
+		},
+		{
+			"href": "t3-eez-studio/manual/03-editing-screens.md",
+			"title": "03 — Designing Screens",
+			"order": 410
+		},
+		{
+			"href": "t3-eez-studio/manual/04-eez-flow.md",
+			"title": "04 — Adding Logic with EEZ Flow",
+			"order": 420
+		},
+		{
+			"href": "t3-eez-studio/manual/05-preview-and-deploy.md",
+			"title": "05 — Preview, Bind & Deploy",
+			"order": 430
+		},
+		{
+			"href": "t3-eez-studio/manual/06-reference-and-faq.md",
+			"title": "06 — Reference & FAQ",
+			"order": 440
+		},
+		{
+			"href": "features/view-switcher.md",
+			"title": "Switching between Classic View and New View",
+			"order": 460
+		},
+		{
+			"href": "releases/beta-webui-announcement.md",
+			"title": "Try the new T3000 UI (beta) — Inputs, Trend Logs, Haystack, AI Assistant and the new Designer",
+			"order": 470
+		},
+		{
+			"href": "releases/changelog/2026-10-11.md",
+			"title": "Changelog - 2026-10-11",
+			"order": 480
+		}
+	]
+}

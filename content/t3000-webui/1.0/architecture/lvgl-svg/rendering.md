@@ -1,0 +1,237 @@
+---
+title: "LVGL SVG Renderer — Rendering"
+order: 280
+---
+
+The `svg/` modules, the DOM contract, draw order, and the rules that map LVGL style properties to SVG.
+
+Part of the [document set](README.md). All of this lives in `project-editor/lvgl/svg/`.
+
+---
+
+## 1. Modules
+
+| Module | Responsibility |
+|---|---|
+| `scene.ts` | Types for the dumped scene (mirrors the [scene contract](scene-contract.md)) |
+| `scene-dump.ts` | WASM binding + scratch buffer (see [wasm bridge](wasm-bridge.md)) |
+| `svg-sink.ts` | Owns the `<svg>` root, `<defs>` registry, node pool, patching and teardown |
+| `svg-renderer.ts` | Scene → SVG elements: the style-property/part renderer |
+| `svg-diff.ts` | Dev-only fidelity harness (see [fidelity doc](fidelity-harness.md)) |
+
+**Renderer model:** *style properties over parts*, not per-widget code. The 8 LVGL-9 parts
+(`MAIN`, `SCROLLBAR`, `INDICATOR`, `KNOB`, `SELECTED`, `ITEMS`, `CURSOR`, `TEXTAREA_PLACEHOLDER`) and the ~45
+directly-mappable properties in the [primitives doc](primitives.md) are the whole
+drawing surface. Unknown widget types still render from their parts.
+
+## 2. Data flow (one frame)
+
+```
+sink.update(scene)
+  ├─ reconcile object list by `ptr` (add / update / remove)
+  ├─ for each object → <g data-ptr data-objid data-type>
+  │     ├─ per ScenePart (z-order as dumped) → primitives
+  │     └─ children appended into their parent's <g>
+  ├─ defs: get-or-create clipPath / filter / gradient by deterministic id
+  └─ write back attribute deltas only (no full rebuild)
+overlay group (selection handles, marquee, guides) is always last → on top
+```
+
+## 3. DOM contract
+
+```html
+<svg viewBox="0 0 W H" class="lvgl-svg">
+  <defs>…clipPaths, filters, gradients, patterns (deterministic ids)…</defs>
+  <g id="content">
+    <g data-ptr="…" data-objid="…" data-type="panel">
+      <g data-part="MAIN">  <rect/> <text/>  </g>
+      <g data-part="INDICATOR">…</g>
+    </g>
+  </g>
+  <g id="overlay">
+    …selection frame, handles…
+    <g id="notice"><text/>…</g>
+  </g>
+</svg>
+```
+
+(The implementation groups the defs as `<g id="defs">` rather than `<defs>`: a `clipPath`/gradient/filter is
+never rendered directly, only referenced by id, so its container element does not matter — and using a plain
+group keeps the imperative patcher in charge of children in both cases.)
+
+- `data-ptr` — patch key (identity across frames).
+- `data-objid` — project widget objID → selection/hit-testing maps straight back to the model.
+- `data-part` — enables per-part debugging and the fidelity scorecard.
+- `pointer-events`: only `MAIN` and `INDICATOR`/`KNOB` receive pointer events; decorative parts are inert.
+- Deterministic def ids (hash of the parameter tuple) keep the DOM stable across frames, so `defs` is
+  never rebuilt when nothing changed.
+- `#notice` is the only overlay content emitted independently of a selection: a short message shown when
+  the surface cannot paint (see
+  [runtime integration §7a](runtime-integration.md)).
+  It lives in `#overlay` so a scene patch can never erase it, and `clearNotice()`/`teardown()` remove it.
+
+## 4. Draw order
+
+Per object, LVGL paints in this order; the renderer mirrors it (the fidelity harness verifies it against the
+canvas):
+
+1. `shadow`
+2. `bg` (fill + gradient)
+3. `bgImage`
+4. `border`
+5. `outline`
+6. content: `text` and/or `img`/`line`/`arc`/`ITEMS`
+7. widget-specific layers (`INDICATOR`, `KNOB`, `CURSOR`, `SELECTED`, `SCROLLBAR`, `ITEMS`,
+   `TEXTAREA_PLACEHOLDER`) — `TICKS` is not an LVGL 9 part; v9 ticks are `ITEMS` (minor) / `INDICATOR` (major),
+   see [primitives §1](primitives.md)
+
+Within a part: shape → text → image.
+
+## 5. Property → SVG rules
+
+| LVGL | SVG | Notes |
+|---|---|---|
+| `BG_COLOR` + `BG_OPA` | `fill`, `fill-opacity` | final alpha = `opa/255 × bg_opa/255` |
+| `BG_GRAD*` | `<linearGradient>` / `<radialGradient>` | direction enum → `x1/y1/x2/y2`; `BG_GRAD_STOP` → gradient stop |
+| `BG_IMG_SRC` (+`TILED`, `RECOLOR`, `OPA`) | `<pattern>` or `<image>` scaled to area | tiling approximate (documented T-approximation) |
+| `RADIUS`, `CLIP_CORNER` | `rx`/`ry` = uniform; per-corner → `<path>` | LVGL radius is uniform + `CLIP_CORNER` for per-corner |
+| `BORDER_COLOR/OPA/WIDTH/SIDE/POST` | stroked rect inset by `width/2`; `SIDE` bitmask → path per edge | LVGL borders are drawn **inside** the bounds |
+| `OUTLINE_*` | second stroke, inset by `OUTLINE_PAD` | drawn after border |
+| `SHADOW_*` | `<feDropShadow>` (`dx`,`dy`, `stdDeviation=width/2`) + spread via stroke | spread has no exact SVG analogue |
+| `OPA`, `OPA_LAYERED` | group `opacity` | |
+| `TRANSFORM_*` | `<g transform="translate(px,py) rotate(a) scale(k) translate(-px,-py)">` | pivot from `TRANSFORM_PIVOT_*` |
+| `TRANSLATE_*` | same `<g>` transform list | |
+| widget `scroll` | child group `translate(-x,-y)` + `clipPath` | |
+| object `clip` | `clip-path` on the object `<g>` | source: dump `clip` (content box of a scrollable object) with the widget model as override; rounded when MAIN has a radius |
+| `LINE_*` | `<polyline>`/`<path>` + `stroke-dasharray`, `stroke-linecap` | |
+| `ARC_*` | `<path>` arc stroke; `ARC_ROUNDED` → `stroke-linecap:round` | angles are in LVGL 0.1° units and come from the arc widget itself; a part that carries arc styling but no angles is drawn as a full circle. **Implemented detail:** the LVGL point at θ is `(cx + r·cosθ, cy − r·sinθ)`, i.e. the SVG point at φ = −θ — so the *sweep magnitude* comes from the LVGL delta while `sweep-flag` is **0** (the negative SVG angle direction). Deriving either from SVG angles instead draws the long way round whenever `start` ≠ 0 |
+| Part `area` | the part's shapes are drawn in that box instead of the object's | only scrollbars carry one; a part without an area is assumed to fill the object, which is why parts whose geometry LVGL computes at draw time are not emitted at all (see [wasm bridge §3](wasm-bridge.md)) |
+| `IMG_*` | `<image>` sized by natural size × scale and placed by `IMG_ALIGN`; recolor via `<filter><feColorMatrix>` | see §7 — geometry from the dump, source from the model |
+| `BLEND_MODE`, `COLOR_FILTER_*` | CSS `mix-blend-mode` / filter | **approximate** — tracked in the scorecard |
+
+### 5a. Content a widget draws itself (button matrix, calendar)
+
+A button matrix does not style its contents through parts: `lv_buttonmatrix.c` walks its own **map** and
+paints one rect and one text per cell, resolving the `ITEMS` part **per cell state**. None of that is
+reachable from the outside — the map is built at run time (a calendar generates its day grid from the shown
+month) and the cells are not children — so the dump emits them (`btnm`, see
+[wasm bridge §3](wasm-bridge.md)) and the renderer draws:
+
+| From the dump | Drawn as |
+|---|---|
+| each cell's box (`x`/`y`/`w`/`h`) | a rect rendered by the SAME part renderer, with the style of that cell's state — gradient, border, radius and shadow all come from one code path |
+| the cell's `s` (`LV_STATE_*` bitmask) | selects the style (`styles[]` holds one per state in use; `DEFAULT` is the fallback) |
+| `txt` + the text box LVGL centred it in (`tx`/`ty`/`tw`/`th`) | one `<text>` in that box, styling from the same state's style. LVGL centres the string itself (it measures it and shifts it into the middle of the button), so the renderer must NOT centre again — it draws in the box it was given |
+
+**Why it mattered:** `lv_calendar` is a container holding a header and `calendar->btnm`, so the entire day
+grid is a button matrix. Until its cells were emitted, `holiday_calender_screen` rendered as an empty card in
+the SVG while the canvas showed the month — and the same class is a widget in its own right in the palette.
+Both are no longer in `PROCEDURAL_WIDGET_TYPES`: they are measured by the gate like any other widget.
+
+## 6. Text
+
+1. **Font mapping.** LVGL built-ins (`lv_font_montserrat_*`) map to bundled web fonts of the same family;
+   `size` comes from the scene. Project fonts (custom TTF) are registered as `@font-face` from the project's
+   font data (same source the WASM side loads via `_lvglLoadFont`/`lvglCreateFreeTypeFont`).
+   **Symbols come from a second family.** `LV_SYMBOL_*` are FontAwesome codepoints in the private use area
+   (`LV_SYMBOL_LEFT` is `U+F053`) and Montserrat has no glyph there, so the browser drew nothing at all for
+   one — a calendar's month arrows, and every icon-only button, dropdown or roller, came out blank. The font
+   family list therefore ends with `LVGL Symbols`, the FontAwesome build LVGL generates its own symbol
+   bitmaps from (declared in `eez-studio-ui/_stylesheets/app.less`, next to Montserrat), and the browser
+   resolves it **per character**: ordinary letters never leave Montserrat, and the shapes match the canvas's
+   rather than merely the codepoints.
+   A symbol used as a **background image** (`bg_image_src`) is drawn with the part's TEXT styling — LVGL
+   hands it to the label draw path — so the dump emits that styling next to the codepoint
+   (`SceneBgImage.text`): without it the month arrows came out black at the button's 28 px box size instead
+   of white at the font size, while the tick a checked checkbox draws (`LV_SYMBOL_OK`) came out right only
+   because that one is traced as a path.
+2. **Layout.** `TEXT_ALIGN` → `text-anchor` + `x`; `long_mode` → single line / wrap / scroll (scroll is a
+   transform + clip); `LETTER_SPACE`/`LINE_SPACE` → `letter-spacing` / `dy` per line.
+3. **Overflow** → `clipPath` on the text group.
+4. **Decor** (`TEXT_DECOR`) → `text-decoration` where supported, else an explicit `<line>`.
+5. **Baseline.** LVGL positions text by ascent; the renderer computes per-line `y` from `size` + `ascent`
+   using the same font metrics table (fallback constant if metrics are unavailable).
+6. **Spaces are geometry.** `<text>` carries `xml:space="preserve"` (and `white-space: pre` in its style),
+   because SVG collapses whitespace runs and strips them at both ends by default while LVGL advances the pen
+   by a real space width. LVGL's own way of aligning a string inside a fixed box is to pad it with spaces, so
+   without this the string silently shrank: measured on `network_config`, `"Gateway              :"` came out
+   **78.3 px** wide in a 130 px box (IoU 0.579) and the IP editor's separator run `"    .    .    "` **17.09 px**
+   in a 209 px box (IoU 0.081, ink disagreement 100%). The remaining delta on those rows is the advance of a
+   space itself: LVGL uses an integer pixel advance from its own font data, the browser the TTF's fractional
+   one, so 15 spaces drift 1-2 px (84 px of 3344 px on the row, recorded in the
+   [fidelity doc §6a](fidelity-harness.md)).
+
+Text is emitted as real text so it can be selected, styled and measured by the browser. If a specific font
+proves inaccurate in the scorecard, per-glyph `<path>` outlines are an additional emitter and do not change
+the scene contract.
+
+## 7. Images
+
+- Source: project bitmaps are already `data:image/png;base64,…` (import path keeps PNG) → straight into
+  `<image href>`; no conversion layer needed.
+- **Source and geometry come from different places.** The dump deliberately never emits pixels; the widget
+  model holds the asset *name*, which the editor resolves to a data URI (`project._assets.maps.name` →
+  `bitmaps` → `entry.object.image`). LVGL owns the *geometry* (`imgW`/`imgH`/`imgAlign`), because only the
+  running LVGL knows the decoded bitmap size. `wireToScene` merges the two.
+- **Placement** (`imagePlacement()`), in order of preference:
+
+  | Dump state | Box emitted | `preserveAspectRatio` |
+  |---|---|---|
+  | `imgW`/`imgH` present, align not STRETCH/TILE | natural size × scale, positioned by align | `none` |
+  | `imgW`/`imgH` present, align `STRETCH`/`TILE` | the widget box (scale ignored) | `none` |
+  | no `imgW`/`imgH`, but the source is a readable bitmap | natural size, positioned by align | `none` |
+  | source size unknown (a `LV_SYMBOL_*` glyph, an older build, an SVG data URI) | the widget box | `xMidYMid meet` (legacy, never distorted) |
+
+- **A bitmap the dump cannot describe still has a size: its own.** `imgW`/`imgH` are emitted for an
+  `lv_image` object, but a widget can own a bitmap the dump says nothing about — an imgbutton draws its
+  image as a `bg_image_src` — and the widget model supplies only the data URI. `image-size.ts` reads width
+  and height out of the bitmap header (PNG, JPEG, GIF, BMP, WebP), the same numbers LVGL decodes for its
+  own placement. Measured on `home_screen`'s imgbutton, a 38x60 PNG in a 35x60 widget: **128** differing
+  pixels while the size was unknown (letterboxed into the box), 22 stretched, 6 centred, **0** at natural
+  size in the box's top-left — which is where LVGL puts a widget's own bitmap, and where `renderBgImage`
+  places a background bitmap too. A source whose header cannot be read keeps the legacy path rather than
+  being guessed at.
+
+- **Alignment** maps `LV_IMAGE_ALIGN_*` → name with an explicit table (`imageAlignName()`), because the enum
+  order is *not* alphabetical (`BOTTOM_*` precede `LEFT_MID`/`RIGHT_MID`) and `10` is an internal
+  `AUTO_TRANSFORM` marker with no public name. The x and y axes are tested separately: `TOP_MID`/`BOTTOM_MID`
+  centre only horizontally, `LEFT_MID`/`RIGHT_MID` centre only vertically.
+- **No double scaling.** When the box is known, the scale lives in `width`/`height` and the transform is
+  rotation-only; only the legacy unknown-size path keeps `scale()` about the pivot.
+- **Overflow** → a `<g clip-path>` around the image when the placed box exceeds the widget (LVGL clips an
+  image to its widget). Well-sized icons produce no clip def.
+- `recolor` + opacity → `<feColorMatrix>` on the specific image (one filter per distinct recolor/opacity
+  pair, cached in `defs`).
+- Animated images / Lottie: drawn by callbacks rather than by style properties, so they are outside the
+  surface like the other procedural widgets (see [invariants §1.2](invariants.md)).
+- *Known gap:* a `LV_SYMBOL_*` source is a font glyph in LVGL, so `lv_image_get_src_width/height` reports 0
+  and the natural path cannot apply; a symbol carries no bitmap header either. Those images fall back to
+  filling the widget box.
+
+## 8. Update strategy & performance
+
+| Mode | Strategy |
+|---|---|
+| Design-time (idle) | re-dump + patch **on scene change only** (MobX reaction on the page model / widget props) |
+| Design-time (editing drag) | patch on change; no per-frame dump |
+| Animation / run mode | throttled re-dump (≤ 30 Hz) — see runtime-integration doc; run mode may stay canvas |
+
+Rules: never rebuild `defs` unless a parameter changes; never recreate a node whose attributes are equal
+(compare before write); batch attribute writes in one pass; no layout reads during patching.
+
+Targets: ≤ 4 ms/doc change for a 30-object page; DOM node count ≈ 3–6 per part.
+
+## 9. Dev-only modes
+
+| Mode | Purpose |
+|---|---|
+| `?svgOutline=1` | stroke every part + show `data-ptr/objid` labels — visual debug |
+| `?svgDiff=1` | run the fidelity harness against the canvas reference |
+| `?svgStats=1` | log node count, patch count, dump ms per change |
+
+## 10. Unit tests (no WASM needed)
+
+`svg-renderer.ts` is pure: `scene → SVG`. Tests load the hand-written `scene.json` fixtures from the
+[scene contract](scene-contract.md) and assert
+the produced structure (elements, attributes, defs) — runnable under the existing vitest setup, since no
+browser/WASM is required.
