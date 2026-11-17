@@ -1,0 +1,125 @@
+{
+	"generated": "2026-11-16",
+	"pages": [
+		{
+			"href": "00-hub.md",
+			"title": "What DataSheet Studio does",
+			"order": 10
+		},
+		{
+			"href": "README.md",
+			"title": "datasheet",
+			"order": 20
+		},
+		{
+			"href": "READ_ME_FIRST.md",
+			"title": "Read me first (agents)",
+			"order": 30
+		},
+		{
+			"href": "ONBOARDING.md",
+			"title": "Visual PDF onboarding (first pass)",
+			"order": 40
+		},
+		{
+			"href": "STUDIO.md",
+			"title": "Datasheet Studio",
+			"order": 50
+		},
+		{
+			"href": "STUDIO_NAVIGATION.md",
+			"title": "Studio navigation and highlighting",
+			"order": 60
+		},
+		{
+			"href": "EDITING_WORKFLOW.md",
+			"title": "Datasheet editing workflow",
+			"order": 70
+		},
+		{
+			"href": "DATA_HOME.md",
+			"title": "Data home policy",
+			"order": 80
+		},
+		{
+			"href": "DOCUMENT_LAYOUT.md",
+			"title": "Document layout model (all products)",
+			"order": 90
+		},
+		{
+			"href": "DOCUMENT_TEXT_COLUMN.md",
+			"title": "Document-wide text column (paragraph width)",
+			"order": 100
+		},
+		{
+			"href": "ELEMENT_GROUPING.md",
+			"title": "Group and ungroup elements",
+			"order": 110
+		},
+		{
+			"href": "ELEMENT_WINDOW_RESIZE.md",
+			"title": "Manual resize mode (element windows)",
+			"order": 120
+		},
+		{
+			"href": "EXAMPLE_SWITCHING.md",
+			"title": "Switching PDF examples in Studio",
+			"order": 130
+		},
+		{
+			"href": "LINKED_GRAPHICS.md",
+			"title": "Linked Graphics (Typst ↔ Blender)",
+			"order": 140
+		},
+		{
+			"href": "ONBOARDING_ITERATION.md",
+			"title": "Onboarding iteration log",
+			"order": 150
+		},
+		{
+			"href": "PDF_DIRECT_EDIT.md",
+			"title": "Direct PDF editing",
+			"order": 160
+		},
+		{
+			"href": "PDF_ELEMENT_DETECTION.md",
+			"title": "PDF element detection (deep dive)",
+			"order": 170
+		},
+		{
+			"href": "STUDIO_PANE_BOUNDS.md",
+			"title": "Studio pane bounds — zero dead space (hard rule)",
+			"order": 180
+		},
+		{
+			"href": "STUDIO_VARS.md",
+			"title": "Studio persistent variables",
+			"order": 190
+		},
+		{
+			"href": "TABLE_EDITING.md",
+			"title": "Table editing (Excel-style)",
+			"order": 200
+		},
+		{
+			"href": "TABLE_GEOMETRY.md",
+			"title": "Table geometry (enforced)",
+			"order": 210
+		},
+		{
+			"href": "WYSIWYG_MATCH_RULES.md",
+			"title": "WYSIWYG match rules (hard requirements)",
+			"order": 220
+		},
+		{
+			"href": "WYSIWYG_ONBOARD_MATCH.md",
+			"title": "WYSIWYG onboard visual match",
+			"order": 230
+		},
+		{
+			"href": "results/roundtrip-test.md",
+			"title": "Linked graphics roundtrip test",
+			"order": 240
+		}
+	]
+}
