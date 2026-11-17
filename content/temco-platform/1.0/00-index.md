@@ -28,7 +28,6 @@ The authoring application: how a project is made, how its site is built, and how
   - [Authoring parity with Dr.Explain, publishing parity with MSDN](design/authoring-and-msdn-output.md)
     - [Architecture](modules/temco-docs/architecture.md)
   - [The application window](ui/app-layout.md)
-  - [Help & Report: documentation, issues, triage](design/t3000-help-and-report.md)
     - [Extension design](modules/temco-docs/extension-design.md)
   - [The application: shell, screens and flow](ui/application-design.md)
     - [The registry the module reads](modules/temco-docs/registry-schema.md)

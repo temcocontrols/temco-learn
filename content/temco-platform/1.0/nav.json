@@ -107,11 +107,6 @@
 			"order": 20
 		},
 		{
-			"href": "design/t3000-help-and-report.md",
-			"title": "Help & Report: documentation, issues, triage",
-			"order": 30
-		},
-		{
 			"href": "modules/temco-docs/extension-design.md",
 			"title": "Extension design",
 			"order": 30
