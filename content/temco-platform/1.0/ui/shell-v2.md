@@ -567,7 +567,7 @@ on Properties, on **Review**, and in **Registry**.
 │                     | ---- | ---- |                                          │
 │                     | Wire | Yes  |                                          │
 │                                                                              │
-│                     Then read [ the next page ](./verify.md).                │
+│                     Then read  the next page .                │
 │                                                                              │
 ├──────────────────────────────────────────────────────────────────────────────┤
 │ 1,204 words · 6 min read · saved 10:44 · Markdown · UTF-8 · LF               │

@@ -1,0 +1,70 @@
+{
+	"generated": "2026-11-16",
+	"pages": [
+		{
+			"href": "00-hub.md",
+			"title": "The boards this estate runs on",
+			"order": 10
+		},
+		{
+			"href": "families.md",
+			"title": "The product families",
+			"order": 20
+		},
+		{
+			"href": "controller-models.md",
+			"title": "The controller model table",
+			"order": 30
+		},
+		{
+			"href": "io-ceilings.md",
+			"title": "How many points each model carries",
+			"order": 40
+		},
+		{
+			"href": "stm32-to-esp32.md",
+			"title": "The move from STM32 to ESP32",
+			"order": 50
+		},
+		{
+			"href": "t3-4ao.md",
+			"title": "The T3-4AO analogue output board",
+			"order": 60
+		},
+		{
+			"href": "t3-io-modules.md",
+			"title": "The Modbus and BACnet I/O modules",
+			"order": 70
+		},
+		{
+			"href": "three-phase-meter.md",
+			"title": "The three-phase power meter",
+			"order": 80
+		},
+		{
+			"href": "co2-sensor.md",
+			"title": "The CO2 sensor family",
+			"order": 90
+		},
+		{
+			"href": "airlab.md",
+			"title": "The AIRLAB air-quality transmitter",
+			"order": 100
+		},
+		{
+			"href": "tstat8-legacy.md",
+			"title": "The legacy Tstat8 thermostat",
+			"order": 110
+		},
+		{
+			"href": "zigbee-modules.md",
+			"title": "The Zigbee coordinator and end devices",
+			"order": 120
+		},
+		{
+			"href": "repo-map.md",
+			"title": "Where each board's source lives",
+			"order": 130
+		}
+	]
+}

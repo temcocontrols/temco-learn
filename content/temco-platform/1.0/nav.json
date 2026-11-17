@@ -107,8 +107,8 @@
 			"order": 20
 		},
 		{
-			"href": "design/t3000-support-engineering.md",
-			"title": "Support intake — engineering",
+			"href": "design/t3000-help-and-report.md",
+			"title": "Help & Report: documentation, issues, triage",
 			"order": 30
 		},
 		{
@@ -120,11 +120,6 @@
 			"href": "ui/application-design.md",
 			"title": "The application: shell, screens and flow",
 			"order": 30
-		},
-		{
-			"href": "design/t3000-support-intake.md",
-			"title": "Support intake from T3000",
-			"order": 40
 		},
 		{
 			"href": "modules/temco-docs/registry-schema.md",

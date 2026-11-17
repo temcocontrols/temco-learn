@@ -104,7 +104,7 @@ Title bar: `＋` New Page · `🗀` New Chapter · `⇩` Add a Source · `📷` 
  │       Point…      │                                      │   ○ a commit range    │
  │ PROJECT           │ Points carry a scale factor.         │ ────────────────────  │
  │   Sources 3       │                                      │  Model · prompt v3    │
- │ PIPELINE          │ ![Trend log setup](media/02-…)       │  [ Draft the Page ]   │
+ │ PIPELINE          │ Trend log setup               │  [ Draft the Page ]   │
  │   Review · Build  │ 1 Trend log list  2 Period  3 Filter │  Result (diff)        │
  │ WORKING SET (6)   │                                      │  [ Apply ][ Reject ]  │
  └───────────────────┴──────────────────────────────────────┴───────────────────────┘
