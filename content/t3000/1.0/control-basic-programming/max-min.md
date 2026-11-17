@@ -1,6 +1,6 @@
 ---
 title: "MAX, MIN"
-order: 880
+order: 910
 ---
 
 MAX

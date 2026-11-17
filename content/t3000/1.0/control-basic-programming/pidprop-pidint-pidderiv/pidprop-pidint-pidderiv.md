@@ -1,6 +1,6 @@
 ---
 title: "PIDProp, PIDInt, PIDDeriv"
-order: 940
+order: 970
 ---
 
 The PIDPROP, PIDRESET and PIDRATE statements allow you to change the PID terms in a control basic program. These commands will be useful for a program which adjusts the PID parameters on the fly such as for a self tuning PID.

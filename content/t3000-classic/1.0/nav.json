@@ -1,0 +1,55 @@
+{
+	"generated": "2026-11-16",
+	"pages": [
+		{
+			"href": "00-hub.md",
+			"title": "The manuals that came before",
+			"order": 10
+		},
+		{
+			"href": "software-manual-outline.md",
+			"title": "The T3000 Software Manual, chapter by chapter",
+			"order": 20
+		},
+		{
+			"href": "software-manual-text-defect.md",
+			"title": "Why the software manual is an outline and not pages",
+			"order": 30
+		},
+		{
+			"href": "hardware-installation.md",
+			"title": "Hardware installation",
+			"order": 40
+		},
+		{
+			"href": "software-installation.md",
+			"title": "Software installation",
+			"order": 50
+		},
+		{
+			"href": "networking.md",
+			"title": "Networking controllers",
+			"order": 60
+		},
+		{
+			"href": "appendix.md",
+			"title": "Appendices",
+			"order": 70
+		},
+		{
+			"href": "rpi-compute-module-flashing.md",
+			"title": "Flashing a Raspberry Pi Compute Module",
+			"order": 80
+		},
+		{
+			"href": "rpi-compute-module-backup.md",
+			"title": "Backing up a Raspberry Pi Compute Module",
+			"order": 90
+		},
+		{
+			"href": "board-schematics.md",
+			"title": "The T3-BB board schematics",
+			"order": 100
+		}
+	]
+}

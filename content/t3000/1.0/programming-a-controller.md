@@ -1,6 +1,6 @@
 ---
 title: "9 Programming a controller"
-order: 590
+order: 600
 ---
 
 This section explains the programming steps to setup a panel for a controls application. The steps are presented here in a somewhat logical order but the system is flexible, you can complete the sections you have information on as the data comes in and finish off the other parts later. It is assumed that at this point, the T3000 has been setup as per instructions in Chapters 3 and 8.

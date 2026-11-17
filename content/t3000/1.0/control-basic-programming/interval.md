@@ -1,6 +1,6 @@
 ---
 title: "INTERVAL"
-order: 850
+order: 880
 ---
 
 INTERVAL

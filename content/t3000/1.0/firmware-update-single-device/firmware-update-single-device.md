@@ -1,6 +1,6 @@
 ---
 title: "FIRMWARE UPDATE, SINGLE DEVICE"
-order: 1210
+order: 1270
 ---
 
 Using T3 controllers as an example.

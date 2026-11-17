@@ -1,6 +1,6 @@
 ---
 title: "Annual routines"
-order: 660
+order: 550
 ---
 
 A weekly schedule repeats every seven days, which covers a shop that opens at nine every morning. It does not cover the two weeks in August when it does not open at all. An annual routine is the second calendar: a list of dates that are the same every year, applied on top of the weekly schedules.

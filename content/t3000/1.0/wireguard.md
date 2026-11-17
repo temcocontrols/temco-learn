@@ -1,6 +1,6 @@
 ---
 title: "WireGuard remote sites"
-order: 1020
+order: 1240
 ---
 
 WireGuard carries the same job as [PTP](ptp-client.md) — reaching a panel that is behind a router — with one difference that changes the layout of the feature: a WireGuard gateway is an edge router, so it reaches **an entire building network**, not one controller. What T3000 configures is therefore a *remote site*, not a remote device.

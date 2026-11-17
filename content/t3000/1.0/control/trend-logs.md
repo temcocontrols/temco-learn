@@ -1,6 +1,6 @@
 ---
 title: "6.9 Trend Logs"
-order: 550
+order: 560
 ---
 
 Monitors are used to collect historical data for any point defined in the system regardless of their nature (either Analog or Digital). A base T3000 system can handle up to 16 separate monitors. The number of monitors avail able is dependent on the amount of memory that your system has. With enough memory the system can easily handle up to 128 monitors. Each of these separate monitors can trend up to 14 points.

@@ -1,6 +1,6 @@
 ---
 title: "Offline Mode"
-order: 1280
+order: 1340
 ---
 
 T3000 has a feature where you can operate on a T3 controller in offline mode. This is useful when you don’t have a controller on hand for demo purposes or working in the office for later deployment to a remote job site.Currently only T3 controllers are supported.Below is an explanation on how to operate on a virtual controller.

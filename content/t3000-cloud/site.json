@@ -1,0 +1,6 @@
+{
+    "title":  "T3000 Cloud (GraphQL)",
+    "section":  "documentation",
+    "summary":  "The GraphQL API behind T3000 cloud storage: authentication, queries and mutations over projects, devices and points.",
+    "order":  40
+}

@@ -1,6 +1,6 @@
 ---
 title: "PID LOOP MATH DISCUSSION"
-order: 950
+order: 980
 ---
 
 The output value of a controller is calculated according to the following formulas:

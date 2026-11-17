@@ -1,6 +1,6 @@
 ---
 title: "PID Loops Introduction"
-order: 960
+order: 990
 ---
 
 ![PID Loops Introduction](../../media/images-drex_module_12_31_2_screen.png)

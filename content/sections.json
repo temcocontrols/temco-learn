@@ -2,31 +2,45 @@
 	{
 		"id": "documentation",
 		"title": "Documentation",
-		"description": "Guides, references and release notes for every Temco product, one folder per version."
-	},
-	{
-		"id": "training",
-		"title": "Training & Labs",
-		"description": "Ordered reading for a job, and labs you can work through on a real controller."
-	},
-	{
-		"id": "tests",
-		"title": "Tests",
-		"description": "Commissioning checks, what each one proves, and how to run it."
+		"description": "The software and the interfaces: the T3000 application, the web UI that is replacing its screens, the APIs and message sets behind both, the register maps and the firmware.",
+		"noun": "guide"
 	},
 	{
 		"id": "products",
 		"title": "Products",
-		"description": "What each Temco Controls product is, what it answers, and which documentation belongs to it."
+		"description": "The hardware: the controllers and thermostats you put on a wall, the boards that add points to them, and the sensors and meters that report to them.",
+		"noun": "product"
 	},
 	{
-		"id": "qa",
-		"title": "Q&A",
-		"description": "Questions from installers and engineers, answered by the people who build the products."
+		"id": "tools",
+		"title": "Tools",
+		"description": "Pages you work with rather than read: the psychrometric chart, the pH chart, and the browser simulator for the TSTAT10.",
+		"noun": "tool"
 	},
 	{
 		"id": "topics",
 		"title": "Topics",
-		"description": "Subjects that cross products: networking, protocols, security, alarms."
+		"description": "Subjects that cross products: semantic tagging, networking, protocols, security, alarms.",
+		"noun": "topic"
+	},
+	{
+		"id": "training",
+		"title": "Training & Labs",
+		"description": "Ordered reading for a job, labs you can work through on a real controller, and the commissioning checks that prove them.",
+		"noun": "lab"
+	},
+	{
+		"id": "internal",
+		"title": "Internal",
+		"description": "Runbooks and tooling for the people who build and ship the products. Not published.",
+		"noun": "runbook",
+		"hidden": true
+	},
+	{
+		"id": "qa",
+		"title": "Q&A",
+		"description": "Questions from installers and engineers, answered by the people who build the products.",
+		"noun": "question",
+		"hidden": true
 	}
 ]

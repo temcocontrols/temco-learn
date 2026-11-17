@@ -1,6 +1,6 @@
 ---
 title: "How T3000 reads and saves data"
-order: 1010
+order: 1230
 ---
 
 Every value on screen arrived by one of two routes: it was read from the network, or it was loaded from a database. This page follows one round trip — a scan, a panel chosen in the tree, the points it returns, and where the values then live.

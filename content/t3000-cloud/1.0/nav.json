@@ -1,0 +1,85 @@
+{
+	"generated": "2026-11-16",
+	"pages": [
+		{
+			"href": "00-hub.md",
+			"title": "Reading the T3000 cloud API",
+			"order": 10
+		},
+		{
+			"href": "Getting-started.md",
+			"title": "Getting started",
+			"order": 20
+		},
+		{
+			"href": "Installing.md",
+			"title": "Installation",
+			"order": 30
+		},
+		{
+			"href": "Authentication.md",
+			"title": "Authentication",
+			"order": 40
+		},
+		{
+			"href": "GraphQL.md",
+			"title": "GraphQL",
+			"order": 50
+		},
+		{
+			"href": "examples/1-QueryProject.md",
+			"title": "Project query examples",
+			"order": 60
+		},
+		{
+			"href": "examples/2-MutateProject.md",
+			"title": "Project mutation examples",
+			"order": 70
+		},
+		{
+			"href": "reference-enums-scalars.md",
+			"title": "Enums and Scalars",
+			"order": 80
+		},
+		{
+			"href": "reference-inputs-automation.md",
+			"title": "Input Types: Schedules, Programs, PIDs and Holidays",
+			"order": 90
+		},
+		{
+			"href": "reference-inputs-building.md",
+			"title": "Input Types: Buildings, Devices and Projects",
+			"order": 100
+		},
+		{
+			"href": "reference-inputs-common.md",
+			"title": "Input Types: Filters and Shared Helpers",
+			"order": 110
+		},
+		{
+			"href": "reference-inputs-graphics-files.md",
+			"title": "Input Types: Graphics and Files",
+			"order": 120
+		},
+		{
+			"href": "reference-inputs-points.md",
+			"title": "Input Types: Inputs, Outputs and Variables",
+			"order": 130
+		},
+		{
+			"href": "reference-objects.md",
+			"title": "Object Types",
+			"order": 140
+		},
+		{
+			"href": "reference-operations.md",
+			"title": "Queries and Mutations",
+			"order": 150
+		},
+		{
+			"href": "reference-scalars.md",
+			"title": "Scalar Types",
+			"order": 160
+		}
+	]
+}

@@ -1,6 +1,6 @@
 ---
 title: "Panel Configuration"
-order: 570
+order: 580
 ---
 
 ## 7.1.1 Set your device IP address

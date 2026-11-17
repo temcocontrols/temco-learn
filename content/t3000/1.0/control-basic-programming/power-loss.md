@@ -1,6 +1,6 @@
 ---
 title: "POWER-LOSS"
-order: 980
+order: 1010
 ---
 
 Purpose: To allow a program to perform some logic determine if there was a power loss to the panel. The function returns 1 the

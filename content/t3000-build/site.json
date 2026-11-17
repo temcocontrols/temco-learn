@@ -1,0 +1,6 @@
+{
+    "title":  "Building T3000",
+    "section":  "documentation",
+    "summary":  "How T3000 is built, debugged and shipped: compiling the solution, making the setup file, attaching to the webview, the GitHub workflow, and the tools used to prove a fix.",
+    "order":  50
+}

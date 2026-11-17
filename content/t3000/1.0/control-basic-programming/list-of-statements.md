@@ -1,6 +1,6 @@
 ---
 title: "List of Statements"
-order: 650
+order: 670
 ---
 
 The complete list of Control Basic statements and operators:
