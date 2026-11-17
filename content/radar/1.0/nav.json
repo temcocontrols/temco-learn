@@ -1,0 +1,90 @@
+{
+	"generated": "2026-11-16",
+	"pages": [
+		{
+			"href": "00-hub.md",
+			"title": "What the radar senses",
+			"order": 10
+		},
+		{
+			"href": "README.md",
+			"title": "radar / docs — AntSDR E310",
+			"order": 20
+		},
+		{
+			"href": "BOARD.md",
+			"title": "Board identity",
+			"order": 30
+		},
+		{
+			"href": "e310/AntsdrE310_Unpacking_examination.md",
+			"title": "AntsdrE310_Unpacking_examination",
+			"order": 40
+		},
+		{
+			"href": "e310/AntsdrE310_Reference_Manual.md",
+			"title": "AntsdrE310_Reference_Manual",
+			"order": 50
+		},
+		{
+			"href": "e310/Antsdr_standalone.md",
+			"title": "Antsdr_standalone",
+			"order": 60
+		},
+		{
+			"href": "e310/AntsdrE310_fmcomms.md",
+			"title": "AntsdrE310_fmcomms",
+			"order": 70
+		},
+		{
+			"href": "e310/AntsdrE310_libiio.md",
+			"title": "AntsdrE310_libiio",
+			"order": 80
+		},
+		{
+			"href": "e310/AntsdrE310_gnurdio.md",
+			"title": "AntsdrE310_gnurdio",
+			"order": 90
+		},
+		{
+			"href": "e310/AntsdrE310_matlab.md",
+			"title": "AntsdrE310_matlab",
+			"order": 100
+		},
+		{
+			"href": "e310/AntsdrE310_openwifi.md",
+			"title": "AntsdrE310_openwifi",
+			"order": 110
+		},
+		{
+			"href": "e310/AntsdrE310_RF_parameters.md",
+			"title": "AntsdrE310_RF_parameters",
+			"order": 120
+		},
+		{
+			"href": "e310/Antsdr-fw-patch.md",
+			"title": "Antsdr-fw-patch",
+			"order": 130
+		},
+		{
+			"href": "e310/Antsdr-Clock-calibration.md",
+			"title": "Antsdr-Clock-calibration",
+			"order": 140
+		},
+		{
+			"href": "e310/set_gpio.md",
+			"title": "set_gpio",
+			"order": 150
+		},
+		{
+			"href": "e310/set_the_iio_firmware_ip.md",
+			"title": "Set Firmware IP",
+			"order": 160
+		},
+		{
+			"href": "e310/AntsdrE310_.md",
+			"title": "AntsdrE310_",
+			"order": 170
+		}
+	]
+}
