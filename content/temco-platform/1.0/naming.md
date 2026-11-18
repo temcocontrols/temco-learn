@@ -24,11 +24,11 @@ Every identifier in the product follows one rule: **the namespace is the module 
 | Word | Used for |
 |---|---|
 | **Temco Platform** | the product, and the application's display name |
-| **Temco Learn** | the published site |
+| **T3000 Help** | the published site |
 | **Temco Docs**, **Temco AI**, … | a module's name in user-visible text |
 | `temco-docs`, `temco-ai`, … | a module in paths, ids and code |
 
-One word per thing: the product is **Temco Platform**, the published site is **Temco Learn**, and a module is named
+One word per thing: the product is **Temco Platform**, the published site is **T3000 Help**, and a module is named
 after what it does — **Temco Docs**, **Temco AI**, and so on. A module's word appears in its own titles, its ids and
 its folder; nothing else may claim it.
 

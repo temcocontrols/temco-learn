@@ -3,30 +3,30 @@ title: "Platform introduction"
 order: 10
 ---
 
-**Temco Platform is the application Temco Controls writes its product documentation in.** Each product's pages live in a **project** — one folder on your own disk — and the application builds that folder into a website, a printable PDF and a Windows help file. Publishing puts the website on **Temco Learn**, the site readers open at `https://temcocontrols.github.io/temco-learn/`.
+**Temco Platform is the application Temco Controls writes its product documentation in.** Each product's pages live in a **project** — one folder on your own disk — and the application builds that folder into a website, a printable PDF and a Windows help file. Publishing puts the website on **T3000 Help**, the site readers open at `https://temcocontrols.github.io/temco-learn/`.
 
 ![Temco Platform, the application you write in: a project's pages listed on the left, the page you picked open in the middle.](media/publishing/00-temco-platform.png)
 
-**Temco Platform** creates the project, writes and reviews the pages, runs the build, and publishes the result to Temco Learn.
+**Temco Platform** creates the project, writes and reviews the pages, runs the build, and publishes the result to T3000 Help.
 
-![Temco Learn in a browser, on a product's documentation page: the reading menu beside the page, and the version selector with its download menu at the top.](media/publishing/01-temco-learn.png)
+![T3000 Help in a browser, on a product's documentation page: the reading menu beside the page, and the version selector with its download menu at the top.](media/publishing/01-temco-learn.png)
 
-**Temco Learn** is the site a reader opens. Everything on it — the pages, the search, the PDF, the help file — came from a build that was published.
+**T3000 Help** is the site a reader opens. Everything on it — the pages, the search, the PDF, the help file — came from a build that was published.
 
 This guide takes one product, T3000, from an empty folder to a live page in eight steps: create the project, write the pages, build the site, build the project's own outputs, add the build to the site, make the downloads, serve it and look, then publish. Each step names the command it runs and the file it leaves behind, and the folders and the site clone the first step reads are set in [Before you start](#before-you-start).
 
 ## The application and the site
 
-Temco Platform and Temco Learn are two halves of one idea, and they meet in a single place: a copy of a project's build.
+Temco Platform and T3000 Help are two halves of one idea, and they meet in a single place: a copy of a project's build.
 
 ```text
-you, writing          Temco Platform              the site clone            Temco Learn
+you, writing          Temco Platform              the site clone            T3000 Help
 a page          →      builds and publishes  →     one commit on main   →    what a reader opens
 ```
 
-**In the application**, a project is one folder of Markdown. It starts empty, from a template, or from something that already exists — a folder, a repository, a document. Three features carry it to a published build: **#1 Home** creates it, **#2 Documentation** writes the pages and runs the build, and **#4 Temco Learn** makes the downloads and publishes the result. The fourth, **#3 Repositories**, is for documenting code: it lists the sources a project can read — a repository, a folder, a document — and reads one into the catalog, so a draft can be written from a file of it. [Part 1](#part-1--temco-platform-the-application) takes each feature in turn; the [appendix](#appendix--every-control-and-its-command) names the buttons.
+**In the application**, a project is one folder of Markdown. It starts empty, from a template, or from something that already exists — a folder, a repository, a document. Three features carry it to a published build: **#1 Home** creates it, **#2 Documentation** writes the pages and runs the build, and **#4 T3000 Help** makes the downloads and publishes the result. The fourth, **#3 Repositories**, is for documenting code: it lists the sources a project can read — a repository, a folder, a document — and reads one into the catalog, so a draft can be written from a file of it. [Part 1](#part-1--temco-platform-the-application) takes each feature in turn; the [appendix](#appendix--every-control-and-its-command) names the buttons.
 
-**On the site**, a reader moves down five levels — the home page, a section, a project, a version, the page. One catalog writes all five, so a page you publish appears at every level at once, and a version you add never overwrites the one before it. [Part 2](#part-2--temco-learn-the-site) shows what each level holds.
+**On the site**, a reader moves down five levels — the home page, a section, a project, a version, the page. One catalog writes all five, so a page you publish appears at every level at once, and a version you add never overwrites the one before it. [Part 2](#part-2-t3000-help-the-site) shows what each level holds.
 
 **A source gives material, not pages.** Reading one records the registry it declares, the pages that registry names, and the code files a draft may quote; a draft then waits in the Review Center until a person accepts it. The downloads follow the same rule: the PDF needs a browser and the help file needs `hhc.exe`, the site's deploy has neither, so both are made here and committed.
 
@@ -35,7 +35,7 @@ a page          →      builds and publishes  →     one commit on main   → 
 | Section | The question it answers |
 |---|---|
 | [Part 1 — Temco Platform](#part-1--temco-platform-the-application) | What is in the application, and what does each of the eight features do? |
-| [Part 2 — Temco Learn](#part-2--temco-learn-the-site) | What does a reader see on the site, from the address down to one page? |
+| [Part 2 — T3000 Help](#part-2-t3000-help-the-site) | What does a reader see on the site, from the address down to one page? |
 | [Part 3 — The walk](#part-3--the-walk-step-by-step) | How does one project go from an empty folder to a live page? |
 | [Part 4 — Temco Editor](#part-4--temco-editor) | How do I write, format and check a page? |
 | [Part 5 — Beyond the flow](#part-5--beyond-the-flow-and-when-it-goes-wrong) | What else can a project do, and what do I do when a step fails? |
@@ -52,7 +52,7 @@ Temco Platform has eight features, the eight you see down the activity bar on th
 | [#1](#1-home) | **Home** | the library, and what needs doing |
 | [#2](#2-documentation) | **Documentation** | pages, the editor, the build |
 | [#3](#3-repositories) | **Repositories** | documenting code from its source |
-| [#4](#4-temco-learn) | **Temco Learn** | the site, from this side |
+| [#4](#4-t3000-help) | **T3000 Help** | the site, from this side |
 | [#5](#5-ai) | **AI** | a draft beside the page |
 | [#6](#6-forum) | **Forum** | the community site |
 | [#7](#7-tools) | **Tools** | the platform's own database |
@@ -97,7 +97,7 @@ Sources for documenting code. A project cites them rather than copying them, and
 
 Reading never writes back. The catalog keeps what a source declares, and the one command that touches a clone applies a drafted change as a patch, after a question that names it.
 
-### #4 Temco Learn
+### #4 T3000 Help
 
 ![Temco Learn ▸ Overview: what needs doing, the four steps, and where the site stands.](media/publishing/19-learn-site-01.png)
 
@@ -202,7 +202,7 @@ Three settings decide every path:
 
 The two lines under the fields are the resolved answer: `Clones land in …\temco\source` and `Projects are made in …\temco\projects`. A value you typed but did not save is not in them yet, and `Projects are made in …\temco` means that folder is empty, so new projects land beside the clones.
 
-## Part 2 — Temco Learn, the site
+## Part 2 — T3000 Help, the site
 
 A reader opens the address and moves down five levels. Every level is written by the same catalog, so a page you publish appears at all five at once.
 

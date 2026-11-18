@@ -8,7 +8,7 @@ One consolidated design for the documentation center. It supersedes the layout s
 ## 1. The model
 
 ```
- Sources ─► Temco Platform (authoring) ─► Product package ─► Temco Learn (website)
+ Sources ─► Temco Platform (authoring) ─► Product package ─► T3000 Help (website)
  repos, pdf,   projects · AI · review       products/<id>/       search · downloads · versions
  word, chm                                  manifest.json
                                             docs/ api/ guides/ assets/ releases/
@@ -18,7 +18,7 @@ One consolidated design for the documentation center. It supersedes the layout s
 |---|---|---|
 | **Temco Platform** | where people work: projects, sources, AI drafts, review, generate | this repository |
 | **Product package** | the unit of exchange; a plug-in the portal discovers | `products/<id>/` |
-| **Temco Learn** | the reader's MSDN-style portal | the `temco-learn` repository |
+| **T3000 Help** | the reader's MSDN-style portal | the `temco-learn` repository |
 | **DocFX** | one pluggable build engine; CHM and PDF are other exporters | invoked by Build, never a surface |
 
 **Vocabulary.** Project (a `documents` row) → Section (the registry's *area*) → Folder (its *chapter*, nestable) → Page. Versions come from the project's releases. A `products` table is added only if several versions must be open at once.
@@ -257,7 +257,7 @@ The **Properties** tab is the form over the registry fields: title, section, ord
 └────────────────────────────────────────────────────────────────────┘
 ```
 
-## 8. I. Result on disk, and Temco Learn
+## 8. I. Result on disk, and T3000 Help
 
 ```
  products/t3000/
@@ -266,7 +266,7 @@ The **Properties** tab is the form over the registry fields: title, section, ord
    releases/13.0 · 12.9 · 12.8      latest → 13.0
                     │
                     ▼
- Temco Learn discovers products/*  →  Home · Product page · Doc page · Downloads (Online · PDF · CHM · ZIP)
+ T3000 Help discovers products/*  →  Home · Product page · Doc page · Downloads (Online · PDF · CHM · ZIP)
 ```
 
 The Learn page's top navigation mirrors the project's sections, so what the writer sees in the tree is what the reader sees.

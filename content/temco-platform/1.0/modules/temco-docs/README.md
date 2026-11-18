@@ -27,10 +27,10 @@ because that is where the content has to be.
 |---|---|
 | **Temco Platform** | the application: the branded build of VS Code, with these modules built in |
 | **Temco Docs** | this module — the documentation features, in the application and in an ordinary VS Code window |
-| **Temco Learn** | the published site: the documentation people read |
+| **T3000 Help** | the published site: the documentation people read |
 
-One name for the tool, one for the module, one for the artifact. The module maintains content; Temco Learn
-displays it. Keeping them apart is what stops "put it in Temco Learn" from being ambiguous.
+One name for the tool, one for the module, one for the artifact. The module maintains content; T3000 Help
+displays it. Keeping them apart is what stops "put it in T3000 Help" from being ambiguous.
 
 ## The guide, and why a module has one
 
