@@ -323,6 +323,28 @@ h3 {
 	color: var(--ink);
 }
 
+/* "View online" — only rendered when T3000 hosts the site in its WebView2 window, where the page has no
+   address bar of its own. Same weight as the search field and the theme toggle beside it. */
+.viewonline {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	height: 30px;
+	padding: 0 10px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	background: var(--surface);
+	color: var(--ink-2);
+	font-size: var(--fs-ui);
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.viewonline:hover {
+	border-color: var(--line-strong);
+	color: var(--ink);
+}
+
 /* -- the page's own head: where you are, and what this page offers -------------------------------- */
 
 /* Inline, not sticky: the trail belongs to the column it describes. */
@@ -2663,6 +2685,15 @@ html[data-embed='true'] .print {
 	.searchbtn__label,
 	.searchbtn .kbd {
 		display: none;
+	}
+
+	/* Icon only on a phone, like the search button beside it. */
+	.viewonline__label {
+		display: none;
+	}
+
+	.viewonline {
+		padding: 0 8px;
 	}
 
 	.searchbtn {

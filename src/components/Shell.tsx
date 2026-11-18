@@ -9,7 +9,7 @@
 
 import * as React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { SearchRegular, WeatherMoonRegular, WeatherSunnyRegular } from '@fluentui/react-icons';
+import { OpenRegular, SearchRegular, WeatherMoonRegular, WeatherSunnyRegular } from '@fluentui/react-icons';
 import { useCatalog } from '../catalog';
 import { applyScheme, type Scheme } from '../theme';
 import { SearchOverlay } from './SearchOverlay';
@@ -30,11 +30,45 @@ const isEmbedded = (): boolean => {
 	}
 };
 
+// T3000 shows this site in a WebView2 window, which has no address bar of its own. Hosting apps expose
+// `window.chrome.webview`; when it is there, the masthead offers "View online" so the reader can hand the
+// page they are looking at to their real browser (printing, sharing, a URL to copy).
+const insideWebViewHost = (): boolean => {
+	try {
+		const host = (window as unknown as { chrome?: { webview?: unknown } }).chrome;
+		return Boolean(host?.webview);
+	} catch {
+		return false;
+	}
+};
+
+/** Where this site is published; a local build links here. */
+const PUBLISHED_SITE = 'https://temcocontrols.github.io/temco-learn/';
+
+const onPublishedSite = (): boolean => window.location.hostname.endsWith('github.io');
+
+// Shown inside the T3000 window, and on a local build (preview server, `dist`, dev server) where "online" is a
+// different place. On the published site there is nothing to hand over, so the control is not rendered at all.
+const showViewOnline = (): boolean => insideWebViewHost() || !onPublishedSite();
+
+// Inside T3000 the site *is* the published one, so the same address goes to the browser. On a local build the
+// equivalent published page is worked out from the route, with this deployment's base stripped off first.
+const viewOnlineHref = (): string => {
+	const here = window.location;
+	if (onPublishedSite()) {
+		return here.href;
+	}
+	const base = import.meta.env.BASE_URL || '/';
+	const path = here.pathname.startsWith(base) ? here.pathname.slice(base.length) : here.pathname.replace(/^\/+/, '');
+	return `${PUBLISHED_SITE}${path}${here.search}${here.hash}`;
+};
+
 export function Shell({ scheme, onScheme }: { scheme: Scheme; onScheme: (scheme: Scheme) => void }) {
 	const catalog = useCatalog();
 	const location = useLocation();
 	const [scrolled, setScrolled] = React.useState(false);
 	const [searching, setSearching] = React.useState(false);
+	const [insideHost] = React.useState(showViewOnline);
 
 	React.useEffect(() => {
 		document.documentElement.dataset.embed = isEmbedded() ? 'true' : 'false';
@@ -111,6 +145,18 @@ export function Shell({ scheme, onScheme }: { scheme: Scheme; onScheme: (scheme:
 						))}
 					</nav>
 					<div className="mast__tools">
+						{insideHost ? (
+							<a
+								className="viewonline"
+								href={viewOnlineHref()}
+								target="_blank"
+								rel="noreferrer"
+								title="Open this page in your default browser"
+							>
+								<span className="viewonline__label">View online</span>
+								<OpenRegular aria-hidden="true" />
+							</a>
+						) : null}
 						<button type="button" className="searchbtn" onClick={() => setSearching(true)} aria-keyshortcuts="Control+K">
 							<SearchRegular aria-hidden="true" />
 							<span className="searchbtn__label">Search everything…</span>
