@@ -54,7 +54,7 @@ export function NotFound({ what }: { what?: string }) {
 	return (
 		<>
 			<div className="hero">
-				<p className="eyebrow">Temco Learn</p>
+				<p className="eyebrow">T3000 Help</p>
 				<h1>Not on this site</h1>
 				<p className="lede">
 					{what === undefined ? 'That address does not name a page.' : `Nothing here is called “${what}”.`} A page appears once the

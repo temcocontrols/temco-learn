@@ -101,7 +101,7 @@ export function Shell({ scheme, onScheme }: { scheme: Scheme; onScheme: (scheme:
 						<span className="brand__mark" aria-hidden="true">
 							T
 						</span>
-						<span className="brand__name">Temco Learn</span>
+						<span className="brand__name">T3000 Help</span>
 					</Link>
 					<nav className="tabs" aria-label="Sections">
 						{catalog.sections.map((section) => (

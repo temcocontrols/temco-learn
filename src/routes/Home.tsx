@@ -29,7 +29,7 @@ export function Home() {
 	return (
 		<>
 			<div className="hero">
-				<p className="eyebrow">Temco Learn</p>
+				<p className="eyebrow">T3000 Help</p>
 				<h1>Documentation for every Temco product</h1>
 				<p className="lede">
 					Guides, references, training and commissioning checks, one folder per product and one page per version. Every version a

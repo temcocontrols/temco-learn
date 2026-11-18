@@ -107,7 +107,7 @@ export function Print() {
 	return (
 		<div className="print">
 			<div className="print__cover">
-				<p className="eyebrow">Temco Learn</p>
+				<p className="eyebrow">T3000 Help</p>
 				<h1>{project.title}</h1>
 				<p className="lede">
 					{single ? (printed?.[0]?.title ?? held.version) : `${held.version} · ${plural(printed?.length ?? 0, 'page')}`}

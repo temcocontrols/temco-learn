@@ -210,7 +210,7 @@ function landing(projectTitle: string, version: string, pages: PageEntry[]): str
 </head>
 <body>
 <h1>${escape(projectTitle)} ${escape(version)}</h1>
-<p class="lead">Temco Learn — the guide for this version, in Windows Help.</p>
+<p class="lead">T3000 Help — the guide for this version, in Windows Help.</p>
 <ul>${items}</ul>
 </body>
 </html>

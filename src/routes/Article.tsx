@@ -157,7 +157,7 @@ export function Article() {
 	}, [project, held, page]);
 
 	React.useEffect(() => {
-		document.title = page === undefined ? 'Temco Learn' : `${page.title} · Temco Learn`;
+		document.title = page === undefined ? 'T3000 Help' : `${page.title} · T3000 Help`;
 	}, [page]);
 
 	// A new page starts with a clean tree filter, and the reader's own page scrolled into the tree.

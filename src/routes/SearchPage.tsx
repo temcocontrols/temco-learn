@@ -42,13 +42,13 @@ export function SearchPage() {
 	}, [query]);
 
 	React.useEffect(() => {
-		document.title = query === '' ? 'Search · Temco Learn' : `${query} · Temco Learn`;
+		document.title = query === '' ? 'Search · T3000 Help' : `${query} · T3000 Help`;
 	}, [query]);
 
 	return (
 		<>
 			<div className="hero">
-				<p className="eyebrow">Temco Learn</p>
+				<p className="eyebrow">T3000 Help</p>
 				<h1>Search</h1>
 				<form
 					className="bigsearch"

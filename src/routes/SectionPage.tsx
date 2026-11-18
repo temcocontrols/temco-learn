@@ -14,7 +14,7 @@ export function SectionPage({ section }: { section: Section }) {
 	return (
 		<>
 			<div className="hero">
-				<p className="eyebrow">Temco Learn</p>
+				<p className="eyebrow">T3000 Help</p>
 				<h1>{section.title}</h1>
 				<p className="lede">{section.description}</p>
 			</div>

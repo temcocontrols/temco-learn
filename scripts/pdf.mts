@@ -134,7 +134,7 @@ async function main(): Promise<void> {
 				footerTemplate:
 					'<div style="width:100%;padding:0 15mm;font:9px \'Segoe UI\',sans-serif;color:#666;display:flex;justify-content:space-between">' +
 					`<span>${escape(footer)}</span>` +
-					'<span>Temco Learn · page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>'
+					'<span>T3000 Help · page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>'
 			});
 			const size = (await stat(target)).size;
 			written += 1;

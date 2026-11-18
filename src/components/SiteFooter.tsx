@@ -34,7 +34,7 @@ export function SiteFooter() {
 						<span className="brand__mark" aria-hidden="true">
 							T
 						</span>
-						<span className="brand__name">Temco Learn</span>
+						<span className="brand__name">T3000 Help</span>
 					</Link>
 					<p className="foot__tag">Guides, references and commissioning checks for every Temco product.</p>
 				</div>

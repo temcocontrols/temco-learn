@@ -66,7 +66,7 @@ export function addressOf(project: string, version: string, page?: PageEntry): s
 
 export function describePage(pathname: string, catalog: Catalog): PageInfo {
 	const parts = pathname.split('/').filter((part) => part !== '');
-	const home: Crumb = { label: 'Temco Learn', to: '/' };
+	const home: Crumb = { label: 'T3000 Help', to: '/' };
 	const first = parts[0];
 
 	if (first === undefined) {
