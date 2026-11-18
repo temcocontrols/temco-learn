@@ -3,7 +3,7 @@ title: "Temco Platform — architecture"
 order: 10
 ---
 
-Temco Platform is the **authoring** application: a desktop app built on a VS Code fork where documentation is written, organised into projects, built into a website — plus a whole-guide PDF and a Windows help file — and published to [Temco Learn](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-learn/README.md), the site readers open.
+Temco Platform is the **authoring** application: a desktop app built on a VS Code fork where documentation is written, organised into projects, built into a website — plus a whole-guide PDF and a Windows help file — and published to [T3000 Help](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-learn/README.md), the site readers open.
 
 Everything Temco builds is either **the shell** (application behaviour) or **a module** (a feature).
 
@@ -29,7 +29,7 @@ write  →  build  →  add  →  make the downloads  →  publish  →  GitHub 
 | Repository | Is |
 |---|---|
 | `temco-platform` | the application: the shell and every module |
-| `temco-learn` | the published documentation site ([Temco Learn](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-learn/README.md)) |
+| `temco-learn` | the published documentation site ([T3000 Help](https://github.com/temcocontrols/temco-platform/blob/main/docs/temco-learn/README.md)) |
 
 The application and all its modules live in one repository. `temco-learn` is separate because it is a published artifact, not a module.
 
@@ -114,7 +114,7 @@ Nothing needs registering for a module to build or ship: the build picks up ever
 
 ## Publishing your documentation
 
-New to the platform? Start here: from an empty folder to a page on Temco Learn, in nine steps, each with a file to look at before you go on — [introduction.md](./introduction.md). The same document carries the rest of what a project can do — sources, the editor, validate, release, export, translate — in *Beyond the flow*.
+New to the platform? Start here: from an empty folder to a page on T3000 Help, in nine steps, each with a file to look at before you go on — [introduction.md](./introduction.md). The same document carries the rest of what a project can do — sources, the editor, validate, release, export, translate — in *Beyond the flow*.
 
 ## Naming
 

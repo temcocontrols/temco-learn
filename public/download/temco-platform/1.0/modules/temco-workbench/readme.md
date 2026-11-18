@@ -27,7 +27,7 @@ The application's own surfaces. It is the only module that is not a domain: it o
 | `src/helpPages.ts` | Welcome, Help, Keyboard Shortcuts, Logs, Report an Issue, About — and the one preference Welcome carries |
 | `src/settingsPages.ts` | the five settings pages (General, Modules, Branding, AI Runtime, Publishing). Every row is a declared setting, so a write lands in `settings.json` and the window obeys it at once; the page reads the configuration back and never keeps a value of its own |
 | `src/needsPage.ts` | what wants a person, gathered from every module into one list with the reason and where the fix is |
-| `src/learnPages.ts` | Temco Learn as a reader sees it: Home, T3000, an article, Downloads, Learning Paths |
+| `src/learnPages.ts` | T3000 Help as a reader sees it: Home, T3000, an article, Downloads, Learning Paths |
 | `src/surface.ts` | the page view types |
 | `src/docs.ts` · `src/store.ts` · `src/ui.ts` · `src/repositories.ts` · `src/aiModule.ts` | what it reads of the documentation module, the store, the UI rules, the repository scripts and the AI — each in one file, because an extension cannot import another extension's sources |
 

@@ -37,7 +37,7 @@ order: 30
 | `scripts/check-docs.mts` | the Fluent surface's bundle loaded into a DOM and driven the way the host drives it — it renders, `ready` is posted **once**, the formatting actions produce the right Markdown, an identical `set` disturbs nothing, an outside change still arrives. `npm run check-docs` |
 | `scripts/check-record.mts` | the attachment record through a table of cases, including the one that matters: a picture with no recorded version is never called stale. `npm run check-record` |
 | `tsconfig.webview.json` | the webview sources type-checked on their own, since `tsconfig.json` covers the extension host only. `npm run check-types` |
-| `scripts/check-learn.mts` | the Temco Learn portal: what a `manifest.json` means, and what the page it writes says. The first coverage of a file written on every publish and read by nobody. `npm run check-learn` |
+| `scripts/check-learn.mts` | the T3000 Help portal: what a `manifest.json` means, and what the page it writes says. The first coverage of a file written on every publish and read by nobody. `npm run check-learn` |
 | `src/learnPage.ts` | the portal page and the manifest rules, as pure functions — no `vscode`, so the publish path has something to test |
 | `src/webviewText.ts` | the bridge every webview surface shares: one `WorkspaceEdit` per save, line endings preserved, the echo guard, the capture handshake, and the bar actions (preview / diff / source / properties). Nothing that could corrupt a file is decided twice |
 | `src/csv.ts` | CSV as a grid can hold it and back again: RFC 4180 quoting, delimiter and end-of-line detected, and the *quoting style* preserved per cell so a one-cell edit is a one-line diff. No VS Code here at all |
@@ -724,8 +724,8 @@ generator produced, and **the reader is not a second renderer**: the article is 
 (or MkDocs, or Docusaurus) keeps rendering its own Markdown, and the reader supplies the shape a documentation site has.
 
 ```
-┌ Temco Learn ──────────────────────────────────────────────────────────────────────────────┐
-│ Temco Learn   T3000                        [13.0 ▾]        [ Search this version… ]       │
+┌ T3000 Help ──────────────────────────────────────────────────────────────────────────────┐
+│ T3000 Help   T3000                        [13.0 ▾]        [ Search this version… ]       │
 ├──────────────────┬───────────────────────────────────────────────────┬────────────────────┤
 │ T3000 · 13.0     │ T3000 › Commissioning the T3000                   │ IN THIS ARTICLE     │
 │  T3000 docs      │                                                   │  Before you start   │
