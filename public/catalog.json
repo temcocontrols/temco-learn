@@ -1,5 +1,5 @@
 {
-	"generated": "2026-11-20T03:27:31.384Z",
+	"generated": "2026-11-20T03:39:15.131Z",
 	"sections": [
 		{
 			"id": "documentation",
@@ -3984,14 +3984,14 @@
 			"versions": [
 				{
 					"version": "1.0",
-					"builtAt": "2026-11-20T03:27:14.254Z",
+					"builtAt": "2026-11-20T03:38:58.018Z",
 					"pages": [
 						{
 							"href": "index",
 							"title": "Tstat11",
 							"kind": "md",
 							"source": "content/tstat11/1.0/00-index.md",
-							"updated": "2026-11-20T03:27:14.254Z",
+							"updated": "2026-11-20T03:38:58.018Z",
 							"minutes": 1
 						},
 						{
@@ -3999,7 +3999,7 @@
 							"title": "The Tstat11",
 							"kind": "md",
 							"source": "content/tstat11/1.0/00-hub.md",
-							"updated": "2026-11-20T03:27:14.198Z",
+							"updated": "2026-11-20T03:38:57.963Z",
 							"minutes": 3
 						},
 						{
@@ -4007,7 +4007,7 @@
 							"title": "The Tstat11 IO envelope",
 							"kind": "md",
 							"source": "content/tstat11/1.0/hardware/model-matrix.md",
-							"updated": "2026-11-20T03:27:14.199Z",
+							"updated": "2026-11-20T03:38:57.965Z",
 							"minutes": 1
 						},
 						{
@@ -4015,7 +4015,7 @@
 							"title": "How flash is divided",
 							"kind": "md",
 							"source": "content/tstat11/1.0/hardware/flash-layout.md",
-							"updated": "2026-11-20T03:27:14.200Z",
+							"updated": "2026-11-20T03:38:57.966Z",
 							"minutes": 2
 						},
 						{
@@ -4023,7 +4023,7 @@
 							"title": "The screens that ship on the device",
 							"kind": "md",
 							"source": "content/tstat11/1.0/display/shipped-screens.md",
-							"updated": "2026-11-20T03:27:14.201Z",
+							"updated": "2026-11-20T03:38:57.967Z",
 							"minutes": 1
 						},
 						{
@@ -4031,7 +4031,7 @@
 							"title": "Design Studio: overview",
 							"kind": "md",
 							"source": "content/tstat11/1.0/t3-eez-studio/manual/01-overview.md",
-							"updated": "2026-11-20T03:27:14.203Z",
+							"updated": "2026-11-20T03:38:57.968Z",
 							"minutes": 6
 						},
 						{
@@ -4039,7 +4039,7 @@
 							"title": "Design Studio: creating a project",
 							"kind": "md",
 							"source": "content/tstat11/1.0/t3-eez-studio/manual/02-creating-projects.md",
-							"updated": "2026-11-20T03:27:14.204Z",
+							"updated": "2026-11-20T03:38:57.969Z",
 							"minutes": 6
 						},
 						{
@@ -4047,7 +4047,7 @@
 							"title": "Design Studio: designing screens",
 							"kind": "md",
 							"source": "content/tstat11/1.0/t3-eez-studio/manual/03-editing-screens.md",
-							"updated": "2026-11-20T03:27:14.206Z",
+							"updated": "2026-11-20T03:38:57.971Z",
 							"minutes": 6
 						},
 						{
@@ -4055,7 +4055,7 @@
 							"title": "Design Studio: adding logic with EEZ Flow",
 							"kind": "md",
 							"source": "content/tstat11/1.0/t3-eez-studio/manual/04-eez-flow.md",
-							"updated": "2026-11-20T03:27:14.208Z",
+							"updated": "2026-11-20T03:38:57.973Z",
 							"minutes": 5
 						},
 						{
@@ -4063,7 +4063,7 @@
 							"title": "Design Studio: preview, bind and deploy",
 							"kind": "md",
 							"source": "content/tstat11/1.0/t3-eez-studio/manual/05-preview-and-deploy.md",
-							"updated": "2026-11-20T03:27:14.210Z",
+							"updated": "2026-11-20T03:38:57.975Z",
 							"minutes": 5
 						},
 						{
@@ -4071,7 +4071,7 @@
 							"title": "Design Studio: reference and FAQ",
 							"kind": "md",
 							"source": "content/tstat11/1.0/t3-eez-studio/manual/06-reference-and-faq.md",
-							"updated": "2026-11-20T03:27:14.211Z",
+							"updated": "2026-11-20T03:38:57.976Z",
 							"minutes": 6
 						},
 						{
@@ -4079,7 +4079,7 @@
 							"title": "Design Studio: how it is built",
 							"kind": "md",
 							"source": "content/tstat11/1.0/t3-eez-studio/README.md",
-							"updated": "2026-11-20T03:27:14.213Z",
+							"updated": "2026-11-20T03:38:57.977Z",
 							"minutes": 3
 						},
 						{
@@ -4087,7 +4087,7 @@
 							"title": "Design Studio API: overview",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bacnet-api/README.md",
-							"updated": "2026-11-20T03:27:14.214Z",
+							"updated": "2026-11-20T03:38:57.979Z",
 							"minutes": 4
 						},
 						{
@@ -4095,7 +4095,7 @@
 							"title": "Screen JSON: the format",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bacnet-api/screen-json.md",
-							"updated": "2026-11-20T03:27:14.215Z",
+							"updated": "2026-11-20T03:38:57.981Z",
 							"minutes": 6
 						},
 						{
@@ -4103,7 +4103,7 @@
 							"title": "Design Studio API: endpoints",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bacnet-api/commands.md",
-							"updated": "2026-11-20T03:27:14.216Z",
+							"updated": "2026-11-20T03:38:57.982Z",
 							"minutes": 5
 						},
 						{
@@ -4111,7 +4111,7 @@
 							"title": "The device display API",
 							"kind": "md",
 							"source": "content/tstat11/1.0/display-api/overview.md",
-							"updated": "2026-11-20T03:27:14.218Z",
+							"updated": "2026-11-20T03:38:57.983Z",
 							"minutes": 3
 						},
 						{
@@ -4119,7 +4119,7 @@
 							"title": "Display API: endpoints",
 							"kind": "md",
 							"source": "content/tstat11/1.0/display-api/endpoints.md",
-							"updated": "2026-11-20T03:27:14.219Z",
+							"updated": "2026-11-20T03:38:57.984Z",
 							"minutes": 4
 						},
 						{
@@ -4127,7 +4127,7 @@
 							"title": "Display API: payloads and patching",
 							"kind": "md",
 							"source": "content/tstat11/1.0/display-api/payloads.md",
-							"updated": "2026-11-20T03:27:14.220Z",
+							"updated": "2026-11-20T03:38:57.985Z",
 							"minutes": 6
 						},
 						{
@@ -4135,7 +4135,7 @@
 							"title": "Display API: examples",
 							"kind": "md",
 							"source": "content/tstat11/1.0/display-api/examples.md",
-							"updated": "2026-11-20T03:27:14.221Z",
+							"updated": "2026-11-20T03:38:57.986Z",
 							"minutes": 4
 						},
 						{
@@ -4143,7 +4143,7 @@
 							"title": "Importing screens from a device",
 							"kind": "md",
 							"source": "content/tstat11/1.0/t3-eez-studio/import-from-device-design.md",
-							"updated": "2026-11-20T03:27:14.223Z",
+							"updated": "2026-11-20T03:38:57.988Z",
 							"minutes": 10
 						},
 						{
@@ -4151,7 +4151,7 @@
 							"title": "Deploying to a device",
 							"kind": "md",
 							"source": "content/tstat11/1.0/t3-eez-studio/device-interface-deployment-via-bacnet-design.md",
-							"updated": "2026-11-20T03:27:14.226Z",
+							"updated": "2026-11-20T03:38:57.990Z",
 							"minutes": 24
 						},
 						{
@@ -4159,7 +4159,7 @@
 							"title": "The .EEZ-Project JSON format",
 							"kind": "md",
 							"source": "content/tstat11/1.0/t3-eez-studio/lvgl-eez-project-json-format.md",
-							"updated": "2026-11-20T03:27:14.228Z",
+							"updated": "2026-11-20T03:38:57.992Z",
 							"minutes": 39
 						},
 						{
@@ -4167,7 +4167,7 @@
 							"title": "Beginner guide: update a Tstat11",
 							"kind": "md",
 							"source": "content/tstat11/1.0/firmware/01-user-update-guide.md",
-							"updated": "2026-11-20T03:27:14.229Z",
+							"updated": "2026-11-20T03:38:57.993Z",
 							"minutes": 6
 						},
 						{
@@ -4175,7 +4175,7 @@
 							"title": "The static-resource asset pipeline",
 							"kind": "md",
 							"source": "content/tstat11/1.0/t3-eez-studio/static-resource-copy-build.md",
-							"updated": "2026-11-20T03:27:14.230Z",
+							"updated": "2026-11-20T03:38:57.994Z",
 							"minutes": 5
 						},
 						{
@@ -4183,15 +4183,15 @@
 							"title": "Developer guide: build and validate firmware",
 							"kind": "md",
 							"source": "content/tstat11/1.0/firmware/02-developer-build-guide.md",
-							"updated": "2026-11-20T03:27:14.231Z",
-							"minutes": 13
+							"updated": "2026-11-20T03:38:57.995Z",
+							"minutes": 14
 						},
 						{
 							"href": "t3-eez-studio/wasm-browser-build-migration",
 							"title": "The LVGL WASM browser build",
 							"kind": "md",
 							"source": "content/tstat11/1.0/t3-eez-studio/wasm-browser-build-migration.md",
-							"updated": "2026-11-20T03:27:14.232Z",
+							"updated": "2026-11-20T03:38:57.997Z",
 							"minutes": 5
 						},
 						{
@@ -4199,7 +4199,7 @@
 							"title": "What the firmware runs",
 							"kind": "md",
 							"source": "content/tstat11/1.0/firmware/what-the-firmware-runs.md",
-							"updated": "2026-11-20T03:27:14.234Z",
+							"updated": "2026-11-20T03:38:57.998Z",
 							"minutes": 2
 						},
 						{
@@ -4207,7 +4207,7 @@
 							"title": "Building the firmware",
 							"kind": "md",
 							"source": "content/tstat11/1.0/firmware/building.md",
-							"updated": "2026-11-20T03:27:14.234Z",
+							"updated": "2026-11-20T03:38:57.999Z",
 							"minutes": 2
 						},
 						{
@@ -4215,7 +4215,7 @@
 							"title": "Loading firmware onto a device",
 							"kind": "md",
 							"source": "content/tstat11/1.0/firmware/flashing.md",
-							"updated": "2026-11-20T03:27:14.235Z",
+							"updated": "2026-11-20T03:38:57.999Z",
 							"minutes": 3
 						},
 						{
@@ -4223,7 +4223,7 @@
 							"title": "MQTT publishing",
 							"kind": "md",
 							"source": "content/tstat11/1.0/firmware/mqtt-guide.md",
-							"updated": "2026-11-20T03:27:14.236Z",
+							"updated": "2026-11-20T03:38:58.000Z",
 							"minutes": 7
 						},
 						{
@@ -4231,7 +4231,7 @@
 							"title": "How the MQTT task works",
 							"kind": "md",
 							"source": "content/tstat11/1.0/firmware/mqtt-implementation.md",
-							"updated": "2026-11-20T03:27:14.237Z",
+							"updated": "2026-11-20T03:38:58.002Z",
 							"minutes": 6
 						},
 						{
@@ -4239,7 +4239,7 @@
 							"title": "How a firmware update runs",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bootloader/update-flow.md",
-							"updated": "2026-11-20T03:27:14.240Z",
+							"updated": "2026-11-20T03:38:58.003Z",
 							"minutes": 1
 						},
 						{
@@ -4247,7 +4247,7 @@
 							"title": "The update registers",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bootloader/update-registers.md",
-							"updated": "2026-11-20T03:27:14.241Z",
+							"updated": "2026-11-20T03:38:58.004Z",
 							"minutes": 2
 						},
 						{
@@ -4255,7 +4255,7 @@
 							"title": "Resuming an interrupted update",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bootloader/resuming-an-update.md",
-							"updated": "2026-11-20T03:27:14.243Z",
+							"updated": "2026-11-20T03:38:58.005Z",
 							"minutes": 5
 						},
 						{
@@ -4263,7 +4263,7 @@
 							"title": "Inside the bootloader",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bootloader/inside-the-bootloader.md",
-							"updated": "2026-11-20T03:27:14.244Z",
+							"updated": "2026-11-20T03:38:58.006Z",
 							"minutes": 4
 						},
 						{
@@ -4271,7 +4271,7 @@
 							"title": "Trying the update commands",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bootloader/trying-the-commands.md",
-							"updated": "2026-11-20T03:27:14.245Z",
+							"updated": "2026-11-20T03:38:58.007Z",
 							"minutes": 1
 						},
 						{
@@ -4279,7 +4279,7 @@
 							"title": "Signing firmware",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bootloader/signing-firmware.md",
-							"updated": "2026-11-20T03:27:14.246Z",
+							"updated": "2026-11-20T03:38:58.008Z",
 							"minutes": 1
 						},
 						{
@@ -4287,7 +4287,7 @@
 							"title": "Skipping signature validation",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bootloader/skip-signature-validation.md",
-							"updated": "2026-11-20T03:27:14.247Z",
+							"updated": "2026-11-20T03:38:58.009Z",
 							"minutes": 1
 						},
 						{
@@ -4295,7 +4295,7 @@
 							"title": "BACnet change of value",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bootloader/bacnet-cov.md",
-							"updated": "2026-11-20T03:27:14.248Z",
+							"updated": "2026-11-20T03:38:58.010Z",
 							"minutes": 4
 						},
 						{
@@ -4303,7 +4303,7 @@
 							"title": "The BACnet protocol stack",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bootloader/bacnet-stack.md",
-							"updated": "2026-11-20T03:27:14.249Z",
+							"updated": "2026-11-20T03:38:58.012Z",
 							"minutes": 2
 						},
 						{
@@ -4311,7 +4311,7 @@
 							"title": "Wi-Fi station mode",
 							"kind": "md",
 							"source": "content/tstat11/1.0/bootloader/wifi-station-mode.md",
-							"updated": "2026-11-20T03:27:14.251Z",
+							"updated": "2026-11-20T03:38:58.014Z",
 							"minutes": 4
 						},
 						{
@@ -4319,7 +4319,7 @@
 							"title": "Testing the firmware without hardware",
 							"kind": "md",
 							"source": "content/tstat11/1.0/testing/host-unit-tests.md",
-							"updated": "2026-11-20T03:27:14.252Z",
+							"updated": "2026-11-20T03:38:58.016Z",
 							"minutes": 3
 						},
 						{
@@ -4327,7 +4327,7 @@
 							"title": "The 729 verified APIs",
 							"kind": "md",
 							"source": "content/tstat11/1.0/testing/verified-apis.md",
-							"updated": "2026-11-20T03:27:14.254Z",
+							"updated": "2026-11-20T03:38:58.017Z",
 							"minutes": 11
 						}
 					]

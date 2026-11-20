@@ -33,7 +33,7 @@ Consequences to keep in mind:
 - Flashing the application project's own `bootloader.bin` or `partition-table.bin` over a working device is an unplanned layout change, not an application update.
 - `temco_app.bin` must fit the `ota_0` partition defined by the **installed** partition table — not by whatever the application checkout happens to contain.
 
-The documentation repositories are deliberately outside this firmware guide.
+The documentation repositories are deliberately outside this firmware guide. The repository `T3_Bootloader` has no build guide of its own — its `README.md` is a one-line description, and its other documents cover the update protocol (`FIRMWARE_UPDATE_FLOWCHART.md`) and signing (`File/Sign_Guide.md`, `File/Skip_Sign_Validation.md`). The build and flash instructions live here, in this manual.
 
 ### Which branch of `T3_Bootloader` builds the ESP32-S3 binaries
 
@@ -54,8 +54,31 @@ To build the ESP32-S3 set locally:
 
 ```powershell
 Set-Location "C:\QN\temcocontrols\T3_Bootloader"
+git status                   # must be clean before switching
 git fetch origin
 git switch --track origin/Bhavik_Tstate11
+git log -1 --oneline
+```
+
+Confirm the checked-in configuration before compiling:
+
+```powershell
+Select-String -Path .\sdkconfig -Pattern '^CONFIG_IDF_TARGET=|^CONFIG_ESPTOOLPY_FLASHSIZE=|^CONFIG_PARTITION_TABLE_CUSTOM_FILENAME='
+# expect: esp32s3 / 32MB / temco_partitions.csv
+```
+
+From an **ESP-IDF 5.5 PowerShell** terminal:
+
+```powershell
+idf.py --version    # must report 5.5.3
+idf.py fullclean
+idf.py build
+```
+
+To reproduce the packaged set exactly rather than the newest code:
+
+```powershell
+git switch --detach 95d60a06
 idf.py fullclean
 idf.py build
 ```
@@ -63,13 +86,29 @@ idf.py build
 Expected outputs:
 
 ```text
-build\bootloader\bootloader.bin
-build\partition_table\partition-table.bin
-build\ota_data_initial.bin
-build\T3_bootloader.bin
+build\bootloader\bootloader.bin            ~21 KB
+build\partition_table\partition-table.bin   3072 B
+build\ota_data_initial.bin                  8192 B
+build\T3_bootloader.bin                     ~840 KB   (must stay under 1 MB)
 ```
 
-Confirm after building that the generated partition table still matches the address map used by the flash tool, and that `build\T3_bootloader.bin` is smaller than the 1 MB factory partition.
+Rules for this build:
+
+- **Do not run `idf.py set-target esp32s3`.** The committed `sdkconfig` is already `esp32s3`; `set-target` regenerates it from defaults, renames the existing file to `sdkconfig.old`, and drops this project's settings.
+- The first build downloads `espressif/mdns` from the component registry — network access is required. `dependencies.lock` pins version 1.13.1.
+- No `temco_bacnet` / `temco_IO_control` copy is needed here. That step belongs to the application project only.
+- Switching branches rewrites `sdkconfig` and removes `temco_partitions.cvs`. Switch back to `main` when you need the ESP32 line.
+
+Verify the result before flashing:
+
+```powershell
+& 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\esptool.exe' --chip esp32s3 image_info .\build\bootloader\bootloader.bin
+& 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' `
+  'C:\Espressif\frameworks\esp-idf-v5.5.3\components\partition_table\gen_esp32part.py' `
+  .\build\partition_table\partition-table.bin
+```
+
+The decoded table must show `factory` at `0x20000` size `1M` and `ota_0` at `0x120000` size `6M`. If it shows `0x10000` / `0x110000`, the build came from `main`, not from `Bhavik_Tstate11`.
 
 ## 2. Prerequisites
 
