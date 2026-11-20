@@ -145,6 +145,12 @@ These files are not interchangeable:
 | `T3_bootloader.bin` | TEMCO factory application that performs later RS485 firmware updates |
 | `temco_app.bin` | Normal Tstat11 controller application |
 
+The four boot/update files come from the `T3_Bootloader` project's GitHub Actions build on branch `Bhavik_Tstate11`:
+
+<https://github.com/temcocontrols/T3_Bootloader/actions/workflows/build.yml>
+
+`temco_app.bin` comes from `T3-programmable-controller-on-ESP32`. Downloading, verifying and building each set is described in the [developer guide](02-developer-build-guide.md). Actions artifacts expire, so keep the verified binaries you were given rather than relying on an old run link.
+
 The Flash Download Tool is configured at:
 
 ```text
