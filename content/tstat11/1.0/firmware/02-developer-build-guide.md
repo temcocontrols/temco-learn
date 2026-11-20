@@ -5,26 +5,31 @@ order: 230
 
 This guide covers the development path from a clean checkout to a verified `temco_app.bin`. It is for firmware developers and release testers. A deployed Tstat11 should normally be updated with T3000 as described in the [beginner update guide](01-user-update-guide.md).
 
-## 1. Repository responsibilities
+## 1. The two firmware projects
 
-| Repository/project | Responsibility |
-|---|---|
-| `T3-programmable-controller-on-ESP32` | ESP32-S3 firmware source and build outputs |
-| `temco-platform` | Tooling that authors, validates and imports documentation builds |
-| `tstat11` documentation project | Source Markdown, registry, images and generated `dist/docs` |
-| `temco-learn` | Published documentation content and static hosting |
+| Repository | Output | Purpose |
+|---|---|---|
+| `C:\QN\temcocontrols\T3_Bootloader` | ESP32 first-stage `bootloader.bin`, `partition-table.bin`, `ota_data_initial.bin`, and factory application `T3_bootloader.bin` | Installs or repairs the low-level boot/update environment and the TEMCO recovery/update application |
+| `C:\QN\temcocontrols\T3-programmable-controller-on-ESP32` | `temco_app.bin` and build support files such as `ota_data_initial.bin` | Builds the normal controller application installed after the bootloader is present |
 
-The documentation source of truth for Tstat11 is the project under `C:\Users\Double\temco\projects\tstat11`. Temco Learn contains the published copy, not a second authoring source.
+The name `T3_bootloader.bin` is easy to misunderstand. It is the ESP-IDF project output named `T3_bootloader`; it is an **application binary placed in the factory application partition**. It is not the same file as ESP-IDF's small `bootloader.bin`, which runs first at chip reset.
+
+These projects have separate source histories and build configurations. A normal application build does not rebuild the TEMCO bootloader/update application. Likewise, building the bootloader project does not build the latest controller UI, protocols and I/O code.
+
+The documentation repositories are deliberately outside this firmware guide.
 
 ## 2. Prerequisites
 
-Install:
+Install or obtain:
 
 - Git with submodule support
-- Espressif ESP-IDF **5.5.3**
+- Espressif ESP-IDF **5.5.3** for source builds
 - The tools installed by the ESP-IDF Windows installer
-- T3000 and a USB-to-RS485 adapter for hardware validation
+- T3000 and a USB-to-RS485 adapter for normal application updates
+- Espressif Flash Download Tool and the approved four-file bootloader package for full reflash/recovery
 - Optionally, ESP-IDF Eclipse if the IDE workflow is preferred
+
+The working T3-S recovery tool is under `C:\Users\Double\Desktop\T3-S\flash_download_tool\flash_download_tool`. Do not confuse this low-level UART tool with T3000's RS485 firmware loader.
 
 Use installation and project paths without spaces. Open an **ESP-IDF 5.5 PowerShell** terminal so that `idf.py` and the toolchain are configured.
 
@@ -87,6 +92,8 @@ The checked-in configuration currently specifies:
 Review the partition table whenever changing flash-related code. The application and the installed bootloader must agree on the same partition names, offsets and sizes. Never copy an address list from an older product manual into a current build.
 
 The current file is [temco_partitions.csv](https://github.com/temcocontrols/T3-programmable-controller-on-ESP32/blob/CB-Tstate-11/temco_partitions.csv). The generated build's `flash_args` and `flasher_args.json` are authoritative for that specific build.
+
+The approved four-file Flash Download Tool package has a slightly different historical layout: factory `0x20000` size 1 MB and `ota_0` `0x120000` size 6 MB. This is the layout decoded from its packaged `partition-table.bin`. That distinction is why a developer must not mix a newly generated application-project partition table with the installed/recovery bootloader package unless the complete pair has been rebuilt and tested together.
 
 ## 6. Build from the command line
 
@@ -162,40 +169,75 @@ Also review:
 
 For a security-sensitive or production image, validate the approved signing process before deployment.
 
-## 10. Install on a development Tstat11
+## 10. The two installation flows
 
-For a device that boots normally, use the beginner guide's T3000 route:
+### A. Normal application update — use T3000
+
+Use this when the controller boots and the TEMCO bootloader/update application is present:
 
 1. Connect power and USB-to-RS485.
 2. Scan and select the exact Tstat11.
 3. Open **Tools → Load firmware for a single device**.
-4. Select the COM port, `115200` baud, and the generated `temco_app.bin`.
-5. Start the update and preserve power until completion and reboot.
+4. Select the COM port, `115200` baud, and `temco_app.bin` from `T3-programmable-controller-on-ESP32`.
+5. Keep power connected through completion and reboot.
 
-Do not use `idf.py flash` merely because the development machine has ESP-IDF installed. Direct UART flashing writes bootloader and partition files and can replace the factory layout.
+T3000 sends `temco_app.bin` through the bootloader's RS485 update protocol. The updater validates the transfer and places the main application in the OTA application slot. The `ota_data_initial.bin` from an application build is metadata for a complete direct flash; it is not selected as a firmware file in T3000.
 
-## 11. Direct UART/recovery flashing
+### B. Full reflash — use Espressif Flash Download Tool
 
-Direct flashing is a recovery activity. Before using it on Tstat11, obtain all of the following for the exact PCB revision:
+Use this when instructed to recover or initialize the complete ESP32-S3 flash environment. The saved T3-S tool configuration at:
 
-- Correct USB-to-TTL adapter and voltage
-- Correct header and pinout
-- Exact download-mode jumper/button sequence
-- Correct bootloader, partition table and application binaries
-- Confirmed flash mode, frequency, size and addresses from that build
-
-For an ESP-IDF-generated full image set, inspect `build\flasher_args.json` and `build\flash_args`; do not copy the legacy TSTAT10/T3-Nano address map without verification.
-
-Once the exact set has been approved, the standard ESP-IDF command is a possible development path:
-
-```powershell
-idf.py -p COM5 flash
-idf.py -p COM5 monitor
+```text
+C:\Users\Double\Desktop\T3-S\flash_download_tool\flash_download_tool
 ```
 
-Exit the monitor with `Ctrl+]`. Replace `COM5` with the adapter's actual port.
+uses the following four-file package:
 
-Never use this route solely to perform a normal application update. Never flash an unverified partition table over a production device.
+| File | Address | Meaning |
+|---|---:|---|
+| `bootloader.bin` | `0x0` | ESP32-S3 first-stage bootloader |
+| `partition-table.bin` | `0x8000` | Partition names, addresses and sizes |
+| `ota_data_initial.bin` | `0x19000` | Initial OTA-selection state |
+| `T3_bootloader.bin` | `0x20000` | TEMCO factory application that handles firmware updates |
+
+The latest package checked for this guide is:
+
+```text
+C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\
+```
+
+Its partition table decodes to a 1 MB factory partition at `0x20000`, a 6 MB `ota_0` application partition at `0x120000`, and the remaining data partitions. The configured first-stage file starts with an ESP32-S3 image header.
+
+After the four-file flash succeeds, the device has the boot/update environment, but the full controller application still must be installed. Return to T3000 and transfer the approved `temco_app.bin`. Do not select an arbitrary file named `ota_data_initial.bin` for this second step; the two packages contain identical OTA data, but T3000's normal application transfer uses `temco_app.bin` only.
+
+## 11. Full-reflash procedure
+
+1. Confirm with the hardware owner that the ESP32-S3 is in UART download mode and that the correct programming connector/power arrangement is used.
+2. Start `flash_download_tool_3.9.9_R2.exe` from the T3-S flash tool folder.
+3. Choose the ESP32-S3 download target and UART mode.
+4. Select and verify these four rows:
+
+```text
+C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\bootloader.bin       @ 0x0
+C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\partition-table.bin  @ 0x8000
+C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\ota_data_initial.bin @ 0x19000
+C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\T3_bootloader.bin    @ 0x20000
+```
+
+5. Select the correct COM port. The saved example uses COM5, but the local port must be confirmed in Device Manager.
+6. Erase/download using the hardware developer's approved settings and wait for all four rows to verify successfully.
+7. Remove download mode and reboot as instructed for the board.
+8. Confirm the device identifies itself as the bootloader/update environment.
+9. Use T3000 over RS485 to load `temco_app.bin` from the approved application package.
+10. Reboot and run the hardware validation checklist.
+
+Do not substitute files from the other flow, do not shift these addresses, and do not flash only `T3_bootloader.bin` as though it were `bootloader.bin`.
+
+### Important source/package warning
+
+The local checkout `C:\QN\temcocontrols\T3_Bootloader` is the source repository for the TEMCO bootloader/update project. However, its checked-in `main` configuration inspected for this guide currently shows the older ESP32/4 MB target and `temco_partitions.cvs`, while the packaged `latest` binaries are ESP32-S3 and contain the 32 MB-style partition layout above. They are therefore **not confirmed to have been produced by the current local checkout**.
+
+Before rebuilding or replacing the four-file package from source, identify the exact branch, commit, `sdkconfig`, partition CSV and build artifact that produced it. Do not overwrite the proven `latest` package with binaries from the stale/different local configuration.
 
 ## 12. Hardware validation checklist
 
@@ -237,34 +279,7 @@ Approval: <development/test/production>
 
 Do not publish a CI artifact as the latest product firmware without release approval.
 
-## 14. Publish Tstat11 documentation
-
-From the Tstat11 documentation project:
-
-```powershell
-Set-Location "C:\Users\Double\temco\projects\tstat11"
-npm run docs:registry
-npm run docs:site
-```
-
-Confirm that `dist\docs` contains the intended pages and assets. In Temco Platform, use the documentation build workflow to import that build into Temco Learn. The result belongs under:
-
-```text
-C:\QN\temcocontrols\temco-learn\content\tstat11\1.0\
-```
-
-Then validate Temco Learn from its repository root:
-
-```powershell
-Set-Location "C:\QN\temcocontrols\temco-learn"
-npm run catalog
-npm run check
-npm run build:fast
-```
-
-Publishing requires a reviewed update in Temco Learn and the repository's normal commit/push process. Temco Learn is the hosting output; do not edit its Tstat11 files as the primary source.
-
-## 15. Failure boundaries
+## 14. Failure boundaries
 
 Stop and investigate rather than forcing a flash when:
 

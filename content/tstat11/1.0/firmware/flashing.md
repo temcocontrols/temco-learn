@@ -5,7 +5,9 @@ order: 260
 
 Normally the bootloader is already in the product when it ships, and a firmware update goes through T3000 over RS485. Use the [beginner guide](01-user-update-guide.md) for the complete normal Tstat11 workflow.
 
-The T3-Nano and TSTAT10 procedures below are retained as legacy hardware reference. Their headers, jumpers and download sequences have **not** been verified for Tstat11. Do not use them for Tstat11 recovery until the exact board revision, pinout and approved recovery package are confirmed.
+For the current T3-S/Tstat11 full-reflash flow, use the confirmed four-file Flash Download Tool package and address map documented in the [beginner guide](01-user-update-guide.md) and [developer guide](02-developer-build-guide.md). The four-file stage installs the first-stage bootloader, partition table, OTA data and `T3_bootloader.bin`; T3000 then installs the normal `temco_app.bin` over RS485.
+
+The T3-Nano and TSTAT10 procedures below are retained as legacy hardware reference. Their headers, jumpers and download sequences must not be mixed into the Tstat11 procedure.
 
 ***In general, there is no need to personally load the Bootloader firmware to the product, it is already done before the factory.***
 ***In special cases, follow the steps below to reload the Bootloader firmware.***

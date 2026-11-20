@@ -13,20 +13,22 @@ Before changing anything, identify what you are trying to do:
 |---|---|---|
 | Change a touchscreen screen | Deploy the screen JSON with Design Studio | No |
 | Correct a controller firmware problem | Install `temco_app.bin` with T3000 | Maybe—the binary may already exist |
-| Recover a device that cannot boot | Use the bootloader recovery procedure approved for the exact board | Recovery files required |
+| Recover or initialize the complete ESP32-S3 flash | Use Flash Download Tool with the four-file bootloader package, then load `temco_app.bin` in T3000 | Recovery files required |
 
 A Tstat11 has an existing bootloader when it leaves the factory. **Do not reinstall the bootloader or partition table for a normal update.**
 
-## 2. What you need
+## 2. What you need for a normal update
 
 - A Tstat11 controller
 - Stable 24 V AC or DC power for the controller
 - A USB-to-RS485 adapter
 - T3000 software
-- A firmware image named `temco_app.bin` for the Tstat11/CB-Tstate-11 source line
+- The approved controller application image named `temco_app.bin`
 - Continuous power and RS485 connection during the update
 
 Download T3000 from the [TEMCO software page](https://assets.temcocontrols.com/products/t3_series_programmable_bacnet__amp_modbus_controller/software_file/09T3000Software-4.zip).
+
+The application package may also contain `ota_data_initial.bin`. T3000's normal RS485 update selects **`temco_app.bin` only**. The OTA-data file belongs to a complete flash layout; do not select it as the application firmware in T3000.
 
 ## 3. Choose firmware
 
@@ -119,16 +121,46 @@ If the expected version is not visible, do not immediately flash a different boo
 - Re-test with the known-good firmware selected for the site.
 - Contact the firmware owner before changing partition, signature or bootloader settings.
 
-### Device no longer boots
+### Device no longer boots or the boot/update environment is missing
 
-Use the Tstat11 bootloader recovery procedure for the exact board revision. The older TSTAT10 and T3-Nano jumper instructions must not be assumed to apply to Tstat11. Obtain the approved recovery package, address map and hardware connection instructions before connecting a direct flashing tool.
+Use the Espressif Flash Download Tool procedure provided by the hardware developer. This is a **full reflash**, not the normal T3000 application update.
+
+The approved package has two stages:
+
+1. **Boot/update environment**, from `C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader`:
+   - `bootloader.bin` at `0x0`
+   - `partition-table.bin` at `0x8000`
+   - `ota_data_initial.bin` at `0x19000`
+   - `T3_bootloader.bin` at `0x20000`
+2. **Normal controller application**, after reboot:
+   - Load `C:\Users\Double\Desktop\T3-S\Firmware\latest\ESP32\temco_app.bin` with T3000.
+
+These files are not interchangeable:
+
+| File | Role |
+|---|---|
+| `bootloader.bin` | ESP32-S3 first-stage bootloader |
+| `partition-table.bin` | Flash partition map |
+| `ota_data_initial.bin` | Initial OTA selection state |
+| `T3_bootloader.bin` | TEMCO factory application that performs later RS485 firmware updates |
+| `temco_app.bin` | Normal Tstat11 controller application |
+
+The Flash Download Tool is configured at:
+
+```text
+C:\Users\Double\Desktop\T3-S\flash_download_tool\flash_download_tool
+```
+
+Run the exact hardware connection/download-mode instructions for the Tstat11 board revision. The current saved tool configuration selects the four boot/update files and the addresses above. After those four files verify successfully, return to the normal T3000 procedure and load `temco_app.bin` over RS485.
+
+Do not use `temco_app.bin` in place of `T3_bootloader.bin`, do not load both identically named concepts from an arbitrary directory, and do not reuse T3-Nano or TSTAT10 jumper instructions without hardware confirmation.
 
 ## 9. Completion checklist
 
 - [ ] Correct Tstat11 model and serial number confirmed
 - [ ] Firmware source, branch/commit or release identified
 - [ ] Current version and configuration recorded
-- [ ] Correct `temco_app.bin` selected
+- [ ] Correct `temco_app.bin` selected for a normal update
 - [ ] Power and RS485 remained connected during transfer
 - [ ] Device rebooted and was discovered again
 - [ ] Expected version and basic operation verified
