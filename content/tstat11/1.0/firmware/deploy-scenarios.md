@@ -17,8 +17,11 @@ This page answers "what do I actually flash". The background — what each file 
 | **D. Will not boot / corrupt** | blank screen, boot loop, T3000 cannot find it | 4 boot files, then `temco_app.bin` | Flash Download Tool, then T3000 | ~20 min |
 | **E. Developer loop** | you built a new `temco_app.bin` | `temco_app.bin` only | T3000 over RS485 | ~5 min |
 | **F. Screens only** | only the touchscreen content changed | no firmware at all | Design Studio over HTTP | ~1 min |
+| **G. Black screen but the chip answers `esptool`** | download mode works, writes verify, the application never runs | **no files — fix the supply** | — | ~2 min |
 
 A device that arrives from the factory is already programmed. It is **situation B**, not A.
+
+Situation **G** is the one that looks like D and is not. If `esptool chip-id` gets a reply and the four writes verify but the panel stays dark and the console prints nothing, the chip is browning out about 30 ms into every boot because the board is being powered from the adapter's 3.3 V pin. No amount of reflashing fixes it. See [Troubleshooting section 11](04-troubleshooting.md).
 
 ## 2. The file matrix
 

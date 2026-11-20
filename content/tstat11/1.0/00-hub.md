@@ -45,7 +45,8 @@ The Tstat11 work is a move from the first to the second. Both still exist in the
 2. [Which files to deploy](firmware/deploy-scenarios.md) — new device, upgrade, waiting-for-firmware, bricked, developer loop
 3. [Beginner guide: update a Tstat11](firmware/01-user-update-guide.md) — the normal T3000 workflow, from first connection to verification
 4. [Full reflash with the Flash Download Tool](firmware/03-full-reflash.md) — when the device will not boot
-5. [Loading firmware onto a device](firmware/flashing.md) — legacy T3-Nano/TSTAT10 reference; not a Tstat11 procedure
+5. [When the update will not start](firmware/04-troubleshooting.md) — "waiting for firmware" but the updater says the device is offline
+6. [Loading firmware onto a device](firmware/flashing.md) — legacy T3-Nano/TSTAT10 reference; not a Tstat11 procedure
 
 **If you are building or testing firmware:**
 

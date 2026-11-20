@@ -40,6 +40,45 @@ This makes the two application binaries intentionally different:
 
 Both projects generate one because both partition tables declare `otadata` at `0x19000`. In the packages examined here the two files are byte-identical, so either copy is the same content. It is flashed at `0x19000` in the full-reflash flow, and it is **not** a firmware image that T3000 would select.
 
+## Writing an ota selector by hand (developer shortcut)
+
+A full bootloader flash leaves `otadata` blank, so the device boots `factory` (`T3_bootloader.bin`) and shows "Waiting for firmware". To boot the application in `ota_0` without going through T3000, write the application to `0x120000` **and** a selector record to `0x19000`.
+
+The record is 32 bytes:
+
+| Offset | Field | Value |
+|---:|---|---|
+| 0 | `ota_seq` | `1` selects `ota_0` |
+| 4 | `seq_label[20]` | zeros |
+| 24 | `ota_state` | `0` (`NEW`); ignored when `CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE` is off |
+| 28 | `crc` | see below |
+
+The CRC covers **only the four `ota_seq` bytes** and comes from `bootloader_common_ota_select_crc()` → `esp_rom_crc32_le(UINT32_MAX, &ota_seq, 4)`. The ROM implementation is `crc = ~crc; …; return ~crc;`, so with `UINT32_MAX` passed in it becomes init `0` with no final inversion. In Python that is:
+
+```python
+crc = zlib.crc32(struct.pack("<I", 1), 0xFFFFFFFF)   # 0x4743989A for seq = 1
+```
+
+Two values that look right and are not, both of which produce a device that ignores the selector:
+
+| Expression | For `seq = 1` | Result on the device |
+|---|---:|---|
+| `zlib.crc32(d)` | `0x99F8B879` | `ota data partition invalid` |
+| `zlib.crc32(d) ^ 0xFFFFFFFF` | `0x66074786` | `ota data partition invalid` |
+| `zlib.crc32(d, 0xFFFFFFFF)` | **`0x4743989A`** | boots `ota_0` |
+
+The failure is quiet in the sense that nothing is damaged — the second-stage bootloader logs one line and falls back:
+
+```text
+E (120) boot: ota data partition invalid, falling back to factory
+```
+
+With a correct selector the same slot logs instead:
+
+```text
+I (905) boot: Loaded app from partition at offset 0x120000
+```
+
 ## Application-project layout warning
 
 The current `T3-programmable-controller-on-ESP32` checkout has a different `temco_partitions.csv`: its factory partition is 6 MB and `ota_0` is 1 MB at `0x620000`. That does not describe the decoded `latest` recovery package above.

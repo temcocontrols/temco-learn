@@ -142,6 +142,11 @@
 			"order": 240
 		},
 		{
+			"href": "firmware/04-troubleshooting.md",
+			"title": "When the update will not start",
+			"order": 245
+		},
+		{
 			"href": "firmware/what-the-firmware-runs.md",
 			"title": "What the firmware runs",
 			"order": 250

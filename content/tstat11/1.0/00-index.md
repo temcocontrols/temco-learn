@@ -35,6 +35,7 @@ The T3-family controller with a 480 x 320 touchscreen: its IO envelope, the scre
   - [Beginner guide: update a Tstat11](firmware/01-user-update-guide.md)
   - [Developer guide: build and validate firmware](firmware/02-developer-build-guide.md)
   - [Full reflash with the Flash Download Tool](firmware/03-full-reflash.md)
+  - [When the update will not start](firmware/04-troubleshooting.md)
   - [What the firmware runs](firmware/what-the-firmware-runs.md)
   - [MQTT publishing](firmware/mqtt-guide.md)
   - [How the MQTT task works](firmware/mqtt-implementation.md)
