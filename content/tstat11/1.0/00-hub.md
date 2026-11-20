@@ -39,13 +39,18 @@ The Tstat11 work is a move from the first to the second. Both still exist in the
 3. [Screen payloads and patching](display-api/payloads.md) — the shapes and the dot-path delta
 4. [Display API examples](display-api/examples.md) — the bodies to compare against
 
-**If you are building or flashing firmware:**
+**If you are updating a Tstat11:**
 
-1. [What the firmware runs](firmware/what-the-firmware-runs.md) — which products share this image
-2. [Building the firmware](firmware/building.md) — ESP-IDF 5.5.3
-3. [Loading firmware onto a device](firmware/flashing.md) — the recovery route
-4. [How a firmware update runs](bootloader/update-flow.md) — the normal route, over RS485
-5. [How flash is divided](hardware/flash-layout.md) — why an interrupted update survives
+1. [Beginner guide: update a Tstat11](firmware/01-user-update-guide.md) — the normal T3000 workflow, from first connection to verification
+2. [Loading firmware onto a device](firmware/flashing.md) — legacy T3-Nano/TSTAT10 recovery reference; do not assume it applies to a Tstat11 board
+
+**If you are building or testing firmware:**
+
+1. [Developer guide: build and validate firmware](firmware/02-developer-build-guide.md) — clean checkout, build, checks, hardware test and documentation publication
+2. [What the firmware runs](firmware/what-the-firmware-runs.md) — which products share this image
+3. [How a firmware update runs](bootloader/update-flow.md) — the normal route, over RS485
+4. [How flash is divided](hardware/flash-layout.md) — the device layout to verify against the current partition file
+5. [Building the firmware](firmware/building.md) — original short ESP-IDF reference
 
 **If you are integrating with it:**
 

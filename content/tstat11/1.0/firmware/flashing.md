@@ -3,7 +3,9 @@ title: "Loading firmware onto a device"
 order: 260
 ---
 
-Normally the bootloader is already in the product when it ships, and a firmware update goes through T3000 over RS485. Reloading the bootloader is the recovery route: it needs a USB-to-TTL board, a jumper, and the Espressif flash tool.
+Normally the bootloader is already in the product when it ships, and a firmware update goes through T3000 over RS485. Use the [beginner guide](01-user-update-guide.md) for the complete normal Tstat11 workflow.
+
+The T3-Nano and TSTAT10 procedures below are retained as legacy hardware reference. Their headers, jumpers and download sequences have **not** been verified for Tstat11. Do not use them for Tstat11 recovery until the exact board revision, pinout and approved recovery package are confirmed.
 
 ***In general, there is no need to personally load the Bootloader firmware to the product, it is already done before the factory.***
 ***In special cases, follow the steps below to reload the Bootloader firmware.***

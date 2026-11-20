@@ -5,6 +5,8 @@ order: 250
 
 ESP-IDF 5.5.3, two components moved into the IDF tree, and an Eclipse project that is imported rather than generated. The path matters: the IDF installer cannot cope with a path that contains spaces.
 
+> **Start here:** Use the [developer guide](02-developer-build-guide.md) for the complete, reproducible workflow and the [beginner guide](01-user-update-guide.md) when the goal is only to install an existing application image on a Tstat11.
+
 ## Compiling
 
 ### ESP32 code

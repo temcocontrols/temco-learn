@@ -1,5 +1,5 @@
 {
-	"generated": "2026-11-16",
+	"generated": "2026-11-20",
 	"pages": [
 		{
 			"href": "00-hub.md",
@@ -107,9 +107,19 @@
 			"order": 210
 		},
 		{
+			"href": "firmware/01-user-update-guide.md",
+			"title": "Beginner guide: update a Tstat11",
+			"order": 220
+		},
+		{
 			"href": "t3-eez-studio/static-resource-copy-build.md",
 			"title": "The static-resource asset pipeline",
 			"order": 220
+		},
+		{
+			"href": "firmware/02-developer-build-guide.md",
+			"title": "Developer guide: build and validate firmware",
+			"order": 230
 		},
 		{
 			"href": "t3-eez-studio/wasm-browser-build-migration.md",

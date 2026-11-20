@@ -37,5 +37,13 @@ export default defineConfig({
 		sourcemap: false,
 		chunkSizeWarningLimit: 900
 	},
+	server: {
+		watch: {
+			// Visual Studio keeps lock-heavy caches under `.vs` and rewrites them while it is open. Watching one crashes
+			// the dev server with `EBUSY`, so the editor state stays out of the file watcher. Vite appends these to its own
+			// defaults (`node_modules`, `.git`, the cache dir), which is why only the editor paths are listed here.
+			ignored: ['**/.vs/**', '**/.idea/**']
+		}
+	},
 	preview: { port: 1011, strictPort: true }
 });
