@@ -11,21 +11,28 @@ The Tstat11 firmware comes from two ESP-IDF projects. This page is organised by 
 | the boot/update set — `bootloader.bin`, `partition-table.bin`, `ota_data_initial.bin`, `T3_bootloader.bin` | 3 |
 | either of them without a local toolchain | 4 |
 
-Section 1 is done once per machine. If you have not read [The firmware map](00-firmware-overview.md), start there: it shows what each file is and where it lands.
+Section 1 is **not** a one-time install step. Windows does not remember the ESP-IDF environment, so every new PowerShell window starts without it and has to be activated again. If you have not read [The firmware map](00-firmware-overview.md), start there too — it shows what each file is and where it lands.
 
-## 1. Set up once
+The one thing that is installed once is the two TEMCO components in section 2.2 — and only until the checkout changes them.
 
-### 1.1 ESP-IDF 5.5.3
+## 1. Get a working terminal
 
-Install the ESP-IDF Windows installer for **5.5.3**, in a path without spaces. Then work in an **ESP-IDF 5.5 PowerShell** terminal (Start Menu → `ESP-IDF 5.5 PowerShell`), which puts `idf.py` and the toolchain on `PATH`.
+### 1.1 An ESP-IDF terminal, in every new window
 
-To activate an ordinary PowerShell window instead:
+Install the ESP-IDF Windows installer for **5.5.3** once, in a path without spaces. After that, each new window needs one of these:
+
+**A. Use the shortcut** — Start Menu → `ESP-IDF 5.5 PowerShell`. It opens already activated, in the ESP-IDF folder, so `cd` to the project afterwards.
+
+**B. Activate the window you already have:**
 
 ```powershell
-& C:\Espressif\Initialize-Idf.ps1 -IdfId <idfSelectedId>
+$idfId = (Get-Content C:\Espressif\esp_idf.json -Raw | ConvertFrom-Json).idfSelectedId
+. C:\Espressif\Initialize-Idf.ps1 -IdfId $idfId
 ```
 
-`<idfSelectedId>` is the `idfSelectedId` value in `C:\Espressif\esp_idf.json`. Running that script without `-IdfId` from inside a project folder fails, because it resolves `IDF_PATH` from the current directory instead of from the installer's configuration.
+Dot-sourcing (`.`) keeps the environment in your window; running it with `&` in a separate scope can leave `idf.py` unresolved. Running the script **without** `-IdfId` from inside a project folder fails, because it resolves `IDF_PATH` from the current directory instead of from the installer's configuration.
+
+If `idf.py` answers `The term 'idf.py' is not recognized`, the environment is simply not active in that window — run the two lines above (or reopen the shortcut). Nothing is broken.
 
 Confirm the environment:
 
@@ -37,7 +44,7 @@ git --version
 
 `$env:IDF_PATH` should end in `esp-idf-v5.5.3`, and the version line should read `ESP-IDF v5.5.3`.
 
-> Do not check the version with `idf.py --version`. On a Windows installer setup `idf.py` resolves to the `idf-exe` launcher, which prints its own version (`v1.0.3`), not the ESP-IDF version. That is normal, not a broken install.
+> If `idf.py --version` prints `v1.0.3`, that is the `idf-exe` launcher being found first — the launcher's version, not ESP-IDF's. Use the `python` form above when the answer has to be unambiguous.
 
 ### 1.2 The other tools
 
@@ -62,9 +69,23 @@ The Flash Download Tool is a low-level UART programmer. T3000 is not: it uploads
 
 Neither repository has a build guide of its own; this page is it.
 
+### 1.4 When a command goes wrong
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `The term 'idf.py' is not recognized` | this window has no ESP-IDF environment | activate it, 1.1 |
+| `python` opens the Microsoft Store | ESP-IDF not active, so its Python is not first on `PATH` | activate it, 1.1 |
+| copy commands "succeed" but nothing changed in IDF | `$env:IDF_PATH` was empty, so `"$env:IDF_PATH\components\x"` became `\components\x` — PowerShell resolves that to `C:\components\x` | activate it, delete the stray `C:\components`, run 2.2 again |
+| build fails on a missing `temco_bacnet` | the components were never copied into IDF | run 2.2 **after** activating |
+| `undefined reference to 'mqtt_point'` (or `snmp_point`, `gsm_status_point`) at link | the components in IDF are an **older** copy than the checkout — a copy that predates those symbols | redo 2.2, then `idf.py fullclean` |
+| still undefined after re-copying the components | ninja reused the old object files; the copied file's timestamp is older than the object | `idf.py fullclean`, then build |
+| `1/2 app partitions are too small ... ota_0 ... overflow` | expected — see 2.5 | nothing to fix; do not use `idf.py flash` |
+
 ## 2. Build the controller application
 
 The normal development loop: change controller code, build, load with T3000.
+
+**Every command below must run in an ESP-IDF terminal.** If `idf.py` is not recognized, the window is not activated — see 1.1 before anything else.
 
 ### 2.1 Get the source
 
@@ -89,12 +110,33 @@ A dirty tree is a test build, not a reproducible one.
 
 ### 2.2 Add the two TEMCO components
 
-The project replaces two ESP-IDF components. Both must be in the IDF component directory before the build:
+The project replaces two ESP-IDF components. Both must be in the IDF component directory before the build. Run the guard first — it stops the copy from landing somewhere useless:
 
 ```powershell
-Copy-Item ".\temco_bacnet"     "$env:IDF_PATH\components\temco_bacnet"     -Recurse -Force
-Copy-Item ".\temco_IO_control" "$env:IDF_PATH\components\temco_IO_control" -Recurse -Force
+if (-not $env:IDF_PATH) { throw 'ESP-IDF is not active in this window. See section 1.1.' }
 ```
+
+Then remove any previous copy and place a fresh one:
+
+```powershell
+Remove-Item "$env:IDF_PATH\components\temco_bacnet"     -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item "$env:IDF_PATH\components\temco_IO_control" -Recurse -Force -ErrorAction SilentlyContinue
+
+Copy-Item ".\temco_bacnet"     "$env:IDF_PATH\components\temco_bacnet"     -Recurse
+Copy-Item ".\temco_IO_control" "$env:IDF_PATH\components\temco_IO_control" -Recurse
+```
+
+The `Remove-Item` lines are not decoration. Copying onto an existing directory nests the source inside it (`components\temco_bacnet\temco_bacnet\`), and copying over an existing one leaves **stale files behind** — which is how a build ends up missing symbols that exist in the checkout.
+
+Confirm the result:
+
+```powershell
+(Get-ChildItem "$env:IDF_PATH\components\temco_bacnet"     -Recurse -File).Count   # 228
+(Get-ChildItem "$env:IDF_PATH\components\temco_IO_control" -Recurse -File).Count   # 8
+Test-Path "$env:IDF_PATH\components\temco_bacnet\temco_bacnet"                     # must be False
+```
+
+**After replacing components, clear the build:** `idf.py fullclean`. Ninja decides what to recompile from timestamps, and a copied file can be older than the object built from the previous version — so without a clean it silently keeps the old object and the link fails on symbols you can see in the source.
 
 This writes below `IDF_PATH`. Prefer a dedicated ESP-IDF installation, and check `$env:IDF_PATH` points where you think before running it.
 
@@ -115,6 +157,8 @@ An RS485 update obeys the partition table **on the device**, not this file. This
 
 ### 2.4 Build
 
+If `idf.py` is not recognized in this window, activate ESP-IDF first (section 1.1).
+
 ```powershell
 idf.py build
 ```
@@ -129,14 +173,42 @@ idf.py build
 ### 2.5 What you get
 
 ```text
-build\temco_app.bin        the application
+build\temco_app.bin        the application  (~3.0 MB)
 build\flash_args           the flash addresses for this build
 build\flasher_args.json    the same, structured
 ```
 
 A successful build proves the files exist. It does not prove the image fits the device or behaves — that is sections 5 and 7.
 
-### 2.6 Optional: build in Eclipse
+#### The "app partition is too small" warning is expected
+
+Every clean application build ends with something like:
+
+```text
+Warning: 1/2 app partitions are too small for binary temco_app.bin size 0x3003d0:
+  - Part 'ota_0' 0/16 @ 0x620000 size 0x100000 (overflow 0x2003d0)
+```
+
+That is this project's own partition table being checked, and it is telling the truth: `temco_app.bin` is about 3.0 MB and the project's `ota_0` is 1 MB at `0x620000`. The image does not fit *that* table.
+
+It fits the table the device actually has: `ota_0` 6 MB at `0x120000`, installed from the bootloader package.
+
+Two conclusions:
+
+- The build is fine. The warning is about a layout this image is never flashed into.
+- **Do not use `idf.py flash`.** Its printed command writes `temco_app.bin` to `0x20000`, which on a real device is the 1 MB factory partition holding `T3_bootloader.bin` — you would overwrite the update manager. Use T3000 (section 6).
+
+### 2.6 A verified build, for comparison
+
+Built on 2026-11-20 at `fc13533` on `CB-Tstate-11` with ESP-IDF 5.5.3:
+
+| Output | Size | Fits |
+|---|---:|---|
+| `build\temco_app.bin` | 3,146,704 B (3.00 MB) | device `ota_0` 6 MB — yes; project `ota_0` 1 MB — no |
+
+The build finishes with exit code 0 and the warning above. That is the normal result for this branch.
+
+### 2.7 Optional: build in Eclipse
 
 1. **File → Import**
 2. **Espressif → Existing IDF Project**
@@ -169,6 +241,8 @@ git log -1 --oneline
 ```
 
 ### 3.2 Build
+
+If `idf.py` is not recognized in this window, activate ESP-IDF first (section 1.1).
 
 ```powershell
 Select-String -Path .\sdkconfig -Pattern '^CONFIG_IDF_TARGET=|^CONFIG_ESPTOOLPY_FLASHSIZE=|^CONFIG_PARTITION_TABLE_CUSTOM_FILENAME='
@@ -312,6 +386,25 @@ Loading an application build on a development device:
 5. Keep power connected until it reboots
 
 `ota_data_initial.bin` is never selected here. It is not an image.
+
+### Putting a build into the Flash Download Tool
+
+Only the four boot files go into the UART tool, from
+
+```text
+C:\QN\temcocontrols\T3_Bootloader\build\
+```
+
+| File the build produced | Row address in the tool |
+|---|---:|
+| `bootloader\bootloader.bin` | `0x0` |
+| `partition_table\partition-table.bin` | `0x8000` |
+| `ota_data_initial.bin` | `0x19000` |
+| `T3_bootloader.bin` | `0x20000` |
+
+`build\temco_app.bin` is **not** one of those rows. It goes to T3000 afterwards.
+
+The complete tool procedure, with the reset sequence and the checks, is [Full reflash](03-full-reflash.md); the one-card summary is [Which files to deploy, section 11](deploy-scenarios.md).
 
 ## 7. Validate on the device
 

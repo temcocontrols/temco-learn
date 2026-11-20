@@ -52,7 +52,20 @@ C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\
 | `ota_data_initial.bin` | `0x19000` |
 | `T3_bootloader.bin` | `0x20000` |
 
-Verify the package: the decoded partition table must show `factory` at `0x20000` with size `1M`, and `ota_0` at `0x120000` with size `6M`.
+Two sets can supply them. Either is valid; pick one and use it consistently.
+
+| File | Packaged, known-good | Built on this machine |
+|---|---|---|
+| `bootloader.bin` | `...\T3-S\Firmware\latest\bootloader\bootloader.bin` — 21,296 B | `C:\QN\temcocontrols\T3_Bootloader\build\bootloader\bootloader.bin` — 21,296 B |
+| `partition-table.bin` | same folder — 3,072 B | `...\T3_Bootloader\build\partition_table\partition-table.bin` — 3,072 B |
+| `ota_data_initial.bin` | same folder — 8,192 B | `...\T3_Bootloader\build\ota_data_initial.bin` — 8,192 B |
+| `T3_bootloader.bin` | same folder — 861,680 B | `...\T3_Bootloader\build\T3_bootloader.bin` — 950,816 B |
+
+Where the packaged set is `...` = `C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader`.
+
+The packaged `T3_bootloader.bin` is smaller because it was built from `95d60a06`; the local one comes from `9329f55` and carries the LCD driver and the Wi-Fi setup server. Both fit the 1 MB factory partition.
+
+Verify whichever set you choose: the decoded partition table must show `factory` at `0x20000` with size `1M`, and `ota_0` at `0x120000` with size `6M`.
 
 ```powershell
 & 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' `
@@ -170,3 +183,25 @@ The build and verification details are in the [developer guide](02-developer-bui
 | T3000 update then fails | The installed partition table does not match the application's expectations; see [How flash is divided](../hardware/flash-layout.md) |
 
 Never flash a single file from this set alone, and never use `temco_app.bin` in place of `T3_bootloader.bin`.
+
+## 11. Recap
+
+```text
+tool      C:\Users\Double\Desktop\T3-S\flash_download_tool\flash_download_tool\
+          flash_download_tool_3.9.9_R2.exe    →    ESP32-S3, UART
+
+files     bootloader.bin          @ 0x0
+          partition-table.bin     @ 0x8000
+          ota_data_initial.bin    @ 0x19000
+          T3_bootloader.bin       @ 0x20000
+
+reboot    → "waiting for firmware"
+
+then      T3000 → Tools → Load firmware for a single device
+          COM port, 115200, temco_app.bin
+          → reboot → controller runs
+```
+
+That is the whole procedure. The UART stage only ever installs the four boot files; `temco_app.bin` always goes through T3000.
+
+For a working device, skip this page entirely — [Which files to deploy](deploy-scenarios.md) shows that an upgrade needs only `temco_app.bin`, through T3000.

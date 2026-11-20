@@ -126,15 +126,82 @@ Use [Design Studio: preview, bind and deploy](../t3-eez-studio/manual/05-preview
 
 Building and downloading both: [Developer guide](02-developer-build-guide.md).
 
+### 9.1 The exact paths, built and packaged
+
+**Built on this machine** (2026-11-20, bootloader `9329f55` / application `fc13533`):
+
+| File | Size | Path |
+|---|---:|---|
+| `bootloader.bin` | 21,296 B | `C:\QN\temcocontrols\T3_Bootloader\build\bootloader\bootloader.bin` |
+| `partition-table.bin` | 3,072 B | `C:\QN\temcocontrols\T3_Bootloader\build\partition_table\partition-table.bin` |
+| `ota_data_initial.bin` | 8,192 B | `C:\QN\temcocontrols\T3_Bootloader\build\ota_data_initial.bin` |
+| `T3_bootloader.bin` | 950,816 B | `C:\QN\temcocontrols\T3_Bootloader\build\T3_bootloader.bin` |
+| `temco_app.bin` | 3,146,704 B | `C:\QN\temcocontrols\T3-programmable-controller-on-ESP32\build\temco_app.bin` |
+
+**Packaged and known-good** (2026-09-07, bootloader build #47 / `95d60a06`):
+
+| File | Size | Path |
+|---|---:|---|
+| `bootloader.bin` | 21,296 B | `C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\bootloader.bin` |
+| `partition-table.bin` | 3,072 B | `C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\partition-table.bin` |
+| `ota_data_initial.bin` | 8,192 B | `C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\ota_data_initial.bin` |
+| `T3_bootloader.bin` | 861,680 B | `C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\T3_bootloader.bin` |
+| `temco_app.bin` | 2,804,672 B | `C:\Users\Double\Desktop\T3-S\Firmware\latest\ESP32\temco_app.bin` |
+
+Both sets are valid. Use the packaged set to bring a device back to a known state, the built set to test your own change.
+
 ## 10. Mistakes that cost a device
 
 | Mistake | What happens |
 |---|---|
-| Using the application project's `partition-table.bin` on a working device | layout changes; a ~2.7 MB image no longer fits `ota_0` |
+| Using the application project's `partition-table.bin` on a working device | layout changes; a 3.0 MB image no longer fits `ota_0` |
 | Writing `T3_bootloader.bin` at `0x0` | the factory application overwrites the stage-1 bootloader |
 | Writing `bootloader.bin` at `0x20000` | nothing boots; "waiting for firmware" forever |
 | Selecting `ota_data_initial.bin` in T3000 | not a firmware image; the update cannot start |
 | Flashing an ESP32 (`main` branch) set on an ESP32-S3 board | no boot, no serial output |
+| Running `idf.py flash` from the application project | its address list writes `temco_app.bin` to `0x20000`, over the factory partition |
 | Upgrading without keeping the previous `temco_app.bin` | no rollback path |
 
 If a mistake lands you here, scenario D is the recovery.
+
+## 11. Summary card
+
+Everything on this page, on one card.
+
+### Upgrade a working device
+
+```text
+tool    T3000, over USB-to-RS485
+file    temco_app.bin          (one file, nothing else)
+steps   scan → select → Tools → Load firmware for a single device
+        COM port, 115200, temco_app.bin → start → wait for reboot
+```
+
+### Full reflash
+
+```text
+tool    C:\Users\Double\Desktop\T3-S\flash_download_tool\flash_download_tool
+        flash_download_tool_3.9.9_R2.exe   →  ESP32-S3, UART mode
+
+file                                          address
+bootloader.bin                                0x0
+partition-table.bin                           0x8000
+ota_data_initial.bin                          0x19000
+T3_bootloader.bin                             0x20000
+
+then    reboot → "waiting for firmware"
+        T3000 → temco_app.bin → reboot → controller runs
+```
+
+### Which file belongs to which tool
+
+```text
+T3_Bootloader  build\bootloader\bootloader.bin             → UART, 0x0
+               build\partition_table\partition-table.bin   → UART, 0x8000
+               build\ota_data_initial.bin                  → UART, 0x19000
+               build\T3_bootloader.bin                     → UART, 0x20000
+
+application    build\temco_app.bin                         → T3000, RS485
+```
+
+Nothing crosses that line. The UART tool never receives `temco_app.bin`, and T3000 never receives the four boot files.
