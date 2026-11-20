@@ -3,77 +3,97 @@ title: "The update registers"
 order: 300
 ---
 
-The host drives the whole update through a handful of Modbus registers: the control registers that start and stop it, the checksum registers that decide whether the image is the intended one, and the status register that says where the update has got to.
+An update is driven entirely by Modbus writes. These are the holding registers the updater touches, as defined in `main/modbus.h` of the T3_Bootloader project.
 
-## 3. Modbus Register Mapping for Firmware Update
+The flow that uses them is in [How a firmware update runs](update-flow.md).
 
-### Update Control Registers
+## 1. Update control registers
 
-| Register | Address | Type | Purpose | Values |
-|----------|---------|------|---------|--------|
-| **UPDATE_STATUS** | 16 | W | Firmware update trigger | See below |
-| **UPDATE_PTR_HI** | 17 | R/W | Resume position HIGH byte | 0x00-0xFF |
-| **UPDATE_PTR_LO** | 18 | R/W | Resume position LOW byte | 0x00-0xFF |
-| **UPDATE_FLAG** | 23 | R/W | Update completion status | 0x55 = success |
-| **ISP_RESUME_COUNT** | 1991 | R/W | Packet count for resume | 0-65535 |
+| Register | Name | Access | Purpose |
+|---:|---|---|---|
+| 16 | `UPDATE_STATUS` | W | The command: start, finish or erase |
+| 17 | `UPDATE_PTR_HI` | R/W | High byte of the last acknowledged position |
+| 18 | `UPDATE_PTR_LO` | R/W | Low byte of the last acknowledged position |
+| 23 | `UPDATE_FLAG` | R | `0x55` once an update has been accepted |
+| 1991 | `MODBUS_ISP_RESUME_COUNT` | R/W | Packet count for resume |
+| 1992 | `MODBUS_SECURE_KEY` | R/W | Signature bypass key; `0x0BEE` skips validation |
+| 1993–1996 | `MODBUS_MD5_START` … `_END` | R/W | Four words of the expected image checksum |
 
-### MD5 Checksum Registers
+Register 23 is how the updater knows the update was accepted: `0x55` means yes. Anything else means it was not.
 
-| Register | Address | Type | Purpose | Size |
-|----------|---------|------|---------|------|
-| **MD5[0]** | 1995 | R/W | MD5 checksum word 0 | 16-bit |
-| **MD5[1]** | 1996 | R/W | MD5 checksum word 1 | 16-bit |
-| **MD5[2]** | 1997 | R/W | MD5 checksum word 2 | 16-bit |
-| **MD5[3]** | 1998 | R/W | MD5 checksum word 3 | 16-bit |
+## 2. Register 16 — the command values
 
-### Test Buffer Registers (Diagnostic)
+| Value | Name | What the device does |
+|---|---|---|
+| `0x1F` | `PROGRAM_RESUME` | Start a fresh update, or continue from the saved packet count |
+| `0x01` | `PROGRAM_FINISH` | End the image, validate it, mark the OTA partition bootable, set `UPDATE_FLAG = 0x55`, reboot |
+| `0x3F` | `ERASE_ALL_FLASH` | Clear the resume point and the packet buffer, ready for packet 0 again |
+| `0x33` | `ERASE_USED_FLASH` | Cancel a Wi-Fi/TFTP update: drop the saved MD5 and resume point, then reboot |
+| `0x7F` | `PROGRAM_START` | Legacy entry point; not used by the RS485 update path |
 
-| Register | Address | Range | Purpose |
-|----------|---------|-------|---------|
-| **TEST_BUF** | 100-150 | 100-150 | Diagnostic counters |
+The RS485 path uses three of these: `0x1F`, then packets, then `0x01`. `0x3F` is the recovery when a session has gone wrong.
 
----
+### What `0x1F` actually does
 
-## 4. UPDATE_STATUS Register (Address 16) - Command Values
-
-```
-UPDATE_STATUS write values trigger different firmware update modes:
-
-┌─────────────────────────────────────────────────────────────┐
-│ Write Value │ Command                  │ Action              │
-├─────────────────────────────────────────────────────────────┤
-│ 0x00        │ PROGRAM_FINISH           │ End OTA update      │
-│ 0x01        │ PROGRAM_FINISH           │ End OTA update      │
-│ 0x1F        │ PROGRAM_RESUME           │ Start/Resume update │
-│ 0x3F        │ ERASE_ALL_FLASH          │ Erase OTA partition │
-│ 0x7F        │ PROGRAM_START (unused)   │ Reserved            │
-└─────────────────────────────────────────────────────────────┘
-
-Detailed Command Descriptions:
-
-1. Write 0x1F to UPDATE_STATUS (Address 16):
-   ├─ Start new firmware update OR resume interrupted update
-   ├─ Retrieves resume position from flash (FLASH_RS_RES_PACKAGE)
-   ├─ Calls esp_ota_begin() to prepare OTA partition
-   ├─ Expects subsequent firmware data on UPDATE_PTR registers
-   └─ Updates com_flash_high/low for resume tracking
-
-2. Write 0x01 to UPDATE_STATUS (Address 16):
-   ├─ Complete firmware update process
-   ├─ Call esp_ota_end() to finalize image
-   ├─ Validate image checksum
-   ├─ Call esp_ota_set_boot_partition() to mark active
-   ├─ Set UPDATE_FLAG = 0x55 on success
-   ├─ Clear resume counter
-   └─ Device ready to restart
-
-3. Write 0x3F to UPDATE_STATUS (Address 16):
-   ├─ Full erase of OTA partition
-   ├─ Reset all resume tracking data
-   ├─ Clear flash resume counter
-   ├─ Abort any in-progress update
-   ├─ com_update_firmware = 0
-   └─ Ready for new update from packet 0
+```text
+ write 0x1F
+     │
+     ├─ find the next OTA partition        (ota_0)
+     ├─ read the saved resume packet count (NVS)
+     ├─ packet count = 0 ?
+     │     yes → begin a fresh image, offset 0
+     │     no  → resume: raw write at count × 128, no erase
+     ├─ mark "updating"
+     ├─ suspend the Wi-Fi setup hotspot
+     └─ accept packets
 ```
 
----
+The resume branch deliberately skips `esp_ota_begin()`, because that call erases the partition and would discard the partial image.
+
+### What `0x01` actually does
+
+```text
+ write 0x01
+     │
+     ├─ esp_ota_end()               validates the image
+     ├─ esp_ota_set_boot_partition() marks ota_0 bootable
+     ├─ UPDATE_FLAG = 0x55
+     ├─ clear the resume counter in NVS
+     └─ reboot into the new application
+```
+
+If validation fails, the boot partition is not changed and the device continues to run the previous application.
+
+### What `0x3F` actually does
+
+```text
+ write 0x3F
+     │
+     ├─ flash offset = 0
+     ├─ packet buffer length = 0
+     ├─ resume counter high/low = 0
+     ├─ not updating
+     └─ the next packet is treated as packet 0
+```
+
+## 3. Checksum and bypass registers
+
+| Register | Purpose |
+|---:|---|
+| 1993 | MD5 word 0 |
+| 1994 | MD5 word 1 |
+| 1995 | MD5 word 2 |
+| 1996 | MD5 word 3 |
+| 1992 | Secure key: `0x0BEE` disables signature validation |
+
+The checksum is supplied by the updater before the transfer and stored in NVS, so it survives a reboot in the middle of an update. If the source document you were given quotes registers 1995–1998 for the MD5, that is the older numbering; the firmware in this tree uses 1993–1996.
+
+Bypassing the signature is documented in [Skipping signature validation](skip-signature-validation.md). It is a factory and recovery tool, not a normal step.
+
+## 4. Diagnostic registers
+
+| Register range | Purpose |
+|---|---|
+| 100–150 | Diagnostic counters used during bring-up |
+
+These are not part of the update protocol and carry no guarantees.

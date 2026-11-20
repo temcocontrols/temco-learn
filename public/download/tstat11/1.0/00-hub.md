@@ -52,8 +52,11 @@ The Tstat11 work is a move from the first to the second. Both still exist in the
 1. [Developer guide: build and validate firmware](firmware/02-developer-build-guide.md) — sources, branches, ESP-IDF build, GitHub Actions, checks and hardware test
 2. [What the firmware runs](firmware/what-the-firmware-runs.md) — which products share this image
 3. [How a firmware update runs](bootloader/update-flow.md) — the protocol underneath, over RS485
-4. [How flash is divided](hardware/flash-layout.md) — the device layout, and why two layouts exist
-5. [Building the firmware](firmware/building.md) — original short ESP-IDF reference
+4. [The update registers](bootloader/update-registers.md) — every register the updater writes
+5. [Resuming an interrupted update](bootloader/resuming-an-update.md) — why a power cut is survivable
+6. [Inside the bootloader](bootloader/inside-the-bootloader.md) — the code that does it
+7. [How flash is divided](hardware/flash-layout.md) — the device layout, and why two layouts exist
+8. [Building the firmware](firmware/building.md) — original short ESP-IDF reference
 
 **If you are integrating with it:**
 
