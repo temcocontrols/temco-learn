@@ -122,6 +122,11 @@
 			"order": 215
 		},
 		{
+			"href": "firmware/deploy-scenarios.md",
+			"title": "Which files to deploy",
+			"order": 217
+		},
+		{
 			"href": "firmware/01-user-update-guide.md",
 			"title": "Beginner guide: update a Tstat11",
 			"order": 220

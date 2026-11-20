@@ -3,7 +3,9 @@ title: "The firmware map"
 order: 215
 ---
 
-Five binary files end up on a Tstat11, produced by two different projects. This page is the map: what each file is, where it lands, and which guide you need. Read this before the step-by-step pages.
+Five binary files end up on a Tstat11, produced by two different projects. This page is the map: what each file is, where it lands, and which guide you need.
+
+If you only want the answer to "what do I flash, and in what order", go straight to [Which files to deploy](deploy-scenarios.md).
 
 ## 1. The whole picture
 
@@ -107,6 +109,7 @@ The firmware image itself is shared across products, so the same `temco_app.bin`
 
 | You want to | Read |
 |---|---|
+| Know exactly which files to flash, by situation | [Which files to deploy](deploy-scenarios.md) |
 | Put firmware on a device that works | [Beginner guide: update a Tstat11](01-user-update-guide.md) |
 | Recover a device that will not boot | [Full reflash with the Flash Download Tool](03-full-reflash.md) |
 | Build either set from source, or from GitHub Actions | [Developer guide: build and validate firmware](02-developer-build-guide.md) |

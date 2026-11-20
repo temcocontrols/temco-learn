@@ -31,6 +31,7 @@ The T3-family controller with a 480 x 320 touchscreen: its IO envelope, the scre
   - [Deploying to a device](t3-eez-studio/device-interface-deployment-via-bacnet-design.md)
   - [The .EEZ-Project JSON format](t3-eez-studio/lvgl-eez-project-json-format.md)
   - [The firmware map](firmware/00-firmware-overview.md)
+  - [Which files to deploy](firmware/deploy-scenarios.md)
   - [Beginner guide: update a Tstat11](firmware/01-user-update-guide.md)
   - [Developer guide: build and validate firmware](firmware/02-developer-build-guide.md)
   - [Full reflash with the Flash Download Tool](firmware/03-full-reflash.md)
