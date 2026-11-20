@@ -1381,8 +1381,9 @@ h3 {
 	grid-template-columns: 236px minmax(0, 1fr) 236px;
 	gap: 24px;
 	align-items: start;
-	/* The rail starts nearer the edge of the window than the article does: it is a list of pages, not a column of text. */
-	padding: 16px var(--gutter) 32px 12px;
+	/* Both rails start nearer the edge of the window than the article does: they are lists of links, not columns of text. */
+	--edge: 12px;
+	padding: 16px var(--gutter) 32px var(--edge);
 }
 
 .reader__nav,
@@ -1408,7 +1409,10 @@ h3 {
 	scrollbar-width: thin;
 }
 
+/* The right rail mirrors the left one: it reaches past the gutter the article keeps and stops at the window's own edge,
+   so the links get the width the page has, not the width the column was given. */
 .reader__toc {
+	margin-right: calc(var(--edge) - var(--gutter));
 	overflow-y: auto;
 }
 
@@ -2626,6 +2630,11 @@ html[data-embed='true'] .page,
 html[data-embed='true'] .print {
 	padding-left: 14px;
 	padding-right: 14px;
+}
+
+/* The host crops the page to its own edge, so the reader's padding is already the rail's inset. */
+html[data-embed='true'] .reader__toc {
+	margin-right: 0;
 }
 
 /* ---- narrow ------------------------------------------------------------------------------------- */
