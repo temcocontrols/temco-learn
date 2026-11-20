@@ -1,6 +1,6 @@
 ---
 title: "How the MQTT task works"
-order: 280
+order: 270
 ---
 
 Three ways a change of value can reach the broker, how a point’s type becomes a JSON value, and how the topic name is assembled. Read this when the topic is arriving but the payload is not what a subscriber expected.

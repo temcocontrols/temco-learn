@@ -1,6 +1,6 @@
 ---
 title: "The static-resource asset pipeline"
-order: 220
+order: 111
 ---
 
 ## Static Resource Copy — Build-Time Asset Pipeline

@@ -1,6 +1,6 @@
 ---
 title: "The LVGL WASM browser build"
-order: 230
+order: 112
 ---
 
 ## LVGL WASM Browser Build Migration

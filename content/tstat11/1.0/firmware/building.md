@@ -1,6 +1,6 @@
 ---
 title: "Building the firmware"
-order: 250
+order: 280
 ---
 
 ESP-IDF 5.5.3, two components moved into the IDF tree, and an Eclipse project that is imported rather than generated. The path matters: the IDF installer cannot cope with a path that contains spaces.

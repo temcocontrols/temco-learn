@@ -3,37 +3,21 @@ title: "Developer guide: build and validate firmware"
 order: 230
 ---
 
-This guide covers the development path from a clean checkout to a verified `temco_app.bin`. It is for firmware developers and release testers. A deployed Tstat11 should normally be updated with T3000 as described in the [beginner update guide](01-user-update-guide.md).
+This guide takes a clean checkout to a verified `temco_app.bin`, and covers building the bootloader set as well. If you have not read [The firmware map](00-firmware-overview.md), read it first: it shows which project produces which file and where each one lands.
 
-## 1. The two firmware projects
+## 1. The two projects
 
-Two separate ESP-IDF projects produce the files that end up on a Tstat11:
-
-| Project | Builds | Flashed by | Lands in |
-|---|---|---|---|
-| `T3_Bootloader` | `bootloader.bin`, `partition-table.bin`, `ota_data_initial.bin`, `T3_bootloader.bin` | Flash Download Tool over UART | `0x0`, `0x8000`, `0x19000`, `0x20000` |
-| `T3-programmable-controller-on-ESP32` | `temco_app.bin` (plus its own `bootloader.bin`, `partition-table.bin`, `ota_data_initial.bin`) | T3000 over RS485 | OTA application partition |
-
-The name `T3_bootloader.bin` is easy to misunderstand. It is the ESP-IDF project output named `T3_bootloader`; it is an **application binary placed in the 1 MB factory partition**. It is not the same file as ESP-IDF's small `bootloader.bin`, which runs first at chip reset.
-
-### How the two projects relate
-
-| File | Produced by | Same file? |
+| Project | Output used from it | Written by |
 |---|---|---|
-| `bootloader.bin` | both projects | **No.** Each project generates its own ESP-IDF stage-1 bootloader for its own `sdkconfig`. |
-| `partition-table.bin` | both projects | **No, and this matters.** The two checked-in partition files currently disagree (see section 5). |
-| `ota_data_initial.bin` | both projects | **Yes, in the package examined here** — both are 8192 bytes of identical content (`ota_data_initial` is "no OTA selection yet"). |
-| `T3_bootloader.bin` | `T3_Bootloader` | Only this project produces it. |
-| `temco_app.bin` | `T3-programmable-controller-on-ESP32` | Only this project produces it. |
+| `T3_Bootloader` | `bootloader.bin`, `partition-table.bin`, `ota_data_initial.bin`, `T3_bootloader.bin` | Flash Download Tool over UART |
+| `T3-programmable-controller-on-ESP32` | `temco_app.bin` (it also emits its own `bootloader.bin`, `partition-table.bin`, `ota_data_initial.bin`) | T3000 over RS485 |
 
-Consequences to keep in mind:
+Two consequences that cause most of the confusion:
 
-- A normal application build does **not** rebuild the TEMCO bootloader/update application.
-- Building `T3_Bootloader` does **not** produce the current controller UI, protocol or I/O code.
-- Flashing the application project's own `bootloader.bin` or `partition-table.bin` over a working device is an unplanned layout change, not an application update.
-- `temco_app.bin` must fit the `ota_0` partition defined by the **installed** partition table — not by whatever the application checkout happens to contain.
+- The application project's own `bootloader.bin` and `partition-table.bin` are **not** the installed ones. Flashing them over a working device is a layout change, not an application update.
+- `temco_app.bin` must fit the `ota_0` partition defined by the partition table **actually on the device**, not by whatever the application checkout contains. Section 5 covers the difference.
 
-The documentation repositories are deliberately outside this firmware guide. The repository `T3_Bootloader` has no build guide of its own — its `README.md` is a one-line description, and its other documents cover the update protocol (`FIRMWARE_UPDATE_FLOWCHART.md`) and signing (`File/Sign_Guide.md`, `File/Skip_Sign_Validation.md`). The build and flash instructions live here, in this manual.
+Neither repository has a build guide of its own. `T3_Bootloader`'s `README.md` is a one-line description; its other documents cover the update protocol (`FIRMWARE_UPDATE_FLOWCHART.md`) and signing (`File/Sign_Guide.md`, `File/Skip_Sign_Validation.md`). The build instructions live here.
 
 ### Which branch of `T3_Bootloader` builds the ESP32-S3 binaries
 
@@ -43,7 +27,7 @@ Verified from the repository's branches:
 |---|---|---|---|---|
 | `main` (the local checkout at `C:\QN\temcocontrols\T3_Bootloader`) | `esp32` | 4 MB, DIO | `temco_partitions.cvs`, factory `0x10000`, `ota_0` `0x110000` | **No** |
 | `Bhavik_Tstate11` | `esp32s3` | 32 MB, OPI | `temco_partitions.csv`, factory `0x20000` (1 MB), `ota_0` `0x120000` (6 MB), `screen_data` `0x780000` | **Yes** |
-| `ResumableFirmwareUpdateBootloader` | `esp32s3` | 32 MB | `temco_partitions.csv` | Yes — earlier line, merged into `Bhavik_Tstate11` |
+| `ResumableFirmwareUpdateBootloader` | `esp32s3` | 32 MB | `temco_partitions.csv` | Yes �?earlier line, merged into `Bhavik_Tstate11` |
 | `SecureFirmwareUpdate` | `esp32` | 4 MB | `temco_partitions.cvs` | No |
 
 So the local checkout as configured on `main` **cannot** produce the packaged ESP32-S3 files. Its partition table has different offsets, and its `sdkconfig` targets ESP32 with 4 MB flash.
@@ -95,7 +79,7 @@ build\T3_bootloader.bin                     ~840 KB   (must stay under 1 MB)
 Rules for this build:
 
 - **Do not run `idf.py set-target esp32s3`.** The committed `sdkconfig` is already `esp32s3`; `set-target` regenerates it from defaults, renames the existing file to `sdkconfig.old`, and drops this project's settings.
-- The first build downloads `espressif/mdns` from the component registry — network access is required. `dependencies.lock` pins version 1.13.1.
+- The first build downloads `espressif/mdns` from the component registry �?network access is required. `dependencies.lock` pins version 1.13.1.
 - No `temco_bacnet` / `temco_IO_control` copy is needed here. That step belongs to the application project only.
 - Switching branches rewrites `sdkconfig` and removes `temco_partitions.cvs`. Switch back to `main` when you need the ESP32 line.
 
@@ -187,7 +171,7 @@ The current file is [temco_partitions.csv](https://github.com/temcocontrols/T3-p
 
 The approved four-file Flash Download Tool package has a different layout: factory `0x20000` size 1 MB and `ota_0` `0x120000` size 6 MB. This is the layout decoded from its packaged `partition-table.bin`, and it is exactly the `temco_partitions.csv` on the bootloader branch `Bhavik_Tstate11`.
 
-The application project's file is the other variant — the comments in it call it "for flash directly without bootloader": factory `0x20000` size 6 MB and `ota_0` `0x620000` size 1 MB.
+The application project's file is the other variant �?the comments in it call it "for flash directly without bootloader": factory `0x20000` size 6 MB and `ota_0` `0x620000` size 1 MB.
 
 This is not cosmetic. The application image is about 2.7 MB, so under the application project's layout it would not fit the 1 MB `ota_0` partition at `0x620000`, and an RS485 update would fail. Under the bootloader layout it fits comfortably in the 6 MB `ota_0` at `0x120000`.
 
@@ -228,8 +212,8 @@ A successful build means that those files were produced, but it does not establi
 ## 7. Build with ESP-IDF Eclipse
 
 1. Open ESP-IDF Eclipse.
-2. Select **File → Import**.
-3. Select **Espressif → Existing IDF Project**.
+2. Select **File �?Import**.
+3. Select **Espressif �?Existing IDF Project**.
 4. Select the firmware repository root.
 5. Confirm the target is ESP32-S3 and the ESP-IDF version is 5.5.3.
 6. Right-click the project and select **Build Project**.
@@ -239,7 +223,7 @@ Use the command-line build in automation and for final reproducibility checks.
 
 ## 8. Build with GitHub Actions
 
-Both projects build in GitHub Actions. The artifacts are the intended way to obtain binaries without a local toolchain — but they expire, and each project publishes a different, non-interchangeable set.
+Both projects build in GitHub Actions. The artifacts are the intended way to obtain binaries without a local toolchain �?but they expire, and each project publishes a different, non-interchangeable set.
 
 ### 8.1 The bootloader project
 
@@ -250,7 +234,7 @@ It runs `espressif/idf:v5.5.3`, executes `idf.py fullclean` then `idf.py build`,
 ```text
 build/bootloader/bootloader.bin
 build/partition_table/partition-table.bin
-build/*.bin        ← includes ota_data_initial.bin and T3_bootloader.bin
+build/*.bin        �?includes ota_data_initial.bin and T3_bootloader.bin
 ```
 
 Only pushes to `Bhavik_Tstate11` produce the ESP32-S3 set. Building `main` in Actions yields the ESP32/4 MB set.
@@ -260,12 +244,12 @@ Only pushes to `Bhavik_Tstate11` produce the ESP32-S3 set. Building `main` in Ac
 1. Open <https://github.com/temcocontrols/T3_Bootloader/actions/workflows/build.yml>.
 2. Use the branch filter and select **`Bhavik_Tstate11`**.
 3. Open the run you want (the newest successful one, or the specific commit).
-4. Confirm the run's conclusion is ✔ and note the branch and commit SHA.
+4. Confirm the run's conclusion is �?and note the branch and commit SHA.
 5. In the run summary page, scroll to **Artifacts** and click **`firmware`**.
 6. The browser downloads `firmware.zip`. Extract it; it contains the binaries (sometimes as an inner `firmware.zip` with the same name, which must be extracted too).
 7. Record the SHA-256 of each file before flashing.
 
-Signing in to GitHub is required; artifacts from a private repository are not anonymous downloads, and each artifact expires (the retention window is shown on the artifact row — the run examined here expires 2026-12-06 and 2026-12-30 respectively).
+Signing in to GitHub is required; artifacts from a private repository are not anonymous downloads, and each artifact expires (the retention window is shown on the artifact row �?the run examined here expires 2026-12-06 and 2026-12-30 respectively).
 
 **Download with the GitHub CLI**
 
@@ -305,21 +289,7 @@ For an application artifact:
 
 A newer timestamp alone is not enough to classify a build as a release.
 
-### 8.3 Provenance of the packaged `latest` bootloader files
-
-The package under `C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader` corresponds to an Actions build, not to the local `main` checkout:
-
-| Fact | Value |
-|---|---|
-| Workflow | Build Firmware #47 |
-| Branch | `Bhavik_Tstate11` |
-| Commit | `95d60a06f785a51388114e9365718d120994db36` — "Updated partition to store Dynamic screen data" |
-| Run | <https://github.com/temcocontrols/T3_Bootloader/actions/runs/34086246535> |
-| Artifact | `firmware`, id `10005379381`, created 2026-09-07 05:21:55 UTC |
-| Evidence | the artifact creation time matches the local file timestamps (2026-09-07), and the decoded partition table matches commit `95d60a06` |
-| Artifact expiry | 2026-12-06 |
-
-Two later successful builds exist on the same branch — #48 (`8ae3b79`, Modbus/UART fixes), #49 (`c2f7fbd`, Wi-Fi SoftAP + web server) and #50 (`9329f55`, lint) — so the packaged set is **older than the newest bootloader code**. Do not assume "latest" in the folder name means the newest commit.
+For which build produced the package on disk, see [Full reflash, section 8](03-full-reflash.md).
 
 ## 9. Run checks before hardware installation
 
@@ -337,79 +307,26 @@ Also review:
 
 For a security-sensitive or production image, validate the approved signing process before deployment.
 
-## 10. The two installation flows
+## 10. Installing what you built
 
-### A. Normal application update — use T3000
+Two routes exist, and they are different operations:
 
-Use this when the controller boots and the TEMCO bootloader/update application is present:
+| Route | Use it for | Guide |
+|---|---|---|
+| T3000 over RS485 | any device that boots and answers | [Beginner guide](01-user-update-guide.md) |
+| Flash Download Tool over UART | the boot/update environment, when the device will not boot | [Full reflash](03-full-reflash.md) |
+
+For a development device that boots normally:
 
 1. Connect power and USB-to-RS485.
-2. Scan and select the exact Tstat11.
-3. Open **Tools → Load firmware for a single device**.
-4. Select the COM port, `115200` baud, and `temco_app.bin` from `T3-programmable-controller-on-ESP32`.
+2. Scan for and select the exact Tstat11 in T3000.
+3. Open **Tools �� Load firmware for a single device**.
+4. Select the COM port, `115200` baud, and the `temco_app.bin` you just built.
 5. Keep power connected through completion and reboot.
 
-T3000 sends `temco_app.bin` through the bootloader's RS485 update protocol. The updater validates the transfer and places the main application in the OTA application slot. The `ota_data_initial.bin` from an application build is metadata for a complete direct flash; it is not selected as a firmware file in T3000.
+T3000 sends the image through the bootloader's RS485 update protocol, which places it in the OTA application slot. The `ota_data_initial.bin` in the build output is not selected here.
 
-### B. Full reflash — use Espressif Flash Download Tool
-
-Use this when instructed to recover or initialize the complete ESP32-S3 flash environment. The saved T3-S tool configuration at:
-
-```text
-C:\Users\Double\Desktop\T3-S\flash_download_tool\flash_download_tool
-```
-
-uses the following four-file package:
-
-| File | Address | Meaning |
-|---|---:|---|
-| `bootloader.bin` | `0x0` | ESP32-S3 first-stage bootloader |
-| `partition-table.bin` | `0x8000` | Partition names, addresses and sizes |
-| `ota_data_initial.bin` | `0x19000` | Initial OTA-selection state |
-| `T3_bootloader.bin` | `0x20000` | TEMCO factory application that handles firmware updates |
-
-The latest package checked for this guide is:
-
-```text
-C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\
-```
-
-Its partition table decodes to a 1 MB factory partition at `0x20000`, a 6 MB `ota_0` application partition at `0x120000`, and the remaining data partitions. The configured first-stage file starts with an ESP32-S3 image header.
-
-After the four-file flash succeeds, the device has the boot/update environment, but the full controller application still must be installed. Return to T3000 and transfer the approved `temco_app.bin`. Do not select an arbitrary file named `ota_data_initial.bin` for this second step; the two packages contain identical OTA data, but T3000's normal application transfer uses `temco_app.bin` only.
-
-## 11. Full-reflash procedure
-
-1. Confirm with the hardware owner that the ESP32-S3 is in UART download mode and that the correct programming connector/power arrangement is used.
-2. Start `flash_download_tool_3.9.9_R2.exe` from the T3-S flash tool folder.
-3. Choose the ESP32-S3 download target and UART mode.
-4. Select and verify these four rows:
-
-```text
-C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\bootloader.bin       @ 0x0
-C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\partition-table.bin  @ 0x8000
-C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\ota_data_initial.bin @ 0x19000
-C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader\T3_bootloader.bin    @ 0x20000
-```
-
-5. Select the correct COM port. The saved example uses COM5, but the local port must be confirmed in Device Manager.
-6. Erase/download using the hardware developer's approved settings and wait for all four rows to verify successfully.
-7. Remove download mode and reboot as instructed for the board.
-8. Confirm the device identifies itself as the bootloader/update environment.
-9. Use T3000 over RS485 to load `temco_app.bin` from the approved application package.
-10. Reboot and run the hardware validation checklist.
-
-Do not substitute files from the other flow, do not shift these addresses, and do not flash only `T3_bootloader.bin` as though it were `bootloader.bin`.
-
-### Source and package warning — now confirmed
-
-The local checkout `C:\QN\temcocontrols\T3_Bootloader` is the source repository for the TEMCO bootloader/update project, but it is on `main`, which targets ESP32 / 4 MB with `temco_partitions.cvs`. The packaged `latest` binaries are ESP32-S3 and use the 32 MB layout above.
-
-Confirmed: the correct source is branch **`Bhavik_Tstate11`**, and the packaged files come from Build Firmware **#47** (commit `95d60a06`) — see section 8.3.
-
-Do not rebuild or replace the four-file package from the local `main` checkout: the resulting `partition-table.bin` and `bootloader.bin` would not match the addresses the flash tool uses or the layout `temco_app.bin` expects. Switch to `Bhavik_Tstate11` first, or download the artifact from the matching run.
-
-## 12. Hardware validation checklist
+## 11. Hardware validation checklist
 
 After reboot, verify at least:
 
@@ -428,7 +345,7 @@ After reboot, verify at least:
 
 Attach test evidence—commit SHA, binary checksum, tester, date, device serial number and results—to the release or change record.
 
-## 13. Recommended release identity
+## 12. Recommended release identity
 
 For a development or production build, preserve a package record containing:
 
@@ -449,7 +366,7 @@ Approval: <development/test/production>
 
 Do not publish a CI artifact as the latest product firmware without release approval.
 
-## 14. Failure boundaries
+## 13. Failure boundaries
 
 Stop and investigate rather than forcing a flash when:
 

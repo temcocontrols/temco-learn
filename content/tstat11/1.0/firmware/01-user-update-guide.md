@@ -5,6 +5,8 @@ order: 220
 
 This is the normal, start-to-finish procedure for putting application firmware on a Tstat11 that already boots and communicates over RS485. It is intentionally different from the bootloader recovery procedure and from deploying a screen.
 
+To read the whole picture first — which file is which and where it lands — see [The firmware map](00-firmware-overview.md). If the device does not boot at all, this is the wrong page: use [Full reflash](03-full-reflash.md).
+
 ## 1. Choose the right operation
 
 Before changing anything, identify what you are trying to do:
@@ -68,6 +70,10 @@ Stop if the displayed model does not match the device or firmware target.
 6. Open T3000 and scan for the device.
 7. Select the Tstat11 in the device list.
 
+![The COM port appears under Ports in Device Manager](../media/flashing-01.png)
+
+The screenshot shows a USB-to-TTL adapter; a USB-to-RS485 adapter appears the same way. What matters is the `COMxx` number, which T3000 asks for in the next step.
+
 If the device does not appear, solve the connection before attempting an update.
 
 ## 6. Install the application firmware
@@ -123,43 +129,9 @@ If the expected version is not visible, do not immediately flash a different boo
 
 ### Device no longer boots or the boot/update environment is missing
 
-Use the Espressif Flash Download Tool procedure provided by the hardware developer. This is a **full reflash**, not the normal T3000 application update.
+That is not a firmware update — it is a **full reflash**, done over UART with the Espressif Flash Download Tool. Follow [Full reflash with the Flash Download Tool](03-full-reflash.md) for the four files, their addresses, the tool configuration and the T3000 step that follows.
 
-The approved package has two stages:
-
-1. **Boot/update environment**, from `C:\Users\Double\Desktop\T3-S\Firmware\latest\bootloader`:
-   - `bootloader.bin` at `0x0`
-   - `partition-table.bin` at `0x8000`
-   - `ota_data_initial.bin` at `0x19000`
-   - `T3_bootloader.bin` at `0x20000`
-2. **Normal controller application**, after reboot:
-   - Load `C:\Users\Double\Desktop\T3-S\Firmware\latest\ESP32\temco_app.bin` with T3000.
-
-These files are not interchangeable:
-
-| File | Role |
-|---|---|
-| `bootloader.bin` | ESP32-S3 first-stage bootloader |
-| `partition-table.bin` | Flash partition map |
-| `ota_data_initial.bin` | Initial OTA selection state |
-| `T3_bootloader.bin` | TEMCO factory application that performs later RS485 firmware updates |
-| `temco_app.bin` | Normal Tstat11 controller application |
-
-The four boot/update files come from the `T3_Bootloader` project's GitHub Actions build on branch `Bhavik_Tstate11`:
-
-<https://github.com/temcocontrols/T3_Bootloader/actions/workflows/build.yml>
-
-`temco_app.bin` comes from `T3-programmable-controller-on-ESP32`. Downloading, verifying and building each set is described in the [developer guide](02-developer-build-guide.md). Actions artifacts expire, so keep the verified binaries you were given rather than relying on an old run link.
-
-The Flash Download Tool is configured at:
-
-```text
-C:\Users\Double\Desktop\T3-S\flash_download_tool\flash_download_tool
-```
-
-Run the exact hardware connection/download-mode instructions for the Tstat11 board revision. The current saved tool configuration selects the four boot/update files and the addresses above. After those four files verify successfully, return to the normal T3000 procedure and load `temco_app.bin` over RS485.
-
-Do not use `temco_app.bin` in place of `T3_bootloader.bin`, do not load both identically named concepts from an arbitrary directory, and do not reuse T3-Nano or TSTAT10 jumper instructions without hardware confirmation.
+Do not continue on this page hoping the RS485 update will recover it, and do not reuse T3-Nano or TSTAT10 jumper instructions without confirming the Tstat11 hardware.
 
 ## 9. Completion checklist
 

@@ -1,6 +1,6 @@
 ---
 title: "What the firmware runs"
-order: 240
+order: 250
 ---
 
 The same firmware image runs on several Temco products. This page is the product list, because a behaviour that looks wrong on one model is often correct on another: the model id decides the IO envelope, the protocol surface and whether there is a display at all.

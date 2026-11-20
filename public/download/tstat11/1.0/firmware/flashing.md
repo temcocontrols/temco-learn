@@ -1,6 +1,6 @@
 ---
 title: "Loading firmware onto a device"
-order: 260
+order: 282
 ---
 
 Normally the bootloader is already in the product when it ships, and a firmware update goes through T3000 over RS485. Use the [beginner guide](01-user-update-guide.md) for the complete normal Tstat11 workflow.

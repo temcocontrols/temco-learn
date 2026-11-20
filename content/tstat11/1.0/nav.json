@@ -57,6 +57,16 @@
 			"order": 110
 		},
 		{
+			"href": "t3-eez-studio/static-resource-copy-build.md",
+			"title": "The static-resource asset pipeline",
+			"order": 111
+		},
+		{
+			"href": "t3-eez-studio/wasm-browser-build-migration.md",
+			"title": "The LVGL WASM browser build",
+			"order": 112
+		},
+		{
 			"href": "bacnet-api/README.md",
 			"title": "Design Studio API: overview",
 			"order": 120
@@ -107,13 +117,13 @@
 			"order": 210
 		},
 		{
-			"href": "firmware/01-user-update-guide.md",
-			"title": "Beginner guide: update a Tstat11",
-			"order": 220
+			"href": "firmware/00-firmware-overview.md",
+			"title": "The firmware map",
+			"order": 215
 		},
 		{
-			"href": "t3-eez-studio/static-resource-copy-build.md",
-			"title": "The static-resource asset pipeline",
+			"href": "firmware/01-user-update-guide.md",
+			"title": "Beginner guide: update a Tstat11",
 			"order": 220
 		},
 		{
@@ -122,34 +132,34 @@
 			"order": 230
 		},
 		{
-			"href": "t3-eez-studio/wasm-browser-build-migration.md",
-			"title": "The LVGL WASM browser build",
-			"order": 230
+			"href": "firmware/03-full-reflash.md",
+			"title": "Full reflash with the Flash Download Tool",
+			"order": 240
 		},
 		{
 			"href": "firmware/what-the-firmware-runs.md",
 			"title": "What the firmware runs",
-			"order": 240
-		},
-		{
-			"href": "firmware/building.md",
-			"title": "Building the firmware",
 			"order": 250
-		},
-		{
-			"href": "firmware/flashing.md",
-			"title": "Loading firmware onto a device",
-			"order": 260
 		},
 		{
 			"href": "firmware/mqtt-guide.md",
 			"title": "MQTT publishing",
-			"order": 270
+			"order": 260
 		},
 		{
 			"href": "firmware/mqtt-implementation.md",
 			"title": "How the MQTT task works",
+			"order": 270
+		},
+		{
+			"href": "firmware/building.md",
+			"title": "Building the firmware",
 			"order": 280
+		},
+		{
+			"href": "firmware/flashing.md",
+			"title": "Loading firmware onto a device",
+			"order": 282
 		},
 		{
 			"href": "bootloader/update-flow.md",

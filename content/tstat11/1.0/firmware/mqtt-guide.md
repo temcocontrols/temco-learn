@@ -1,6 +1,6 @@
 ---
 title: "MQTT publishing"
-order: 270
+order: 260
 ---
 
 A controller can publish its points to a broker, so a dashboard or a historian does not have to poll it. This page is the operator side: the control register that turns it on, the broker it expects, and how to watch the topics with MQTTX.
