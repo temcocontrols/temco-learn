@@ -59,7 +59,7 @@ T3_bootloader.bin    @ 0x20000
 7. **Tools → Load firmware for a single device**, `115200`, and the approved `temco_app.bin`.
 8. Wait for completion and reboot.
 
-Details: [Full reflash](03-full-reflash.md), then [Beginner guide](01-user-update-guide.md).
+Details: the [one-page checklist and full procedure](03-full-reflash.md), then [Beginner guide](01-user-update-guide.md).
 
 ## 4. B. Upgrade an existing working device
 

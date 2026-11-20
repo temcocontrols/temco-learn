@@ -7,6 +7,66 @@ This page is the recovery route: it writes the complete ESP32-S3 boot/update env
 
 A device that boots normally does **not** need this. Use the [beginner guide](01-user-update-guide.md) instead.
 
+## The whole job on one page
+
+The condensed procedure, in execution order. Each block points at the section that explains it.
+
+**Prepare the board — this is where most attempts fail**
+
+1. Power the board from its **own 24 V supply**.
+2. USB-to-TTL adapter: **TX → board RX, RX → board TX, GND → GND**. The **3.3 V pin stays disconnected** — it is a ~30 mA regulator output, and wiring it to the board browns the chip out 30 ms into every boot ([troubleshooting §11](04-troubleshooting.md)).
+3. Fit no jumpers yet.
+
+**Enter download mode** (details in §4)
+
+4. Power off.
+5. Fit a jumper on **j4 (EN)** and on **j6 (IO0)**.
+6. Power on and wait 2 seconds.
+7. Remove **only j4**. Leave **j6** fitted — that is what holds the chip in the loader.
+8. Confirm the chip answers:
+
+```powershell
+python -m esptool --chip esp32s3 -p COM5 --before no-reset --after no-reset chip-id
+# must report: Chip type: ESP32-S3 (QFN56) (revision v0.2)
+```
+
+**Write the four boot files** (details in §3, §5, §6)
+
+9. Add these four rows and press Start:
+
+| File | Address | Size |
+|---|---|---|
+| `bootloader.bin` | `0x0` | 21,296 B |
+| `partition-table.bin` | `0x8000` | 3,072 B |
+| `ota_data_initial.bin` | `0x19000` | 8,192 B |
+| `T3_bootloader.bin` | `0x20000` | 950,816 B |
+
+Wait for four `Hash of data verified` results. Both projects generate an `ota_data_initial.bin`; the two copies are **byte-identical** (`sha256 7D2C7AC4…`), so either one is correct — it is not a "factory" version and an "application" version.
+
+**Install the controller application** — choose one (details in §7)
+
+10. **Production route:** connect the USB-to-RS485 adapter (**A→A, B→B, GND→GND**), then T3000 → *Tools → Load firmware for a single device*, **COM4**, `115200`, `temco_app.bin`. The tool writes the ota selector itself, so the device reboots into the new application.
+11. **UART shortcut, when RS485 is not available:** while still in download mode write the application **and** a `seq=1` selector — `0x120000 temco_app.bin` plus the 8 KB selector at `0x19000`. The selector is **not** shipped in either package; without it the device keeps booting the factory application and shows "Waiting for firmware". How to build one is in [How flash is divided](../hardware/flash-layout.md).
+
+**Leave download mode**
+
+12. Power off.
+13. Remove **j6** — there must be no jumper caps on the board at all.
+14. Wait 2 seconds, power on.
+
+**Verify from the boot log, not from the tool**
+
+15. Connect to COM5 at `115200` and look for:
+
+```text
+I (905) boot: Loaded app from partition at offset 0x120000
+I (1844) app_init: Project name:  temco_app
+```
+
+16. If anything is wrong, match the signature in §10 before touching the files again.
+
+A tool reporting "Finish" only means the bytes landed. It never means the device can execute them.
+
 ## 1. What it writes, and what it does not
 
 ```text
@@ -181,6 +241,19 @@ The build and verification details are in the [developer guide](02-developer-bui
 | Flashes fine, device does nothing | `ota_data_initial.bin` written at the wrong address, or the image set is not the ESP32-S3 one |
 | Device shows "waiting for firmware" afterwards | Expected — install `temco_app.bin` with T3000, step 7 |
 | T3000 update then fails | The installed partition table does not match the application's expectations; see [How flash is divided](../hardware/flash-layout.md) |
+
+### Read the boot log before changing anything
+
+The console on COM5 at `115200` names the cause in one line. These signature lines are unambiguous:
+
+| Boot log line | Cause | Fix |
+|---|---|---|
+| `rst:0xf (BROWNOUT_RST)` repeating every ~30 ms | Supply starved — usually the adapter's 3.3 V pin powering the board, or two supplies on one 3.3 V rail | 24 V only, adapter TX/RX/GND only ([troubleshooting §11](04-troubleshooting.md)) |
+| No output at all | EN held low, or IO0 held low — the chip is in reset or parked in the loader | Remove j4 and j6, power-cycle |
+| `waiting for download` instead of the application | IO0 low at reset — j6 still fitted | Remove j6, power-cycle |
+| `Defaulting to factory image` | `ota_data_initial.bin` was written, so no application is selected — this is the expected state after step 9 | Install `temco_app.bin`, step 10 or 11 |
+| `E (120) boot: ota data partition invalid, falling back to factory` | A hand-built selector has a wrong CRC | Rebuild it as described in [How flash is divided](../hardware/flash-layout.md) |
+| `invalid header: 0xffffffff` | The boot files went to the wrong addresses | Recheck the four addresses in step 9 |
 
 Never flash a single file from this set alone, and never use `temco_app.bin` in place of `T3_bootloader.bin`.
 
